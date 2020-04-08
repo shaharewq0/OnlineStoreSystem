@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ErrorLogger implements Log {
-    private static EventLogger INSTANCE;
+    private static ErrorLogger INSTANCE;
     private static File log;
     private static FileWriter fileWriter;
 
@@ -31,6 +31,7 @@ public class ErrorLogger implements Log {
     public Log GetInstance() {
         if (INSTANCE == null)
         {
+            INSTANCE= new ErrorLogger();
             log = new File("/LOG/Error_Log.txt");
             try {
                 log.createNewFile();

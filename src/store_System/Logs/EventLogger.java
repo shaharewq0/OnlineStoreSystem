@@ -33,6 +33,7 @@ public final class EventLogger implements Log{
     public Log GetInstance() {
         if (INSTANCE == null)
         {
+            INSTANCE=new EventLogger();
             log = new File("/LOG/Event_Log.txt");
             try {
                 log.createNewFile();
