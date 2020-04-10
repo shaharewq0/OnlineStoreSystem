@@ -5,14 +5,28 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ErrorLogger implements Log {
-    private static ErrorLogger INSTANCE;
+    private static ErrorLogger INSTANCE=new ErrorLogger();
     private static File log;
     private static FileWriter fileWriter;
+    private static int OpenWriters;
+
+    private ErrorLogger(){
+        log = new File("Error_Log.txt");
+        try {
+            log.createNewFile();
+            fileWriter = new FileWriter("Error_log.txt");
+            OpenWriters=0;
+        }
+        catch (IOException e){
+            System.out.println("error in creating error-log file");
+        }
+    }
 
     @Override
     public void Log(String msg) {
         try {
             fileWriter.write(msg);
+            fileWriter.write("\n");
         } catch (IOException e) {
             System.out.println("error in printing to the error-log file");
         }
@@ -20,27 +34,18 @@ public class ErrorLogger implements Log {
 
     @Override
     public void CloseLogger()  {
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("error in closing the error-logger");
+        OpenWriters--;
+        if(OpenWriters==0) {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("error in closing the error-logger");
+            }
         }
     }
 
-    @Override
-    public Log GetInstance() {
-        if (INSTANCE == null)
-        {
-            INSTANCE= new ErrorLogger();
-            log = new File("/LOG/Error_Log.txt");
-            try {
-                log.createNewFile();
-                fileWriter = new FileWriter("/LOG/Error_log.txt");
-            }
-            catch (IOException e){
-                System.out.println("error in creating error-log file");
-            }
-        }
+    public static ErrorLogger GetInstance() {
+        OpenWriters++;
         return  INSTANCE;
     }
 }
