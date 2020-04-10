@@ -7,27 +7,18 @@ import java.util.Enumeration;
 import java.util.HashMap;
 
 public final class PassProtocol_Imp implements PasswordProtocol{
-    private static PassProtocol_Imp Instance;
-    private static HashMap<String,String> table;
-    private static MessageDigest messageDigest;
+    public static PassProtocol_Imp Instance=new PassProtocol_Imp();
+    public static HashMap<String,String> table;
+    public static MessageDigest messageDigest;
 
-    private PassProtocol_Imp(){}
-
-    @Override
-    public PasswordProtocol getInstance() {
-        if(Instance == null){
-            Instance = new PassProtocol_Imp();
-            table= new HashMap<>();
-            try {
-                messageDigest = MessageDigest.getInstance("SHA-256");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+    private PassProtocol_Imp(){
+        table= new HashMap<>();
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error: creating hash function");
         }
-        return Instance;
-        }
-
-
+    }
 
     @Override
     public boolean addRegistry(String id, String password) {
@@ -41,16 +32,21 @@ public final class PassProtocol_Imp implements PasswordProtocol{
     @Override
     public boolean login(String id, String password) {
         messageDigest.update(password.getBytes());
-        return table.get(id).equals(new String(messageDigest.digest()));
+        return table.containsKey(id);
     }
 
     @Override
     public boolean deleteRegistry(String id, String password) {
         if(login(id,password)) {
             messageDigest.update(password.getBytes());
-            return table.remove(id,new String(messageDigest.digest()));
+            table.remove(id);
+            return true;
         }
         return false;
+    }
+
+    public static PassProtocol_Imp getInstance() {
+        return Instance;
     }
 
 
