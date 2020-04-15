@@ -1,4 +1,4 @@
-package extornal;
+package extornal.payment;
 
 public interface Payment_system {
 
