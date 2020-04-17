@@ -7,6 +7,7 @@ import java.util.List;
 
 public class System implements ISystem {
     List<Pair<Integer,String>> registered = new LinkedList<>();
+    List<Pair<Integer,String>> logedin = new LinkedList<>();
     private static System instance = null;
 
     private System(){
@@ -25,6 +26,17 @@ public class System implements ISystem {
             return false;
         }
         registered.add(new Pair<>(id,password));
+        return true;
+    }
+
+    public boolean login(int id, String password){
+        if(contains(id,registered) == null){
+            return false;
+        }
+        if(contains(id,logedin) != null){
+            return false;
+        }
+        logedin.add(new Pair<>(id,password));
         return true;
     }
 

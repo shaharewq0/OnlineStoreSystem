@@ -1,9 +1,7 @@
 package Store;
 
-import store_System.Guest;
-import store_System.Registered;
+import store_System.*;
 import store_System.System;
-import store_System.System_Role;
 
 public class User implements IUser {
     private System_Role system_role;
@@ -17,6 +15,17 @@ public class User implements IUser {
             boolean reg = System.getInstance().register(id,password);
             if(reg){
                 system_role = Registered.getInstance();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean login(int id,String password){
+        if(system_role == Registered.getInstance()){
+            boolean log = System.getInstance().login(id,password);
+            if(log){
+                system_role = Member.getInstance();
                 return true;
             }
         }
