@@ -10,4 +10,5 @@ public interface IStore {
     public List<Product> findProductByName(String name);
     public List<Product> findProductByCategory(String category);
     public List<Product> findProductByKeyword(String keyword);
+    public int getRating();
 }

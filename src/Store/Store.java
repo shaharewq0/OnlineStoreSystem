@@ -7,11 +7,20 @@ public class Store implements IStore {
     private String name;
     private List<Product> products;
     private String address;
+    private int rating;
 
-    public Store(String name, List<Product> products, String address) {
+    public Store(String name, List<Product> products, String address, int rating) {
         this.name = name;
         this.products = products;
         this.address = address;
+        this.rating=rating;
+    }
+
+    public Store(String name, String address,int rating) {
+        this.name = name;
+        this.products = new LinkedList<>();
+        this.address = address;
+        this.rating=rating;
     }
 
     public String getName() {
@@ -24,6 +33,10 @@ public class Store implements IStore {
 
     public String getAddress() {
         return address;
+    }
+
+    public int getRating() {
+        return rating;
     }
 
     public boolean addProduct(Product p){
