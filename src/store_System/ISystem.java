@@ -11,4 +11,5 @@ public interface ISystem {
     public List<Store> getAllStores();
     public List<Product> getProductsFromStore(String name);
     public List<Product> searchProductsByName(String name);
+    public List<Product> searchProductsByCategory(String category);
 }

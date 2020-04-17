@@ -82,6 +82,15 @@ public class System implements ISystem {
         return toReturn;
     }
 
+    public List<Product> searchProductsByCategory(String category){
+        List<Product> toReturn = new LinkedList<>();
+        for(Store s : stores){
+            List<Product> toAdd = s.findProductByCategory(category);
+            concat(toReturn,toAdd);
+        }
+        return toReturn;
+    }
+
     private void concat(List<Product> a , List<Product> b){
         for(Product p : b){
             if(!a.contains(p)){

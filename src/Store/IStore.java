@@ -8,4 +8,5 @@ public interface IStore {
     public String getAddress();
     public boolean addProduct(Product p);
     public List<Product> findProductByName(String name);
+    public List<Product> findProductByCategory(String category);
 }
