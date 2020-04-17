@@ -53,4 +53,14 @@ public class Store implements IStore {
         }
         return toReturn;
     }
+
+    public List<Product> findProductByKeyword(String keyword){
+        List<Product> toReturn = new LinkedList<>();
+        for(Product p : products){
+            if(p.getKeyWords().contains(keyword)){
+                toReturn.add(p);
+            }
+        }
+        return toReturn;
+    }
 }

@@ -9,4 +9,5 @@ public interface IStore {
     public boolean addProduct(Product p);
     public List<Product> findProductByName(String name);
     public List<Product> findProductByCategory(String category);
+    public List<Product> findProductByKeyword(String keyword);
 }

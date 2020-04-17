@@ -10,4 +10,5 @@ public interface IUser {
     public List<Product> watchProductsInStore(String name);
     public List<Product> searchProductsByName(String name);
     public List<Product> searchProductsByCategory(String category);
+    public List<Product> searchProductsByKeyword(String keyword);
 }

@@ -53,4 +53,8 @@ public class User implements IUser {
     public List<Product> searchProductsByCategory(String category){
         return System.getInstance().searchProductsByCategory(category);
     }
+
+    public List<Product> searchProductsByKeyword(String keyword){
+        return System.getInstance().searchProductsByKeyword(keyword);
+    }
 }
