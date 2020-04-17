@@ -128,4 +128,14 @@ public class System implements ISystem {
         return toReturn;
     }
 
+    public List<Product> filterByCategory(List<Product> base , String category){
+        List<Product> toReturn = new LinkedList<>();
+        for(Product p : base){
+            if(p.getCategory().equals(category)){
+                toReturn.add(p);
+            }
+        }
+        return toReturn;
+    }
+
 }

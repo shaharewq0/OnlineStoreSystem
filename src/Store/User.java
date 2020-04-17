@@ -64,4 +64,8 @@ public class User implements IUser {
     public List<Product> filterByRating(List<Product> base , int min , int max){
         return System.getInstance().filterByRating(base,min,max);
     }
+
+    public List<Product> filterByCategory(List<Product> base , String category){
+        return System.getInstance().filterByCategory(base,category);
+    }
 }
