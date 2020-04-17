@@ -7,4 +7,5 @@ public interface IUser {
     public boolean login(int id, String password);
     public Store watchStoreDetails(String name);
     public List<Store> watchAllStores();
+    public List<Product> watchProductsInStore(String name);
 }

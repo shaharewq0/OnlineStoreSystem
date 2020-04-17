@@ -1,6 +1,7 @@
 package store_System;
 
 import Store.Store;
+import Store.Product;
 import javafx.util.Pair;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,6 +62,15 @@ public class System implements ISystem {
 
     public List<Store> getAllStores(){
         return stores;
+    }
+
+    public List<Product> getProductsFromStore(String name){
+        for(Store s: stores){
+            if(s.getName().equals(name)){
+                return s.getProducts();
+            }
+        }
+        return null;
     }
 
 }
