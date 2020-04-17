@@ -8,4 +8,5 @@ public interface IUser {
     public Store watchStoreDetails(String name);
     public List<Store> watchAllStores();
     public List<Product> watchProductsInStore(String name);
+    public List<Product> searchProductsByName(String name);
 }

@@ -1,8 +1,9 @@
 package Store;
 
+import java.util.LinkedList;
 import java.util.List;
 
-public class Store {
+public class Store implements IStore {
     private String name;
     private List<Product> products;
     private String address;
@@ -31,5 +32,15 @@ public class Store {
         }
         products.add(p);
         return true;
+    }
+
+    public List<Product> findProductByName(String name){
+        List<Product> toReturn = new LinkedList<>();
+        for(Product p : products){
+            if(p.getName().equals(name)){
+                toReturn.add(p);
+            }
+        }
+        return toReturn;
     }
 }
