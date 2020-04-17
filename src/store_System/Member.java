@@ -1,6 +1,6 @@
 package store_System;
 
-public class Member {
+public class Member implements System_Role {
     private static Member instance = null;
     private Member(){
         instance = new Member();

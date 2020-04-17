@@ -1,6 +1,6 @@
 package store_System;
 
-public class Guest {
+public class Guest implements System_Role {
     private static Guest instance = null;
     private Guest(){
         instance = new Guest();

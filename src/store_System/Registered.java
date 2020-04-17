@@ -1,6 +1,6 @@
 package store_System;
 
-public class Registered {
+public class Registered implements System_Role {
     private static Registered instance = null;
     private Registered(){
         instance = new Registered();
