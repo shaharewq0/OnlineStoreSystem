@@ -108,4 +108,14 @@ public class System implements ISystem {
         }
     }
 
+    public List<Product> filterByPrice(List<Product> base , int min , int max){
+        List<Product> toReturn = new LinkedList<>();
+        for(Product p : base){
+            if(p.getPrice()>= min & p.getPrice()<= max){
+                toReturn.add(p);
+            }
+        }
+        return toReturn;
+    }
+
 }

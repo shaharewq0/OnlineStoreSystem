@@ -11,4 +11,5 @@ public interface IUser {
     public List<Product> searchProductsByName(String name);
     public List<Product> searchProductsByCategory(String category);
     public List<Product> searchProductsByKeyword(String keyword);
+    public List<Product> filterByPrice(List<Product> base , int min , int max);
 }

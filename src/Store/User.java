@@ -57,4 +57,8 @@ public class User implements IUser {
     public List<Product> searchProductsByKeyword(String keyword){
         return System.getInstance().searchProductsByKeyword(keyword);
     }
+
+    public List<Product> filterByPrice(List<Product> base , int min , int max){
+        return System.getInstance().filterByPrice(base,min,max);
+    }
 }
