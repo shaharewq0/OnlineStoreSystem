@@ -3,6 +3,8 @@ package Store;
 import store_System.*;
 import store_System.System;
 
+import java.util.List;
+
 public class User implements IUser {
     private System_Role system_role;
 
@@ -30,5 +32,13 @@ public class User implements IUser {
             }
         }
         return false;
+    }
+
+    public Store watchStoreDetails(String name){
+        return System.getInstance().getStoreDetails(name);
+    }
+
+    public List<Store> watchAllStores(){
+        return System.getInstance().getAllStores();
     }
 }
