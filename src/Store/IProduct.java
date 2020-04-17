@@ -7,4 +7,5 @@ public interface IProduct {
     public String getCategory();
     public List<String> getKeyWords();
     public int getPrice();
+    public int getRating();
 }

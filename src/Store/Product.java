@@ -7,12 +7,14 @@ public class Product implements IProduct{
     private String category;
     private List<String> keyWords;
     private int price;
+    private int rating;
 
-    public Product(String name , String category, List<String> keyWords , int price) {
+    public Product(String name , String category, List<String> keyWords , int price , int rating) {
         this.name = name;
         this.category=category;
         this.keyWords=keyWords;
         this.price=price;
+        this.rating=rating;
     }
 
     public String getName() {
@@ -29,5 +31,9 @@ public class Product implements IProduct{
 
     public int getPrice() {
         return price;
+    }
+
+    public int getRating() {
+        return rating;
     }
 }
