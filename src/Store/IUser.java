@@ -18,4 +18,5 @@ public interface IUser {
     public List<Product> filterByStoreRating(List<Product> base , int min, int max);
     public boolean saveProductInBasket(String productName , String storeName);
     public List<Pair<Product,Integer>> getProductsInCart();
+    public boolean deleteProductInBasket(String productName , String storeName,int num);
 }

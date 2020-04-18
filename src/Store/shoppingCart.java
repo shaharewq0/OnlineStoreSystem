@@ -38,4 +38,13 @@ public class shoppingCart implements IshoppingCart {
         }
         return false;
     }
+
+    public shoppingBasket findBasket(Store s){
+        for(shoppingBasket basket : getBaskets()){
+            if(basket.getStore().getName().equals(s.getName())){
+                return basket;
+            }
+        }
+        return null;
+    }
 }

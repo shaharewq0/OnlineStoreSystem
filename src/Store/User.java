@@ -92,7 +92,7 @@ public class User implements IUser {
         if(toSave == null){
             return false;
         }
-        shoppingBasket toAdd = findBasket(myStore);
+        shoppingBasket toAdd = cart.findBasket(myStore);
         if(toAdd == null){
             toAdd= new shoppingBasket(myStore);
             toAdd.addProduct(toSave);
@@ -103,14 +103,30 @@ public class User implements IUser {
         return true;
     }
 
-    private shoppingBasket findBasket(Store s){
-        for(shoppingBasket basket : cart.getBaskets()){
-            if(basket.getStore().getName().equals(s.getName())){
-                return basket;
+    //removing at most amount of num of a product from the basket
+    public boolean deleteProductInBasket(String productName , String storeName,int num){
+        Store myStore = System.getInstance().getStoreDetails(storeName);
+        if(myStore==null){
+            return false;
+        }
+        List<Product> Products = System.getInstance().searchProductsByName(productName);
+        Product toDelete = null;
+        for(Product p : Products){
+            if(p.getStore().getName().equals(storeName) & myStore.getProducts().contains(p)){
+                toDelete=p;
             }
         }
-        return null;
+        if(toDelete == null){
+            return false;
+        }
+        shoppingBasket toRemove = cart.findBasket(myStore);
+        if(toRemove == null){
+            return false;
+        }
+        return toRemove.removeProduct(toDelete,num)> 0 ;
     }
+
+
 
     public List<Pair<Product,Integer>> getProductsInCart(){
         return cart.allProductsInCart();
