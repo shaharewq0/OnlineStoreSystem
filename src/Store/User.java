@@ -1,5 +1,6 @@
 package Store;
 
+import javafx.util.Pair;
 import store_System.*;
 import store_System.System;
 
@@ -75,6 +76,7 @@ public class User implements IUser {
         return System.getInstance().filterByStoreRating(base,min,max);
     }
 
+    //adding a product to a basket. if the product exists add 1 to the amount of the product in the basket
     public boolean saveProductInBasket(String productName , String storeName){
         Store myStore = System.getInstance().getStoreDetails(storeName);
         if(myStore==null){
@@ -108,5 +110,9 @@ public class User implements IUser {
             }
         }
         return null;
+    }
+
+    public List<Pair<Product,Integer>> getProductsInCart(){
+        return cart.allProductsInCart();
     }
 }

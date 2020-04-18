@@ -35,4 +35,8 @@ public class shoppingBasket implements IshoppingBasket {
     public Store getStore() {
         return store;
     }
+
+    public List<Pair<Product, Integer>> getProducts() {
+        return products;
+    }
 }
