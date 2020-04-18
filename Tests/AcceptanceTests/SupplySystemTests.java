@@ -2,7 +2,7 @@ package AcceptanceTests;
 
 import org.junit.Test;
 
-public class SupplySystemTests {
+public class SupplySystemTests extends AccTest {
     @Test
     public void supplyProducts() {
 

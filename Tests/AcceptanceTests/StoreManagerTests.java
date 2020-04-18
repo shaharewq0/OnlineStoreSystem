@@ -2,7 +2,7 @@ package AcceptanceTests;
 
 import org.junit.Test;
 
-public class StoreManagerTests {
+public class StoreManagerTests extends AccTest {
     @Test
     public void viewSellingHistory() {
 

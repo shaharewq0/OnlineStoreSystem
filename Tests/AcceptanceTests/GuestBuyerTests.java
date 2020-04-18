@@ -2,7 +2,7 @@ package AcceptanceTests;
 
 import org.junit.Test;
 
-public class GuestBuyerTests {
+public class GuestBuyerTests extends AccTest {
     @Test
     public void register() {
 

@@ -2,7 +2,7 @@ package AcceptanceTests;
 
 import org.junit.Test;
 
-public class StoreOwnerTests {
+public class StoreOwnerTests extends AccTest {
     @Test
     public void addItem() {
 
