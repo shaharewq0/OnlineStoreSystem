@@ -2,6 +2,7 @@ package AcceptanceTests;
 
 import AcceptanceTests.auxiliary.ProductDetails;
 import AcceptanceTests.auxiliary.PurchaseDetails;
+import AcceptanceTests.auxiliary.Question;
 import AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class SystemAdapter {
     }
 
     public boolean register(String username, String password) {
+        //Note: only register, doesn't login
         return false;
     }
 
@@ -117,5 +119,17 @@ public class SystemAdapter {
 
     public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
         return null;
+    }
+
+    public List<Question> getStoreQuestions(String storeName) {
+        return null;
+    }
+
+    public void askQuestion(String storeName, Question question) {
+
+    }
+
+    public void answerQuestion(Question question) {
+
     }
 }

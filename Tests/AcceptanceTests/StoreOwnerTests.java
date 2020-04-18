@@ -90,10 +90,8 @@ public class StoreOwnerTests extends AccTest {
         system.addProductToStore(validStoreName, validProductName);
         system.logout();
 
-        system.login(regUsername, password);
         system.addToBasket(validStoreName, validProductName);
         //TODO: buy from basket
-        system.logout();
 
         system.login(username, password);
         assertFalse(system.getStoreSellingHistory(validStoreName).isEmpty());
