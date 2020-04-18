@@ -8,6 +8,11 @@ import org.junit.runner.notification.Failure;
 import java.util.Arrays;
 import java.util.List;
 
+/*  TODO:
+        doesn't sure we need this class,
+        can help in case we want to run only several tests
+*/
+
 public class TestRunner {
     private static List<Class> TestsToRun = Arrays.asList(
             AllAcceptanceTests.class,
