@@ -20,4 +20,5 @@ public interface IUser {
     public List<Pair<Product,Integer>> getProductsInCart();
     public boolean deleteProductInBasket(String productName , String storeName,int num);
     public boolean purchase();
+    public boolean logout();
 }

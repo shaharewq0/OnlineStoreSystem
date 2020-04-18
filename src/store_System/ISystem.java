@@ -20,4 +20,5 @@ public interface ISystem {
     public List<Product> filterByStoreRating(List<Product> base , int min, int max);
     public boolean purchase(shoppingCart cart, int creditCard, String address);
     public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address);
+    public boolean logout(int id);
 }

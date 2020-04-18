@@ -146,4 +146,15 @@ public class User implements IUser {
             return System.getInstance().purchase(cart,creditCardNum,address);
         }
     }
+
+    public boolean logout(){
+        if(system_role == Member.getInstance()){
+            boolean log = System.getInstance().logout(id);
+            if (log){
+                system_role = Registered.getInstance();
+                return true;
+            }
+        }
+        return false;
+    }
 }

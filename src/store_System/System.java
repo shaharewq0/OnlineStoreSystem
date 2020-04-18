@@ -185,4 +185,15 @@ public class System implements ISystem {
 
     }
 
+    public boolean logout(int id){
+        if(contains(id,registered)== null){
+            return false;
+        }else if(contains(id,logedin)==null){
+            return false;
+        }else{
+            logedin.remove(contains(id,logedin));
+            return true;
+        }
+    }
+
 }
