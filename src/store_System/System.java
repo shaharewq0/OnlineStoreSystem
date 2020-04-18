@@ -11,7 +11,7 @@ public class System implements ISystem {
     List<Pair<Integer,String>> registered = new LinkedList<>();
     List<Pair<Integer,String>> logedin = new LinkedList<>();
     List<Store> stores = new LinkedList<>();
-    List<Pair<Integer,shoppingCart>> order = new LinkedList<>();
+    List<Pair<Integer,List<shoppingCart>>> order = new LinkedList<>();
     private static System instance = null;
 
     private System(){
@@ -46,6 +46,15 @@ public class System implements ISystem {
 
     private Pair<Integer , String> contains(int id, List<Pair<Integer,String>> toSearch){
         for(Pair<Integer,String> existing:toSearch){
+            if(existing.getKey() == id){
+                return existing;
+            }
+        }
+        return null;
+    }
+
+    private Pair<Integer , List<shoppingCart>> containsB(int id, List<Pair<Integer,List<shoppingCart>>> toSearch){
+        for(Pair<Integer,List<shoppingCart>> existing:toSearch){
             if(existing.getKey() == id){
                 return existing;
             }
@@ -152,8 +161,18 @@ public class System implements ISystem {
 
     public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address){
         if(purchase(cart,creditCard,address)){
-            order.add(new Pair<Integer, shoppingCart>(id,cart));
-            return true;
+            Pair<Integer,List<shoppingCart>> toChange = containsB(id,order);
+            if(toChange == null){
+                List<shoppingCart> cartAdd = new LinkedList<>();
+                cartAdd.add(cart);
+                order.add(new Pair<>(id,cartAdd));
+                return true;
+            }else{
+                order.remove(toChange);
+                toChange.getValue().add(cart);
+                order.add(toChange);
+                return true;
+            }
         }
         return false;
     }
@@ -207,4 +226,11 @@ public class System implements ISystem {
         return newStore;
     }
 
+    public List<shoppingCart> orderHistory(int id){
+        Pair<Integer,List<shoppingCart>> toReturn = containsB(id,order);
+        if(toReturn == null){
+            return null;
+        }
+        return toReturn.getValue();
+    }
 }

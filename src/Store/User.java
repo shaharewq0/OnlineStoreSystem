@@ -142,12 +142,17 @@ public class User implements IUser {
     }
 
     public boolean purchase(){
+        boolean toReturn;
         if(system_role == Member.getInstance() || system_role == System_Manager.getInstance()){
-            return System.getInstance().memberPurchase(id,cart,creditCardNum,address);
+             toReturn= System.getInstance().memberPurchase(id,cart,creditCardNum,address);
         }
         else{
-            return System.getInstance().purchase(cart,creditCardNum,address);
+            toReturn= System.getInstance().purchase(cart,creditCardNum,address);
         }
+        if (toReturn){
+            cart= new shoppingCart();
+        }
+        return toReturn;
     }
 
     public boolean logout(){
@@ -170,5 +175,12 @@ public class User implements IUser {
             }
         }
         return false;
+    }
+
+    public List<shoppingCart> watchHistory(){
+        if(system_role == Member.getInstance()) {
+            return System.getInstance().orderHistory(id);
+        }
+        return null;
     }
 }
