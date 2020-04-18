@@ -9,10 +9,15 @@ import java.util.List;
 public class User implements IUser {
     private System_Role system_role;
     private shoppingCart cart;
+    private int id;
+    private String address;
+    private int creditCardNum;
 
-    public User(){
+    public User(String address,int creditCardNum){
         system_role = Guest.getInstance();
         cart= new shoppingCart();
+        this.address=address;
+        this.creditCardNum=creditCardNum;
     }
 
     public boolean register(int id, String password){
@@ -31,6 +36,7 @@ public class User implements IUser {
             boolean log = System.getInstance().login(id,password);
             if(log){
                 system_role = Member.getInstance();
+                this.id=id;
                 return true;
             }
         }
@@ -130,5 +136,14 @@ public class User implements IUser {
 
     public List<Pair<Product,Integer>> getProductsInCart(){
         return cart.allProductsInCart();
+    }
+
+    public boolean purchase(){
+        if(system_role == Member.getInstance() || system_role == System_Manager.getInstance()){
+            return System.getInstance().memberPurchase(id,cart,creditCardNum,address);
+        }
+        else{
+            return System.getInstance().purchase(cart,creditCardNum,address);
+        }
     }
 }

@@ -19,4 +19,5 @@ public interface IUser {
     public boolean saveProductInBasket(String productName , String storeName);
     public List<Pair<Product,Integer>> getProductsInCart();
     public boolean deleteProductInBasket(String productName , String storeName,int num);
+    public boolean purchase();
 }
