@@ -41,7 +41,7 @@ public class SystemAdapter {
         return null;
     }
 
-    public List<PurchaseDetails> reviewPurchaseHistory() {
+    public List<PurchaseDetails> getPurchaseHistory(String username) {
         return null;
     }
 

@@ -48,11 +48,11 @@ public class MemberedBuyerTests extends AccTest {
 
     @Test
     public void ReviewPurchaseHistory() {
-        assertTrue(system.reviewPurchaseHistory().isEmpty());
+        assertTrue(system.getPurchaseHistory(username).isEmpty());
 
         //TODO: buy product and check if hist contains it
 
-        List<PurchaseDetails> hist = system.reviewPurchaseHistory();
+        List<PurchaseDetails> hist = system.getPurchaseHistory(username);
         assertFalse(hist.isEmpty());
     }
 }
