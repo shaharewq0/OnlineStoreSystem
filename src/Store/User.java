@@ -7,9 +7,11 @@ import java.util.List;
 
 public class User implements IUser {
     private System_Role system_role;
+    private shoppingCart cart;
 
     public User(){
         system_role = Guest.getInstance();
+        cart= new shoppingCart();
     }
 
     public boolean register(int id, String password){
@@ -71,5 +73,40 @@ public class User implements IUser {
 
     public List<Product> filterByStoreRating(List<Product> base , int min, int max){
         return System.getInstance().filterByStoreRating(base,min,max);
+    }
+
+    public boolean saveProductInBasket(String productName , String storeName){
+        Store myStore = System.getInstance().getStoreDetails(storeName);
+        if(myStore==null){
+            return false;
+        }
+        List<Product> Products = System.getInstance().searchProductsByName(productName);
+        Product toSave = null;
+        for(Product p : Products){
+            if(p.getStore().getName().equals(storeName) & myStore.getProducts().contains(p)){
+                toSave=p;
+            }
+        }
+        if(toSave == null){
+            return false;
+        }
+        shoppingBasket toAdd = findBasket(myStore);
+        if(toAdd == null){
+            toAdd= new shoppingBasket(myStore);
+            toAdd.addProduct(toSave);
+            cart.addBasket(toAdd);
+            return true;
+        }
+        toAdd.addProduct(toSave);
+        return true;
+    }
+
+    private shoppingBasket findBasket(Store s){
+        for(shoppingBasket basket : cart.getBaskets()){
+            if(basket.getStore().getName().equals(s.getName())){
+                return basket;
+            }
+        }
+        return null;
     }
 }

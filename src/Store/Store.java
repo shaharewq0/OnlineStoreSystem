@@ -40,7 +40,7 @@ public class Store implements IStore {
     }
 
     public boolean addProduct(Product p){
-        if (products.contains(p)){
+        if (products.contains(p) | !p.getStore().getName().equals(name)){
             return false;
         }
         products.add(p);
