@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import store_System.*;
 import store_System.System;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class User implements IUser {
@@ -12,12 +13,14 @@ public class User implements IUser {
     private int id;
     private String address;
     private int creditCardNum;
+    private List<Store_role> store_roles;
 
     public User(String address,int creditCardNum){
         system_role = Guest.getInstance();
         cart= new shoppingCart();
         this.address=address;
         this.creditCardNum=creditCardNum;
+        store_roles = new LinkedList<>();
     }
 
     public boolean register(int id, String password){
@@ -152,6 +155,17 @@ public class User implements IUser {
             boolean log = System.getInstance().logout(id);
             if (log){
                 system_role = Registered.getInstance();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean openStore(String name, List<Product> products, String address, int rating){
+        if(system_role == Member.getInstance()){
+            Store s = System.getInstance().openStore(name,products,address,rating);
+            if (s!= null){
+                store_roles.add(new Creator(s));
                 return true;
             }
         }

@@ -21,4 +21,5 @@ public interface IUser {
     public boolean deleteProductInBasket(String productName , String storeName,int num);
     public boolean purchase();
     public boolean logout();
+    public boolean openStore(String name, List<Product> products, String address, int rating);
 }

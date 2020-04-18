@@ -21,4 +21,5 @@ public interface ISystem {
     public boolean purchase(shoppingCart cart, int creditCard, String address);
     public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address);
     public boolean logout(int id);
+    public Store openStore(String name, List<Product> products, String address, int rating);
 }
