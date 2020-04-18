@@ -13,5 +13,5 @@ public interface StoreOwner {
     boolean appointManager(User user);
     <T> void setPremissions(User manager, List<T> Permissions); //generic for now
     boolean fire(User manager);
-    <T> List<T> viewPurchaseHistory();//generic for now
+    List<String>  viewPurchaseHistory();
 }

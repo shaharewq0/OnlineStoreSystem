@@ -5,6 +5,7 @@ import Store.Store;
 import Store.Store_role;
 import store_System.User;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {
@@ -12,6 +13,21 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
     StoreOwner boss; // the Owner who appointed current owner, null for original store owner
     List <User> OwnerAppointeis;// Owners who got appointed by current owner, for future use
     List <User> ManagerAppointeis;// managers who got appointed by current owner
+
+    public StoreOwner_Imp(Store store){
+        this.store=store;
+        boss=null;
+        OwnerAppointeis=new LinkedList<>();
+        ManagerAppointeis=new LinkedList<>();
+    }
+
+    public StoreOwner_Imp(Store store,StoreOwner boss){
+        this.store=store;
+        this.boss=boss;
+        OwnerAppointeis=new LinkedList<>();
+        ManagerAppointeis=new LinkedList<>();
+    }
+
     @Override
     public boolean addItem(Item item) {
         return store.addItem(item);
@@ -66,7 +82,7 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
     }
 
     @Override
-    public <T> List<T> viewPurchaseHistory() {
-        return null;
+    public List<String> viewPurchaseHistory() {
+        return store.viewPurchaseHistory();
     }
 }
