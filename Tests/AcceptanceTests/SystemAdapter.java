@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SystemAdapter {
     public void init() {
-
+        //Note: also need to delete all
     }
 
     public boolean login(String username, String password) {
@@ -80,6 +80,42 @@ public class SystemAdapter {
     }
 
     public List<ProductDetails> getShoppingCart() {
+        return null;
+    }
+
+    public boolean hasItem(String storeName, String productName) {
+        return false;
+    }
+
+    public boolean addProductToStore(String storeName, String productName) {
+        return false;
+    }
+
+    public boolean RemoveProduct(String storeName, String productName) {
+        return false;
+    }
+
+    public boolean appointStoreOwner(String username) {
+        return false;
+    }
+
+    public boolean isStoreOwner(String storeName, String username) {
+        return false;
+    }
+
+    public boolean appointStoreManager(String username) {
+        return false;
+    }
+
+    public boolean isStoreManager(String storeName, String username) {
+        return false;
+    }
+
+    public boolean removeStoreManager(String storeName, String username) {
+        return false;
+    }
+
+    public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
         return null;
     }
 }
