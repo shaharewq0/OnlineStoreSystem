@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import AcceptanceTests.auxiliary.ProductDetails;
 import AcceptanceTests.auxiliary.PurchaseDetails;
 import AcceptanceTests.auxiliary.StoreDetails;
 
@@ -10,10 +11,12 @@ public class SystemAdapter {
 
     }
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
+        return false;
     }
 
-    public void register(String username, String password) {
+    public boolean register(String username, String password) {
+        return false;
     }
 
     public void logout() {
@@ -37,6 +40,46 @@ public class SystemAdapter {
     }
 
     public List<PurchaseDetails> reviewPurchaseHistory() {
+        return null;
+    }
+
+    public boolean isRegistered(String username) {
+        return false;
+    }
+
+    public StoreDetails getStoreDetails(String storeName) {
+        return null;
+    }
+
+    public ProductDetails getProductDetails(String storeName, String productName) {
+        return null;
+    }
+
+    public List<ProductDetails> searchProductByName(String name) {
+        return null;
+    }
+
+    public List<ProductDetails> searchProductByCategory(String category) {
+        return null;
+    }
+
+    public List<ProductDetails> searchProductByKeyword(String keyword) {
+        return null;
+    }
+
+    public boolean inBasket(String storeName, String productName) {
+        return false;
+    }
+
+    public void addToBasket(String storeName, String productName) {
+
+    }
+
+    public void clearShoppingCart() {
+
+    }
+
+    public List<ProductDetails> getShoppingCart() {
         return null;
     }
 }
