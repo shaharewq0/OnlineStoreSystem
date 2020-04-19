@@ -1,10 +1,10 @@
 package tests.UnitTests;
 
-import Store.StoreImp;
-import Store.Product;
+import Store.*;
 import org.junit.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 

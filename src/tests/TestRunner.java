@@ -26,7 +26,7 @@ public class TestRunner {
     public static void main(String[] args) {
         boolean success = true;
         for (Class testSuite : TestsToRun) {
-            System.out.println(testSuite.getPackageName() + ":");
+            //System.out.println(testSuite.getPackageName() + ":");
             success &= runTests(testSuite);
             System.out.println();
         }

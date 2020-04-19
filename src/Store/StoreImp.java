@@ -1,7 +1,9 @@
 package Store;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class StoreImp implements IStore {
     private String name;
@@ -9,11 +11,15 @@ public class StoreImp implements IStore {
     private String address;
     private int rating;
 
+    private Map<IUser, List<IshoppingBasket>> purcheses;
+
     public StoreImp(String name, List<Product> products, String address, int rating) {
         this.name = name;
         this.products = products;
         this.address = address;
         this.rating=rating;
+
+        purcheses = new HashMap<>();
     }
 
     public StoreImp(String name, String address,int rating) {
@@ -21,6 +27,8 @@ public class StoreImp implements IStore {
         this.products = new LinkedList<>();
         this.address = address;
         this.rating=rating;
+
+        purcheses = new HashMap<>();
     }
 
     public String getName() {
@@ -38,6 +46,7 @@ public class StoreImp implements IStore {
     public int getRating() {
         return rating;
     }
+
 
     public boolean addProduct(Product p){
         if (contains(p,products) | !p.getStore().getName().equals(name)){
