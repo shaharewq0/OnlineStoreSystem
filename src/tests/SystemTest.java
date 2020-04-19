@@ -128,4 +128,27 @@ public class SystemTest {
         assertTrue(!s.searchProductsByCategory("play").contains(second));
         assertTrue(s.searchProductsByCategory("play").contains(third));
     }
+
+    @Test
+    public void searchProductByKeywords() {
+        Store a = s.openStore("k","london",5);
+        List<String> keywords1 = new LinkedList<>();
+        keywords1.add("cheap");
+        keywords1.add("solid");
+        List<String> keywords2 = new LinkedList<>();
+        keywords2.add("solid");
+        Product first = new Product("armor","play",keywords1,5,5,a);
+        Product second = new Product("sword","drama",keywords2,5,5,a);
+        Product third = new Product("gun","play",keywords2,5,5,a);
+        assertTrue(a!=null);
+        a.addProduct(first);
+        a.addProduct(second);
+        a.addProduct(third);
+        assertTrue(s.searchProductsByKeyword("solid").contains(first));
+        assertTrue(s.searchProductsByKeyword("solid").contains(second));
+        assertTrue(s.searchProductsByKeyword("solid").contains(third));
+        assertTrue(s.searchProductsByKeyword("cheap").contains(first));
+        assertTrue(!s.searchProductsByKeyword("cheap").contains(second));
+        assertTrue(!s.searchProductsByKeyword("cheap").contains(third));
+    }
 }
