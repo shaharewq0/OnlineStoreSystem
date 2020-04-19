@@ -1,4 +1,4 @@
-package extornal.payment.test;
+package tests.UnitTests;
 
 import static org.junit.Assert.*;
 

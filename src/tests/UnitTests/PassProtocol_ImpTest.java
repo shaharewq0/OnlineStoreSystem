@@ -1,6 +1,9 @@
-package store_System.Security;
+package tests.UnitTests;
 
 import org.junit.Test;
+
+import store_System.Security.PassProtocol_Imp;
+import store_System.Security.PasswordProtocol;
 
 import static org.junit.Assert.*;
 

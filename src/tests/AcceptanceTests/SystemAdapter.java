@@ -13,6 +13,7 @@ public class SystemAdapter {
         //Note: also need to delete all?
     }
 
+
     public boolean login(String username, String password) {
         return false;
     }

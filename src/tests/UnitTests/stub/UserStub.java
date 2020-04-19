@@ -1,4 +1,4 @@
-package Store.StoreOwner.OwnerTest;
+package tests.UnitTests.stub;
 
 import store_System.User;
 

@@ -1,4 +1,4 @@
-package tests;
+package tests.UnitTests;
 
 import Store.StoreImp;
 import Store.Product;

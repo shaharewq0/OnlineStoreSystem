@@ -1,4 +1,4 @@
-package extornal.supply.test;
+package tests.UnitTests;
 
 import static org.junit.Assert.*;
 

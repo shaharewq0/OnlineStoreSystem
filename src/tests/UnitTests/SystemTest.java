@@ -1,4 +1,4 @@
-package tests;
+package tests.UnitTests;
 
 
 import static org.junit.Assert.assertFalse;

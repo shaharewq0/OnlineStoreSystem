@@ -1,4 +1,4 @@
-package store_System.Logs.test;
+package tests.UnitTests;
 
 import org.junit.Test;
 
