@@ -1,8 +1,7 @@
 package store_System;
 
-import Store.StoreImp;
-import Store.shoppingCart;
-import Store.Product;
+import Store.*;
+
 import java.util.List;
 
 public interface ISystem {
@@ -23,4 +22,6 @@ public interface ISystem {
     public boolean logout(int id);
     public StoreImp openStore(String name, String address, int rating);
     public List<shoppingCart> orderHistory(int id);
+
+    public List<IshoppingBasket> orderHistory(IStore store);
 }

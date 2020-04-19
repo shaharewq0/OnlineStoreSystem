@@ -1,9 +1,7 @@
 package store_System;
 
-import Store.StoreImp;
-import Store.shoppingCart;
-import Store.MyPair;
-import Store.Product;
+import Store.*;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -236,5 +234,28 @@ public class System implements ISystem {
             return null;
         }
         return toReturn.getValue();
+    }
+
+    @Override
+    public List<IshoppingBasket> orderHistory(IStore store) {
+
+        List<IshoppingBasket> baskets = new LinkedList<>();
+
+        for (MyPair<Integer,List<shoppingCart>> pair:order) {
+            List<shoppingCart> carts = pair.getValue();
+
+            for (shoppingCart cart:carts) {
+                for (IshoppingBasket basket:cart.getBaskets()) {
+                    if(basket.getStore() == store) {
+                        baskets.add(basket);
+                    }
+
+                }
+
+            }
+
+        }
+
+        return baskets;
     }
 }

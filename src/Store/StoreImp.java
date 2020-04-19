@@ -1,9 +1,10 @@
 package Store;
 
+import java.util.HashMap;
 import kotlin.NotImplementedError;
-
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class StoreImp implements IStore {
     private String name;
@@ -13,6 +14,8 @@ public class StoreImp implements IStore {
     private String address;
     private int rating;
 
+    private Map<IUser, List<IshoppingBasket>> purcheses;
+
     public StoreImp(String name, List<Product> products, String address, int rating) {
         this.name = name;
         this.products = products;
@@ -20,6 +23,7 @@ public class StoreImp implements IStore {
         this.rating=rating;
         Owners=new LinkedList<>();
         Managers=new LinkedList<>();
+        purcheses = new HashMap<>();
     }
 
     public StoreImp(String name, String address,int rating) {
@@ -29,6 +33,7 @@ public class StoreImp implements IStore {
         this.rating=rating;
         Owners=new LinkedList<>();
         Managers=new LinkedList<>();
+        purcheses = new HashMap<>();
     }
 
     public List<IUser> getOwners() {
