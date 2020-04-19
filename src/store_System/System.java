@@ -84,8 +84,8 @@ public class System implements ISystem {
     public List<Product> searchProductsByName(String name){
         List<Product> toReturn = new LinkedList<>();
         for(Store s : stores){
-            List<Product> toAdd = s.findProductByName(name);
-            concat(toReturn,toAdd);
+            Product toAdd = s.findProductByName(name);
+            toReturn.add(toAdd);
         }
         return toReturn;
     }
@@ -116,7 +116,7 @@ public class System implements ISystem {
         }
     }
 
-    public List<Product> filterByPrice(List<Product> base , int min , int max){
+    public List<Product> filterByPrice(List<Product> base , double min , double max){
         List<Product> toReturn = new LinkedList<>();
         for(Product p : base){
             if(p.getPrice()>= min & p.getPrice()<= max){
@@ -212,13 +212,13 @@ public class System implements ISystem {
         }
     }
 
-    public Store openStore(String name, List<Product> products, String address, int rating){
+    public Store openStore(String name, String address, int rating){
         for(Store s:stores){
             if(s.getName().equals(name)){
                 return null;
             }
         }
-        Store newStore = new Store(name,products,address,rating);
+        Store newStore = new Store(name,address,rating);
         stores.add(newStore);
         return newStore;
     }

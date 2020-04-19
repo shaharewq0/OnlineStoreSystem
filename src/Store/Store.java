@@ -40,21 +40,29 @@ public class Store implements IStore {
     }
 
     public boolean addProduct(Product p){
-        if (products.contains(p) | !p.getStore().getName().equals(name)){
+        if (contains(p,products) | !p.getStore().getName().equals(name)){
             return false;
         }
         products.add(p);
         return true;
     }
 
-    public List<Product> findProductByName(String name){
-        List<Product> toReturn = new LinkedList<>();
-        for(Product p : products){
-            if(p.getName().equals(name)){
-                toReturn.add(p);
+    private boolean contains(Product p, List<Product> products){
+        for(Product current:products){
+            if(current.getName().equals(p.getName())){
+                return true;
             }
         }
-        return toReturn;
+        return false;
+    }
+
+    public Product findProductByName(String name){
+        for(Product p : products){
+            if(p.getName().equals(name)){
+                return p;
+            }
+        }
+        return null;
     }
 
     public List<Product> findProductByCategory(String category){
