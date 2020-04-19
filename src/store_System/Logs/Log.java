@@ -1,6 +1,6 @@
 package store_System.Logs;
 
 public interface Log {
-    void Log(String msg);
+    void Add_Log(String msg);
     void CloseLogger();
 }

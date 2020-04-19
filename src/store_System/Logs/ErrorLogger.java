@@ -23,7 +23,7 @@ public class ErrorLogger implements Log {
     }
 
     @Override
-    public void Log(String msg) {
+    public void Add_Log(String msg) {
         try {
             fileWriter.write(msg);
             fileWriter.write("\n");

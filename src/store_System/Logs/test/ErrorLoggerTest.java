@@ -1,6 +1,9 @@
-package store_System.Logs;
+package store_System.Logs.test;
 
 import org.junit.Test;
+
+import store_System.Logs.ErrorLogger;
+import store_System.Logs.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +18,7 @@ public class ErrorLoggerTest {
 
     @org.junit.Test
     public void log() {
-        ErrorLogger1.Log("Test Test");
+        ErrorLogger1.Add_Log("Test Test");
         ErrorLogger1.CloseLogger();
         ErrorLogger2.CloseLogger();
         File file=new File("Error_log.txt");
@@ -30,9 +33,9 @@ public class ErrorLoggerTest {
 
     @org.junit.Test
     public void getInstance() {
-        ErrorLogger1.Log("Test Test");
+        ErrorLogger1.Add_Log("Test Test");
         ErrorLogger1.CloseLogger();
-        ErrorLogger2.Log("Test Test");
+        ErrorLogger2.Add_Log("Test Test");
         ErrorLogger2.CloseLogger();
         File file=new File("Error_log.txt");
         try {

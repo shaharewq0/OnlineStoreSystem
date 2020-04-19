@@ -1,6 +1,9 @@
-package store_System.Logs;
+package store_System.Logs.test;
 
 import org.junit.Test;
+
+import store_System.Logs.EventLogger;
+import store_System.Logs.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +18,7 @@ public class EventLoggerTest {
 
     @Test
     public void log() {
-        EventLogger1.Log("Test Test");
+        EventLogger1.Add_Log("Test Test");
         EventLogger1.CloseLogger();
         EventLogger2.CloseLogger();
         File file=new File("Event_log.txt");
@@ -29,9 +32,9 @@ public class EventLoggerTest {
 
     @Test
     public void getInstance() {
-        EventLogger1.Log("Test Test");
+        EventLogger1.Add_Log("Test Test");
         EventLogger1.CloseLogger();
-        EventLogger2.Log("Test Test");
+        EventLogger2.Add_Log("Test Test");
         EventLogger2.CloseLogger();
         File file=new File("Event_log.txt");
         try {
