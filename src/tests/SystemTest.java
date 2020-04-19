@@ -103,11 +103,14 @@ public class SystemTest {
         Product first = new Product("armor","play",new LinkedList<>(),5,5,a);
         Store b = s.openStore("f","london",5);
         Product second = new Product("armor","play",new LinkedList<>(),5,5,b);
+        Product third = new Product("gun","play",new LinkedList<>(),5,5,b);
         assertTrue(a!=null);
         assertTrue(b!=null);
         a.addProduct(first);
         b.addProduct(second);
+        b.addProduct(third);
         assertTrue(s.searchProductsByName("armor").contains(first));
         assertTrue(s.searchProductsByName("armor").contains(second));
+        assertTrue(!s.searchProductsByName("armor").contains(third));
     }
 }
