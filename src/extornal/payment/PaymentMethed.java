@@ -2,5 +2,5 @@ package extornal.payment;
 
 public interface PaymentMethed {
 
-	public void pay(int card_num, int amount);
+	public void pay(long card_num, int amount);
 }

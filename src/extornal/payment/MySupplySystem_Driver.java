@@ -14,8 +14,11 @@ public class MySupplySystem_Driver implements MySupplySystem {
 		current_supplyer = list.get(Pay_pal.name);
 	}
 
-	public void pay(int card_num, int amount) {
+	public boolean pay(long card_num, int amount) {
+		if (card_num <= 0 || amount < 0)
+			return false;
 		current_supplyer.pay(card_num, amount);
+		return true;
 	}
 
 	public void changePaymentMethed(String name) {
@@ -28,5 +31,10 @@ public class MySupplySystem_Driver implements MySupplySystem {
 			System.out.println("supplyer " + name + " dont exsist");
 		}
 
+	}
+
+	@Override
+	public PaymentMethed getPaymentMethed() {
+		return current_supplyer;
 	}
 }
