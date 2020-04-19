@@ -1,13 +1,11 @@
 package Store.StoreOwner.OwnerTest;
 
-import Store.Store;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import Store.StoreOwner.StoreOwner;
 import Store.StoreOwner.StoreOwner_Imp;
-import store_System.User;
-import Store.Item;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class StoreOwner_ImpTest {
 
