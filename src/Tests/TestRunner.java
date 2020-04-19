@@ -1,12 +1,15 @@
-import AcceptanceTests.AllAcceptanceTests;
-import IntegrationTests.AllIntegrationTests;
-import UnitTests.AllUnitTests;
+package Tests;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import java.util.Arrays;
-import java.util.List;
+import Tests.AcceptanceTests.AllAcceptanceTests;
+import Tests.IntegrationTests.AllIntegrationTests;
+import Tests.UnitTests.AllUnitTests;
 
 /*  TODO:
         doesn't sure we need this class,

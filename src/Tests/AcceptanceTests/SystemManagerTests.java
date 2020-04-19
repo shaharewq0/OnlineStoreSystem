@@ -1,12 +1,15 @@
-package AcceptanceTests;
+package Tests.AcceptanceTests;
 
-import AcceptanceTests.auxiliary.PurchaseDetails;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import Tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class SystemManagerTests extends AccTest {
     private static String username = "user1";

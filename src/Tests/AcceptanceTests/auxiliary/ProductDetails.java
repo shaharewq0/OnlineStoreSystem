@@ -1,4 +1,4 @@
-package AcceptanceTests.auxiliary;
+package Tests.AcceptanceTests.auxiliary;
 
 public class ProductDetails {
     public String getName() {

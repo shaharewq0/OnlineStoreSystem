@@ -1,14 +1,20 @@
-package AcceptanceTests;
+package Tests.AcceptanceTests;
 
-import AcceptanceTests.auxiliary.ProductDetails;
-import AcceptanceTests.auxiliary.StoreDetails;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import Tests.AcceptanceTests.auxiliary.ProductDetails;
+import Tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class GuestBuyerTests extends AccTest {
     private static String username = "user1";

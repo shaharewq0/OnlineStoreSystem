@@ -1,8 +1,10 @@
-import AcceptanceTests.AllAcceptanceTests;
-import IntegrationTests.AllIntegrationTests;
-import UnitTests.AllUnitTests;
+package Tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import Tests.AcceptanceTests.AllAcceptanceTests;
+import Tests.IntegrationTests.AllIntegrationTests;
+import Tests.UnitTests.AllUnitTests;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

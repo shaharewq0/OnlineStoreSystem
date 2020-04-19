@@ -1,4 +1,4 @@
-package AcceptanceTests;
+package Tests.AcceptanceTests;
 
 import org.junit.Test;
 

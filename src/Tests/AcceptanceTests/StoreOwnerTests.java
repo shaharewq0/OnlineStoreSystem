@@ -1,11 +1,12 @@
-package AcceptanceTests;
-
-import AcceptanceTests.auxiliary.StoreDetails;
-import org.junit.BeforeClass;
-import org.junit.Test;
+package Tests.AcceptanceTests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import Tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class StoreOwnerTests extends AccTest {
     private static String username = "user1";

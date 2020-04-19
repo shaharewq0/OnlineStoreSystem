@@ -1,4 +1,4 @@
-package AcceptanceTests.auxiliary;
+package Tests.AcceptanceTests.auxiliary;
 
 import java.util.List;
 
