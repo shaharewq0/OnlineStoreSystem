@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Packet_Of_Prodacts {
 
-	LinkedList<String> items = new LinkedList<>();
+	public LinkedList<String> items = new LinkedList<>();
 
 
 }

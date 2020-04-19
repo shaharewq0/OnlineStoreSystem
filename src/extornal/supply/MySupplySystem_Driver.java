@@ -3,7 +3,9 @@ package extornal.supply;
 import java.util.HashMap;
 
 public class MySupplySystem_Driver implements MySupplySystem {
-	static Supplyer current_supplyer = null;
+	
+
+	public static Supplyer current_supplyer = null;
 
 	static HashMap<String, Supplyer> list = null;
 	static {

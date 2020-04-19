@@ -2,7 +2,7 @@ package extornal.supply;
 
 public class Rami_Lavy implements Supplyer {
 
-	static final String name = "Rami_Lavy";
+	public static final String name = "Rami_Lavy";
 
 	@Override
 	public void order(Packet_Of_Prodacts items,inventory destantion) {
