@@ -30,7 +30,8 @@ public class System implements ISystem {
     }
 
     public boolean login(int id, String password){
-        if(contains(id,registered) == null){
+        Pair<Integer,String> reg = contains(id,registered);
+        if(reg == null || !reg.getValue().equals(password)) {
             return false;
         }
         if(contains(id,logedin) != null){
