@@ -151,4 +151,19 @@ public class SystemTest {
         assertTrue(!s.searchProductsByKeyword("cheap").contains(second));
         assertTrue(!s.searchProductsByKeyword("cheap").contains(third));
     }
+
+    @Test
+    public void filterByPrice() {
+        Store a = s.openStore("j","london",5);
+        Product first = new Product("armor","play",new LinkedList<>(),7,5,a);
+        Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
+        Product third = new Product("gun","play",new LinkedList<>(),1,5,a);
+        assertTrue(a!=null);
+        a.addProduct(first);
+        a.addProduct(second);
+        a.addProduct(third);
+        assertTrue(s.filterByPrice(a.getProducts(),4,8).contains(first));
+        assertTrue(s.filterByPrice(a.getProducts(),4,8).contains(second));
+        assertTrue(!s.filterByPrice(a.getProducts(),4,8).contains(third));
+    }
 }
