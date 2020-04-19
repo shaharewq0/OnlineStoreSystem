@@ -14,10 +14,6 @@ public class System implements ISystem {
     List<Pair<Integer,List<shoppingCart>>> order = new LinkedList<>();
     private static System instance = null;
 
-    private System(){
-        instance = new System();
-    }
-
     public static System getInstance(){
         if(instance == null){
             instance = new System();
