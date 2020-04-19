@@ -2,6 +2,7 @@ package tests.AcceptanceTests;
 
 import java.util.List;
 
+import store_System.System;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
@@ -15,11 +16,10 @@ public class SystemAdapter {
 
 
     public boolean login(String username, String password) {
-        return false;
+        return System.getInstance().login(Integer.parseInt(username), password);
     }
 
     public boolean register(String username, String password) {
-        //Note: only register, doesn't login
         return false;
     }
 

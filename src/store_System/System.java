@@ -12,8 +12,13 @@ public class System implements ISystem {
     List<MyPair<Integer,String>> logedin = new LinkedList<>();
     List<StoreImp> stores = new LinkedList<>();
     List<MyPair<Integer,List<shoppingCart>>> order = new LinkedList<>();
+    
     private static System instance = null;
 
+    public void init(Object paymentsys, Object supplysys, Object Firstuser) {
+    	//temp
+    } 
+    
     public static System getInstance(){
         if(instance == null){
             instance = new System();
