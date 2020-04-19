@@ -80,4 +80,34 @@ public class UserTest {
         assertTrue(productInCart.getValue()==1);
     }
 
+    @Test
+    public void addWrongProduct(){
+        Store s = System.getInstance().openStore("lll","tel aviv",3);
+        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
+        s.addProduct(p);
+        User testUser = new User("new york",123123);
+        assertFalse(testUser.saveProductInBasket("qqq","xx"));
+        assertFalse(testUser.saveProductInBasket("wrong","lll"));
+    }
+
+    @Test
+    public void removeProductFromCart(){
+        Store s = System.getInstance().openStore("mmm","tel aviv",3);
+        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
+        s.addProduct(p);
+        User testUser = new User("new york",123123);
+        testUser.saveProductInBasket("qqq","mmm");
+        assertTrue(testUser.deleteProductInBasket("qqq","mmm",1));
+        MyPair<Product,Integer> productInCart=null;
+        for(MyPair<Product,Integer> current :testUser.getProductsInCart()){
+            if(current.getKey()==p){
+                productInCart = current;
+            }
+        }
+        assertTrue(productInCart==null);
+        assertTrue(testUser.getProductsInCart().size()==0);
+        testUser.saveProductInBasket("qqq","mmm");
+        assertTrue(testUser.deleteProductInBasket("qqq","mmm",2));
+    }
+
 }

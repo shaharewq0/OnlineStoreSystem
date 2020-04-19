@@ -90,10 +90,16 @@ public class User implements IUser {
         if(myStore==null){
             return false;
         }
+        if(System.getInstance().searchProductsByName(productName).size()==0){
+            return false;
+        }
         List<Product> Products = System.getInstance().searchProductsByName(productName);
+        if (Products == null){
+            return false;
+        }
         Product toSave = null;
         for(Product p : Products){
-            if(p.getStore().getName().equals(storeName) & myStore.getProducts().contains(p)){
+            if(p.getStore().getName().equals(storeName) && myStore.getProducts().contains(p)){
                 toSave=p;
             }
         }

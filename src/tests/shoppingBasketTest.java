@@ -49,4 +49,22 @@ public class shoppingBasketTest {
         assertTrue(basket.getProducts().size()==1);
     }
 
+    @Test
+    public void removeProduct(){
+        Store s = System.getInstance().openStore("jj","tel aviv",3);
+        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
+        s.addProduct(p);
+        shoppingBasket basket = new shoppingBasket(s);
+        basket.addProduct(p);
+        assertTrue(basket.removeProduct(p,1)==1);
+        MyPair<Product,Integer> productInBasket=null;
+        for(MyPair<Product,Integer> current :basket.getProducts()){
+            if(current.getKey()==p){
+                productInBasket = current;
+            }
+        }
+        assertTrue(productInBasket == null);
+        assertTrue(basket.getProducts().size()==0);
+    }
+
 }

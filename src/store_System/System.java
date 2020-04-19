@@ -85,7 +85,9 @@ public class System implements ISystem {
         List<Product> toReturn = new LinkedList<>();
         for(Store s : stores){
             Product toAdd = s.findProductByName(name);
-            toReturn.add(toAdd);
+            if(toAdd!=null) {
+                toReturn.add(toAdd);
+            }
         }
         return toReturn;
     }
