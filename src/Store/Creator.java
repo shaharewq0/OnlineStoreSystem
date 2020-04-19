@@ -1,13 +1,13 @@
 package Store;
 
 public class Creator implements Store_role {
-    private Store store;
+    private StoreImp store;
 
-    public Creator(Store store) {
+    public Creator(StoreImp store) {
         this.store = store;
     }
 
-    public Store getStore() {
+    public StoreImp getStore() {
         return store;
     }
 }

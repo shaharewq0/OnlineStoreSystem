@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import Store.Product;
-import Store.Store;
+import Store.StoreImp;
 import store_System.System;
 
 public class SystemTest {
@@ -69,7 +69,7 @@ public class SystemTest {
 
     @Test
     public void getStoreDetails() {
-        Store goo = s.openStore("goo","london",5);
+        StoreImp goo = s.openStore("goo","london",5);
         assertTrue(goo!=null);
         assertTrue(s.getStoreDetails("goo")==goo);
         assertTrue(s.getStoreDetails("amazon")==null);
@@ -77,13 +77,13 @@ public class SystemTest {
 
     @Test
     public void getAllStore() {
-        Store a = s.openStore("a","london",5);
-        Store b = s.openStore("b","london",5);
-        Store c = s.openStore("b","london",5);
+        StoreImp a = s.openStore("a","london",5);
+        StoreImp b = s.openStore("b","london",5);
+        StoreImp c = s.openStore("b","london",5);
         assertTrue(a!=null);
         assertTrue(b!=null);
         assertTrue(c==null);
-        List<Store> allStores = s.getAllStores();
+        List<StoreImp> allStores = s.getAllStores();
         assertTrue(allStores.contains(a));
         assertTrue(allStores.contains(b));
         assertTrue(!allStores.contains(c));
@@ -91,7 +91,7 @@ public class SystemTest {
 
     @Test
     public void getProductsFromStore() {
-        Store a = s.openStore("d","london",5);
+        StoreImp a = s.openStore("d","london",5);
         Product first = new Product("sword","play",new LinkedList<>(),5,5,a);
         assertTrue(a!=null);
         a.addProduct(first);
@@ -100,9 +100,9 @@ public class SystemTest {
 
     @Test
     public void searchProductByName() {
-        Store a = s.openStore("e","london",5);
+        StoreImp a = s.openStore("e","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),5,5,a);
-        Store b = s.openStore("f","london",5);
+        StoreImp b = s.openStore("f","london",5);
         Product second = new Product("armor","play",new LinkedList<>(),5,5,b);
         Product third = new Product("gun","play",new LinkedList<>(),5,5,b);
         assertTrue(a!=null);
@@ -117,7 +117,7 @@ public class SystemTest {
 
     @Test
         public void searchProductByCategory() {
-        Store a = s.openStore("h","london",5);
+        StoreImp a = s.openStore("h","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),5,5,a);
         Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
         Product third = new Product("gun","play",new LinkedList<>(),5,5,a);
@@ -132,7 +132,7 @@ public class SystemTest {
 
     @Test
     public void searchProductByKeywords() {
-        Store a = s.openStore("k","london",5);
+        StoreImp a = s.openStore("k","london",5);
         List<String> keywords1 = new LinkedList<>();
         keywords1.add("cheap");
         keywords1.add("solid");
@@ -155,7 +155,7 @@ public class SystemTest {
 
     @Test
     public void filterByPrice() {
-        Store a = s.openStore("j","london",5);
+        StoreImp a = s.openStore("j","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),7,5,a);
         Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
         Product third = new Product("gun","play",new LinkedList<>(),1,5,a);
@@ -170,7 +170,7 @@ public class SystemTest {
 
     @Test
     public void filterByRating() {
-        Store a = s.openStore("z","london",5);
+        StoreImp a = s.openStore("z","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),7,9,a);
         Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
         Product third = new Product("gun","play",new LinkedList<>(),1,3,a);
@@ -185,7 +185,7 @@ public class SystemTest {
 
     @Test
     public void filterByCategory() {
-        Store a = s.openStore("y","london",5);
+        StoreImp a = s.openStore("y","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),7,9,a);
         Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
         Product third = new Product("gun","play",new LinkedList<>(),1,3,a);
@@ -200,10 +200,10 @@ public class SystemTest {
 
     @Test
     public void filterByStoreRating() {
-        Store a = s.openStore("t","london",5);
+        StoreImp a = s.openStore("t","london",5);
         Product first = new Product("armor","play",new LinkedList<>(),7,9,a);
         Product second = new Product("sword","drama",new LinkedList<>(),5,5,a);
-        Store b = s.openStore("u","london",1);
+        StoreImp b = s.openStore("u","london",1);
         Product third = new Product("gun","play",new LinkedList<>(),1,3,b);
         assertTrue(a!=null);
         a.addProduct(first);

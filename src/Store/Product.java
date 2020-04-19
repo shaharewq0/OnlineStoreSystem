@@ -8,9 +8,9 @@ public class Product implements IProduct{
     private List<String> keyWords;
     private double price;
     private int rating;
-    private Store store;
+    private StoreImp store;
 
-    public Product(String name , String category, List<String> keyWords , double price , int rating, Store store) {
+    public Product(String name , String category, List<String> keyWords , double price , int rating, StoreImp store) {
         this.name = name;
         this.category=category;
         this.keyWords=keyWords;
@@ -39,7 +39,7 @@ public class Product implements IProduct{
         return rating;
     }
 
-    public Store getStore() {
+    public StoreImp getStore() {
         return store;
     }
 }

@@ -1,6 +1,6 @@
 package tests;
 
-import Store.Store;
+import Store.StoreImp;
 import Store.Product;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class StoreTest {
 
     @Test
     public void addProduct() {
-        Store s = new Store("myStore","berlin",4);
+        StoreImp s = new StoreImp("myStore","berlin",4);
         assertTrue(s.addProduct(new Product("ball","play",new LinkedList<>(),5,5,s)));
         assertFalse(s.addProduct(new Product("ball","play",new LinkedList<>(),5,5,s)));
     }

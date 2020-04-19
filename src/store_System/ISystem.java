@@ -1,6 +1,6 @@
 package store_System;
 
-import Store.Store;
+import Store.StoreImp;
 import Store.shoppingCart;
 import Store.Product;
 import java.util.List;
@@ -8,8 +8,8 @@ import java.util.List;
 public interface ISystem {
     public boolean register(int id, String password);
     public boolean login(int id, String password);
-    public Store getStoreDetails(String name);
-    public List<Store> getAllStores();
+    public StoreImp getStoreDetails(String name);
+    public List<StoreImp> getAllStores();
     public List<Product> getProductsFromStore(String name);
     public List<Product> searchProductsByName(String name);
     public List<Product> searchProductsByCategory(String category);
@@ -21,6 +21,6 @@ public interface ISystem {
     public boolean purchase(shoppingCart cart, int creditCard, String address);
     public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address);
     public boolean logout(int id);
-    public Store openStore(String name, String address, int rating);
+    public StoreImp openStore(String name, String address, int rating);
     public List<shoppingCart> orderHistory(int id);
 }

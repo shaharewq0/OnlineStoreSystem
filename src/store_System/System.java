@@ -1,6 +1,6 @@
 package store_System;
 
-import Store.Store;
+import Store.StoreImp;
 import Store.shoppingCart;
 import Store.MyPair;
 import Store.Product;
@@ -10,7 +10,7 @@ import java.util.List;
 public class System implements ISystem {
     List<MyPair<Integer,String>> registered = new LinkedList<>();
     List<MyPair<Integer,String>> logedin = new LinkedList<>();
-    List<Store> stores = new LinkedList<>();
+    List<StoreImp> stores = new LinkedList<>();
     List<MyPair<Integer,List<shoppingCart>>> order = new LinkedList<>();
     private static System instance = null;
 
@@ -59,8 +59,8 @@ public class System implements ISystem {
         return null;
     }
 
-    public Store getStoreDetails(String name){
-        for(Store s:stores){
+    public StoreImp getStoreDetails(String name){
+        for(StoreImp s:stores){
             if(s.getName().equals(name)){
                 return s;
             }
@@ -68,12 +68,12 @@ public class System implements ISystem {
         return null;
     }
 
-    public List<Store> getAllStores(){
+    public List<StoreImp> getAllStores(){
         return stores;
     }
 
     public List<Product> getProductsFromStore(String name){
-        for(Store s: stores){
+        for(StoreImp s: stores){
             if(s.getName().equals(name)){
                 return s.getProducts();
             }
@@ -83,7 +83,7 @@ public class System implements ISystem {
 
     public List<Product> searchProductsByName(String name){
         List<Product> toReturn = new LinkedList<>();
-        for(Store s : stores){
+        for(StoreImp s : stores){
             Product toAdd = s.findProductByName(name);
             if(toAdd!=null) {
                 toReturn.add(toAdd);
@@ -94,7 +94,7 @@ public class System implements ISystem {
 
     public List<Product> searchProductsByCategory(String category){
         List<Product> toReturn = new LinkedList<>();
-        for(Store s : stores){
+        for(StoreImp s : stores){
             List<Product> toAdd = s.findProductByCategory(category);
             concat(toReturn,toAdd);
         }
@@ -103,7 +103,7 @@ public class System implements ISystem {
 
     public List<Product> searchProductsByKeyword(String keyword){
         List<Product> toReturn = new LinkedList<>();
-        for(Store s : stores){
+        for(StoreImp s : stores){
             List<Product> toAdd = s.findProductByKeyword(keyword);
             concat(toReturn,toAdd);
         }
@@ -214,13 +214,13 @@ public class System implements ISystem {
         }
     }
 
-    public Store openStore(String name, String address, int rating){
-        for(Store s:stores){
+    public StoreImp openStore(String name, String address, int rating){
+        for(StoreImp s:stores){
             if(s.getName().equals(name)){
                 return null;
             }
         }
-        Store newStore = new Store(name,address,rating);
+        StoreImp newStore = new StoreImp(name,address,rating);
         stores.add(newStore);
         return newStore;
     }

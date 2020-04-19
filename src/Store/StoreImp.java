@@ -3,20 +3,20 @@ package Store;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Store implements IStore {
+public class StoreImp implements IStore {
     private String name;
     private List<Product> products;
     private String address;
     private int rating;
 
-    public Store(String name, List<Product> products, String address, int rating) {
+    public StoreImp(String name, List<Product> products, String address, int rating) {
         this.name = name;
         this.products = products;
         this.address = address;
         this.rating=rating;
     }
 
-    public Store(String name, String address,int rating) {
+    public StoreImp(String name, String address,int rating) {
         this.name = name;
         this.products = new LinkedList<>();
         this.address = address;

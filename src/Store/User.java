@@ -45,11 +45,11 @@ public class User implements IUser {
         return false;
     }
 
-    public Store watchStoreDetails(String name){
+    public StoreImp watchStoreDetails(String name){
         return System.getInstance().getStoreDetails(name);
     }
 
-    public List<Store> watchAllStores(){
+    public List<StoreImp> watchAllStores(){
         return System.getInstance().getAllStores();
     }
 
@@ -86,7 +86,7 @@ public class User implements IUser {
 
     //adding a product to a basket. if the product exists add 1 to the amount of the product in the basket
     public boolean saveProductInBasket(String productName , String storeName){
-        Store myStore = System.getInstance().getStoreDetails(storeName);
+        StoreImp myStore = System.getInstance().getStoreDetails(storeName);
         if(myStore==null){
             return false;
         }
@@ -119,7 +119,7 @@ public class User implements IUser {
 
     //removing at most amount of num of a product from the basket
     public boolean deleteProductInBasket(String productName , String storeName,int num){
-        Store myStore = System.getInstance().getStoreDetails(storeName);
+        StoreImp myStore = System.getInstance().getStoreDetails(storeName);
         if(myStore==null){
             return false;
         }
@@ -173,7 +173,7 @@ public class User implements IUser {
 
     public boolean openStore(String name, String address, int rating){
         if(system_role == Member.getInstance()){
-            Store s = System.getInstance().openStore(name,address,rating);
+            StoreImp s = System.getInstance().openStore(name,address,rating);
             if (s!= null){
                 store_roles.add(new Creator(s));
                 return true;

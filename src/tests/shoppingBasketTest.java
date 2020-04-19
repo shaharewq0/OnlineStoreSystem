@@ -1,6 +1,6 @@
 package tests;
 
-import Store.Store;
+import Store.StoreImp;
 import Store.Product;
 import Store.MyPair;
 import Store.shoppingBasket;
@@ -15,7 +15,7 @@ public class shoppingBasketTest {
 
     @Test
     public void addProduct(){
-        Store s = System.getInstance().openStore("r","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("r","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         shoppingBasket basket = new shoppingBasket(s);
@@ -32,7 +32,7 @@ public class shoppingBasketTest {
 
     @Test
     public void addProductTwice(){
-        Store s = System.getInstance().openStore("p","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("p","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         shoppingBasket basket = new shoppingBasket(s);
@@ -51,7 +51,7 @@ public class shoppingBasketTest {
 
     @Test
     public void removeProduct(){
-        Store s = System.getInstance().openStore("jj","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("jj","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         shoppingBasket basket = new shoppingBasket(s);

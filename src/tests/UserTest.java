@@ -1,6 +1,6 @@
 package tests;
 
-import Store.Store;
+import Store.StoreImp;
 import Store.User;
 import Store.Product;
 import Store.MyPair;
@@ -63,7 +63,7 @@ public class UserTest {
 
     @Test
     public void addProductToBasket(){
-        Store s = System.getInstance().openStore("x","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("x","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         User testUser = new User("new york",123123);
@@ -82,7 +82,7 @@ public class UserTest {
 
     @Test
     public void addWrongProduct(){
-        Store s = System.getInstance().openStore("lll","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("lll","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         User testUser = new User("new york",123123);
@@ -92,7 +92,7 @@ public class UserTest {
 
     @Test
     public void removeProductFromCart(){
-        Store s = System.getInstance().openStore("mmm","tel aviv",3);
+        StoreImp s = System.getInstance().openStore("mmm","tel aviv",3);
         Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         User testUser = new User("new york",123123);

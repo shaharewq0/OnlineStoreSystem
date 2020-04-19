@@ -8,5 +8,5 @@ public interface IProduct {
     public List<String> getKeyWords();
     public double getPrice();
     public int getRating();
-    public Store getStore();
+    public StoreImp getStore();
 }

@@ -6,9 +6,9 @@ import java.util.List;
 
 public class shoppingBasket implements IshoppingBasket {
     private List<MyPair<Product,Integer>> products;
-    private Store store;
+    private StoreImp store;
 
-    public shoppingBasket(Store store) {
+    public shoppingBasket(StoreImp store) {
         this.store = store;
         products = new LinkedList<>();
     }
@@ -50,7 +50,7 @@ public class shoppingBasket implements IshoppingBasket {
         return null;
     }
 
-    public Store getStore() {
+    public StoreImp getStore() {
         return store;
     }
 
