@@ -1,10 +1,10 @@
 package Store;
 
-import javafx.util.Pair;
+
 import java.util.List;
 
 public class shoppingBasket implements IshoppingBasket {
-    private List<Pair<Product,Integer>> products;
+    private List<MyPair<Product,Integer>> products;
     private Store store;
 
     public shoppingBasket(Store store) {
@@ -13,25 +13,25 @@ public class shoppingBasket implements IshoppingBasket {
 
     public void addProduct(Product p){
         if(p.getStore().getName().equals(store.getName())){
-            Pair<Product,Integer> toChange = findInBasket(p);
+        	MyPair<Product,Integer> toChange = findInBasket(p);
             if(toChange == null){
-                products.add(new Pair<Product, Integer>(p,1));
+                products.add(new MyPair<Product, Integer>(p,1));
             }else{
                 products.remove(toChange);
-                products.add(new Pair<Product, Integer>(p,toChange.getValue()+1));
+                products.add(new MyPair<Product, Integer>(p,toChange.getValue()+1));
             }
         }
     }
 
     public int removeProduct(Product p , int num){
         if(p.getStore().getName().equals(store.getName())){
-            Pair<Product,Integer> toChange = findInBasket(p);
+        	MyPair<Product,Integer> toChange = findInBasket(p);
             if(toChange == null){
                 return 0;
             }else{
                 products.remove(toChange);
                 if(toChange.getValue()>num) {
-                    products.add(new Pair<Product, Integer>(p, toChange.getValue() - 1));
+                    products.add(new MyPair<Product, Integer>(p, toChange.getValue() - 1));
                 }
                 return Math.min(toChange.getValue(),num);
             }
@@ -39,8 +39,8 @@ public class shoppingBasket implements IshoppingBasket {
         return 0;
     }
 
-    private Pair<Product,Integer> findInBasket(Product p){
-        for (Pair<Product,Integer> productInBasket : products){
+    private MyPair<Product,Integer> findInBasket(Product p){
+        for (MyPair<Product,Integer> productInBasket : products){
             if(productInBasket.getKey().getName().equals(p.getName())){
                 return productInBasket;
             }
@@ -52,7 +52,7 @@ public class shoppingBasket implements IshoppingBasket {
         return store;
     }
 
-    public List<Pair<Product, Integer>> getProducts() {
+    public List<MyPair<Product, Integer>> getProducts() {
         return products;
     }
 }

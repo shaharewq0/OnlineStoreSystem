@@ -2,16 +2,16 @@ package store_System;
 
 import Store.Store;
 import Store.shoppingCart;
+import Store.MyPair;
 import Store.Product;
-import javafx.util.Pair;
 import java.util.LinkedList;
 import java.util.List;
 
 public class System implements ISystem {
-    List<Pair<Integer,String>> registered = new LinkedList<>();
-    List<Pair<Integer,String>> logedin = new LinkedList<>();
+    List<MyPair<Integer,String>> registered = new LinkedList<>();
+    List<MyPair<Integer,String>> logedin = new LinkedList<>();
     List<Store> stores = new LinkedList<>();
-    List<Pair<Integer,List<shoppingCart>>> order = new LinkedList<>();
+    List<MyPair<Integer,List<shoppingCart>>> order = new LinkedList<>();
     private static System instance = null;
 
     public static System getInstance(){
@@ -25,24 +25,24 @@ public class System implements ISystem {
         if(contains(id,registered) != null){
             return false;
         }
-        registered.add(new Pair<>(id,password));
+        registered.add(new MyPair<>(id,password));
         return true;
     }
 
     public boolean login(int id, String password){
-        Pair<Integer,String> reg = contains(id,registered);
+    	MyPair<Integer,String> reg = contains(id,registered);
         if(reg == null || !reg.getValue().equals(password)) {
             return false;
         }
         if(contains(id,logedin) != null){
             return false;
         }
-        logedin.add(new Pair<>(id,password));
+        logedin.add(new MyPair<>(id,password));
         return true;
     }
 
-    private Pair<Integer , String> contains(int id, List<Pair<Integer,String>> toSearch){
-        for(Pair<Integer,String> existing:toSearch){
+    private MyPair<Integer , String> contains(int id, List<MyPair<Integer,String>> toSearch){
+        for(MyPair<Integer,String> existing:toSearch){
             if(existing.getKey() == id){
                 return existing;
             }
@@ -50,8 +50,8 @@ public class System implements ISystem {
         return null;
     }
 
-    private Pair<Integer , List<shoppingCart>> containsB(int id, List<Pair<Integer,List<shoppingCart>>> toSearch){
-        for(Pair<Integer,List<shoppingCart>> existing:toSearch){
+    private MyPair<Integer , List<shoppingCart>> containsB(int id, List<MyPair<Integer,List<shoppingCart>>> toSearch){
+        for(MyPair<Integer,List<shoppingCart>> existing:toSearch){
             if(existing.getKey() == id){
                 return existing;
             }
@@ -158,11 +158,11 @@ public class System implements ISystem {
 
     public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address){
         if(purchase(cart,creditCard,address)){
-            Pair<Integer,List<shoppingCart>> toChange = containsB(id,order);
+        	MyPair<Integer,List<shoppingCart>> toChange = containsB(id,order);
             if(toChange == null){
                 List<shoppingCart> cartAdd = new LinkedList<>();
                 cartAdd.add(cart);
-                order.add(new Pair<>(id,cartAdd));
+                order.add(new MyPair<>(id,cartAdd));
                 return true;
             }else{
                 order.remove(toChange);
@@ -224,7 +224,7 @@ public class System implements ISystem {
     }
 
     public List<shoppingCart> orderHistory(int id){
-        Pair<Integer,List<shoppingCart>> toReturn = containsB(id,order);
+    	MyPair<Integer,List<shoppingCart>> toReturn = containsB(id,order);
         if(toReturn == null){
             return null;
         }

@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.Assert;
 import org.junit.Test;
 import store_System.*;
 import store_System.System;

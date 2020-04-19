@@ -1,6 +1,5 @@
 package Store;
 
-import javafx.util.Pair;
 import store_System.*;
 import store_System.System;
 
@@ -137,7 +136,7 @@ public class User implements IUser {
 
 
 
-    public List<Pair<Product,Integer>> getProductsInCart(){
+    public List<MyPair<Product,Integer>> getProductsInCart(){
         return cart.allProductsInCart();
     }
 

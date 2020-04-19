@@ -1,6 +1,5 @@
 package Store;
 
-import javafx.util.Pair;
 
 import java.util.*;
 
@@ -15,16 +14,17 @@ public class shoppingCart implements IshoppingCart {
         return baskets;
     }
 
-    public List<Pair<Product,Integer>> allProductsInCart(){
-        List<Pair<Product,Integer>> toReturn = new LinkedList<>();
+    public List<MyPair<Product,Integer>> allProductsInCart(){
+        List<MyPair<Product,Integer>> toReturn = new LinkedList<>();
         for(shoppingBasket b:baskets){
             concat(toReturn,b.getProducts());
         }
         return toReturn;
     }
 
-    private void concat(List<Pair<Product,Integer>> a , List<Pair<Product,Integer>> b){
-        for(Pair<Product,Integer> p : b){
+    // connect 2 lists
+    private void concat(List<MyPair<Product,Integer>> a , List<MyPair<Product,Integer>> b){
+        for(MyPair<Product,Integer> p : b){
             if(!a.contains(p)){
                 a.add(p);
             }

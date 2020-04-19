@@ -1,6 +1,5 @@
 package Store;
 
-import javafx.util.Pair;
 import java.util.List;
 
 public interface IUser {
@@ -17,7 +16,7 @@ public interface IUser {
     public List<Product> filterByCategory(List<Product> base , String category);
     public List<Product> filterByStoreRating(List<Product> base , int min, int max);
     public boolean saveProductInBasket(String productName , String storeName);
-    public List<Pair<Product,Integer>> getProductsInCart();
+    public List<MyPair<Product,Integer>> getProductsInCart();
     public boolean deleteProductInBasket(String productName , String storeName,int num);
     public boolean purchase();
     public boolean logout();
