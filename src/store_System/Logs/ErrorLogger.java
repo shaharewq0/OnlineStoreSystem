@@ -31,7 +31,7 @@ public class ErrorLogger implements Log {
             System.out.println("error in printing to the error-log file");
         }
     }
-    //ss
+    
 
     @Override
     public void CloseLogger()  {
