@@ -87,4 +87,13 @@ public class SystemTest {
         assertTrue(allStores.contains(b));
         assertTrue(!allStores.contains(c));
     }
+
+    @Test
+    public void getProductsFromStore() {
+        Store a = s.openStore("d","london",5);
+        Product first = new Product("sword","play",new LinkedList<>(),5,5,a);
+        assertTrue(a!=null);
+        a.addProduct(first);
+        assertTrue(s.getProductsFromStore("d").contains(first));
+    }
 }
