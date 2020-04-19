@@ -212,13 +212,13 @@ public class System implements ISystem {
         }
     }
 
-    public Store openStore(String name, List<Product> products, String address, int rating){
+    public Store openStore(String name, String address, int rating){
         for(Store s:stores){
             if(s.getName().equals(name)){
                 return null;
             }
         }
-        Store newStore = new Store(name,products,address,rating);
+        Store newStore = new Store(name,address,rating);
         stores.add(newStore);
         return newStore;
     }

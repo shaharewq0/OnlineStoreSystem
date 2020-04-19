@@ -1,9 +1,13 @@
 package tests;
 
+import Store.Product;
 import org.junit.Assert;
 import org.junit.Test;
 import store_System.*;
 import store_System.System;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -52,5 +56,12 @@ public class SystemTest {
         assertTrue(s.register(Id,pass));
         String wrongPass = "1";
         assertFalse(s.login(Id,wrongPass));
+    }
+
+    @Test
+    //open new store
+    public void openStore() {
+        assertTrue(s.openStore("ebay","london",5)!=null);
+        assertTrue(s.openStore("ebay","london",5)==null);
     }
 }

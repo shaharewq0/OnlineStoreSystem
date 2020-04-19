@@ -166,9 +166,9 @@ public class User implements IUser {
         return false;
     }
 
-    public boolean openStore(String name, List<Product> products, String address, int rating){
+    public boolean openStore(String name, String address, int rating){
         if(system_role == Member.getInstance()){
-            Store s = System.getInstance().openStore(name,products,address,rating);
+            Store s = System.getInstance().openStore(name,address,rating);
             if (s!= null){
                 store_roles.add(new Creator(s));
                 return true;
