@@ -73,4 +73,18 @@ public class SystemTest {
         assertTrue(s.getStoreDetails("goo")==goo);
         assertTrue(s.getStoreDetails("amazon")==null);
     }
+
+    @Test
+    public void getAllStore() {
+        Store a = s.openStore("a","london",5);
+        Store b = s.openStore("b","london",5);
+        Store c = s.openStore("b","london",5);
+        assertTrue(a!=null);
+        assertTrue(b!=null);
+        assertTrue(c==null);
+        List<Store> allStores = s.getAllStores();
+        assertTrue(allStores.contains(a));
+        assertTrue(allStores.contains(b));
+        assertTrue(!allStores.contains(c));
+    }
 }
