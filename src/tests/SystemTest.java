@@ -213,4 +213,21 @@ public class SystemTest {
         assertTrue(s.filterByStoreRating(a.getProducts(),3,7).contains(second));
         assertTrue(!s.filterByStoreRating(a.getProducts(),3,7).contains(third));
     }
+
+    @Test
+    public void logout(){
+        int Id = 666;
+        String pass = "666";
+        assertTrue(s.register(Id,pass));
+        assertTrue(s.login(Id,pass));
+        assertTrue(s.logout(Id));
+    }
+
+    @Test
+    public void logout2(){
+        int Id = 777;
+        String pass = "777";
+        assertTrue(s.register(Id,pass));
+        assertFalse(s.logout(Id));
+    }
 }

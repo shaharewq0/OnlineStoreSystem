@@ -110,4 +110,20 @@ public class UserTest {
         assertTrue(testUser.deleteProductInBasket("qqq","mmm",2));
     }
 
+    @Test
+    public void logout(){
+        User testUser = new User("new york",123123);
+        testUser.register(1234,"1234");
+        testUser.login(1234,"1234");
+        assertTrue(testUser.logout());
+    }
+
+    @Test
+    public void logout2(){
+        User testUser = new User("new york",123123);
+        assertFalse(testUser.logout());
+        testUser.register(1234,"1234");
+        assertFalse(testUser.logout());
+    }
+
 }
