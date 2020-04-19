@@ -2,7 +2,7 @@ package extornal.payment;
 
 import java.util.HashMap;
 
-public class MySupplySystem_Driver implements MySupplySystem {
+public class MyPaymentSystem_Driver implements MyPaymentSystem {
 
 	static PaymentMethed current_supplyer = null;
 

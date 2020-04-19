@@ -6,16 +6,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import extornal.payment.Isracard;
-import extornal.payment.MySupplySystem;
-import extornal.payment.MySupplySystem_Driver;
+import extornal.payment.MyPaymentSystem;
+import extornal.payment.MyPaymentSystem_Driver;
 import extornal.payment.Pay_pal;
 
 public class Payment_Tests {
 
-	MySupplySystem mss = null;
+	MyPaymentSystem mss = null;
 	@Before
 	public void setUp() throws Exception {
-		mss = new MySupplySystem_Driver();
+		mss = new MyPaymentSystem_Driver();
 	}
 
 	@Test

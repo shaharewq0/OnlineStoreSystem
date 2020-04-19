@@ -1,6 +1,6 @@
 package extornal.payment;
 
-public interface MySupplySystem {
+public interface MyPaymentSystem {
 	
 	public PaymentMethed getPaymentMethed();
 	
