@@ -40,11 +40,20 @@ public class Store implements IStore {
     }
 
     public boolean addProduct(Product p){
-        if (products.contains(p) | !p.getStore().getName().equals(name)){
+        if (contains(p,products) | !p.getStore().getName().equals(name)){
             return false;
         }
         products.add(p);
         return true;
+    }
+
+    private boolean contains(Product p, List<Product> products){
+        for(Product current:products){
+            if(current.getName().equals(p.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Product> findProductByName(String name){

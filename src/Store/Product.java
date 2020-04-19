@@ -6,11 +6,11 @@ public class Product implements IProduct{
     private String name;
     private String category;
     private List<String> keyWords;
-    private int price;
+    private double price;
     private int rating;
     private Store store;
 
-    public Product(String name , String category, List<String> keyWords , int price , int rating, Store store) {
+    public Product(String name , String category, List<String> keyWords , double price , int rating, Store store) {
         this.name = name;
         this.category=category;
         this.keyWords=keyWords;
@@ -31,7 +31,7 @@ public class Product implements IProduct{
         return keyWords;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

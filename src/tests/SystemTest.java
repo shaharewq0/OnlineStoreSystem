@@ -1,6 +1,7 @@
 package tests;
 
 import Store.Product;
+import Store.Store;
 import org.junit.Assert;
 import org.junit.Test;
 import store_System.*;
@@ -63,5 +64,13 @@ public class SystemTest {
     public void openStore() {
         assertTrue(s.openStore("ebay","london",5)!=null);
         assertTrue(s.openStore("ebay","london",5)==null);
+    }
+
+    @Test
+    public void getStoreDetails() {
+        Store goo = s.openStore("goo","london",5);
+        assertTrue(goo!=null);
+        assertTrue(s.getStoreDetails("goo")==goo);
+        assertTrue(s.getStoreDetails("amazon")==null);
     }
 }
