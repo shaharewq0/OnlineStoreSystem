@@ -1,4 +1,4 @@
-package Tests.AcceptanceTests;
+package tests.AcceptanceTests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Tests.AcceptanceTests.auxiliary.PurchaseDetails;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class SystemManagerTests extends AccTest {
     private static String username = "user1";

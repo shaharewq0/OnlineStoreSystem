@@ -1,4 +1,4 @@
-package Tests.AcceptanceTests;
+package tests.AcceptanceTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

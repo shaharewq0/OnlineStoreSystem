@@ -1,4 +1,4 @@
-package Tests.AcceptanceTests;
+package tests.AcceptanceTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Tests.AcceptanceTests.auxiliary.PurchaseDetails;
-import Tests.AcceptanceTests.auxiliary.StoreDetails;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class MemberedBuyerTests extends AccTest {
     private static String username = "user1";

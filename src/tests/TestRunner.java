@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import Tests.AcceptanceTests.AllAcceptanceTests;
-import Tests.IntegrationTests.AllIntegrationTests;
-import Tests.UnitTests.AllUnitTests;
+import tests.AcceptanceTests.AllAcceptanceTests;
+import tests.IntegrationTests.AllIntegrationTests;
+import tests.UnitTests.AllUnitTests;
 
 /*  TODO:
         doesn't sure we need this class,

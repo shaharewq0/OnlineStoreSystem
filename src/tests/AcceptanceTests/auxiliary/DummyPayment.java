@@ -1,4 +1,4 @@
-package Tests.AcceptanceTests.auxiliary;
+package tests.AcceptanceTests.auxiliary;
 
 public class DummyPayment {
     private String paymentMethod;

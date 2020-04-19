@@ -1,4 +1,4 @@
-package Tests.AcceptanceTests.auxiliary;
+package tests.AcceptanceTests.auxiliary;
 
 public class Question {
     private String question;

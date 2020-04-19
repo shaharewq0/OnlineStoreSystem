@@ -1,11 +1,11 @@
-package Tests.AcceptanceTests;
+package tests.AcceptanceTests;
 
 import java.util.List;
 
-import Tests.AcceptanceTests.auxiliary.ProductDetails;
-import Tests.AcceptanceTests.auxiliary.PurchaseDetails;
-import Tests.AcceptanceTests.auxiliary.Question;
-import Tests.AcceptanceTests.auxiliary.StoreDetails;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
+import tests.AcceptanceTests.auxiliary.Question;
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class SystemAdapter {
     public void init() {

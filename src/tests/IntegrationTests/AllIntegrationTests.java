@@ -1,4 +1,4 @@
-package Tests.IntegrationTests;
+package tests.IntegrationTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
