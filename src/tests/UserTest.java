@@ -1,7 +1,13 @@
 package tests;
 
+import Store.Store;
 import Store.User;
+import Store.Product;
+import Store.MyPair;
 import org.junit.Test;
+import store_System.System;
+
+import java.util.LinkedList;
 
 import static org.junit.Assert.*;
 
@@ -53,6 +59,25 @@ public class UserTest {
         assertTrue(testUser1.register(Id2,pass2));
         assertTrue(testUser1.login(Id2,pass2));
         assertFalse(testUser1.login(Id1,pass1));
+    }
+
+    @Test
+    public void addProductToBasket(){
+        Store s = System.getInstance().openStore("x","tel aviv",3);
+        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
+        s.addProduct(p);
+        User testUser = new User("new york",123123);
+        assertTrue(testUser.saveProductInBasket("qqq","x"));
+        assertTrue(testUser.getProductsInCart().size()==1);
+        MyPair<Product,Integer> productInCart=null;
+        for(MyPair<Product,Integer> current :testUser.getProductsInCart()){
+            if(current.getKey()==p){
+                productInCart = current;
+            }
+        }
+        assertTrue(productInCart!=null);
+        assertTrue(productInCart.getKey().getName().equals("qqq"));
+        assertTrue(productInCart.getValue()==1);
     }
 
 }

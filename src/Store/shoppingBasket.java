@@ -1,6 +1,7 @@
 package Store;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class shoppingBasket implements IshoppingBasket {
@@ -9,6 +10,7 @@ public class shoppingBasket implements IshoppingBasket {
 
     public shoppingBasket(Store store) {
         this.store = store;
+        products = new LinkedList<>();
     }
 
     public void addProduct(Product p){
