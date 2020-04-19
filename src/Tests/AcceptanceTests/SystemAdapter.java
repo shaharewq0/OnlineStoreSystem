@@ -9,7 +9,8 @@ import java.util.List;
 
 public class SystemAdapter {
     public void init() {
-        //Note: also need to delete all
+        //Note: call with DummyPayment and DummySupply
+        //Note: also need to delete all?
     }
 
     public boolean login(String username, String password) {
