@@ -56,14 +56,13 @@ public class Store implements IStore {
         return false;
     }
 
-    public List<Product> findProductByName(String name){
-        List<Product> toReturn = new LinkedList<>();
+    public Product findProductByName(String name){
         for(Product p : products){
             if(p.getName().equals(name)){
-                toReturn.add(p);
+                return p;
             }
         }
-        return toReturn;
+        return null;
     }
 
     public List<Product> findProductByCategory(String category){

@@ -96,4 +96,18 @@ public class SystemTest {
         a.addProduct(first);
         assertTrue(s.getProductsFromStore("d").contains(first));
     }
+
+    @Test
+    public void searchProductByName() {
+        Store a = s.openStore("e","london",5);
+        Product first = new Product("armor","play",new LinkedList<>(),5,5,a);
+        Store b = s.openStore("f","london",5);
+        Product second = new Product("armor","play",new LinkedList<>(),5,5,b);
+        assertTrue(a!=null);
+        assertTrue(b!=null);
+        a.addProduct(first);
+        b.addProduct(second);
+        assertTrue(s.searchProductsByName("armor").contains(first));
+        assertTrue(s.searchProductsByName("armor").contains(second));
+    }
 }
