@@ -1,13 +1,13 @@
 package tests.UnitTests.stub;
 
-import Store.Store;
-import Store.Item;
-import store_System.User;
+import Store.IStore;
+import Store.IUser;
+import Store.Product;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class StoreStub implements Store {
+public class StoreStub implements IStore {
     UserStub Owner;
     UserStub manager;
 
@@ -19,34 +19,70 @@ public class StoreStub implements Store {
         this.manager = manager;
     }
 
+
     @Override
-    public boolean addItem(Item item) {
-        return true;
+    public String getName() {
+        return null;
     }
 
     @Override
-    public boolean removeItem(Item item) {
-        return true;
+    public List<Product> getProducts() {
+        return null;
     }
 
     @Override
-    public boolean editItem(Item OLD_item, Item NEW_item) {
-        return true;
+    public String getAddress() {
+        return null;
     }
 
     @Override
-    public void appointOwner(User user) {
-
+    public boolean addProduct(Product p) {
+        return false;
     }
 
     @Override
-    public void appointManager(User user) {
-
+    public Product findProductByName(String name) {
+        return null;
     }
 
     @Override
-    public void fireManager(User user) {
+    public List<Product> findProductByCategory(String category) {
+        return null;
+    }
 
+    @Override
+    public List<Product> findProductByKeyword(String keyword) {
+        return null;
+    }
+
+    @Override
+    public int getRating() {
+        return 0;
+    }
+
+    @Override
+    public boolean removeProduct(Product p) {
+        return false;
+    }
+
+    @Override
+    public boolean editProduct(Product OLD_p, Product NEW_p) {
+        return false;
+    }
+
+    @Override
+    public boolean appointOwner(IUser user) {
+        return false;
+    }
+
+    @Override
+    public boolean appointManager(IUser user) {
+        return false;
+    }
+
+    @Override
+    public boolean fireManager(IUser user) {
+        return false;
     }
 
     @Override

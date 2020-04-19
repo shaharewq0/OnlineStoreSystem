@@ -1,17 +1,17 @@
 package Store.StoreOwner;
 
-import Store.Item;
-import store_System.User;
+import Store.Product;
+import Store.IUser;
 
 import java.util.List;
 
 public interface StoreOwner {
-    boolean addItem(Item item);
-    boolean removeItem(Item item);
-    boolean editItem(Item OLD_item,Item NEW_item);
-    boolean appointOwner(User user);
-    boolean appointManager(User user);
-    <T> void setPremissions(User manager, List<T> Permissions); //generic for now
-    boolean fire(User manager);
+    boolean addItem(Product item);
+    boolean removeItem(Product item);
+    boolean editItem(Product OLD_item, Product NEW_item);
+    boolean appointOwner(IUser user);
+    boolean appointManager(IUser user);
+    <T> void setPremissions(IUser manager, List<T> Permissions); //generic for now
+    boolean fire(IUser manager);
     List<String>  viewPurchaseHistory();
 }

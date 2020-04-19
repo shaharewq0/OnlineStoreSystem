@@ -1,7 +1,12 @@
 package tests.AcceptanceTests;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import Store.IStore;
+import Store.IUser;
+import Store.Product;
+import Store.StoreImp;
 import store_System.System;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
@@ -92,22 +97,32 @@ public class SystemAdapter {
     }
 
     public boolean addProductToStore(String storeName, String productName) {
-        return false;
+        System system=System.getInstance();
+        Product p=system.searchProductsByName(productName).get(0);
+        return system.getStoreDetails(storeName).addProduct(p);
+        //we assume the product and store exist....
     }
 
     public boolean RemoveProduct(String storeName, String productName) {
-        return false;
+        System system=System.getInstance();
+        Product p=system.searchProductsByName(productName).get(0);
+        return system.getStoreDetails(storeName).removeProduct(p);
     }
 
     public boolean appointStoreOwner(String username) {
+        //TODO what??? a system who appoints a Owner???
         return false;
     }
 
     public boolean isStoreOwner(String storeName, String username) {
+        System system=System.getInstance();
+        StoreImp storeImp=system.getStoreDetails(storeName);
+        //TODO don't know how to reach user from username
         return false;
     }
 
     public boolean appointStoreManager(String username) {
+        // TODO same as above
         return false;
     }
 

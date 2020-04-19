@@ -1,5 +1,6 @@
 package Store;
 
+import Store.StoreOwner.StoreOwner;
 import store_System.*;
 import store_System.System;
 
@@ -187,5 +188,27 @@ public class User implements IUser {
             return System.getInstance().orderHistory(id);
         }
         return null;
+    }
+
+    @Override
+    public boolean isOwner() {
+        boolean ans=false;
+        for (Store_role I:store_roles) {
+            if(I instanceof StoreOwner)
+                ans=true;
+        }
+        return ans;
+    }
+
+
+    @Override
+    public boolean isManager() {
+        //TODO: no manager interface for now
+        return false;
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return system_role instanceof Registered | system_role instanceof Member;
     }
 }

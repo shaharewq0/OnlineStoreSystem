@@ -42,4 +42,18 @@ public class Product implements IProduct{
     public StoreImp getStore() {
         return store;
     }
+
+    public boolean compare(Product p){
+        return this.name==p.name && this.category==p.category && this.store==p.store && this.price==p.price && this.rating==p.rating;
+    }
+
+    public void edit(Product p){
+        this.price=p.price;
+        this.category=p.category;
+        this.name=p.name;
+        this.keyWords=p.keyWords;
+        this.rating=p.rating;
+    }
+
+
 }

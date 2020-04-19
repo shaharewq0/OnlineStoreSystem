@@ -1,27 +1,24 @@
 package Store.StoreOwner;
 
-import Store.Item;
-import Store.Store;
-import Store.Store_role;
-import store_System.User;
-
+import Store.*;
+import Store.IUser;
 import java.util.LinkedList;
 import java.util.List;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {
-    Store store;
+    IStore store;
     StoreOwner boss; // the Owner who appointed current owner, null for original store owner
-    List <User> OwnerAppointeis;// Owners who got appointed by current owner, for future use
-    List <User> ManagerAppointeis;// managers who got appointed by current owner
+    List <IUser> OwnerAppointeis;// Owners who got appointed by current owner, for future use
+    List <IUser> ManagerAppointeis;// managers who got appointed by current owner
 
-    public StoreOwner_Imp(Store store){
+    public StoreOwner_Imp(IStore store){
         this.store=store;
         boss=null;
         OwnerAppointeis=new LinkedList<>();
         ManagerAppointeis=new LinkedList<>();
     }
 
-    public StoreOwner_Imp(Store store,StoreOwner boss){
+    public StoreOwner_Imp(IStore store,StoreOwner boss){
         this.store=store;
         this.boss=boss;
         OwnerAppointeis=new LinkedList<>();
@@ -29,23 +26,23 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
     }
 
     @Override
-    public boolean addItem(Item item) {
-        return store.addItem(item);
+    public boolean addItem(Product item) {
+        return store.addProduct(item);
     }
 
     @Override
-    public boolean removeItem(Item item) {
-        return store.removeItem(item);
+    public boolean removeItem(Product item) {
+        return store.removeProduct(item);
     }
 
     @Override
-    public boolean editItem(Item OLD_item,Item NEW_item) {
-        return store.editItem(OLD_item,NEW_item);
+    public boolean editItem(Product OLD_item,Product NEW_item) {
+        return store.editProduct(OLD_item,NEW_item);
     }
 
     @Override
-    public boolean appointOwner(User user) {
-        if(user.isOwner()){
+    public boolean appointOwner(IUser user) {
+        if(user.isOwner() | !user.isRegistered()){
             return false;
         }
         else {
@@ -56,8 +53,8 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
     }
 
     @Override
-    public boolean appointManager(User user) {
-        if(user.isOwner() | user.isManager()){
+    public boolean appointManager(IUser user) {
+        if(user.isOwner() | user.isManager() | !user.isRegistered()){
             return false;
         }
         else {
@@ -69,12 +66,12 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 
 
     @Override
-    public <T> void setPremissions(User manager, List<T> Permissions) {
+    public <T> void setPremissions(IUser manager, List<T> Permissions) {
 
     }
 
     @Override
-    public boolean fire(User manager) {
+    public boolean fire(IUser manager) {
         if(!ManagerAppointeis.contains(manager))
             return false;
         store.fireManager(manager);

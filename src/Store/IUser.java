@@ -22,4 +22,7 @@ public interface IUser {
     public boolean logout();
     public boolean openStore(String name, String address, int rating);
     public List<shoppingCart> watchHistory();
+    public boolean isOwner();
+    public boolean isManager();
+    public boolean isRegistered();
 }
