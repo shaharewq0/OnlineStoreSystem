@@ -80,6 +80,12 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 
     @Override
     public List<String> viewPurchaseHistory() {
-        return store.viewPurchaseHistory();
+    	try {
+    		  return store.viewPurchaseHistory();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	return null;
+      
     }
 }
