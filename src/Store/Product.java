@@ -9,6 +9,7 @@ public class Product implements IProduct{
     private double price;
     private int rating;
     private StoreImp store;
+    private int amount;
 
     public Product(String name , String category, List<String> keyWords , double price , int rating, StoreImp store) {
         this.name = name;
@@ -17,6 +18,7 @@ public class Product implements IProduct{
         this.price=price;
         this.rating=rating;
         this.store=store;
+        amount=0;
     }
 
     public String getName() {
@@ -53,6 +55,24 @@ public class Product implements IProduct{
         this.name=p.name;
         this.keyWords=p.keyWords;
         this.rating=p.rating;
+    }
+
+    public void addToAmount(int add){
+        amount+=add;
+    }
+
+    public int getAmount(){
+        return amount;
+    }
+
+    public int removeAmount(int amount){
+        if(this.amount<amount){
+            this.amount=0;
+            return this.amount;
+        }else{
+            this.amount=this.amount-amount;
+            return amount;
+        }
     }
 
 
