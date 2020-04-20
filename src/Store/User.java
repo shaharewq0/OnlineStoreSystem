@@ -10,36 +10,33 @@ import java.util.List;
 public class User implements IUser {
     private System_Role system_role;
     private shoppingCart cart;
-    private int id;
     private String address;
     private int creditCardNum;
     private List<Store_role> store_roles;
 
     public User(String address,int creditCardNum){
-        system_role = Guest.getInstance();
+        system_role = new Guest();
         cart= new shoppingCart();
         this.address=address;
         this.creditCardNum=creditCardNum;
         store_roles = new LinkedList<>();
     }
 
-    public boolean register(int id, String password){
-        if(system_role == Guest.getInstance()){
+    public boolean register(String id, String password){
+        if(system_role instanceof Guest){
             boolean reg = System.getInstance().register(id,password);
             if(reg){
-                system_role = Registered.getInstance();
                 return true;
             }
         }
         return false;
     }
 
-    public boolean login(int id,String password){
-        if(system_role == Registered.getInstance()){
-            boolean log = System.getInstance().login(id,password);
-            if(log){
-                system_role = Member.getInstance();
-                this.id=id;
+    public boolean login(String id,String password){
+        if(system_role instanceof Guest){
+            Registered log = System.getInstance().login(id,password);
+            if(log!=null){
+                system_role = new Member(log);
                 return true;
             }
         }
@@ -149,8 +146,8 @@ public class User implements IUser {
 
     public boolean purchase(){
         boolean toReturn;
-        if(system_role == Member.getInstance() || system_role == System_Manager.getInstance()){
-             toReturn= System.getInstance().memberPurchase(id,cart,creditCardNum,address);
+        if(system_role instanceof Member ){
+             toReturn= System.getInstance().memberPurchase(((Member) system_role).getRegistered().getId(),cart,creditCardNum,address);
         }
         else{
             toReturn= System.getInstance().purchase(cart,creditCardNum,address);
@@ -162,18 +159,15 @@ public class User implements IUser {
     }
 
     public boolean logout(){
-        if(system_role == Member.getInstance()){
-            boolean log = System.getInstance().logout(id);
-            if (log){
-                system_role = Registered.getInstance();
-                return true;
-            }
+        if(system_role instanceof Member){
+            system_role = new Guest();
+            return true;
         }
         return false;
     }
 
     public boolean openStore(String name, String address, int rating){
-        if(system_role == Member.getInstance()){
+        if(system_role instanceof Member){
             StoreImp s = System.getInstance().openStore(name,address,rating);
             if (s!= null){
                 store_roles.add(new Creator(s));
@@ -184,8 +178,8 @@ public class User implements IUser {
     }
 
     public List<shoppingCart> watchHistory(){
-        if(system_role == Member.getInstance()) {
-            return System.getInstance().orderHistory(id);
+        if(system_role instanceof Member) {
+            return System.getInstance().orderHistory(((Member) system_role).getRegistered().getId());
         }
         return null;
     }

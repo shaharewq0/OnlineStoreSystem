@@ -1,7 +1,8 @@
 package Store;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.HashMap;
-import kotlin.NotImplementedError;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class StoreImp implements IStore {
 
     @Override
     public List<String> viewPurchaseHistory() {
-        throw new NotImplementedError();
+        throw new NotImplementedException();
         //i don't know how we do this
         // how does purchase look?
         // TODO

@@ -21,7 +21,8 @@ public class SystemAdapter {
 
 
     public boolean login(String username, String password) {
-        return System.getInstance().login(Integer.parseInt(username), password);
+        //TODO imp
+        return false;
     }
 
     public boolean register(String username, String password) {

@@ -3,8 +3,8 @@ package Store;
 import java.util.List;
 
 public interface IUser {
-    public boolean register(int id, String password);
-    public boolean login(int id, String password);
+    public boolean register(String id, String password);
+    public boolean login(String id, String password);
     public StoreImp watchStoreDetails(String name);
     public List<StoreImp> watchAllStores();
     public List<Product> watchProductsInStore(String name);

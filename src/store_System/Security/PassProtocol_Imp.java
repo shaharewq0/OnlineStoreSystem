@@ -1,9 +1,7 @@
 package store_System.Security;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Dictionary;
 import java.security.MessageDigest;
-import java.util.Enumeration;
 import java.util.HashMap;
 
 public final class PassProtocol_Imp implements PasswordProtocol{

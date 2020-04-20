@@ -32,12 +32,12 @@ public class UserStub implements IUser {
     }
 
     @Override
-    public boolean register(int id, String password) {
+    public boolean register(String id, String password) {
         return false;
     }
 
     @Override
-    public boolean login(int id, String password) {
+    public boolean login(String id, String password) {
         return false;
     }
 
