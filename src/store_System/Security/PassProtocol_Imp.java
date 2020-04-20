@@ -1,9 +1,7 @@
 package store_System.Security;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Dictionary;
 import java.security.MessageDigest;
-import java.util.Enumeration;
 import java.util.HashMap;
 
 public final class PassProtocol_Imp implements PasswordProtocol{
@@ -22,9 +20,9 @@ public final class PassProtocol_Imp implements PasswordProtocol{
 
     @Override
     public boolean addRegistry(String id, String password) {
-        messageDigest.update(password.getBytes());
         if(table.containsKey(id))
             return false;
+        messageDigest.update(password.getBytes());
         table.put(id,new String(messageDigest.digest()));
         return true;
     }
@@ -32,13 +30,15 @@ public final class PassProtocol_Imp implements PasswordProtocol{
     @Override
     public boolean login(String id, String password) {
         messageDigest.update(password.getBytes());
-        return table.containsKey(id);
+        String pass=new String(messageDigest.digest());
+        if(!table.containsKey(id))
+            return false;
+        return table.get(id).equals(pass);
     }
 
     @Override
     public boolean deleteRegistry(String id, String password) {
         if(login(id,password)) {
-            messageDigest.update(password.getBytes());
             table.remove(id);
             return true;
         }

@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import store_System.System;
 
+import javax.print.attribute.standard.NumberUp;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +20,7 @@ public class SystemTest {
     @Test
     //register with new id and a password
     public void registerNewMember() {
-        int newId = 1111;
+        String newId = "1111";
         String pass = "working";
         assertTrue(s.register(newId, pass));
     }
@@ -26,7 +28,7 @@ public class SystemTest {
     @Test
     //register with old id
     public void registerOldMember() {
-        int Id = 2222;
+        String Id = "2222";
         String pass = "notWorking";
         assertTrue(s.register(Id, pass));
         assertFalse(s.register(Id, pass));
@@ -35,28 +37,21 @@ public class SystemTest {
     @Test
     //login with existing id and pass
     public void loginOldMember() {
-        int Id = 1;
+        String Id = "1";
         String pass = "1";
         assertTrue(s.register(Id, pass));
-        assertTrue(s.login(Id, pass));
+        assertTrue(s.login(Id, pass)!=null);
     }
 
-    @Test
-    //login with new id
-    public void loginNewMember() {
-        int Id = 2;
-        String pass = "2";
-        assertFalse(s.login(Id, pass));
-    }
 
     @Test
     //login with wrong password
     public void loginPass() {
-        int Id = 3;
+        String Id = "3";
         String pass = "3";
         assertTrue(s.register(Id, pass));
         String wrongPass = "1";
-        assertFalse(s.login(Id, wrongPass));
+        assertTrue(s.login(Id, wrongPass)==null);
     }
 
     @Test
@@ -213,25 +208,6 @@ public class SystemTest {
         assertTrue(!s.filterByStoreRating(a.getProducts(), 3, 7).contains(third));
     }
 
-    @Test
-    public void logout() {
-        int Id = 666;
-        String pass = "666";
-        assertTrue(s.register(Id, pass));
-        assertTrue(s.login(Id, pass));
-        assertTrue(s.logout(Id));
-    }
-
-    @Test
-    public void logout2() {
-        int Id = 777;
-        String pass = "777";
-        assertTrue(s.register(Id, pass));
-        assertFalse(s.logout(Id));
-    }
-
-
-
 
     @Test
     public void orderHistory() {
@@ -240,13 +216,13 @@ public class SystemTest {
         shoppingCart sc = new shoppingCart();
         shoppingCart sc2 = new shoppingCart();
 
-        StoreImp store = new StoreImp("test shop", "adress shop", 4);
+        StoreImp store = s.openStore("test shop", "adress shop", 4);
         Product p = new Product("ball", "play", new LinkedList<>(), 5, 5, store);
         store.addProduct(p);
         shoppingBasket sb = new shoppingBasket(store);
         sb.addProduct(p);
 
-        StoreImp store2 = new StoreImp("test shop2", "adress shop", 3);
+        StoreImp store2 = s.openStore("test shop2", "adress shop", 3);
         Product p2 = new Product("better ball", "play", new LinkedList<>(), 5, 5, store2);
         store2.addProduct(p2);
         shoppingBasket sb2 = new shoppingBasket(store2);
@@ -257,11 +233,11 @@ public class SystemTest {
         sc2.addBasket(sb2);
 
 
-        s.memberPurchase(1,sc, 123, "adress");
-        s.memberPurchase(1, sc2, 1232, "adress2");
+        s.memberPurchase("1",sc, 123, "adress");
+        s.memberPurchase("1", sc2, 1232, "adress2");
 
 
-        List<shoppingCart> recived = s.orderHistory(1);
+        List<shoppingCart> recived = s.orderHistory("1");
 
         assertEquals(2, recived.size());
 
@@ -285,13 +261,13 @@ public class SystemTest {
         shoppingCart sc = new shoppingCart();
         shoppingCart sc2 = new shoppingCart();
 
-        StoreImp store = new StoreImp("test shop", "adress shop", 4);
+        StoreImp store = s.openStore("test shop3", "adress shop", 4);
         Product p = new Product("ball", "play", new LinkedList<>(), 5, 5, store);
         store.addProduct(p);
         shoppingBasket sb = new shoppingBasket(store);
         sb.addProduct(p);
 
-        StoreImp store2 = new StoreImp("test shop2", "adress shop", 3);
+        StoreImp store2 = s.openStore("test shop4", "adress shop", 3);
         Product p2 = new Product("better ball", "play", new LinkedList<>(), 5, 5, store2);
         store2.addProduct(p2);
         shoppingBasket sb2 = new shoppingBasket(store2);
@@ -302,8 +278,8 @@ public class SystemTest {
         sc2.addBasket(sb2);
 
 
-        s.memberPurchase(1,sc, 123, "adress");
-        s.memberPurchase(1, sc2, 1232, "adress2");
+        s.memberPurchase("2",sc, 123, "adress");
+        s.memberPurchase("2", sc2, 1232, "adress2");
 
 
         List<IshoppingBasket> recived = s.orderHistory(store);

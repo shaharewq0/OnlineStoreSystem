@@ -1,22 +1,24 @@
 package store_System;
 
 import Store.*;
+import store_System.Security.PassProtocol_Imp;
+import store_System.Security.PasswordProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class System implements ISystem {
-    List<MyPair<Integer,String>> registered = new LinkedList<>();
-    List<MyPair<Integer,String>> logedin = new LinkedList<>();
+    PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
+    List<Registered> registered = new LinkedList<>();
     List<StoreImp> stores = new LinkedList<>();
-    List<MyPair<Integer,List<shoppingCart>>> order = new LinkedList<>();
-    
+    List<MyPair<String,List<shoppingCart>>> order = new LinkedList<>();
+
     private static System instance = null;
 
     public void init(Object paymentsys, Object supplysys, Object Firstuser) {
     	//temp
-    } 
-    
+    }
+
     public static System getInstance(){
         if(instance == null){
             instance = new System();
@@ -24,38 +26,37 @@ public class System implements ISystem {
         return instance;
     }
 
-    public boolean register(int id, String password){
-        if(contains(id,registered) != null){
+    public boolean register(String id, String password){
+        if(!myProtocol.addRegistry(id,password)){
             return false;
         }
-        registered.add(new MyPair<>(id,password));
+        registered.add(new Registered(id));
         return true;
     }
 
-    public boolean login(int id, String password){
-    	MyPair<Integer,String> reg = contains(id,registered);
-        if(reg == null || !reg.getValue().equals(password)) {
-            return false;
+    public Registered login(String id, String password){
+        Registered reg = contains(id,registered);
+        if(reg == null ) {
+            return null;
         }
-        if(contains(id,logedin) != null){
-            return false;
+        if(!myProtocol.login(id,password)){
+            return null;
         }
-        logedin.add(new MyPair<>(id,password));
-        return true;
+        return reg;
     }
 
-    private MyPair<Integer , String> contains(int id, List<MyPair<Integer,String>> toSearch){
-        for(MyPair<Integer,String> existing:toSearch){
-            if(existing.getKey() == id){
+    private Registered contains(String id, List<Registered> toSearch){
+        for(Registered existing:toSearch){
+            if(existing.getId().equals(id)){
                 return existing;
             }
         }
         return null;
     }
 
-    private MyPair<Integer , List<shoppingCart>> containsB(int id, List<MyPair<Integer,List<shoppingCart>>> toSearch){
-        for(MyPair<Integer,List<shoppingCart>> existing:toSearch){
-            if(existing.getKey() == id){
+    private MyPair<String , List<shoppingCart>> containsB(String id, List<MyPair<String,List<shoppingCart>>> toSearch){
+        for(MyPair<String,List<shoppingCart>> existing:toSearch){
+            if(existing.getKey().equals(id)){
                 return existing;
             }
         }
@@ -161,9 +162,9 @@ public class System implements ISystem {
         return toReturn;
     }
 
-    public boolean memberPurchase(int id,shoppingCart cart,int creditCard,String address){
+    public boolean memberPurchase(String id,shoppingCart cart,int creditCard,String address){
         if(purchase(cart,creditCard,address)){
-        	MyPair<Integer,List<shoppingCart>> toChange = containsB(id,order);
+        	MyPair<String,List<shoppingCart>> toChange = containsB(id,order);
             if(toChange == null){
                 List<shoppingCart> cartAdd = new LinkedList<>();
                 cartAdd.add(cart);
@@ -206,17 +207,6 @@ public class System implements ISystem {
 
     }
 
-    public boolean logout(int id){
-        if(contains(id,registered)== null){
-            return false;
-        }else if(contains(id,logedin)==null){
-            return false;
-        }else{
-            logedin.remove(contains(id,logedin));
-            return true;
-        }
-    }
-
     public StoreImp openStore(String name, String address, int rating){
         for(StoreImp s:stores){
             if(s.getName().equals(name)){
@@ -228,8 +218,8 @@ public class System implements ISystem {
         return newStore;
     }
 
-    public List<shoppingCart> orderHistory(int id){
-    	MyPair<Integer,List<shoppingCart>> toReturn = containsB(id,order);
+    public List<shoppingCart> orderHistory(String id){
+    	MyPair<String,List<shoppingCart>> toReturn = containsB(id,order);
         if(toReturn == null){
             return null;
         }
@@ -241,7 +231,7 @@ public class System implements ISystem {
 
         List<IshoppingBasket> baskets = new LinkedList<>();
 
-        for (MyPair<Integer,List<shoppingCart>> pair:order) {
+        for (MyPair<String,List<shoppingCart>> pair:order) {
             List<shoppingCart> carts = pair.getValue();
 
             for (shoppingCart cart:carts) {

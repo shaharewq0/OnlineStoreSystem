@@ -17,7 +17,7 @@ public class UserTest {
     //register with new id and a password
     public void registerNewMember() {
         User testUser1 = new User("new york",123123);
-        int newId = 4444;
+        String newId = "4444";
         String pass = "pass3";
         assertTrue(testUser1.register(newId,pass));
     }
@@ -26,20 +26,17 @@ public class UserTest {
     //register with new id and a password after other register
     public void registerOldMember() {
         User testUser2 = new User("new york",123123);
-        int Id1 = 2222;
+        String Id1 = "2222";
         String pass1 = "pass1";
-      //  assertTrue(testUser2.register(Id1,pass1)); TODO fix test
+        assertTrue(testUser2.register(Id1,pass1));
         assertFalse(testUser2.register(Id1,pass1));
-        int Id = 3333;
-        String pass2 = "pass2";
-//        assertFalse(testUser2.register(Id,pass2)); TODO fix test
     }
 
     @Test
     //login with correct id and a password
     public void loginOldMember() {
         User testUser2 = new User("new york",123123);
-        int Id1 = 11;
+        String Id1 = "11";
         String pass1 = "11";
         assertTrue(testUser2.register(Id1,pass1));
         assertTrue(testUser2.login(Id1,pass1));
@@ -49,12 +46,12 @@ public class UserTest {
     //login 2 times
     public void loginWrong() {
         User testUser2 = new User("new york",123123);
-        int Id1 = 12;
+        String Id1 = "12";
         String pass1 = "12";
         assertTrue(testUser2.register(Id1,pass1));
         assertTrue(testUser2.login(Id1,pass1));
         User testUser1 = new User("new york",123123);
-        int Id2 = 13;
+        String Id2 = "13";
         String pass2 = "13";
         assertTrue(testUser1.register(Id2,pass2));
         assertTrue(testUser1.login(Id2,pass2));
@@ -113,8 +110,8 @@ public class UserTest {
     @Test
     public void logout(){
         User testUser = new User("new york",123123);
-        testUser.register(1234,"1234");
-        testUser.login(1234,"1234");
+        testUser.register("1234","1234");
+        testUser.login("1234","1234");
         assertTrue(testUser.logout());
     }
 
@@ -122,7 +119,16 @@ public class UserTest {
     public void logout2(){
         User testUser = new User("new york",123123);
         assertFalse(testUser.logout());
-        testUser.register(1234,"1234");
+        testUser.register("4321","1234");
+        assertFalse(testUser.logout());
+    }
+
+    @Test
+    public void logout3(){
+        User testUser = new User("new york",123123);
+        testUser.register("9999","1234");
+        testUser.login("9999","1234");
+        assertTrue(testUser.logout());
         assertFalse(testUser.logout());
     }
 
