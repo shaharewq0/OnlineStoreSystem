@@ -2,6 +2,8 @@ package Store.StoreOwner;
 
 import Store.*;
 import Store.IUser;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
     }
 
     @Override
-    public List<String> viewPurchaseHistory() {
+    public List<PurchaseDetails> viewPurchaseHistory() {
     	try {
     		  return store.viewPurchaseHistory();
 		} catch (Exception e) {

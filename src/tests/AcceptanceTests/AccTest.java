@@ -1,5 +1,5 @@
 package tests.AcceptanceTests;
 
 public class AccTest {
-    protected static SystemAdapter system;
+    protected static SystemAdapter system = new SystemAdapter();
 }

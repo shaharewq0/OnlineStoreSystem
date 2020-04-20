@@ -14,6 +14,7 @@ public class Product implements IProduct{
     public Product(String name , String category, List<String> keyWords , double price , int rating, StoreImp store) {
         this.name = name;
         this.category=category;
+        
         this.keyWords=keyWords;
         this.price=price;
         this.rating=rating;

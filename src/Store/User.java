@@ -8,10 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class User implements IUser {
-    private System_Role system_role;
+    private System_Role system_role;// guest member sysmanager;
     private shoppingCart cart;
     private String address;
     private int creditCardNum;
+    //TODO move this to register and call it from member system role
     private List<Store_role> store_roles;
 
     public User(String address,int creditCardNum){

@@ -3,6 +3,7 @@ package tests.UnitTests.stub;
 import Store.IStore;
 import Store.IUser;
 import Store.Product;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -86,9 +87,9 @@ public class StoreStub implements IStore {
     }
 
     @Override
-    public List<String> viewPurchaseHistory() {
-        LinkedList<String> A=new LinkedList<>();
-        A.add("AN ITEM");
+    public List<PurchaseDetails> viewPurchaseHistory() {
+        List<PurchaseDetails> A=new LinkedList<>();
+        A.add(new PurchaseDetails());
         return A;
     }
 }

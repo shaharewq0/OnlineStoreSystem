@@ -34,15 +34,19 @@ public class GuestBuyerTests extends AccTest {
         /* TODO:
             add some stores and products
          */
+        system.openStore(new StoreDetails(validStoreName));
     }
 
+    
     @After
-    public static void tearDown() {
+    public  void tearDown() {
         if (system.isLoggedIn())
             system.logout();
         system.clearShoppingCart();
     }
 
+    
+    
     @Test
     public void register() {
         assertFalse(system.isRegistered(username));
@@ -73,6 +77,7 @@ public class GuestBuyerTests extends AccTest {
 
     @Test
     public void storeDetails() {
+    	//TODO make sure validStoreName
         StoreDetails store = system.getStoreDetails(validStoreName);
         assertNotNull(store);
         assertEquals(store.getName(), validStoreName);
@@ -82,6 +87,7 @@ public class GuestBuyerTests extends AccTest {
 
     @Test
     public void productDetails() {
+    	//TODO need to make sore validstorename
         ProductDetails product = system.getProductDetails(validStoreName, validProductName);
         assertNotNull(product);
         assertEquals(product.getName(), validProductName);

@@ -1,6 +1,7 @@
 package Store.StoreOwner;
 
 import Store.Product;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import Store.IUser;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface StoreOwner {
     boolean appointManager(IUser user);
     <T> void setPremissions(IUser manager, List<T> Permissions); //generic for now
     boolean fire(IUser manager);
-    List<String>  viewPurchaseHistory();
+    List<PurchaseDetails>  viewPurchaseHistory();
 }

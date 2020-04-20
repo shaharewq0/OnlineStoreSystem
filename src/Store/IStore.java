@@ -2,6 +2,8 @@ package Store;
 
 import java.util.List;
 
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
+
 public interface IStore {
     public String getName();
     public List<Product> getProducts();
@@ -16,5 +18,5 @@ public interface IStore {
     public boolean appointOwner(IUser user);
     public boolean appointManager(IUser user);
     public boolean fireManager(IUser user);
-    public List<String> viewPurchaseHistory() throws Exception;
+    public List<PurchaseDetails> viewPurchaseHistory() throws Exception;
 }

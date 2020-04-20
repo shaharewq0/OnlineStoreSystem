@@ -9,7 +9,7 @@ import tests.UnitTests.AllUnitTests;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AllAcceptanceTests.class,
-        AllIntegrationTests.class,
+        //AllIntegrationTests.class,
         AllUnitTests.class,
 })
 
