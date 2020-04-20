@@ -43,6 +43,12 @@ public class PassProtocol_ImpTest {
     }
 
     @org.junit.Test
+    public void login2() {
+        protocol1.addRegistry("Shahar","YellowSubmarine");
+        assertFalse(protocol1.login("Shahar","YellowSubmarine1"));
+    }
+
+    @org.junit.Test
     public void deleteRegistry() {
         protocol1.addRegistry("Shahar","YellowSubmarine");
         assertTrue(protocol1.login("Shahar","YellowSubmarine"));
