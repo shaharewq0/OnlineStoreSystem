@@ -1,13 +1,16 @@
 package Service_Layer.member_accese;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import Domain.Store.shoppingCart;
 import Domain.store_System.System;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class member_accese {
 
+	String username;
 	public boolean usecase3_1_Logout() {
 		//TODO imp
 		return false;
@@ -18,8 +21,12 @@ public class member_accese {
 	
 	}
 
-	public List<ProductDetails> usecase3_7_ReviewPurchasesHistory() {
-		// TODO imp
-		return null;
+	public List<PurchaseDetails> usecase3_7_ReviewPurchasesHistory() {
+		List<PurchaseDetails> temp = new LinkedList<PurchaseDetails>();
+		
+		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
+			temp.add(new PurchaseDetails(cart));
+		}
+		return temp;
 	}
 }

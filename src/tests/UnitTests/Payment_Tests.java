@@ -9,9 +9,12 @@ import extornal.payment.Isracard;
 import extornal.payment.MyPaymentSystem;
 import extornal.payment.MyPaymentSystem_Driver;
 import extornal.payment.Pay_pal;
+import extornal.payment.bankAccount;
 
 public class Payment_Tests {
 
+	private bankAccount bank1 = new bankAccount("bank1", 99933);
+	private bankAccount bank2 = new bankAccount("bank2", 5366);
 	MyPaymentSystem mss = null;
 	@Before
 	public void setUp() throws Exception {
@@ -26,11 +29,11 @@ public class Payment_Tests {
 			fail("init error");
 			e.printStackTrace();
 		}
-		assertTrue(mss.pay(142112345, 5555));
+		assertTrue(mss.pay(bank1, 5555));
 
-		assertFalse(mss.pay(-1, 5555));
+		assertFalse(mss.pay(null, 5555));
 
-		assertFalse(mss.pay(142112345, -1));
+		assertFalse(mss.pay(bank1, -1));
 		
 	}
 	

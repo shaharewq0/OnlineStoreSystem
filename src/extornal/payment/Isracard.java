@@ -1,13 +1,16 @@
 package extornal.payment;
 
+import Domain.store_System.Logs.EventLogger;
+
 public class Isracard implements PaymentMethed {
 
-
 	public static final String name = "Isracard";
+	private final String logmsg = "A transaction,of size {0} has been made to {1}";
 
 	@Override
-	public void pay(long card_num, int amount) {
-		System.out.println("thank you for using " + name);
-		System.out.println("we will charge " + String.valueOf(card_num) + String.valueOf(amount * 1.1) + "dollars due to extra needs");
+	public void pay(bankAccount card_num, int amount) {
+		card_num.getMoney(amount);
+		EventLogger.GetInstance().Add_Log(logmsg + Integer.toString(amount) + "," + card_num.name);
+
 	}
 }
