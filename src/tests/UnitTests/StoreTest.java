@@ -1,7 +1,8 @@
 package tests.UnitTests;
 
-import Store.*;
 import org.junit.Test;
+
+import Domain.Store.*;
 
 import java.util.LinkedList;
 import java.util.List;

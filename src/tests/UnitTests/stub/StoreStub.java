@@ -1,12 +1,13 @@
 package tests.UnitTests.stub;
 
-import Store.IStore;
-import Store.IUser;
-import Store.Product;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import Domain.Store.IStore;
+import Domain.Store.IUser;
+import Domain.Store.Product;
 
 public class StoreStub implements IStore {
     UserStub Owner;

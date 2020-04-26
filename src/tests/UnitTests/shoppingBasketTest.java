@@ -1,11 +1,12 @@
 package tests.UnitTests;
 
-import Store.StoreImp;
-import Store.Product;
-import Store.MyPair;
-import Store.shoppingBasket;
 import org.junit.Test;
-import store_System.System;
+
+import Domain.Store.MyPair;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
+import Domain.Store.shoppingBasket;
+import Domain.store_System.System;
 
 import java.util.LinkedList;
 

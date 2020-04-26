@@ -2,8 +2,8 @@ package tests.UnitTests;
 
 import org.junit.Test;
 
-import store_System.Logs.EventLogger;
-import store_System.Logs.Log;
+import Domain.store_System.Logs.EventLogger;
+import Domain.store_System.Logs.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;

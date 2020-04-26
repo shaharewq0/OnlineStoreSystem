@@ -1,6 +1,6 @@
 package tests.AcceptanceTests.auxiliary;
 
-import Store.StoreImp;
+import Domain.Store.StoreImp;
 
 public class StoreDetails {
     public String getName() {

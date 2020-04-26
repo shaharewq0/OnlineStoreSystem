@@ -4,10 +4,10 @@ package tests.UnitTests;
 import java.util.LinkedList;
 import java.util.List;
 
-import Store.*;
 import org.junit.Test;
 
-import store_System.System;
+import Domain.Store.*;
+import Domain.store_System.System;
 
 import javax.print.attribute.standard.NumberUp;
 

@@ -1,6 +1,6 @@
 package tests.AcceptanceTests.auxiliary;
 
-import Store.shoppingCart;
+import Domain.Store.shoppingCart;
 
 public class PurchaseDetails {
 	

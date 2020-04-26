@@ -1,8 +1,8 @@
 package tests.UnitTests.stub;
 
-import Store.*;
-
 import java.util.List;
+
+import Domain.Store.*;
 
 public class UserStub implements IUser {
     boolean manager=false;

@@ -5,7 +5,7 @@ package tests.AcceptanceTests.auxiliary;
 import java.util.LinkedList;
 import java.util.List;
 
-import Store.Product;
+import Domain.Store.Product;
 
 public class ProductDetails {
     public String getName() {
