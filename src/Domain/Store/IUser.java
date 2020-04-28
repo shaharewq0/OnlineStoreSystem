@@ -16,7 +16,7 @@ public interface IUser {
     public List<Product> filterByCategory(List<Product> base , String category);
     public List<Product> filterByStoreRating(List<Product> base , int min, int max);
     public boolean saveProductInBasket(String productName , String storeName);
-    public List<MyPair<Product,Integer>> getProductsInCart();
+    //ublic List<ProductDetails> getProductsInCart();
     public boolean deleteProductInBasket(String productName , String storeName,int num);
     public boolean purchase();
     public boolean logout();

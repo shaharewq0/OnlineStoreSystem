@@ -1,27 +1,26 @@
-package Domain.store_System.Logs;
+package Domain.Logs;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public final class EventLogger implements Log{
-    private static EventLogger INSTANCE=new EventLogger();
+public class ErrorLogger implements Log {
+    private static ErrorLogger INSTANCE=new ErrorLogger();
     private static File log;
     private static FileWriter fileWriter;
     private static int OpenWriters;
 
-    private  EventLogger() {
-        log = new File("Event_Log.txt");
+    private ErrorLogger(){
+        log = new File("Error_Log.txt");
         try {
             log.createNewFile();
-            fileWriter = new FileWriter("Event_log.txt");
+            fileWriter = new FileWriter("Error_log.txt");
             OpenWriters=0;
         }
         catch (IOException e){
-            System.out.println("error in creating event log file");
+            System.out.println("error in creating error-log file");
         }
     }
-
 
     @Override
     public void Add_Log(String msg) {
@@ -29,9 +28,10 @@ public final class EventLogger implements Log{
             fileWriter.write(msg);
             fileWriter.write("\n");
         } catch (IOException e) {
-            System.out.println("error in printing to the event log file");
+            System.out.println("error in printing to the error-log file");
         }
     }
+    
 
     @Override
     public void CloseLogger()  {
@@ -40,12 +40,12 @@ public final class EventLogger implements Log{
             try {
                 fileWriter.close();
             } catch (IOException e) {
-                System.out.println("error in closing the event logger");
+                System.out.println("error in closing the error-logger");
             }
         }
     }
 
-    public static EventLogger GetInstance() {
+    public static ErrorLogger GetInstance() {
         OpenWriters++;
         return  INSTANCE;
     }

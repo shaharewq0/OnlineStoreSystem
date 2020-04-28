@@ -1,5 +1,9 @@
 package Service_Layer.owner_accese;
 
+import java.util.List;
+
+import Domain.info.Question;
+import Domain.info.Transactions;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class owner_accese {
@@ -17,23 +21,33 @@ public class owner_accese {
 		return false;
 	}
 
-	public boolean usecase4_3_appoint(String username) {
+	public boolean usecase4_3_appointOwner(String myusername,String myPassword,String username) {
 		return false;
 	}
 
-	public boolean usecase4_5() {
+	public boolean usecase4_5_appointManager(String myusername,String myPassword,String username) {
 		return false;
 	}
 
-	public boolean usecase4_6() {
+	public boolean usecase4_6_editMangagerPermesions(String myusername,String myPassword,String managername, List<String> permesions) {
 		return false;
 	}
 
-	public boolean usecase4_7() {
+	public boolean usecase4_7_FireManager(String myusername,String myPassword,String username) {
 		return false;
 	}
 
-	public boolean usecase4_10() {
+	public List<Question> usecase4_9_ViewMembersQuestions(String myusername,String myPassword){
+		return null;
+	}
+	
+	public boolean usecase4_9_RespondToQuestion(String myusername,String myPassword,String ansewr)
+	{
 		return false;
+		
+	}
+	
+	public List<Transactions> usecase4_10_ViewAcquisitionHistory(String myusername,String myPassword) {
+		return null;
 	}
 }

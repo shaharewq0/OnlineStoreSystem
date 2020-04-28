@@ -1,6 +1,6 @@
 package extornal.payment;
 
-import Domain.store_System.Logs.EventLogger;
+import Domain.Logs.EventLogger;
 
 public class Isracard implements PaymentMethed {
 

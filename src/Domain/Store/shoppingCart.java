@@ -1,43 +1,49 @@
 package Domain.Store;
 
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class shoppingCart implements IshoppingCart {
-    List<shoppingBasket> baskets;
+    Map<String,shoppingBasket> baskets;
 
     public shoppingCart(){
-        baskets=new LinkedList<>();
+        baskets=new HashMap<>();
     }
 
-    public List<shoppingBasket> getBaskets() {
-        return baskets;
+    public Collection<shoppingBasket> getBaskets() {
+        return baskets.values();
     }
 
-    public List<MyPair<Product,Integer>> allProductsInCart(){
-        List<MyPair<Product,Integer>> toReturn = new LinkedList<>();
-        for(shoppingBasket b:baskets){
-            concat(toReturn,b.getProducts());
-        }
-        return toReturn;
+    public List<ProductDetails> allProductsInCart(){
+       List<ProductDetails> output = new LinkedList<ProductDetails>();
+       for (shoppingBasket basket: baskets.values()) {
+    	   output.addAll(basket.getProducts());
+       }
+       return output;
     }
 
     // connect 2 lists
-    private void concat(List<MyPair<Product,Integer>> a , List<MyPair<Product,Integer>> b){
-        for(MyPair<Product,Integer> p : b){
-            if(!a.contains(p)){
-                a.add(p);
-            }
-        }
-    }
+//    private void concat(List<MyPair<Product,Integer>> a , List<MyPair<Product,Integer>> b){
+//        for(MyPair<Product,Integer> p : b){
+//            if(!a.contains(p)){
+//                a.add(p);
+//            }
+//        }
+//    }
 
-    public boolean addBasket(shoppingBasket b){
-        if(!baskets.contains(b)){
-            baskets.add(b);
-            return true;
-        }
-        return false;
-    }
+//    public boolean addBasket(shoppingBasket b){
+//        if(!baskets.contains(b)){
+//            baskets.add(b);
+//            return true;
+//        }
+//        return false;
+//    }
 
     public shoppingBasket findBasket(StoreImp s){
         for(shoppingBasket basket : getBaskets()){

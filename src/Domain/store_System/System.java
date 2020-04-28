@@ -1,19 +1,35 @@
 package Domain.store_System;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 
 import Domain.Store.*;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
 
 public class System implements ISystem {
-	PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
-	List<Registered> registered = new LinkedList<>();
-	List<StoreImp> stores = new LinkedList<>();
-	List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
+
+	private int TempGuestID = 1;
+	private Map<Integer, User> guest = new HashMap<>();
+	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
+	private List<Registered> registered = new LinkedList<>();
+	private List<StoreImp> stores = new LinkedList<>();
+	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
 
 	private static System instance = null;
+
+	public int ImNew() {
+		TempGuestID++;
+		guest.put(TempGuestID, new User());
+		return TempGuestID;
+	}
+
+	public User getGuest(int id) {
+		return guest.get(id);
+	}
 
 	public void init(Object paymentsys, Object supplysys, Object Firstuser) {
 		// temp

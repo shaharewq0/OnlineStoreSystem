@@ -13,22 +13,24 @@ public class ProductDetails {
     }
 
     private String name;
-    private String category;
+    private List<String> category;
     private String storeName;
 
     public ProductDetails(String name, String category, String storeName) {
         this.name = name;
-        this.category = category;
+        this.category = new LinkedList<>();
+        this.category.add(category);
         this.storeName = storeName;
     }
     
     public ProductDetails(Product pro) {
         this.name = pro.getName();
-        this.category = pro.getCategory();
+        this.category = new LinkedList<String>();
+        category.addAll(pro.getCategory());
         this.storeName = pro.getStore().getName();;
     }
 
-    public String getCategory() {
+    public List<String>  getCategory() {
         return category;
     }
 

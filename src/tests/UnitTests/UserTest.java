@@ -58,7 +58,7 @@ public class UserTest {
         assertTrue(testUser1.login(Id2,pass2));
         assertFalse(testUser1.login(Id1,pass1));
     }
-
+/*
     @Test
     public void addProductToBasket(){
         StoreImp s = System.getInstance().openStore("x","tel aviv",3);
@@ -107,7 +107,7 @@ public class UserTest {
         testUser.saveProductInBasket("qqq","mmm");
         assertTrue(testUser.deleteProductInBasket("qqq","mmm",2));
     }
-
+*/
     @Test
     public void logout(){
         User testUser = new User("new york",123123);

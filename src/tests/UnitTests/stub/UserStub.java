@@ -95,12 +95,12 @@ public class UserStub implements IUser {
     public boolean saveProductInBasket(String productName, String storeName) {
         return false;
     }
-
-    @Override
-    public List<MyPair<Product, Integer>> getProductsInCart() {
-        return null;
-    }
-
+//
+//    @Override
+//    public List<MyPair<Product, Integer>> getProductsInCart() {
+//        return null;
+//    }
+//
     @Override
     public boolean deleteProductInBasket(String productName, String storeName, int num) {
         return false;

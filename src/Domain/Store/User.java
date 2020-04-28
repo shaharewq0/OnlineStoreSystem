@@ -6,15 +6,23 @@ import java.util.List;
 import Domain.Store.StoreOwner.StoreOwner;
 import Domain.store_System.*;
 import Domain.store_System.System;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class User implements IUser {
-    private System_Role system_role;// guest member sysmanager;
+    
     private shoppingCart cart;
+    
+    //---- dont need to be here
+    private System_Role system_role;// guest member sysmanager;
     private String address;
     private int creditCardNum;
     //TODO move this to register and call it from member system role
     private List<Store_role> store_roles;
 
+    public User() {
+        cart= new shoppingCart();
+    }
+    
     public User(String address,int creditCardNum){
         system_role = new Guest();
         cart= new shoppingCart();
@@ -108,11 +116,11 @@ public class User implements IUser {
         shoppingBasket toAdd = cart.findBasket(myStore);
         if(toAdd == null){
             toAdd= new shoppingBasket(myStore);
-            toAdd.addProduct(toSave);
-            cart.addBasket(toAdd);
+            toAdd.addProduct(productName,1);
+           // cart.addBasket(toAdd);
             return true;
-        }
-        toAdd.addProduct(toSave);
+        }else
+        toAdd.addProduct(productName,1);
         return true;
     }
 
@@ -136,12 +144,12 @@ public class User implements IUser {
         if(toRemove == null){
             return false;
         }
-        return toRemove.removeProduct(toDelete,num)> 0 ;
+        return toRemove.removeProduct(productName,num)> 0 ;
     }
 
 
 
-    public List<MyPair<Product,Integer>> getProductsInCart(){
+    public List<ProductDetails> getProductsInCart(){
         return cart.allProductsInCart();
     }
 
