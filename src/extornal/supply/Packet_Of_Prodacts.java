@@ -2,9 +2,11 @@ package extornal.supply;
 
 import java.util.LinkedList;
 
+import Domain.Store.Product;
+
 public class Packet_Of_Prodacts {
 
-	public LinkedList<String> items = new LinkedList<>();
+	public LinkedList<? super Object > items = new LinkedList<>();
 
 
 }

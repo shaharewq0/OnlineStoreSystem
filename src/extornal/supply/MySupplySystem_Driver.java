@@ -30,4 +30,9 @@ public class MySupplySystem_Driver implements MySupplySystem {
 		}
 
 	}
+
+	@Override
+	public Supplyer getSupplayer() {
+		return current_supplyer;
+	}
 }

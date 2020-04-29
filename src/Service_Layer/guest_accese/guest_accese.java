@@ -7,6 +7,9 @@ import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
+import extornal.payment.bankAccount;
+import extornal.supply.Packet_Of_Prodacts;
+import extornal.supply.inventory;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
@@ -101,32 +104,50 @@ public class guest_accese {
 	}
 
 	public int usecase2_7b_RemoveProdactsInCart(int guestID, String storename, String prodactname, int amount) {
-		// TODO imp
 		return System.getInstance().getGuest(guestID).deleteProductInBasket(prodactname, storename, amount);
 	}
 
-	public boolean usecase2_8_Purchase_products() {
-		return false;
+	public boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
+		if (!usecase2_8_1_Check_available_products(guestID))
+			return false;
+		List<Product> items = usecase2_8_5_Update_inventory(guestID);
+		double price = usecase2_8_2_Calculate_price(guestID);
+		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
+		if (!didPay) {
+			usecase2_8_3_ReturnProdoctsToStore(items);
+			return false;
+		}
+		Packet_Of_Prodacts pack = new Packet_Of_Prodacts();
+		pack.items.addAll(items);
+		boolean didSupplay = System.getInstance().navigateSupply().order(pack, whereToSend);
+		if (!didSupplay) {
+			usecase2_8_3_ReturnProdoctsToStore(items);
+			usecase2_8_4_Guest_Refund(bank, price);
+			return false;
+		}
+		return true;
 	}
 
-	public List<ProductDetails> usecase2_8_1_Check_available_products(int guestID) {
-		return System.getInstance().CheckItemAvailable(System.getInstance().getGuest(guestID).getProductsInCart());
+	public boolean usecase2_8_1_Check_available_products(int guestID) {
+		return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
 	}
 
 	public double usecase2_8_2_Calculate_price(int guestID) {
 		return System.getInstance().getGuest(guestID).getCart().CalcPrice();
 	}
 
-	public boolean usecase2_8_3_Purchase_products() {
+	public boolean usecase2_8_3_ReturnProdoctsToStore(List<Product> products) {
+		return System.getInstance().fillStore(products);
+	}
+
+	public boolean usecase2_8_4_Guest_Refund(bankAccount cardnumber, double amount) {
+		System.getInstance().navigatePayment().pay(cardnumber, amount);
 		return false;
 	}
 
-	public boolean usecase2_8_4Purchase_products() {
-		return false;
-	}
+	public List<Product> usecase2_8_5_Update_inventory(int guestID) {
 
-	public boolean usecase2_8_5_Purchase_products() {
-		return false;
+		return System.getInstance().getGuest(guestID).getCart().getItems();
 	}
 
 }

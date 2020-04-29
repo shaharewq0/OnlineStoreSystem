@@ -174,4 +174,19 @@ public class StoreImp implements IStore {
 	public double getPrice(String item) {
 		return products.get(products.indexOf(item)).getPrice();
 	}
+
+	@Override
+	synchronized public Product TakeItem(String name, int amount) {
+		Product takeout = null;
+		Product temp = findProductByName(name);
+		if (temp.getAmount() > amount) {
+			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount, this);
+			temp.removeAmount(amount);
+		} else {
+			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount(),
+					this);
+			temp.removeAmount(temp.getAmount());
+		}
+		return takeout;
+	}
 }

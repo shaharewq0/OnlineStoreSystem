@@ -106,4 +106,10 @@ public class StoreStub implements IStore {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Product TakeItem(String name, int amout) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

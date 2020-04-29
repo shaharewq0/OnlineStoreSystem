@@ -63,4 +63,13 @@ public class shoppingCart implements IshoppingCart {
 		}
 		return cost;
 	}
+
+	@Override
+	public List<Product> getItems() {
+		List<Product> takeout = new LinkedList<Product>();
+		for (shoppingBasket basket  : baskets.values()) {
+			takeout.addAll(basket.getItems());
+		}
+		return takeout;
+	}
 }

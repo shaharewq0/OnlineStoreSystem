@@ -18,7 +18,7 @@ public interface IUser {
     public boolean saveProductInBasket(String productName , String storeName);
     //ublic List<ProductDetails> getProductsInCart();
     public int deleteProductInBasket(String productName , String storeName,int num);
-    public boolean purchase();
+   // public boolean purchase();
     public boolean logout();
     public boolean openStore(String name, String address, int rating);
     public List<shoppingCart> watchHistory();

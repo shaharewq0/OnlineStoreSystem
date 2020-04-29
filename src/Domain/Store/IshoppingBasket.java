@@ -14,5 +14,6 @@ public interface IshoppingBasket {
 
 	public List<ProductDetails> getProducts();
 	public double CalcPrice();
+	public List<Product> getItems();
 
 }

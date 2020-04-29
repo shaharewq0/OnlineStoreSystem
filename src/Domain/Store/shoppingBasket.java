@@ -68,4 +68,13 @@ public class shoppingBasket implements IshoppingBasket {
 		}
 		return price;
 	}
+
+	public List<Product> getItems()
+	{
+		List<Product> output = new LinkedList<Product>();
+		for (String item : products.keySet()) {
+			output.add(store.TakeItem(item, products.get(item)));
+		}
+		return output;
+	}
 }

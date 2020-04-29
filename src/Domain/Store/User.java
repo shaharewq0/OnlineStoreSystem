@@ -153,19 +153,19 @@ public class User implements IUser {
         return cart.allProductsInCart();
     }
 
-    public boolean purchase(){
-        boolean toReturn;
-        if(system_role instanceof Member ){
-             toReturn= System.getInstance().memberPurchase(((Member) system_role).getRegistered().getId(),cart,creditCardNum,address);
-        }
-        else{
-            toReturn= System.getInstance().purchase(cart,creditCardNum,address);
-        }
-        if (toReturn){
-            cart= new shoppingCart();
-        }
-        return toReturn;
-    }
+//    public boolean purchase(){
+//        boolean toReturn;
+//        if(system_role instanceof Member ){
+//             toReturn= System.getInstance().memberPurchase(((Member) system_role).getRegistered().getId(),cart,creditCardNum,address);
+//        }
+//        else{
+//            toReturn= System.getInstance().purchase(cart,creditCardNum,address);
+//        }
+//        if (toReturn){
+//            cart= new shoppingCart();
+//        }
+//        return toReturn;
+//    }
 
     public boolean logout(){
         if(system_role instanceof Member){

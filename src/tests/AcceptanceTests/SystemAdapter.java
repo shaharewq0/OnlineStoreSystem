@@ -118,11 +118,12 @@ public class SystemAdapter {
 	
 	
 	public boolean addProductToStore(String storeName, String productName) {
-		System system = System.getInstance();
-		// Product p = system.searchProductsByName(productName).get(0);
-		StoreImp store = system.getStoreDetails(storeName);
-		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
-		// we assume the product and store exist....
+//		System system = System.getInstance();
+//		// Product p = system.searchProductsByName(productName).get(0);
+//		StoreImp store = system.getStoreDetails(storeName);
+//		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
+//		// we assume the product and store exist....
+		return false;
 	}
 
 	public boolean RemoveProduct(String storeName, String productName) {

@@ -2,5 +2,5 @@ package extornal.payment;
 
 public interface PaymentMethed {
 
-	public void pay(bankAccount card_num, int amount);
+	public boolean pay(bankAccount card_num, double amount);
 }

@@ -3,6 +3,8 @@ package Domain.store_System;
 import java.util.List;
 
 import Domain.Store.*;
+import extornal.payment.PaymentMethed;
+import extornal.supply.Supplyer;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public interface ISystem {
@@ -22,7 +24,10 @@ public interface ISystem {
     public boolean memberPurchase(String id,shoppingCart cart,int creditCard,String address);
     public StoreImp openStore(String name, String address, int rating);
     public List<shoppingCart> orderHistory(String id);
-    public List<ProductDetails> CheckItemAvailable(List<ProductDetails> items);
-    public double calcPrice(shoppingCart c);
-    public List<IshoppingBasket> orderHistory(IStore store);
+     public List<IshoppingBasket> orderHistory(IStore store);
+     public boolean fillStore(List<Product> Products) ;
+     public PaymentMethed navigatePayment();
+     public Supplyer navigateSupply();
+	boolean CheckItemAvailableA(List<ProductDetails> items);
+	List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items);
 }

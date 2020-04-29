@@ -106,10 +106,10 @@ public class UserStub implements IUser {
         return 0;
     }
 
-    @Override
-    public boolean purchase() {
-        return false;
-    }
+//    @Override
+//    public boolean purchase() {
+//        return false;
+//    }
 
     @Override
     public boolean logout() {

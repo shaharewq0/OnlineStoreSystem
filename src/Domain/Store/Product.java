@@ -3,7 +3,7 @@ package Domain.Store;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Product implements IProduct{
+public class Product extends Object  implements IProduct{
     private String name;
     private List<String> category;
     private List<String> keyWords;
@@ -12,10 +12,10 @@ public class Product implements IProduct{
     private StoreImp store;
     private int amount;
 
-    public Product(String name , String category, List<String> keyWords , double price , int rating, StoreImp store) {
+    public Product(String name , List<String> category, List<String> keyWords , double price , int rating, StoreImp store) {
         this.name = name;
         this.category=new LinkedList<String>();
-        this.category.add(category);
+        this.category.addAll(category);
         
         this.keyWords=keyWords;
         this.price=price;

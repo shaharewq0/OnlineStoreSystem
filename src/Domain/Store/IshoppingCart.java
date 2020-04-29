@@ -12,4 +12,5 @@ public interface IshoppingCart {
    // public boolean addBasket(shoppingBasket b);
     public List<ProductDetails> allProductsInCart();
     //public shoppingBasket findBasket(StoreImp s);
+    public List<Product> getItems();
 }

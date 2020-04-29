@@ -23,4 +23,5 @@ public interface IStore {
     public List<PurchaseDetails> viewPurchaseHistory() throws Exception;
     public Boolean CheckItemAvailable(ProductDetails items) ;
 	public double getPrice(String item) ;
+	public Product TakeItem(String name, int amout);
 }
