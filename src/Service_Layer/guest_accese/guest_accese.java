@@ -31,13 +31,6 @@ public class guest_accese {
 		return System.getInstance().getStoreDetails(storeName).getMyInfo();
 	}
 
-//	public ProductDetails getProductDetails(String storeName, String productName) {
-//		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
-//		if (pro == null)
-//			return null;
-//		return new ProductDetails(pro);
-//	}
-
 	public List<ProductDetails> usecase2_5A_searchProductByName(String name) {
 		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByName(name));
 	}
@@ -56,7 +49,7 @@ public class guest_accese {
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			for (Product product : store.getProducts()) {
 				if (product.getPrice() < maxPrice && product.getPrice() > minPrice)
-					output.add(new ProductDetails(product));
+					output.add(new ProductDetails(product, product.getAmount()));
 			}
 		}
 
@@ -69,7 +62,7 @@ public class guest_accese {
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			for (Product product : store.getProducts()) {
 				if (product.getRating() < maxRating && product.getPrice() > minRating)
-					output.add(new ProductDetails(product));
+					output.add(new ProductDetails(product, product.getAmount()));
 			}
 		}
 		return output;
@@ -80,7 +73,7 @@ public class guest_accese {
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			for (Product product : store.getProducts()) {
 				if (product.getCategory().contains(category))
-					output.add(new ProductDetails(product));
+					output.add(new ProductDetails(product, product.getAmount()));
 			}
 		}
 		return output;
@@ -92,51 +85,48 @@ public class guest_accese {
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			if (store.getRating() > minRating && store.getRating() < maxRating)
 				for (Product product : store.getProducts()) {
-					output.add(new ProductDetails(product));
+					output.add(new ProductDetails(product, product.getAmount()));
 				}
 		}
 		return output;
 	}
 
-	// 2.6 Guest Save product in shopping basket
 	public boolean usecase2_6_saveProductToBasket(int guestID, String storename, String prodactname, int amount) {
+
 		return System.getInstance().getGuest(guestID).saveProductInBasket(prodactname, storename);
 	}
 
-//	public void addToBasket(String storeName, String productName) {
-//		// TODO dont know which user to check
-//	}
+	public List<ProductDetails> usecase2_7A_WatchProdactsInCart(int guestID) {
+		return System.getInstance().getGuest(guestID).getProductsInCart();
+	}
 
-	public List<ProductDetails> usecase2_7A_WatchProdactsInCart() {
+	public int usecase2_7b_RemoveProdactsInCart(int guestID, String storename, String prodactname, int amount) {
 		// TODO imp
-		// return System.getInstance().getGuest(guestID);
-		return null;
+		return System.getInstance().getGuest(guestID).deleteProductInBasket(prodactname, storename, amount);
 	}
 
-	public List<ProductDetails> usecase2_7b_RemoveProdactsInCart(String prodactname, int amount) {
-		// TODO imp
-		return null;
-	}
-
-	// use case 2
-	public List<ProductDetails> getShoppingCart() {
-		// TODO dont know which user to check
-		return new LinkedList<>();
-	}
-
-	public boolean inBasket(String storeName, String productName) {
-		// TODO dont know which user to check
+	public boolean usecase2_8_Purchase_products() {
 		return false;
 	}
 
-	// use case 2
-	public void clearShoppingCart() {
-		// TODO dont know which user to check
+	public List<ProductDetails> usecase2_8_1_Check_available_products(int guestID) {
+		return System.getInstance().CheckItemAvailable(System.getInstance().getGuest(guestID).getProductsInCart());
 	}
 
-	// use case 2
-	public boolean hasItem(String storeName, String productName) {
-		return System.getInstance().getStoreDetails(storeName).findProductByName(productName) != null;
+	public double usecase2_8_2_Calculate_price(int guestID) {
+		return System.getInstance().getGuest(guestID).getCart().CalcPrice();
+	}
+
+	public boolean usecase2_8_3_Purchase_products() {
+		return false;
+	}
+
+	public boolean usecase2_8_4Purchase_products() {
+		return false;
+	}
+
+	public boolean usecase2_8_5_Purchase_products() {
+		return false;
 	}
 
 }

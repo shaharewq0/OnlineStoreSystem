@@ -1,5 +1,6 @@
 package tests.UnitTests.stub;
 
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.LinkedList;
@@ -93,4 +94,16 @@ public class StoreStub implements IStore {
         A.add(new PurchaseDetails());
         return A;
     }
+
+	@Override
+	public Boolean CheckItemAvailable(ProductDetails items) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getPrice(String item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

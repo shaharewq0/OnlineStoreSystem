@@ -102,8 +102,8 @@ public class UserStub implements IUser {
 //    }
 //
     @Override
-    public boolean deleteProductInBasket(String productName, String storeName, int num) {
-        return false;
+    public int deleteProductInBasket(String productName, String storeName, int num) {
+        return 0;
     }
 
     @Override
@@ -125,6 +125,12 @@ public class UserStub implements IUser {
     public List<shoppingCart> watchHistory() {
         return null;
     }
+
+	@Override
+	public shoppingCart getCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

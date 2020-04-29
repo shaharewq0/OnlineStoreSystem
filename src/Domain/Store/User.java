@@ -125,10 +125,10 @@ public class User implements IUser {
     }
 
     //removing at most amount of num of a product from the basket
-    public boolean deleteProductInBasket(String productName , String storeName,int num){
+    public int deleteProductInBasket(String productName , String storeName,int num){
         StoreImp myStore = System.getInstance().getStoreDetails(storeName);
         if(myStore==null){
-            return false;
+            return -1;
         }
         List<Product> Products = System.getInstance().searchProductsByName(productName);
         Product toDelete = null;
@@ -138,13 +138,13 @@ public class User implements IUser {
             }
         }
         if(toDelete == null){
-            return false;
+            return -1;
         }
         shoppingBasket toRemove = cart.findBasket(myStore);
         if(toRemove == null){
-            return false;
+            return -1;
         }
-        return toRemove.removeProduct(productName,num)> 0 ;
+        return toRemove.removeProduct(productName,num) ;
     }
 
 
@@ -214,4 +214,9 @@ public class User implements IUser {
     public boolean isRegistered() {
         return system_role instanceof Registered | system_role instanceof Member;
     }
+
+	@Override
+	public shoppingCart getCart() {
+		return cart;
+	}
 }

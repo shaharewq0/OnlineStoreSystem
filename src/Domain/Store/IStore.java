@@ -1,7 +1,9 @@
 package Domain.Store;
 
+import java.util.Collection;
 import java.util.List;
 
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public interface IStore {
@@ -19,4 +21,6 @@ public interface IStore {
     public boolean appointManager(IUser user);
     public boolean fireManager(IUser user);
     public List<PurchaseDetails> viewPurchaseHistory() throws Exception;
+    public Boolean CheckItemAvailable(ProductDetails items) ;
+	public double getPrice(String item) ;
 }

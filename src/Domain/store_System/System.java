@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
 import Domain.Store.*;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class System implements ISystem {
 
@@ -207,7 +207,8 @@ public class System implements ISystem {
 	}
 
 	// TODO implement
-	private double calcPrice(shoppingCart c) {
+	public double calcPrice(shoppingCart cart) {
+
 		return 0.0;
 	}
 
@@ -266,5 +267,17 @@ public class System implements ISystem {
 		}
 
 		return baskets;
+	}
+
+	
+	@Override
+	public List<ProductDetails> CheckItemAvailable(List<ProductDetails> items) {
+		List<ProductDetails> Available = new LinkedList<>();
+		for (ProductDetails details : items) {
+			if (getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+				Available.add(details);
+			}
+		}
+		return Available;
 	}
 }

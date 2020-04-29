@@ -42,7 +42,7 @@ public class shoppingBasket implements IshoppingBasket {
 	private MyPair<ProductDetails, Integer> findInBasket(String name) {
 		if (products.containsKey(name)) {
 			Product a = store.findProductByName(name);
-			MyPair<ProductDetails, Integer> item = new MyPair<ProductDetails, Integer>(new ProductDetails(a),
+			MyPair<ProductDetails, Integer> item = new MyPair<ProductDetails, Integer>(new ProductDetails(a, products.get(name)),
 					products.get(name));
 			return item;
 		}
@@ -56,8 +56,16 @@ public class shoppingBasket implements IshoppingBasket {
 	public List<ProductDetails> getProducts() {
 		List<ProductDetails> output = new LinkedList<ProductDetails>();
 		for (String name : products.keySet()) {
-			output.add(new ProductDetails(store.findProductByName(name)));
+			output.add(new ProductDetails(store.findProductByName(name),products.get(name)));
 		}
 		return output;
+	}
+
+	public double CalcPrice() {
+		double price =0;
+		for (String item : products.keySet()) {
+		price +=	store.getPrice(item) * products.get(item);
+		}
+		return price;
 	}
 }

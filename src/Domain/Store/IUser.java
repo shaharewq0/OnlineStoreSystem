@@ -17,7 +17,7 @@ public interface IUser {
     public List<Product> filterByStoreRating(List<Product> base , int min, int max);
     public boolean saveProductInBasket(String productName , String storeName);
     //ublic List<ProductDetails> getProductsInCart();
-    public boolean deleteProductInBasket(String productName , String storeName,int num);
+    public int deleteProductInBasket(String productName , String storeName,int num);
     public boolean purchase();
     public boolean logout();
     public boolean openStore(String name, String address, int rating);
@@ -25,4 +25,5 @@ public interface IUser {
     public boolean isOwner();
     public boolean isManager();
     public boolean isRegistered();
+    public shoppingCart getCart();
 }

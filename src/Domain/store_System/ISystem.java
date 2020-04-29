@@ -3,6 +3,7 @@ package Domain.store_System;
 import java.util.List;
 
 import Domain.Store.*;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public interface ISystem {
     public boolean register(String id, String password);
@@ -21,6 +22,7 @@ public interface ISystem {
     public boolean memberPurchase(String id,shoppingCart cart,int creditCard,String address);
     public StoreImp openStore(String name, String address, int rating);
     public List<shoppingCart> orderHistory(String id);
-
+    public List<ProductDetails> CheckItemAvailable(List<ProductDetails> items);
+    public double calcPrice(shoppingCart c);
     public List<IshoppingBasket> orderHistory(IStore store);
 }

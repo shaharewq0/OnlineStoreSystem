@@ -1,14 +1,16 @@
 package Domain.Store;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import Domain.info.StoreInfo;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
-public class StoreImp implements IStore { 	
+public class StoreImp implements IStore {
 	private String name;
 	private List<Product> products;
 	private List<IUser> Owners;
@@ -39,7 +41,8 @@ public class StoreImp implements IStore {
 		purcheses = new HashMap<>();
 
 	}
-	//----------------------------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------------------------
 	public List<IUser> getOwners() {
 		return Owners;
 	}
@@ -64,11 +67,11 @@ public class StoreImp implements IStore {
 		return rating;
 	}
 
-	public StoreInfo getMyInfo()
-	{
-		return new StoreInfo(name,address,rating,products);
+	public StoreInfo getMyInfo() {
+		return new StoreInfo(name, address, rating, products);
 	}
-	//----------------------------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------------------------
 	@Override
 	public List<PurchaseDetails> viewPurchaseHistory() {
 		// throw new NotImplementedException();
@@ -159,5 +162,16 @@ public class StoreImp implements IStore {
 			}
 		}
 		return toReturn;
+	}
+
+	public Boolean CheckItemAvailable(ProductDetails item) {
+		if (findProductByName(item.getName()).getAmount() > item.getAmount())
+			return true;
+
+		return false;
+	}
+
+	public double getPrice(String item) {
+		return products.get(products.indexOf(item)).getPrice();
 	}
 }

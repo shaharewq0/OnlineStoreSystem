@@ -53,4 +53,14 @@ public class shoppingCart implements IshoppingCart {
         }
         return null;
     }
+
+	
+    @Override
+	public double CalcPrice() {
+		double cost= 0;
+		for (shoppingBasket basket : baskets.values()) {
+			cost += basket.CalcPrice();
+		}
+		return cost;
+	}
 }

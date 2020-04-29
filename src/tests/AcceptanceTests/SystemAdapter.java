@@ -78,7 +78,7 @@ public class SystemAdapter {
 		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
 		if (pro == null)
 			return null;
-		return new ProductDetails(pro);
+		return new ProductDetails(pro,0);
 	}
 	//use case 2
 	public List<ProductDetails> searchProductByName(String name) {
