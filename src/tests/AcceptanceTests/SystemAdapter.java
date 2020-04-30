@@ -162,7 +162,8 @@ public class SystemAdapter {
 	}
 
 	public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
-		return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
+		return null;
+		//return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
 	}
 
 	public List<Question> getStoreQuestions(String storeName) {

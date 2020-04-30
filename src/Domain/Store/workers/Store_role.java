@@ -4,6 +4,7 @@ import java.util.List;
 
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public interface Store_role {
@@ -13,7 +14,7 @@ public interface Store_role {
     boolean appointManager(IUser user);
     <T> void setPremissions(IUser manager, List<T> Permissions); //generic for now
     boolean fire(IUser manager);
-    List<PurchaseDetails>  viewPurchaseHistory();
 	boolean editItem(String OLD_item, Product NEW_item);
 	boolean removeItem(String prodactname);
+	List<Purchase> getPurchaseHistory();
 }

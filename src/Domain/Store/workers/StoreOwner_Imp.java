@@ -1,12 +1,12 @@
 package Domain.Store.workers;
 
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-
 import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
-import Domain.Store.*;
+import Domain.Store.IStore;
+import Domain.Store.Product;
+import Domain.Store.Purchase;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {
 	IStore store;
@@ -78,20 +78,17 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 		return true;
 	}
 
-	@Override
-	public List<PurchaseDetails> viewPurchaseHistory() {
-		try {
-			return store.viewPurchaseHistory();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
 
-	}
 
 	@Override
 	public boolean removeItem(String prodactname) {
 		return store.removeProduct(prodactname);
 
+	}
+
+	
+	@Override
+	public List<Purchase> getPurchaseHistory() {
+		return store.viewPurchaseHistory();
 	}
 }

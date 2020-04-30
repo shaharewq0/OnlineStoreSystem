@@ -32,5 +32,5 @@ public interface IUser {
     public boolean isManager();
     public boolean isRegistered();
     public shoppingCart getCart();
-    public List<PurchaseDetails> getPurchaseHistory();
+    public List<Purchase> getPurchaseHistory();
 }

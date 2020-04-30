@@ -4,6 +4,7 @@ import java.util.List;
 
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
@@ -54,11 +55,7 @@ public class Creator implements Store_role {
 		return false;
 	}
 
-	@Override
-	public List<PurchaseDetails> viewPurchaseHistory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean editItem(String OLD_item, Product NEW_item) {
@@ -70,5 +67,11 @@ public class Creator implements Store_role {
 	public boolean removeItem(String prodactname) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Purchase> getPurchaseHistory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

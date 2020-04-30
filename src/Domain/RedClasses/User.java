@@ -211,7 +211,8 @@ public class User implements IUser {
 		return false;
 	}
 
-	public List<PurchaseDetails> getPurchaseHistory() {
+	public List<Purchase> getPurchaseHistory() {
+		//TODO imp
 		return null;
 	}
 
@@ -286,9 +287,16 @@ public class User implements IUser {
 		return false;
 	}
 
-	public List<Purchase> ViewAquistionHistory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Purchase> ViewAquistionHistory(String storeName) {
+		// TODO add option for sys manager
+		return store_roles.get(storeName).getPurchaseHistory();
 	}
+
+	public List<Purchase> ViewAquistionHistoryOfUser(String username) {
+		
+		return System.getInstance().getUser(username).getPurchaseHistory();
+	}
+
+	
 
 }

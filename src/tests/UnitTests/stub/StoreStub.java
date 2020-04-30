@@ -9,6 +9,7 @@ import Domain.RedClasses.IUser;
 import Domain.Store.Discount;
 import Domain.Store.IStore;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
 import Domain.info.ProductDetails;
 
 public class StoreStub implements IStore {
@@ -83,10 +84,8 @@ public class StoreStub implements IStore {
     }
 
     @Override
-    public List<PurchaseDetails> viewPurchaseHistory() {
-        List<PurchaseDetails> A=new LinkedList<>();
-        A.add(new PurchaseDetails());
-        return A;
+    public List<Purchase> viewPurchaseHistory() {
+        return null;
     }
 
 	@Override

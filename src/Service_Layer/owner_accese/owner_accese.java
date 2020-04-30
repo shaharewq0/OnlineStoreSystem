@@ -60,8 +60,8 @@ public class owner_accese {
 		return me.giveRespond(ansewr, QustionID);
 	}
 
-	public List<Purchase> usecase4_10_ViewAcquisitionHistory(String myusername, String myPassword) {
+	public List<Purchase> usecase4_10_ViewAcquisitionHistory(String myusername, String myPassword, String storename) {
 		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.ViewAquistionHistory();
+		return me.ViewAquistionHistory(storename);
 	}
 }

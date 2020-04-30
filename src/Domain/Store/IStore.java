@@ -31,7 +31,7 @@ public interface IStore {
 
 	public boolean fireManager(IUser user);
 
-	public List<PurchaseDetails> viewPurchaseHistory() throws Exception;
+	public List<Purchase> viewPurchaseHistory() ;
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 

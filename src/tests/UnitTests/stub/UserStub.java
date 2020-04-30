@@ -136,7 +136,7 @@ public class UserStub implements IUser {
 	}
 
 	@Override
-	public List<PurchaseDetails> getPurchaseHistory() {
+	public List<Purchase> getPurchaseHistory() {
 		// TODO Auto-generated method stub
 		return null;
 	}

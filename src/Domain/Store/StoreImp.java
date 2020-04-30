@@ -71,12 +71,12 @@ public class StoreImp implements IStore {
 
 	// ----------------------------------------------------------------------------------------
 	@Override
-	public List<PurchaseDetails> viewPurchaseHistory() {
+	public List<Purchase> viewPurchaseHistory() {
 		// throw new NotImplementedException();
 		// i don't know how we do this
 		// how does purchase look?
 		// TODO
-		return new LinkedList<PurchaseDetails>();
+		return new LinkedList<Purchase>();
 	}
 
 	@Override
