@@ -3,13 +3,13 @@ package tests.AcceptanceTests;
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import Domain.Store.shoppingCart;
-import Domain.store_System.Registered;
 import Domain.store_System.System;
+import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;

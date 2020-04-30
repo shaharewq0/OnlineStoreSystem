@@ -2,10 +2,10 @@ package tests.UnitTests;
 
 import org.junit.Test;
 
+import Domain.RedClasses.shoppingBasket;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import Domain.Store.shoppingBasket;
 import Domain.store_System.System;
 
 import java.util.LinkedList;

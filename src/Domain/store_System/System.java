@@ -5,13 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.RedClasses.IshoppingBasket;
+import Domain.RedClasses.User;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
-import Domain.Store.IshoppingBasket;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import Domain.Store.User;
-import Domain.Store.shoppingCart;
+import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
@@ -26,6 +27,8 @@ public class System implements ISystem {
 
 	private int TempGuestID = 1;
 	private Map<Integer, User> guest = new HashMap<>();
+	private Map<String,Registered> members = new HashMap<>();
+	
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
 	private List<Registered> registered = new LinkedList<>();
 	private List<StoreImp> stores = new LinkedList<>();
@@ -305,5 +308,11 @@ public class System implements ISystem {
 			output = output & product.getStore().addProduct(product);
 		}
 		return output;
+	}
+
+
+	public User getMember(String myusername, String myPassword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

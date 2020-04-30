@@ -2,7 +2,10 @@ package Domain.store_System;
 
 import java.util.List;
 
+import Domain.RedClasses.IshoppingBasket;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
+import Domain.store_System.Roles.Registered;
 import extornal.payment.PaymentMethed;
 import extornal.supply.Supplyer;
 import tests.AcceptanceTests.auxiliary.ProductDetails;

@@ -2,6 +2,8 @@ package tests.UnitTests.stub;
 
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
 
 public class UserStub implements IUser {

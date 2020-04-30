@@ -1,10 +1,10 @@
-package Domain.Store.StoreOwner;
+package Domain.Store.workers;
 
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.List;
 
-import Domain.Store.IUser;
+import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 
 public interface StoreOwner {

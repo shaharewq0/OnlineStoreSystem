@@ -1,12 +1,21 @@
-package Domain.Store;
+package Domain.RedClasses;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import Domain.Store.StoreOwner.StoreOwner;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
+import Domain.Store.workers.Creator;
+import Domain.Store.workers.StoreOwner;
+import Domain.Store.workers.Store_role;
 import Domain.store_System.*;
 import Domain.store_System.System;
+import Domain.store_System.Roles.Guest;
+import Domain.store_System.Roles.Member;
+import Domain.store_System.Roles.Registered;
+import Domain.store_System.Roles.System_Role;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class User implements IUser {
     
@@ -185,6 +194,17 @@ public class User implements IUser {
         }
         return false;
     }
+    
+	public boolean openStore(StoreDetails store) {
+        if(system_role instanceof Member){
+            StoreImp s = System.getInstance().openStore(store.getName(),address,0);
+            if (s!= null){
+                store_roles.add(new Creator(s));
+                return true;
+            }
+        }
+        return false;
+	}
 
     public List<shoppingCart> watchHistory(){
         if(system_role instanceof Member) {
@@ -219,4 +239,6 @@ public class User implements IUser {
 	public shoppingCart getCart() {
 		return cart;
 	}
+
+
 }

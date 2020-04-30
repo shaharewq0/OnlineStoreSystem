@@ -1,4 +1,6 @@
-package Domain.Store;
+package Domain.Store.workers;
+
+import Domain.Store.StoreImp;
 
 public class Creator implements Store_role {
     private StoreImp store;

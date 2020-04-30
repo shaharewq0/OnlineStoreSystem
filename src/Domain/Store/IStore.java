@@ -3,6 +3,7 @@ package Domain.Store;
 import java.util.Collection;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 

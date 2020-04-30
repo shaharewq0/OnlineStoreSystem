@@ -1,6 +1,9 @@
-package Domain.Store;
+package Domain.RedClasses;
 
 import java.util.List;
+
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
 
 public interface IUser {
     public boolean register(String id, String password);

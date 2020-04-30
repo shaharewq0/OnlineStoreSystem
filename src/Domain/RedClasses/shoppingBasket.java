@@ -1,10 +1,13 @@
-package Domain.Store;
+package Domain.RedClasses;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Store.MyPair;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class shoppingBasket implements IshoppingBasket {

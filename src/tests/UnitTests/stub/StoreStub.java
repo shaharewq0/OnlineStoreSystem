@@ -6,8 +6,8 @@ import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
 import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
 
 public class StoreStub implements IStore {

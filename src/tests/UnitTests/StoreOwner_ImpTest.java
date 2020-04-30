@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import Domain.Store.StoreOwner.StoreOwner;
-import Domain.Store.StoreOwner.StoreOwner_Imp;
+import Domain.Store.workers.StoreOwner;
+import Domain.Store.workers.StoreOwner_Imp;
 import tests.UnitTests.stub.StoreStub;
 import tests.UnitTests.stub.UserStub;
 

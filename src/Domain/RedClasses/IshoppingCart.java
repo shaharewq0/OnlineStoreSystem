@@ -1,9 +1,10 @@
-package Domain.Store;
+package Domain.RedClasses;
 
 
 import java.util.Collection;
 import java.util.List;
 
+import Domain.Store.Product;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public interface IshoppingCart {

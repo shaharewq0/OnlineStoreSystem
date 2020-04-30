@@ -1,10 +1,11 @@
-package Domain.Store.StoreOwner;
+package Domain.Store.workers;
 
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
 import Domain.Store.*;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {

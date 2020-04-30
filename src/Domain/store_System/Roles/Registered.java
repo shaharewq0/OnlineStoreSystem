@@ -1,4 +1,4 @@
-package Domain.store_System;
+package Domain.store_System.Roles;
 
 public class Registered{
     private String id;

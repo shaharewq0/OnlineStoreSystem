@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.IshoppingBasket;
 import Domain.info.StoreInfo;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
