@@ -9,7 +9,7 @@ import java.util.Map;
 
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import Domain.info.ProductDetails;
 
 public class shoppingCart implements IshoppingCart {
     Map<String,shoppingBasket> baskets;

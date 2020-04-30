@@ -8,10 +8,10 @@ import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.store_System.System;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -129,7 +129,7 @@ public class SystemAdapter {
 	public boolean RemoveProduct(String storeName, String productName) {
 		System system = System.getInstance();
 		Product p = system.searchProductsByName(productName).get(0);
-		return system.getStoreDetails(storeName).removeProduct(p);
+		return system.getStoreDetails(storeName).removeProduct(productName);
 	}
 
 	public boolean appointStoreOwner(String username) {

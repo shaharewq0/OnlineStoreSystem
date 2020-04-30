@@ -5,7 +5,7 @@ import java.util.Map;
 
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import Domain.info.ProductDetails;
 
 public interface IshoppingBasket {
 	public void addProduct(String name, int amount);

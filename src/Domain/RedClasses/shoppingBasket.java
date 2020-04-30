@@ -8,7 +8,7 @@ import java.util.Map;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import Domain.info.ProductDetails;
 
 public class shoppingBasket implements IshoppingBasket {
 	private Map<String, Integer> products;

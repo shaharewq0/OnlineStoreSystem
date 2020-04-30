@@ -1,14 +1,15 @@
 package tests.UnitTests.stub;
 
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
+import Domain.Store.Discount;
 import Domain.Store.IStore;
 import Domain.Store.Product;
+import Domain.info.ProductDetails;
 
 public class StoreStub implements IStore {
     UserStub Owner;
@@ -63,15 +64,8 @@ public class StoreStub implements IStore {
         return 0;
     }
 
-    @Override
-    public boolean removeProduct(Product p) {
-        return false;
-    }
+ 
 
-    @Override
-    public boolean editProduct(Product OLD_p, Product NEW_p) {
-        return false;
-    }
 
     @Override
     public boolean appointOwner(IUser user) {
@@ -111,5 +105,23 @@ public class StoreStub implements IStore {
 	public Product TakeItem(String name, int amout) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Discount> getDiscounts(String name) {
+		//TODO imp
+		return null;
+	}
+
+	@Override
+	public boolean removeProduct(String pName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editProduct(String OLD_p, Product NEW_p) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

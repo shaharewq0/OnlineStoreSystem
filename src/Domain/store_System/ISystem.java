@@ -1,21 +1,22 @@
 package Domain.store_System;
 
+import java.util.Collection;
 import java.util.List;
 
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
+import Domain.info.ProductDetails;
 import Domain.store_System.Roles.Registered;
 import extornal.payment.PaymentMethed;
 import extornal.supply.Supplyer;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public interface ISystem {
     public boolean register(String id, String password);
     public Registered login(String id, String password);
     public StoreImp getStoreDetails(String name);
     public List<StoreImp> getAllStores();
-    public List<Product> getProductsFromStore(String name);
+    public Collection<Product> getProductsFromStore(String name);
     public List<Product> searchProductsByName(String name);
     public List<Product> searchProductsByCategory(String category);
     public List<Product> searchProductsByKeyword(String keyword);

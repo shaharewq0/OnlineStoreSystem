@@ -24,20 +24,11 @@ public class test_supply {
 		mss = new MySupplySystem_Driver();
 		pop = new Packet_Of_Prodacts();
 
-		pop.items.add("obja");
-		pop.items.add("objb");
-		pop.items.add("objc");
+//		pop.items.add("obja");
+//		pop.items.add("objb");
+//		pop.items.add("objc");
 
-		in = new inventory() {
-
-			@Override
-			public void recive_item(Packet_Of_Prodacts items) {
-				if (items.items.isEmpty())
-					value = "empty";
-//				else
-//					value = items.items.getFirst();
-			}
-		};
+	
 	}
 
 	@Test

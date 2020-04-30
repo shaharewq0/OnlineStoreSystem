@@ -5,12 +5,12 @@ import java.util.List;
 
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
 import extornal.payment.bankAccount;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class guest_accese {

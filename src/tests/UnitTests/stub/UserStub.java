@@ -5,6 +5,7 @@ import java.util.List;
 import Domain.RedClasses.IUser;
 import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class UserStub implements IUser {
     boolean manager=false;
@@ -130,6 +131,12 @@ public class UserStub implements IUser {
 
 	@Override
 	public shoppingCart getCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PurchaseDetails> getPurchaseHistory() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,10 +1,12 @@
 package Domain.store_System;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
 import Domain.RedClasses.shoppingCart;
@@ -12,6 +14,7 @@ import Domain.Store.IStore;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
@@ -21,7 +24,6 @@ import extornal.payment.PaymentMethed;
 import extornal.supply.MySupplySystem;
 import extornal.supply.MySupplySystem_Driver;
 import extornal.supply.Supplyer;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 public class System implements ISystem {
 
@@ -109,7 +111,7 @@ public class System implements ISystem {
 		return stores;
 	}
 
-	public List<Product> getProductsFromStore(String name) {
+	public Collection<Product> getProductsFromStore(String name) {
 		for (StoreImp s : stores) {
 			if (s.getName().equals(name)) {
 				return s.getProducts();
@@ -312,6 +314,11 @@ public class System implements ISystem {
 
 
 	public User getMember(String myusername, String myPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IUser getUser(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}

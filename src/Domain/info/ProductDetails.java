@@ -1,4 +1,4 @@
-package tests.AcceptanceTests.auxiliary;
+package Domain.info;
 
 
 
@@ -17,10 +17,10 @@ public class ProductDetails {
     private String storeName;
     private int amount;
 
-    public ProductDetails(String name, String category, String storeName, int amount) {
+    public ProductDetails(String name, List<String> category, String storeName, int amount) {
         this.name = name;
         this.category = new LinkedList<>();
-        this.category.add(category);
+        this.category.addAll(category);
         this.storeName = storeName;
         this.amount = amount;
     }
@@ -58,5 +58,8 @@ public class ProductDetails {
     	return output;
     }
 
-
+	static public ProductDetails Copy(ProductDetails other)
+	{
+		return new ProductDetails(other.name,other.getCategory(),other.getStoreName(),other.getAmount());
+	}
 }

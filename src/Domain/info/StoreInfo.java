@@ -1,5 +1,6 @@
 package Domain.info;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class StoreInfo {
 	public int rating;
 	public List<String> products;
 
-	public StoreInfo(String name, String address, int rating, List<Product> products) {
+	public StoreInfo(String name, String address, int rating, Collection<Product> products) {
 		this.name = name;
 		this.address = address;
 		this.rating = rating;

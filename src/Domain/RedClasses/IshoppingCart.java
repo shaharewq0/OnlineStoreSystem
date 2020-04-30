@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import Domain.Store.Product;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import Domain.info.ProductDetails;
 
 public interface IshoppingCart {
     public Collection<shoppingBasket> getBaskets();
