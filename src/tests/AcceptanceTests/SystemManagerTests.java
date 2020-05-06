@@ -1,3 +1,4 @@
+//TODO: REMOVE THIS CLASS
 package tests.AcceptanceTests;
 
 import static org.junit.Assert.assertFalse;
@@ -11,7 +12,7 @@ import org.junit.Test;
 
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
-public class SystemManagerTests extends AccTest {
+public class SystemManagerTests extends BaseAccTest {
     private static String username = "user1";
     private static String password = "pass1";
     private static String regUsername = "user2";

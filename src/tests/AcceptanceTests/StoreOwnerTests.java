@@ -1,3 +1,4 @@
+//TODO: REMOVE THIS CLASS
 package tests.AcceptanceTests;
 
 import static org.junit.Assert.assertFalse;
@@ -8,7 +9,7 @@ import org.junit.Test;
 
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
-public class StoreOwnerTests extends AccTest {
+public class StoreOwnerTests extends BaseAccTest {
     private static String username = "user1";
     private static String password = "pass1";
     private static String validStoreName = "store";
