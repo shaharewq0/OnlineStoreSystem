@@ -1,5 +1,5 @@
 //TODO: REMOVE THIS CLASS
-package tests.AcceptanceTests;
+package tests.AcceptanceTests.MemberedBuyer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 

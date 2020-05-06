@@ -1,5 +1,5 @@
 //TODO: REMOVE THIS CLASS
-package tests.AcceptanceTests;
+package tests.AcceptanceTests.StoreOwner;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class StoreOwnerTests extends BaseAccTest {
