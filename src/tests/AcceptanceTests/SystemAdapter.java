@@ -41,9 +41,13 @@ public class SystemAdapter {
 	}
 
 	public boolean isLoggedIn() {
-		// TODO function not implemented
+		// TODO REMOVE
 		return false;
 	}
+
+    public boolean openStore(String username, StoreDetails storeDetails) {
+        return System.getInstance().openStore(storeDetails.getName(), "London", 9) != null;
+    }
 
 	public boolean openStore(StoreDetails storeDetails) {
 		return System.getInstance().openStore(storeDetails.getName(), "London", 9) != null;

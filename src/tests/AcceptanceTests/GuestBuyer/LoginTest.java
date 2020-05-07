@@ -13,8 +13,8 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(Parameterized.class)
 public class LoginTest extends BaseAccTest {
-    private static String reg_username = "username";
-    private static String reg_password = "password";
+    public static String reg_username = "username";
+    public static String reg_password = "password";
     private String username;
     private String password;
     private boolean expectedOutput;

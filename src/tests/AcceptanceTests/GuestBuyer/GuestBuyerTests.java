@@ -42,29 +42,10 @@ public class GuestBuyerTests extends BaseAccTest {
     @After
     public  void tearDown() {
         if (system.isLoggedIn())
-            system.logout();
+//            system.logout();
         system.clearShoppingCart();
     }
 
-
-    @Test
-    public void login() {
-        assertFalse(system.isLoggedIn());
-        if (!system.isRegistered(username))
-            system.register(username, password);
-        assertTrue(system.login(username, password));
-        assertTrue(system.isLoggedIn());
-    }
-
-    @Test
-    public void loginBad() {
-        assertFalse(system.isLoggedIn());
-        assertFalse(system.login(username, "wrong"));
-        assertFalse(system.isLoggedIn());
-
-        assertFalse(system.login("wrong_username", password));
-        assertFalse(system.isLoggedIn());
-    }
 
     @Test
     public void storeDetails() {
