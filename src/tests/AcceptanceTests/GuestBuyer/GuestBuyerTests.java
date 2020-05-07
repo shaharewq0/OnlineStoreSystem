@@ -46,16 +46,6 @@ public class GuestBuyerTests extends BaseAccTest {
         system.clearShoppingCart();
     }
 
-    
-    
-    @Test
-    public void register() {
-        assertFalse(system.isRegistered(username));
-        assertTrue(system.register(username, password));
-        assertTrue(system.isRegistered(username));
-
-        assertFalse(system.register(username, password));
-    }
 
     @Test
     public void login() {

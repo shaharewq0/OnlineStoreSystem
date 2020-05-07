@@ -21,14 +21,19 @@ public class SystemAdapter {
 		// Note: call with DummyPayment and DummySupply
 		// Note: also need to delete all?
 	}
+
 	//use case 2
+	public boolean register(String username, String password) {
+		return System.getInstance().register(username, password);
+	}
+
+	public void removeUser(String username) {
+		/* TODO */
+	}
+
 	public boolean login(String username, String password) {
 		// TODO imp
 		return System.getInstance().login(username, password) != null;
-	}
-//use case 2
-	public boolean register(String username, String password) {
-		return System.getInstance().register(username, password);
 	}
 
 	public void logout() {
@@ -55,7 +60,7 @@ public class SystemAdapter {
 	
 	
 	public List<PurchaseDetails> getPurchaseHistory(String username) {
-		List<PurchaseDetails> temp = new LinkedList<PurchaseDetails>();
+		List<PurchaseDetails> temp = new LinkedList<>();
 		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
 			temp.add(new PurchaseDetails(cart));
 		}
@@ -121,7 +126,7 @@ public class SystemAdapter {
 		System system = System.getInstance();
 		// Product p = system.searchProductsByName(productName).get(0);
 		StoreImp store = system.getStoreDetails(storeName);
-		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
+		return store.addProduct(new Product(productName, "cat", new LinkedList<>(), 5, 1, store));
 		// we assume the product and store exist....
 	}
 
