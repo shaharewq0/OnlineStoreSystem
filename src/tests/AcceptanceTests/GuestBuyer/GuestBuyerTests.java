@@ -47,15 +47,7 @@ public class GuestBuyerTests extends BaseAccTest {
     }
 
 
-    @Test
-    public void storeDetails() {
-    	//TODO make sure validStoreName
-        StoreDetails store = system.getStoreDetails(validStoreName);
-        assertNotNull(store);
-        assertEquals(store.getName(), validStoreName);
 
-        assertNull(system.getStoreDetails(invalidStoreName));
-    }
 
     @Test
     public void productDetails() {

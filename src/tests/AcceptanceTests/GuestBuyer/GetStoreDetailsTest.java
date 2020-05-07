@@ -37,7 +37,7 @@ public class GetStoreDetailsTest extends BaseAccTest {
         LoginTest.setUpClass();
         system.login(LoginTest.reg_username, LoginTest.reg_password);
         // TODO: system.initialize, use systemTest setup
-        //     maybe change all to open store setup
+        //     change all to add product setup(open store)
         system.openStore(LoginTest.reg_username, store);
         system.logout(LoginTest.reg_username);
     }
@@ -47,9 +47,14 @@ public class GetStoreDetailsTest extends BaseAccTest {
         assertEquals(system.getStoreDetails(storeName), expectedOutput);
     }
 
+    @Test
+    public void getProductDetails() {
+        //TODO: add later
+    }
+
     @AfterClass
     public static void tearDownClass() {
-        // TODO: open store teardown
+        // TODO: change all to add product teardown(open store)
         LoginTest.tearDownClass();
     }
 }
