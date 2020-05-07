@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        InitializeTest.class,
+        /* 1.1 */   InitializeTest.class,
 })
 
 public class SystemTests {
