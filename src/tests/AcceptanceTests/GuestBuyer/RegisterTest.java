@@ -41,14 +41,18 @@ public class RegisterTest extends BaseAccTest {
 
     @Test
     public void registerTwice() {
-        assertEquals(system.register(username, password), expectedOutput); // #1
-        assertFalse(system.register(username, password)); // #2 user can't register twice
+        if(expectedOutput){
+            assertEquals(system.register(username, password), expectedOutput); // #1
+            assertFalse(system.register(username, password)); // #2 user can't register twice
+        }
     }
 
     @Test
     public void registerWithExistingUsername() {
-        assertEquals(system.register(username, password), expectedOutput); // #1
-        assertFalse(system.register(username, "dummy password")); // #2 user can't register with existing username
+        if (expectedOutput) {
+            assertEquals(system.register(username, password), expectedOutput); // #1
+            assertFalse(system.register(username, "dummy password")); // #2 user can't register with existing username
+        }
     }
 
     @After

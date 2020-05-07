@@ -36,7 +36,7 @@ public class SystemAdapter {
 		return System.getInstance().login(username, password) != null;
 	}
 
-	public void logout() {
+	public void logout(String username) {
 		// TODO not implemented as of yet
 	}
 
