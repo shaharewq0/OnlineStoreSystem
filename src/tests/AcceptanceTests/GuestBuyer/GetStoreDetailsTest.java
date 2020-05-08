@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
+import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 
 @RunWith(Parameterized.class)
 public class GetStoreDetailsTest extends BaseAccTest {
@@ -35,11 +37,11 @@ public class GetStoreDetailsTest extends BaseAccTest {
     @BeforeClass
     public static void setUpClass() {
         LoginTest.setUpClass();
-        system.login(LoginTest.reg_username, LoginTest.reg_password);
+        system.login(USERNAME, PASSWORD);
         // TODO: system.initialize, use systemTest setup
         //     change all to add product setup(open store)
-        system.openStore(LoginTest.reg_username, store);
-        system.logout(LoginTest.reg_username);
+        system.openStore(USERNAME, store);
+        system.logout(USERNAME, PASSWORD);
     }
 
     @Test

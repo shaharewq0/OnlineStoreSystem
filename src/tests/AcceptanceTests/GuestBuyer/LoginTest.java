@@ -13,8 +13,8 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(Parameterized.class)
 public class LoginTest extends BaseAccTest {
-    public static String reg_username = "username";
-    public static String reg_password = "password";
+    public static String USERNAME = "username";
+    public static String PASSWORD = "password";
     private String username;
     private String password;
     private boolean expectedOutput;
@@ -22,9 +22,9 @@ public class LoginTest extends BaseAccTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                {reg_username, reg_password, true},
-                {reg_username, "wrong password", false},
-                {"wrong username", reg_password, false},
+                {USERNAME, PASSWORD, true},
+                {USERNAME, "wrong password", false},
+                {"wrong username", PASSWORD, false},
                 {"wrong username", "wrong password", false},
         });
     }
@@ -37,7 +37,7 @@ public class LoginTest extends BaseAccTest {
 
     @BeforeClass
     public static void setUpClass() {
-        system.register(reg_username, reg_password);
+        system.register(USERNAME, PASSWORD);
     }
 
     @Test
@@ -49,18 +49,18 @@ public class LoginTest extends BaseAccTest {
     public void loginTwice() {
         if(expectedOutput) {
             assertEquals(system.login(username, password), expectedOutput); // #1
-            assertFalse(system.register(username, password)); // #2 user can't login twice
+            assertFalse(system.login(username, password)); // #2 user can't login twice
         }
     }
 
     @After
     public void tearDown() {
         if(expectedOutput)
-            system.logout(username);
+            system.logout(username, password);
     }
 
     @AfterClass
     public static void tearDownClass() {
-        system.removeUser(reg_username);
+        system.removeUser(USERNAME);
     }
 }

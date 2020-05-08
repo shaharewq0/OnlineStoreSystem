@@ -3,14 +3,10 @@ package tests.AcceptanceTests;
 import java.util.LinkedList;
 import java.util.List;
 
-import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.shoppingCart;
-import Domain.store_System.Registered;
 import Domain.store_System.System;
-import Domain.store_System.Security.PassProtocol_Imp;
 import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
@@ -36,8 +32,9 @@ public class SystemAdapter {
 		return System.getInstance().login(username, password) != null;
 	}
 
-	public void logout(String username) {
+	public boolean logout(String username, String password) {
 		// TODO not implemented as of yet
+		return false;
 	}
 
 	public boolean isLoggedIn() {
