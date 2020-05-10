@@ -83,6 +83,12 @@ public class SystemAdapter {
 			return null;
 		return new StoreDetails(store);
 	}
+
+	public List<ProductDetails> getProductsFromStore(String storeName) {
+		// TODO
+		return null;
+	}
+
 	//use case 2
 	public ProductDetails getProductDetails(String storeName, String productName) {
 		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);

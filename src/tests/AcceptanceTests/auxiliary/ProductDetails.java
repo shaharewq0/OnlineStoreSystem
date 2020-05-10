@@ -5,6 +5,7 @@ import Domain.Store.Product;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class ProductDetails {
     public static ProductDetails PRODUCT1 = new ProductDetails("product1", "cat1", "store", 10.0);
@@ -63,4 +64,16 @@ public class ProductDetails {
 		}
     	return output;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductDetails that = (ProductDetails) o;
+        return Double.compare(that.price, price) == 0 &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(category, that.category) &&
+                Objects.equals(storeName, that.storeName);
+    }
+
 }

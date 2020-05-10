@@ -3,60 +3,61 @@ package tests.AcceptanceTests.GuestBuyer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import tests.AcceptanceTests.BaseAccTest;
-import tests.AcceptanceTests.auxiliary.StoreDetails;
+import tests.AcceptanceTests.StoreOwner.ManageInventoryTest;
+import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
+import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
+import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
+import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
 
-@RunWith(Parameterized.class)
 public class GetStoreDetailsTest extends BaseAccTest {
-    public static StoreDetails store = new StoreDetails("store");
-    private String storeName;
-    private StoreDetails expectedOutput;
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                {"store", store},
-                {"wrong store", null},
-        });
-    }
-
-    public GetStoreDetailsTest(String storeName, StoreDetails expectedOutput){
-        this.storeName = storeName;
-        this.expectedOutput = expectedOutput;
-    }
 
     @BeforeClass
     public static void setUpClass() {
-        LoginTest.setUpClass();
-        system.login(USERNAME, PASSWORD);
         // TODO: system.initialize, use systemTest setup
-        //     change all to add product setup(open store)
-        system.openStore(USERNAME, store);
-        system.logout(USERNAME, PASSWORD);
+        ManageInventoryTest.setUpClass();
+        system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT1);
+        system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT2);
+        system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3);
+
+        system.logout(USERNAME, PASSWORD); //the test is for guest
     }
 
     @Test
     public void getStoreDetails() {
-        assertEquals(system.getStoreDetails(storeName), expectedOutput);
+        assertEquals(system.getStoreDetails(STORE.getName()), STORE);
     }
 
     @Test
-    public void getProductDetails() {
-        //TODO: add later
+    public void getStoreDetailsDontExist() {
+        assertNull(system.getStoreDetails(STORE_THAT_DONT_EXIST));
+    }
+
+    @Test
+    public void getProductsFromStore() {
+        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2, PRODUCT3);
+        List<ProductDetails> products = system.getProductsFromStore(STORE.getName());
+        assertNotNull(products);
+        assertEquals(products.size(), TrueProducts.size());
+        assertTrue(products.containsAll(TrueProducts));
+    }
+
+    @Test
+    public void getProductsFromStoreDontExist() {
+        List<ProductDetails> products = system.getProductsFromStore(STORE_THAT_DONT_EXIST);
+        assertTrue(products == null || products.isEmpty());
     }
 
     @AfterClass
     public static void tearDownClass() {
-        // TODO: change all to add product teardown(open store)
-        LoginTest.tearDownClass();
+        system.login(USERNAME, PASSWORD); // ManageInventoryTest.tearDownClass() call logout
+        ManageInventoryTest.tearDownClass();
     }
 }
