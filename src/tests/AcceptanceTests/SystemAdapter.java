@@ -1,8 +1,5 @@
 package tests.AcceptanceTests;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.shoppingCart;
@@ -11,6 +8,9 @@ import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class SystemAdapter {
 	public void init() {
@@ -40,6 +40,10 @@ public class SystemAdapter {
 	public boolean isLoggedIn() {
 		// TODO REMOVE
 		return false;
+	}
+
+	public boolean openStore(String username, String password, StoreDetails storeDetails) {
+		return System.getInstance().openStore(storeDetails.getName(), "London", 9) != null;
 	}
 
     public boolean openStore(String username, StoreDetails storeDetails) {
@@ -137,6 +141,22 @@ public class SystemAdapter {
 		return system.getStoreDetails(storeName).removeProduct(p);
 	}
 
+	public boolean addProduct(String username, String password, String storeName, ProductDetails productName) {
+		//TODO
+		return false;
+	}
+
+	public boolean RemoveProduct(String username, String password, String storeName, String productName) {
+		//TODO
+		return false;
+	}
+
+	public boolean EditProduct(String username, String password, String storeName, String productName,
+							   ProductDetails newProductDet) {
+		//TODO
+		return false;
+	}
+
 	public boolean appointStoreOwner(String username) {
 		// TODO need store name and who appoints me
 		return false;
@@ -183,5 +203,9 @@ public class SystemAdapter {
 	public void answerQuestion(Question question) {
 		// TODO this is not implemented in version 1
 
+	}
+
+	public void removeStore(StoreDetails store) {
+		// TODO required for testing
 	}
 }
