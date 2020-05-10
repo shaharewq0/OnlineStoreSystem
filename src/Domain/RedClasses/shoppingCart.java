@@ -10,6 +10,7 @@ import java.util.Map;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
+import Domain.store_System.System;
 
 public class shoppingCart implements IshoppingCart {
     Map<String,shoppingBasket> baskets;
@@ -30,22 +31,6 @@ public class shoppingCart implements IshoppingCart {
        return output;
     }
 
-    // connect 2 lists
-//    private void concat(List<MyPair<Product,Integer>> a , List<MyPair<Product,Integer>> b){
-//        for(MyPair<Product,Integer> p : b){
-//            if(!a.contains(p)){
-//                a.add(p);
-//            }
-//        }
-//    }
-
-//    public boolean addBasket(shoppingBasket b){
-//        if(!baskets.contains(b)){
-//            baskets.add(b);
-//            return true;
-//        }
-//        return false;
-//    }
 
     public shoppingBasket findBasket(StoreImp s){
         for(shoppingBasket basket : getBaskets()){
@@ -56,7 +41,19 @@ public class shoppingCart implements IshoppingCart {
         return null;
     }
 
-	
+    public shoppingBasket findBasket(String name){
+    	if(baskets.containsKey(name))
+    		return baskets.get(name);
+    	//else
+    	baskets.put(name, new shoppingBasket(System.getInstance().getStoreDetails(name)));
+    	return baskets.get(name);
+
+    }
+    
+	public int removeItem(String Storename,String Itemname,int amount) {
+		return baskets.get(Storename).removeProduct(Itemname, amount);
+	}
+    
     @Override
 	public double CalcPrice() {
 		double cost= 0;

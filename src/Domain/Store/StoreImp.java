@@ -56,6 +56,9 @@ public class StoreImp implements IStore {
 	public Collection<Product> getProducts() {
 		return inventory.items.values();
 	}
+	public List<ProductDetails> getProductsDetails() {
+		return ProductDetails.adapteProdactList(inventory.items.values());
+	}
 
 	public String getAddress() {
 		return address;
@@ -124,9 +127,18 @@ public class StoreImp implements IStore {
 		return inventory.items.get(name);
 
 	}
+	public ProductDetails findProductDetailsByName(String name) {
+		return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
+
+	}
 
 	public List<Product> findProductByCategory(String category) {
 		return inventory.findProductByCategory(category);
+
+	}
+	
+	public List<ProductDetails> findProductDetailsByCategory(String category) {
+		return  ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
 
 	}
 
@@ -134,7 +146,10 @@ public class StoreImp implements IStore {
 		return inventory.findProductByKeyword(keyword);
 
 	}
+	public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
+		return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword));
 
+	}
 // --------------------------------------
 	public Boolean CheckItemAvailable(ProductDetails item) {
 		if (findProductByName(item.getName()).getAmount() > item.getAmount())

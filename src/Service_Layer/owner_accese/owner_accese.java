@@ -64,4 +64,8 @@ public class owner_accese {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.ViewAquistionHistory(storename);
 	}
+
+
+	
+
 }

@@ -35,4 +35,5 @@ public class MySupplySystem_Driver implements MySupplySystem {
 	public Supplyer getSupplayer() {
 		return current_supplyer;
 	}
+
 }

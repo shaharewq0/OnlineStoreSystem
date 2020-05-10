@@ -1,8 +1,5 @@
 package tests.UnitTests.stub;
 
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-
-import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.IUser;

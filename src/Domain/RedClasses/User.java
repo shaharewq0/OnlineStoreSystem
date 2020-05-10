@@ -14,18 +14,22 @@ import Domain.Store.workers.StoreOwner;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
+import Domain.info.StoreInfo;
 import Domain.store_System.System;
 import Domain.store_System.Roles.Guest;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
+import Domain.store_System.Roles.System_Manager;
 import Domain.store_System.Roles.System_Role;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class User implements IUser {
 
 	private shoppingCart cart;
-
+	//imps of new classs digram
+	private Registered profile= null;
+	private Member logInstanse =null;
+	private System_Manager sysMangaer = null;
 	// ---- dont need to be here
 	private System_Role system_role;// guest member sysmanager;
 	private String address;
@@ -44,143 +48,102 @@ public class User implements IUser {
 		this.creditCardNum = creditCardNum;
 	}
 
-	public boolean register(String id, String password) {
-		if (system_role instanceof Guest) {
-			boolean reg = System.getInstance().register(id, password);
-			if (reg) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public boolean login(String id, String password) {
-		if (system_role instanceof Guest) {
-			Registered log = System.getInstance().login(id, password);
-			if (log != null) {
-				system_role = new Member(log);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public StoreImp watchStoreDetails(String name) {
-		return System.getInstance().getStoreDetails(name);
+		if(profile == null)
+			return false;
+		
+		profile = System.getInstance().login(id, password,this);
+		logInstanse = System.getInstance().getLogInstase(id,password);
+		return profile != null;
+//		if (system_role instanceof Guest) {
+//			Registered profile = System.getInstance().login(id, password);
+//			if (profile != null) {
+//				system_role = new Member(profile);
+//				return true;
+//			}
+//		}
+//		return false;
 	}
 
 	public List<StoreImp> watchAllStores() {
 		return System.getInstance().getAllStores();
 	}
 
-	public Collection<Product> watchProductsInStore(String name) {
+	public Collection<ProductDetails> watchProductsInStore(String name) {
 		return System.getInstance().getProductsFromStore(name);
 	}
 
-	public List<Product> searchProductsByName(String name) {
-		return System.getInstance().searchProductsByName(name);
-	}
-
-	public List<Product> searchProductsByCategory(String category) {
-		return System.getInstance().searchProductsByCategory(category);
-	}
-
-	public List<Product> searchProductsByKeyword(String keyword) {
-		return System.getInstance().searchProductsByKeyword(keyword);
-	}
-
-	public List<Product> filterByPrice(List<Product> base, int min, int max) {
-		return System.getInstance().filterByPrice(base, min, max);
-	}
-
-	public List<Product> filterByRating(List<Product> base, int min, int max) {
-		return System.getInstance().filterByRating(base, min, max);
-	}
-
-	public List<Product> filterByCategory(List<Product> base, String category) {
-		return System.getInstance().filterByCategory(base, category);
-	}
-
-	public List<Product> filterByStoreRating(List<Product> base, int min, int max) {
-		return System.getInstance().filterByStoreRating(base, min, max);
-	}
-
+	//TODO rewrite this fucntion
 	// adding a product to a basket. if the product exists add 1 to the amount of
 	// the product in the basket
-	public boolean saveProductInBasket(String productName, String storeName) {
-		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
-		if (myStore == null) {
-			return false;
-		}
-		if (System.getInstance().searchProductsByName(productName).size() == 0) {
-			return false;
-		}
-		List<Product> Products = System.getInstance().searchProductsByName(productName);
-		if (Products == null) {
-			return false;
-		}
-		Product toSave = null;
-		for (Product p : Products) {
-			if (p.getStore().getName().equals(storeName) && myStore.getProducts().contains(p)) {
-				toSave = p;
-			}
-		}
-		if (toSave == null) {
-			return false;
-		}
-		shoppingBasket toAdd = cart.findBasket(myStore);
-		if (toAdd == null) {
-			toAdd = new shoppingBasket(myStore);
-			toAdd.addProduct(productName, 1);
-			// cart.addBasket(toAdd);
-			return true;
-		} else
-			toAdd.addProduct(productName, 1);
+	public boolean saveProductInBasket(String productName, String storeName,int amount) {
+		
+		cart.findBasket(storeName).addProduct(productName, amount);
 		return true;
+//		// - not my
+//		
+//		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
+//		if (myStore == null) {
+//			return false;
+//		}
+//		if (System.getInstance().searchProductsByName(productName).size() == 0) {
+//			return false;
+//		}
+//		List<ProductDetails> Products = System.getInstance().searchProductsByName(productName);
+//		if (Products == null) {
+//			return false;
+//		}
+//		ProductDetails toSave = null;
+//		for (ProductDetails p : Products) {
+//			if ( p.getName().equals(storeName) && myStore.getProducts().contains(p)) {
+//				toSave = p;
+//			}
+//		}
+//		if (toSave == null) {
+//			return false;
+//		}
+//		shoppingBasket toAdd = cart.findBasket(myStore);
+//		if (toAdd == null) {
+//			toAdd = new shoppingBasket(myStore);
+//			toAdd.addProduct(productName, 1);
+//			// cart.addBasket(toAdd);
+//			return true;
+//		} else
+//			toAdd.addProduct(productName, 1);
+//		return true;
 	}
 
 	// removing at most amount of num of a product from the basket
 	public int deleteProductInBasket(String productName, String storeName, int num) {
-		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
-		if (myStore == null) {
-			return -1;
-		}
-		List<Product> Products = System.getInstance().searchProductsByName(productName);
-		Product toDelete = null;
-		for (Product p : Products) {
-			if (p.getStore().getName().equals(storeName) & myStore.getProducts().contains(p)) {
-				toDelete = p;
-			}
-		}
-		if (toDelete == null) {
-			return -1;
-		}
-		shoppingBasket toRemove = cart.findBasket(myStore);
-		if (toRemove == null) {
-			return -1;
-		}
-		return toRemove.removeProduct(productName, num);
+		return cart.removeItem(storeName, storeName, num);
+//		
+//		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
+//		if (myStore == null) {
+//			return -1;
+//		}
+//		List<ProductDetails> Products = System.getInstance().searchProductsByName(productName);
+//		ProductDetails toDelete = null;
+//		for (ProductDetails p : Products) {
+//			if (p.getName().equals(storeName) & myStore.getProducts().contains(p)) {
+//				toDelete = p;
+//			}
+//		}
+//		if (toDelete == null) {
+//			return -1;
+//		}
+//		shoppingBasket toRemove = cart.findBasket(myStore);
+//		if (toRemove == null) {
+//			return -1;
+//		}
+//		return toRemove.removeProduct(productName, num);
 	}
 
 	public List<ProductDetails> getProductsInCart() {
 		return cart.allProductsInCart();
 	}
 
-//    public boolean purchase(){
-//        boolean toReturn;
-//        if(system_role instanceof Member ){
-//             toReturn= System.getInstance().memberPurchase(((Member) system_role).getRegistered().getId(),cart,creditCardNum,address);
-//        }
-//        else{
-//            toReturn= System.getInstance().purchase(cart,creditCardNum,address);
-//        }
-//        if (toReturn){
-//            cart= new shoppingCart();
-//        }
-//        return toReturn;
-//    }
-
 	public boolean logout() {
+		
 		if (system_role instanceof Member) {
 			system_role = new Guest();
 			return true;
@@ -212,39 +175,43 @@ public class User implements IUser {
 	}
 
 	public List<Purchase> getPurchaseHistory() {
-		//TODO imp
+		// TODO imp
 		return null;
 	}
 
-	public List<shoppingCart> watchHistory() {
-		if (system_role instanceof Member) {
-			return System.getInstance().orderHistory(((Member) system_role).getRegistered().getId());
-		}
-		return null;
+	public List<Purchase> watchHistory() {
+		if(profile == null)
+			return null;
+		return profile.getPurchesHistory();
+//		
+//		if (system_role instanceof Member) {
+//			return System.getInstance().orderHistory(((Member) system_role).getRegistered().getId());
+//		}
+//		return null;
 	}
+//
+//	@Override
+//	public boolean isOwner() {
+//		boolean ans = false;
+//		for (Store_role I : store_roles.values()) {
+//			if (I instanceof StoreOwner)
+//				ans = true;
+//		}
+//		return ans;
+//	}
+//
+//	@Override
+//	public boolean isManager() {
+//		// TODO: no manager interface for now
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean isRegistered() {
+//		return system_role instanceof Registered | system_role instanceof Member;
+//	}
+//
 
-	@Override
-	public boolean isOwner() {
-		boolean ans = false;
-		for (Store_role I : store_roles.values()) {
-			if (I instanceof StoreOwner)
-				ans = true;
-		}
-		return ans;
-	}
-
-	@Override
-	public boolean isManager() {
-		// TODO: no manager interface for now
-		return false;
-	}
-
-	@Override
-	public boolean isRegistered() {
-		return system_role instanceof Registered | system_role instanceof Member;
-	}
-
-	@Override
 	public shoppingCart getCart() {
 		return cart;
 	}
@@ -259,7 +226,6 @@ public class User implements IUser {
 		return store_roles.get(storeName).editItem(prodactname, newdetail);
 	}
 
-
 	public boolean removeProduct(String storeName, String prodactname) {
 
 		return store_roles.get(storeName).removeItem(prodactname);
@@ -268,7 +234,8 @@ public class User implements IUser {
 	public boolean appointOwner(String storeName, String username, String otherPassword) {
 		return store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
 	}
-	public boolean appointManager(String storeName, String username,String otherPassword) {
+
+	public boolean appointManager(String storeName, String username, String otherPassword) {
 		return store_roles.get(storeName).appointManager(System.getInstance().getMember(username, otherPassword));
 
 	}
@@ -293,10 +260,89 @@ public class User implements IUser {
 	}
 
 	public List<Purchase> ViewAquistionHistoryOfUser(String username) {
-		
+
 		return System.getInstance().getUser(username).getPurchaseHistory();
 	}
+	// Static -
+	// ------------------------------------------------------------------------------------------------------------------
 
+	static public boolean register(String id, String password) {
+		return System.getInstance().register(id, password);
+	}
 	
+	static public StoreDetails watchStoreDetails(String name) {
+		StoreImp store = System.getInstance().getStoreDetails(name);
+		if (store == null)
+			return null;
+		return new StoreDetails(store);
+	}
+
+	static public StoreInfo watchStoreInfo(String storeName) {
+		StoreImp store = System.getInstance().getStoreDetails(storeName);
+		if (store == null)
+			return null;
+		return store.getMyInfo();
+	}
+
+	static public List<ProductDetails> searchProductsByName(String name) {
+		return System.getInstance().searchProductsByName(name);
+	}
+
+	static public List<ProductDetails> searchProductsByCategory(String category) {
+		return System.getInstance().searchProductsByCategory(category);
+	}
+
+	static public List<ProductDetails> searchProductsByKeyword(String keyword) {
+		return System.getInstance().searchProductsByKeyword(keyword);
+	}
+
+	static public List<ProductDetails> filterByPrice(int minPrice, int maxPrice) {
+
+		List<ProductDetails> output = new LinkedList<ProductDetails>();
+		for (StoreImp store : System.getInstance().getAllStores()) {
+			for (Product product : store.getProducts()) {
+				if (product.getPrice() < maxPrice && product.getPrice() > minPrice)
+					output.add(new ProductDetails(product, product.getAmount()));
+			}
+		}
+
+		return output;
+	}
+
+	static public List<ProductDetails> filterByRating(int minRating, int maxRating) {
+		List<ProductDetails> output = new LinkedList<ProductDetails>();
+		for (StoreImp store : System.getInstance().getAllStores()) {
+			for (Product product : store.getProducts()) {
+				if (product.getRating() < maxRating && product.getPrice() > minRating)
+					output.add(new ProductDetails(product, product.getAmount()));
+			}
+		}
+		return output;
+		// return System.getInstance().filterByRating( min, max);
+	}
+
+	static public List<ProductDetails> filterByCategory(String category) {
+		List<ProductDetails> output = new LinkedList<ProductDetails>();
+		for (StoreImp store : System.getInstance().getAllStores()) {
+			for (Product product : store.getProducts()) {
+				if (product.getCategory().contains(category))
+					output.add(new ProductDetails(product, product.getAmount()));
+			}
+		}
+		return output;
+		// return System.getInstance().filterByCategory(category);
+	}
+
+	static public List<ProductDetails> filterByStoreRating(int minRating, int maxRating) {
+		List<ProductDetails> output = new LinkedList<ProductDetails>();
+		for (StoreImp store : System.getInstance().getAllStores()) {
+			if (store.getRating() > minRating && store.getRating() < maxRating)
+				for (Product product : store.getProducts()) {
+					output.add(new ProductDetails(product, product.getAmount()));
+				}
+		}
+		return output;
+		// return System.getInstance().filterByStoreRating( min, max);
+	}
 
 }

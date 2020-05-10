@@ -15,6 +15,7 @@ import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
+import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
@@ -29,10 +30,10 @@ public class System implements ISystem {
 
 	private int TempGuestID = 1;
 	private Map<Integer, User> guest = new HashMap<>();
-	private Map<String,Registered> members = new HashMap<>();
-	
+	private Map<String, Registered> membersprofiles = new HashMap<>();
+	private Map<String, Member> onlinemember = new HashMap<>();
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
-	private List<Registered> registered = new LinkedList<>();
+	// private List<Registered> registered = new LinkedList<>();
 	private List<StoreImp> stores = new LinkedList<>();
 	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
 	private MyPaymentSystem paymentdriver = new MyPaymentSystem_Driver();
@@ -65,10 +66,12 @@ public class System implements ISystem {
 		if (!myProtocol.addRegistry(id, password)) {
 			return false;
 		}
-		registered.add(new Registered(id));
+
+		membersprofiles.put(id, new Registered(id));
 		return true;
 	}
 
+	// TODO delete this
 	public Registered login(String id, String password) {
 		Registered reg = Registered_contains(id);
 		if (reg == null) {
@@ -80,8 +83,20 @@ public class System implements ISystem {
 		return reg;
 	}
 
+	public Registered login(String id, String password, User user) {
+		if (!myProtocol.login(id, password))
+			return null;
+
+		Registered Profile = Registered_contains(id);
+
+		Profile.LogLogin(user);
+		onlinemember.put(id, new Member(user));
+		return Profile;
+
+	}
+
 	public Registered Registered_contains(String id) {
-		for (Registered existing : registered) {
+		for (Registered existing : membersprofiles.values()) {
 			if (existing.getId().equals(id)) {
 				return existing;
 			}
@@ -111,19 +126,20 @@ public class System implements ISystem {
 		return stores;
 	}
 
-	public Collection<Product> getProductsFromStore(String name) {
+	public Collection<ProductDetails> getProductsFromStore(String name) {
+
 		for (StoreImp s : stores) {
 			if (s.getName().equals(name)) {
-				return s.getProducts();
+				return s.getProductsDetails();
 			}
 		}
 		return null;
 	}
 
-	public List<Product> searchProductsByName(String name) {
-		List<Product> toReturn = new LinkedList<>();
+	public List<ProductDetails> searchProductsByName(String name) {
+		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores) {
-			Product toAdd = s.findProductByName(name);
+			ProductDetails toAdd = s.findProductDetailsByName(name);
 			if (toAdd != null) {
 				toReturn.add(toAdd);
 			}
@@ -131,26 +147,34 @@ public class System implements ISystem {
 		return toReturn;
 	}
 
-	public List<Product> searchProductsByCategory(String category) {
-		List<Product> toReturn = new LinkedList<>();
+	public List<ProductDetails> searchProductsByCategory(String category) {
+		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores) {
-			List<Product> toAdd = s.findProductByCategory(category);
-			concat(toReturn, toAdd);
+			List<ProductDetails> toAdd = s.findProductDetailsByCategory(category);
+			concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
 
-	public List<Product> searchProductsByKeyword(String keyword) {
-		List<Product> toReturn = new LinkedList<>();
+	public List<ProductDetails> searchProductsByKeyword(String keyword) {
+		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores) {
-			List<Product> toAdd = s.findProductByKeyword(keyword);
-			concat(toReturn, toAdd);
+			List<ProductDetails> toAdd = s.findProductDetailsByKeyword(keyword);
+			concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
 
 	private void concat(List<Product> a, List<Product> b) {
 		for (Product p : b) {
+			if (!a.contains(p)) {
+				a.add(p);
+			}
+		}
+	}
+
+	private void concat2(List<ProductDetails> a, List<ProductDetails> b) {
+		for (ProductDetails p : b) {
 			if (!a.contains(p)) {
 				a.add(p);
 			}
@@ -260,7 +284,7 @@ public class System implements ISystem {
 		return toReturn.getValue();
 	}
 
-	@Override
+	// @Override
 	public List<IshoppingBasket> orderHistory(IStore store) {
 
 		List<IshoppingBasket> baskets = new LinkedList<>();
@@ -283,7 +307,7 @@ public class System implements ISystem {
 		return baskets;
 	}
 
-	@Override
+	// @Override
 	public boolean CheckItemAvailableA(List<ProductDetails> items) {
 		for (ProductDetails details : items) {
 			if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
@@ -293,7 +317,7 @@ public class System implements ISystem {
 		return true;
 	}
 
-	@Override
+	// @Override
 	public List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items) {
 		List<ProductDetails> Available = new LinkedList<>();
 		for (ProductDetails details : items) {
@@ -312,9 +336,11 @@ public class System implements ISystem {
 		return output;
 	}
 
-
 	public User getMember(String myusername, String myPassword) {
-		// TODO Auto-generated method stub
+		if (!myProtocol.login(myusername, myPassword))
+			return null;
+		if (onlinemember.containsKey(myusername))
+			return onlinemember.get(myusername).getUser();
 		return null;
 	}
 
@@ -322,4 +348,15 @@ public class System implements ISystem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Member getLogInstase(String id, String password) {
+		if (!myProtocol.login(id, password))
+			return null;
+		if (onlinemember.containsKey(id))
+			return onlinemember.get(id);
+		return null;
+	}
+
+
+
 }

@@ -2,6 +2,7 @@ package Domain.info;
 
 
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class ProductDetails {
 		this.amount = amount;
 	}
   
-	static public List<ProductDetails> adapteProdactList(List<Product> list)
+	static public List<ProductDetails> adapteProdactList(Collection<Product> list)
     {
     	LinkedList<ProductDetails> output = new LinkedList<ProductDetails>();
     	for (Product product : list) {

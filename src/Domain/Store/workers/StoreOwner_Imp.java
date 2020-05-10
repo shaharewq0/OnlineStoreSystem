@@ -45,24 +45,26 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 
 	@Override
 	public boolean appointOwner(IUser user) {
-		if (user.isOwner() | !user.isRegistered()) {
-			return false;
-		} else {
-			store.appointOwner(user);
-			OwnerAppointeis.add(user);
-			return true;
-		}
+//		if (user.isOwner() | !user.isRegistered()) {
+//			return false;
+//		} else {
+//			store.appointOwner(user);
+//			OwnerAppointeis.add(user);
+//			return true;
+//		}
+		return false;
 	}
 
 	@Override
 	public boolean appointManager(IUser user) {
-		if (user.isOwner() | user.isManager() | !user.isRegistered()) {
-			return false;
-		} else {
-			store.appointManager(user);
-			ManagerAppointeis.add(user);
-			return true;
-		}
+//		if (user.isOwner() | user.isManager() | !user.isRegistered()) {
+//			return false;
+//		} else {
+//			store.appointManager(user);
+//			ManagerAppointeis.add(user);
+//			return true;
+//		}
+		return false;
 	}
 
 	@Override
