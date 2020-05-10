@@ -28,6 +28,7 @@ public class ManageInventoryTest extends BaseAccTest {
     @BeforeClass
     public static void setUpClass() {
         OpenStoreTest.setUpClass();
+        system.openStore(USERNAME, PASSWORD, STORE);
     }
 
     @Test

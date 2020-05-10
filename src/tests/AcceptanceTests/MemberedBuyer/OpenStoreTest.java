@@ -1,10 +1,11 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.GuestBuyer.LoginTest;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -14,7 +15,14 @@ import static org.junit.Assert.assertTrue;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OpenStoreTest extends BaseAccTest {
+        /*
+        In this class the order of tests is important
+        so each method has a prefix: <letter>_<MethodName>
+        to determine the order
+     */
+
     public static StoreDetails STORE =  new StoreDetails("store");
     public static String STORE_THAT_DONT_EXIST = "wrong store";
 
@@ -25,30 +33,24 @@ public class OpenStoreTest extends BaseAccTest {
     }
 
     @Test
-    public void openStore() {
+    public void A_openStore() {
         assertTrue(system.openStore(USERNAME, PASSWORD, STORE));
     }
 
     @Test
-    public void openStoreTwice() {
-        assertTrue(system.openStore(USERNAME, PASSWORD, STORE));    // #1
+    public void B_openStoreTwice() {
         assertFalse(system.openStore(USERNAME, PASSWORD, STORE));    // #2 user can't open store twice
     }
 
     @Test
-    public void openStoreTwiceWithDifferentUser() {
-        assertTrue(system.openStore(USERNAME, PASSWORD, STORE));    // #1
+    public void C_openStoreTwiceWithDifferentUser() {
         assertFalse(system.openStore(USERNAME + "2", PASSWORD + "2", STORE));
             // #2 user can't open store with existing store name
     }
 
-    @After
-    public void tearDown() {
-        system.removeStore(STORE);
-    }
-
     @AfterClass
     public static void tearDownClass() {
+        system.removeStore(STORE);
         system.logout(USERNAME, PASSWORD);
         LoginTest.tearDownClass();
     }
