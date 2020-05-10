@@ -10,30 +10,26 @@ import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import Domain.Store.workers.Creator;
-import Domain.Store.workers.StoreOwner;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
-import Domain.store_System.Roles.Guest;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
-import Domain.store_System.Roles.System_Role;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class User implements IUser {
 
 	private shoppingCart cart;
-	//imps of new classs digram
-	private Registered profile= null;
-	private Member logInstanse =null;
+	// imps of new classs digram
+	private Registered profile = null;
+	private Member logInstanse = null;
 	private System_Manager sysMangaer = null;
 	// ---- dont need to be here
-	private System_Role system_role;// guest member sysmanager;
-	private String address;
-	private int creditCardNum;
+
 	// TODO move this to register and call it from member system role
 	private Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
 
@@ -42,18 +38,15 @@ public class User implements IUser {
 	}
 
 	public User(String address, int creditCardNum) {
-		system_role = new Guest();
 		cart = new shoppingCart();
-		this.address = address;
-		this.creditCardNum = creditCardNum;
 	}
 
 	public boolean login(String id, String password) {
-		if(profile == null)
+		if (profile == null)
 			return false;
-		
-		profile = System.getInstance().login(id, password,this);
-		logInstanse = System.getInstance().getLogInstase(id,password);
+
+		profile = System.getInstance().login(id, password, this);
+		logInstanse = System.getInstance().getLogInstase(id, password);
 		return profile != null;
 //		if (system_role instanceof Guest) {
 //			Registered profile = System.getInstance().login(id, password);
@@ -73,11 +66,11 @@ public class User implements IUser {
 		return System.getInstance().getProductsFromStore(name);
 	}
 
-	//TODO rewrite this fucntion
+	// TODO rewrite this fucntion
 	// adding a product to a basket. if the product exists add 1 to the amount of
 	// the product in the basket
-	public boolean saveProductInBasket(String productName, String storeName,int amount) {
-		
+	public boolean saveProductInBasket(String productName, String storeName, int amount) {
+
 		cart.findBasket(storeName).addProduct(productName, amount);
 		return true;
 //		// - not my
@@ -143,35 +136,30 @@ public class User implements IUser {
 	}
 
 	public boolean logout() {
-		
-		if (system_role instanceof Member) {
-			system_role = new Guest();
-			return true;
-		}
-		return false;
+		if (profile == null || logInstanse == null)
+			return false;
+		profile = null;
+		logInstanse = null;
+		profile.LogLogout(this);
+		return true;
+//		if (system_role instanceof Member) {
+//			system_role = new Guest();
+//			return true;
+//		}
+//		return false;
 	}
 
 	public boolean openStore(String storename, String address, int rating) {
-		if (system_role instanceof Member) {
-			StoreImp s = System.getInstance().openStore(storename, address, rating);
-			if (s != null) {
-				store_roles.put(storename, new Creator(s));
-				// store_roles.add(new Creator(s));
-				return true;
-			}
-		}
-		return false;
+		StoreImp mystore= logInstanse.OpenStore( new StoreInfo(storename,address,rating));
+		store_roles.put(mystore.getName(), new StoreOwner_Imp(mystore));
+		return mystore != null;
 	}
 
-	public boolean openStore(StoreDetails store) {
-		if (system_role instanceof Member) {
-			StoreImp s = System.getInstance().openStore(store.getName(), address, 0);
-			if (s != null) {
-				store_roles.put(store.getName(), new Creator(s));
-				return true;
-			}
-		}
-		return false;
+	public boolean openStore(StoreInfo store) {
+		StoreImp mystore= logInstanse.OpenStore(store);
+		store_roles.put(mystore.getName(), new Creator(mystore));
+		return mystore != null;
+
 	}
 
 	public List<Purchase> getPurchaseHistory() {
@@ -180,7 +168,7 @@ public class User implements IUser {
 	}
 
 	public List<Purchase> watchHistory() {
-		if(profile == null)
+		if (profile == null)
 			return null;
 		return profile.getPurchesHistory();
 //		
@@ -216,9 +204,9 @@ public class User implements IUser {
 		return cart;
 	}
 
-	// ---------------------------------------------------------------
+	// --------------------------------------------------------------- store actions
 	public boolean addProduct(String storeName, Product p) {
-
+//TODO add fail
 		return store_roles.get(storeName).addItem(p);
 	}
 
@@ -244,17 +232,19 @@ public class User implements IUser {
 		return store_roles.get(storeName).fire(System.getInstance().getUser(username));
 	}
 
+	private String last_store_looked_at = "";
 	public List<Question> viewQuestions(String storeName) {
-		// TODO Auto-generated method stub
-		return null;
+		last_store_looked_at = storeName;
+		return store_roles.get(storeName).viewQuestions();
 	}
 
 	public boolean giveRespond(String ansewr, int qustionID) {
-		// TODO Auto-generated method stub
-		return false;
+		return store_roles.get(last_store_looked_at).giveRespond( ansewr,  qustionID);
 	}
 
 	public List<Purchase> ViewAquistionHistory(String storeName) {
+		if(sysMangaer!= null)
+			return sysMangaer.getPurchaseHistory( storeName);
 		// TODO add option for sys manager
 		return store_roles.get(storeName).getPurchaseHistory();
 	}
@@ -263,13 +253,18 @@ public class User implements IUser {
 
 		return System.getInstance().getUser(username).getPurchaseHistory();
 	}
+
+	public boolean editMangagerPermesions(String storename,String managername, List<String> permesions) {
+		// TODO Auto-generated method stub
+		return store_roles.get(storename).editManagerPermesions( managername, permesions);
+	}
 	// Static -
 	// ------------------------------------------------------------------------------------------------------------------
 
 	static public boolean register(String id, String password) {
 		return System.getInstance().register(id, password);
 	}
-	
+
 	static public StoreDetails watchStoreDetails(String name) {
 		StoreImp store = System.getInstance().getStoreDetails(name);
 		if (store == null)
@@ -344,5 +339,10 @@ public class User implements IUser {
 		return output;
 		// return System.getInstance().filterByStoreRating( min, max);
 	}
+
+	
+	
+
+
 
 }

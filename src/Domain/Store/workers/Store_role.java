@@ -5,6 +5,7 @@ import java.util.List;
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
+import Domain.info.Question;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public interface Store_role {
@@ -17,4 +18,8 @@ public interface Store_role {
 	boolean editItem(String OLD_item, Product NEW_item);
 	boolean removeItem(String prodactname);
 	List<Purchase> getPurchaseHistory();
+	boolean editManagerPermesions(String managername, List<String> permesions);
+	//permesions--
+	List<Question> viewQuestions();
+	boolean giveRespond(String ansewr, int qustionID);
 }

@@ -7,6 +7,7 @@ import Domain.RedClasses.IUser;
 import Domain.Store.IStore;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
+import Domain.info.Question;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {
 	IStore store;
@@ -92,5 +93,23 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 	@Override
 	public List<Purchase> getPurchaseHistory() {
 		return store.viewPurchaseHistory();
+	}
+
+	@Override
+	public boolean editManagerPermesions(String managername, List<String> permesions) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Question> viewQuestions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean giveRespond(String ansewr, int qustionID) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

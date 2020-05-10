@@ -13,8 +13,10 @@ import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
+import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
@@ -31,7 +33,7 @@ public class System implements ISystem {
 	private int TempGuestID = 1;
 	private Map<Integer, User> guest = new HashMap<>();
 	private Map<String, Registered> membersprofiles = new HashMap<>();
-	private Map<String, Member> onlinemember = new HashMap<>();
+	private Map<User, Member> onlinemember = new HashMap<>();
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
 	// private List<Registered> registered = new LinkedList<>();
 	private List<StoreImp> stores = new LinkedList<>();
@@ -90,7 +92,7 @@ public class System implements ISystem {
 		Registered Profile = Registered_contains(id);
 
 		Profile.LogLogin(user);
-		onlinemember.put(id, new Member(user));
+		onlinemember.put(user, new Member(user));
 		return Profile;
 
 	}
@@ -265,6 +267,17 @@ public class System implements ISystem {
 
 	}
 
+	public StoreImp openStore(StoreInfo store) {
+		for (StoreImp s : stores) {
+			if (s.getName().equals(store.name)) {
+				return null;
+			}
+		}
+		StoreImp newStore = new StoreImp(store);
+		stores.add(newStore);
+		return newStore;
+	}
+	
 	public StoreImp openStore(String name, String address, int rating) {
 		for (StoreImp s : stores) {
 			if (s.getName().equals(name)) {
@@ -355,6 +368,25 @@ public class System implements ISystem {
 		if (onlinemember.containsKey(id))
 			return onlinemember.get(id);
 		return null;
+	}
+	
+	public boolean LogOut(int guestID)
+	{
+		return false;
+		//TODO imp
+	}
+
+	
+	public User getMember(int guestId) {
+		User u =  guest.get(guestId);
+		if(onlinemember.containsValue(u))
+			return u;
+		return null;
+	}
+
+	public List<Purchase> getPurchaseHistory(String storeName) {
+		return stores.get(stores.indexOf(storeName)).getPurchaseHistory();
+		//return null;
 	}
 
 

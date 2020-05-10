@@ -5,9 +5,7 @@ import java.util.List;
 import Domain.RedClasses.User;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
-import Domain.info.ProductDetails;
 import Domain.info.Question;
-import Domain.info.Transactions;
 import Domain.store_System.System;
 
 public class owner_accese {
@@ -39,10 +37,11 @@ public class owner_accese {
 		return me.appointManager(storeName, username, hisPassword);
 	}
 
-	public boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String managername,
+	public boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword,String storename, String managername,
 			List<String> permesions) {
-		// TODO imp
-		return false;
+		User me = System.getInstance().getMember(myusername, myPassword);
+		return me.editMangagerPermesions(storename ,managername, permesions);
+	
 	}
 
 	public boolean usecase4_7_FireManager(String myusername, String myPassword, String storeName, String username) {

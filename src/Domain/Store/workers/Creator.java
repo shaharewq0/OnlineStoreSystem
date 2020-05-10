@@ -6,6 +6,7 @@ import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.info.Question;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class Creator implements Store_role {
@@ -73,5 +74,23 @@ public class Creator implements Store_role {
 	public List<Purchase> getPurchaseHistory() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean editManagerPermesions(String managername, List<String> permesions) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Question> viewQuestions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean giveRespond(String ansewr, int qustionID) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

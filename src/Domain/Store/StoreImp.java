@@ -21,6 +21,7 @@ public class StoreImp implements IStore {
 	private List<IUser> Managers = new LinkedList<IUser>();
 	private String address;
 	private int rating;
+	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
 	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
 
 	private Map<IUser, List<IshoppingBasket>> purcheses = new HashMap<IUser, List<IshoppingBasket>>();
@@ -38,6 +39,13 @@ public class StoreImp implements IStore {
 		this.address = address;
 		this.rating = rating;
 
+	}
+
+	public StoreImp(StoreInfo store) {
+		name = store.name;
+		address = store.address;
+		rating = store.rating;
+		
 	}
 
 	// ----------------------------------------------------------------------------------------
@@ -69,7 +77,7 @@ public class StoreImp implements IStore {
 	}
 
 	public StoreInfo getMyInfo() {
-		return new StoreInfo(name, address, rating, inventory.items.values());
+		return new StoreInfo(name, address, rating, getProductsDetails());
 	}
 
 	// ----------------------------------------------------------------------------------------
@@ -182,5 +190,9 @@ public class StoreImp implements IStore {
 		Product p = findProductByName(name);
 		return discounts.get(p);
 
+	}
+
+	public List<Purchase> getPurchaseHistory() {
+		return purchaseHistory;
 	}
 }

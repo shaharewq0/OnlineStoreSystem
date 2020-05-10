@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.User;
-import Domain.RedClasses.shoppingCart;
 import Domain.Store.Purchase;
 
 public class Registered{
@@ -33,6 +32,11 @@ public class Registered{
 	
 	public List<Purchase> getPurchesHistory() {
 		return myPurcase;
+	}
+
+	public void LogLogout(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
