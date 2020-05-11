@@ -47,6 +47,4 @@ public class AppointStoreOwnerTest extends BaseAccTest {
         OpenStoreTest.tearDownClass();
         system.removeUser(APPOINTEE_USERNAME);
     }
-
-
 }
