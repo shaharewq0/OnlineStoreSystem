@@ -18,6 +18,7 @@ public class MessageDecoder implements Decoder.Binary<Message>  {
 
     @Override
     public Message decode(ByteBuffer byteBuffer) throws DecodeException {
+
         byte[] message = byteBuffer.array();
 
         if(message.length == 0)
@@ -78,6 +79,7 @@ public class MessageDecoder implements Decoder.Binary<Message>  {
         //opcode
         curParamList = new LinkedList<>();
         curParamList.offer(message[curIndex]);
+        parametes.offer(curParamList);
         curIndex++;
 
         // rest

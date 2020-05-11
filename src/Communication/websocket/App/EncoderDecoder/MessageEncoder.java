@@ -3,6 +3,7 @@ package Communication.websocket.App.EncoderDecoder;
 
 import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.*;
+import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
 
@@ -13,12 +14,12 @@ import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MessageEncoder implements  Encoder.Binary<Server2ClientMessage> {
+public class MessageEncoder implements  Encoder.Binary<Message> {
 
 
     @Override
-    public ByteBuffer encode(Server2ClientMessage msg) throws EncodeException {
-        return ByteBuffer.wrap(msg.visit(this));
+    public ByteBuffer encode(Message msg) throws EncodeException {
+        return ByteBuffer.wrap(((Server2ClientMessage)msg).visit(this));
     }
 
 
