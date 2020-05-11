@@ -14,6 +14,7 @@ public class ProductDetails {
     public static ProductDetails PRODUCT1_CHANGED_PRICE = new ProductDetails("product1", "cat1", "store", 50.0);
     public static ProductDetails PRODUCT2_CHANGED_CATEGORY = new ProductDetails("product2", "cat1", "store", 20.0);
     public static ProductDetails PRODUCT3_CHANGED_NAME = new ProductDetails("product3 new", "cat1", "store", 30.0);
+    public static String PRODUCT_THAT_DONT_EXIST = "wrong product";
 
     private String name;
     private String category;

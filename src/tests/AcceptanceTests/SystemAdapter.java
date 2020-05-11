@@ -18,6 +18,11 @@ public class SystemAdapter {
 		// Note: also need to delete all?
 	}
 
+	public int newGuest() {
+		//TODO: call ImNew at guestAccess
+		return 0;
+	}
+
 	//use case 2
 	public boolean register(String username, String password) {
 		return System.getInstance().register(username, password);
@@ -134,10 +139,12 @@ public class SystemAdapter {
 		// TODO dont know which user to check
 		return false;
 	}
-	//use case 2
-	public void addToBasket(String storeName, String productName) {
-		// TODO dont know which user to check
+
+	public boolean addToBasket(int guestID, String storeName, String productName, int amount) {
+		// TODO
+		return false;
 	}
+
 	//use case 2
 	public void clearShoppingCart() {
 		// TODO dont know which user to check
