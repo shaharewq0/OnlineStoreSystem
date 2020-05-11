@@ -3,10 +3,13 @@ package Domain.Store.workers;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
+import Domain.RedClasses.User;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.info.Question;
+import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class Creator implements Store_role {
@@ -22,75 +25,87 @@ public class Creator implements Store_role {
 
 	@Override
 	public boolean addItem(Product item) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.addProduct(item);
+		//return false;
+	}
+    
+	@Override
+	public boolean addItem(ProductDetails item) {
+		return store.addProduct(item);
+		//return false;
 	}
 
-	@Override
-	public boolean removeItem(Product item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean removeItem(Product item) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+
 
 	@Override
 	public boolean appointOwner(IUser user) {
-		// TODO Auto-generated method stub
-		return false;
+		return user.appointAsOwner(this, store.getName());
 	}
 
 	@Override
 	public boolean appointManager(IUser user) {
-		// TODO Auto-generated method stub
-		return false;
+		return user.appointAsManager(this, store.getName());
 	}
 
-	@Override
-	public <T> void setPremissions(IUser manager, List<T> Permissions) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public <T> void setPremissions(IUser manager, List<T> Permissions) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	@Override
 	public boolean fire(IUser manager) {
-		// TODO Auto-generated method stub
-		return false;
+		return manager.getFired(store.getName());
+		//return false;
 	}
 
 	
 
 	@Override
 	public boolean editItem(String OLD_item, Product NEW_item) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.editProduct(OLD_item, NEW_item);
 	}
 
 	@Override
 	public boolean removeItem(String prodactname) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.removeProduct(prodactname);
 	}
 
 	@Override
 	public List<Purchase> getPurchaseHistory() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.getPurchaseHistory();
+
 	}
 
 	@Override
 	public boolean editManagerPermesions(String managername, List<String> permesions) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return store.editManagerPermesions(managername,permesions);
 	}
 
 	@Override
 	public List<Question> viewQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.getQuestions();
 	}
 
 	@Override
 	public boolean giveRespond(String ansewr, int qustionID) {
-		// TODO Auto-generated method stub
+		
+		return store.respondToQuestion(ansewr,qustionID);
+	}
+
+	
+
+
+	@Override
+	public boolean canPromoteToOwner() {
 		return false;
 	}
+
+
 }

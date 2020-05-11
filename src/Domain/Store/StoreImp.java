@@ -9,6 +9,7 @@ import java.util.Map;
 import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.info.ProductDetails;
+import Domain.info.Question;
 import Domain.info.StoreInfo;
 import extornal.supply.Packet_Of_Prodacts;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
@@ -111,6 +112,11 @@ public class StoreImp implements IStore {
 		return Owners.add(user);
 	}
 
+	public boolean editManagerPermesions(String managername, List<String> permesions) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 //-------------------------------------------------------------------------- products --	
 
 	@Override
@@ -129,6 +135,10 @@ public class StoreImp implements IStore {
 		}
 
 		return inventory.recive_item(new Packet_Of_Prodacts(p));
+	}
+	
+	public boolean addProduct(ProductDetails p) {
+		return inventory.recive_item(p);
 	}
 
 	public Product findProductByName(String name) {
@@ -195,4 +205,17 @@ public class StoreImp implements IStore {
 	public List<Purchase> getPurchaseHistory() {
 		return purchaseHistory;
 	}
+
+	public List<Question> getQuestions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean respondToQuestion(String ansewr, int qustionID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+
 }

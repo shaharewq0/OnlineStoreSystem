@@ -10,6 +10,7 @@ import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import Domain.Store.workers.Creator;
+import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
@@ -150,13 +151,13 @@ public class User implements IUser {
 	}
 
 	public boolean openStore(String storename, String address, int rating) {
-		StoreImp mystore= logInstanse.OpenStore( new StoreInfo(storename,address,rating));
-		store_roles.put(mystore.getName(), new StoreOwner_Imp(mystore));
+		StoreImp mystore = logInstanse.OpenStore(new StoreInfo(storename, address, rating));
+		store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
 	}
 
 	public boolean openStore(StoreInfo store) {
-		StoreImp mystore= logInstanse.OpenStore(store);
+		StoreImp mystore = logInstanse.OpenStore(store);
 		store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
 
@@ -223,41 +224,69 @@ public class User implements IUser {
 		return store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
 	}
 
+	@Override
+	public boolean appointAsOwner(Store_role creator,String store) {
+		if(store_roles.containsKey(store) && !store_roles.get(store).canPromoteToOwner()) {
+			return false;
+		}
+		store_roles.remove(store);
+		store_roles.put(store, new StoreOwner_Imp(creator));
+		return true;
+		
+		
+	}
+	
 	public boolean appointManager(String storeName, String username, String otherPassword) {
 		return store_roles.get(storeName).appointManager(System.getInstance().getMember(username, otherPassword));
 
 	}
 
+	@Override
+	public boolean appointAsManager(Store_role creator, String store) {
+		if(store_roles.containsKey(store))
+			return false;
+		store_roles.put(store, new StoreManager_Imp(creator));
+		return true;
+	}
+	
 	public boolean fireManager(String storeName, String username) {
 		return store_roles.get(storeName).fire(System.getInstance().getUser(username));
 	}
 
+	@Override
+	public boolean getFired(String store) {
+		return store_roles.remove(store) != null;
+	}
+	
 	private String last_store_looked_at = "";
+
 	public List<Question> viewQuestions(String storeName) {
 		last_store_looked_at = storeName;
 		return store_roles.get(storeName).viewQuestions();
 	}
 
 	public boolean giveRespond(String ansewr, int qustionID) {
-		return store_roles.get(last_store_looked_at).giveRespond( ansewr,  qustionID);
+		return store_roles.get(last_store_looked_at).giveRespond(ansewr, qustionID);
 	}
 
 	public List<Purchase> ViewAquistionHistory(String storeName) {
-		if(sysMangaer!= null)
-			return sysMangaer.getPurchaseHistory( storeName);
-		// TODO add option for sys manager
+		if (sysMangaer != null)
+			return sysMangaer.getPurchaseHistory(storeName);
 		return store_roles.get(storeName).getPurchaseHistory();
 	}
 
 	public List<Purchase> ViewAquistionHistoryOfUser(String username) {
-
-		return System.getInstance().getUser(username).getPurchaseHistory();
+		if (sysMangaer != null)
+			return sysMangaer.getPurchaseHistory(username);
+		return null;
 	}
 
-	public boolean editMangagerPermesions(String storename,String managername, List<String> permesions) {
+	public boolean editMangagerPermesions(String storename, String managername, List<String> permesions) {
 		// TODO Auto-generated method stub
-		return store_roles.get(storename).editManagerPermesions( managername, permesions);
+		return store_roles.get(storename).editManagerPermesions(managername, permesions);
 	}
+	
+	
 	// Static -
 	// ------------------------------------------------------------------------------------------------------------------
 
@@ -340,8 +369,9 @@ public class User implements IUser {
 		// return System.getInstance().filterByStoreRating( min, max);
 	}
 
-	
-	
+
+
+
 
 
 

@@ -6,6 +6,8 @@ import java.util.List;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.workers.Creator;
+import Domain.Store.workers.Store_role;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public interface IUser {
@@ -33,4 +35,12 @@ public interface IUser {
 //    public boolean isRegistered();
 //    public shoppingCart getCart();
     public List<Purchase> getPurchaseHistory();
+
+	public boolean appointAsOwner(Store_role creator, String store);
+
+	public boolean appointAsManager(Store_role creator, String store);
+
+	public boolean getFired(String store);
+
+//	public boolean appointAsOwner(Store_role creator, String store);
 }

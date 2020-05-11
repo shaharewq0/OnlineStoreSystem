@@ -7,37 +7,56 @@ import Domain.RedClasses.IUser;
 import Domain.Store.IStore;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
+import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.info.Question;
 
 public class StoreOwner_Imp implements StoreOwner, Store_role {
-	IStore store;
-	StoreOwner boss; // the Owner who appointed current owner, null for original store owner
+	StoreImp store;
+	Store_role boss; // the Owner who appointed current owner, null for original store owner
 	List<IUser> OwnerAppointeis;// Owners who got appointed by current owner, for future use
 	List<IUser> ManagerAppointeis;// managers who got appointed by current owner
 
-	public StoreOwner_Imp(IStore store) {
-		this.store = store;
-		boss = null;
-		OwnerAppointeis = new LinkedList<>();
-		ManagerAppointeis = new LinkedList<>();
+    public StoreOwner_Imp(Store_role creator) {
+		// TODO Auto-generated constructor stub
 	}
 
-	public StoreOwner_Imp(IStore store, StoreOwner boss) {
-		this.store = store;
-		this.boss = boss;
-		OwnerAppointeis = new LinkedList<>();
-		ManagerAppointeis = new LinkedList<>();
-	}
+	public StoreImp getStore() {
+        return store;
+    }
 
 	@Override
 	public boolean addItem(Product item) {
 		return store.addProduct(item);
+		//return false;
+	}
+    
+	@Override
+	public boolean addItem(ProductDetails item) {
+		return store.addProduct(item);
+		//return false;
+	}
+
+
+
+	@Override
+	public boolean appointOwner(IUser user) {
+		return user.appointAsOwner(this, store.getName());
 	}
 
 	@Override
-	public boolean removeItem(Product item) {
-		return store.removeProduct(item.getName());
+	public boolean appointManager(IUser user) {
+		return user.appointAsManager(this, store.getName());
 	}
+
+
+	@Override
+	public boolean fire(IUser manager) {
+		return manager.getFired(store.getName());
+		//return false;
+	}
+
+	
 
 	@Override
 	public boolean editItem(String OLD_item, Product NEW_item) {
@@ -45,71 +64,34 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 	}
 
 	@Override
-	public boolean appointOwner(IUser user) {
-//		if (user.isOwner() | !user.isRegistered()) {
-//			return false;
-//		} else {
-//			store.appointOwner(user);
-//			OwnerAppointeis.add(user);
-//			return true;
-//		}
-		return false;
-	}
-
-	@Override
-	public boolean appointManager(IUser user) {
-//		if (user.isOwner() | user.isManager() | !user.isRegistered()) {
-//			return false;
-//		} else {
-//			store.appointManager(user);
-//			ManagerAppointeis.add(user);
-//			return true;
-//		}
-		return false;
-	}
-
-	@Override
-	public <T> void setPremissions(IUser manager, List<T> Permissions) {
-
-	}
-
-	@Override
-	public boolean fire(IUser manager) {
-		if (!ManagerAppointeis.contains(manager))
-			return false;
-		store.fireManager(manager);
-		return true;
-	}
-
-
-
-	@Override
 	public boolean removeItem(String prodactname) {
 		return store.removeProduct(prodactname);
-
 	}
 
-	
 	@Override
 	public List<Purchase> getPurchaseHistory() {
-		return store.viewPurchaseHistory();
+		return store.getPurchaseHistory();
+
 	}
 
 	@Override
 	public boolean editManagerPermesions(String managername, List<String> permesions) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return store.editManagerPermesions(managername,permesions);
 	}
 
 	@Override
 	public List<Question> viewQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.getQuestions();
 	}
 
 	@Override
 	public boolean giveRespond(String ansewr, int qustionID) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return store.respondToQuestion(ansewr,qustionID);
 	}
-}
+
+	@Override
+	public boolean canPromoteToOwner() {
+		return false;
+	}}

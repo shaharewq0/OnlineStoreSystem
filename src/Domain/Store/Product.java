@@ -3,6 +3,8 @@ package Domain.Store;
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.info.ProductDetails;
+
 public class Product extends Object  implements IProduct{
     private String name;
     private List<String> category;
@@ -24,7 +26,16 @@ public class Product extends Object  implements IProduct{
         amount=0;
     }
 
-    public String getName() {
+    public Product(ProductDetails p) {
+		name = p.getName();
+		category.addAll(p.getCategory());
+		keyWords.addAll(p.getKeyWords());
+		price = p.getPrice();
+		rating = 0;
+		amount = p.getAmount();
+	}
+
+	public String getName() {
         return name;
     }
 
