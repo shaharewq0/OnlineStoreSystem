@@ -36,11 +36,13 @@ public interface IUser {
 //    public shoppingCart getCart();
     public List<Purchase> getPurchaseHistory();
 
-	public boolean appointAsOwner(Store_role creator, String store);
-
-	public boolean appointAsManager(Store_role creator, String store);
-
 	public boolean getFired(String store);
+
+	public boolean appointAsOwner(Store_role newRole);
+
+	public boolean appointAsManager(Store_role newRole);
+
+	public String getName();
 
 //	public boolean appointAsOwner(Store_role creator, String store);
 }

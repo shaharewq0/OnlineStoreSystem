@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.info.ProductDetails;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public interface IStore {
 	public String getName();
@@ -25,9 +26,7 @@ public interface IStore {
 	public int getRating();
 
 
-	public boolean appointOwner(IUser user);
 
-	public boolean appointManager(IUser user);
 
 	public boolean fireManager(IUser user);
 
@@ -44,4 +43,8 @@ public interface IStore {
 	boolean removeProduct(String pName);
 
 	boolean editProduct(String OLD_p, Product NEW_p);
+
+	boolean appointManager(StoreManager_Imp user);
+
+	boolean appointOwner(StoreOwner_Imp user);
 }

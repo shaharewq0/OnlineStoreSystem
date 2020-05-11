@@ -7,25 +7,24 @@ import java.util.List;
 import java.util.Map;
 
 import Domain.RedClasses.IUser;
-import Domain.RedClasses.IshoppingBasket;
+import Domain.Store.workers.Creator;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
 import extornal.supply.Packet_Of_Prodacts;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class StoreImp implements IStore {
 	private String name;
+	private Creator creator;
 	private Store_Inventory inventory = new Store_Inventory();
-	// private List<Product> products = new LinkedList<Product>();
-	private List<IUser> Owners = new LinkedList<IUser>();
-	private List<IUser> Managers = new LinkedList<IUser>();
+	private List<StoreOwner_Imp> Owners = new LinkedList<StoreOwner_Imp>();
+	private List<StoreManager_Imp> Managers = new LinkedList<StoreManager_Imp>();
 	private String address;
 	private int rating;
 	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
 	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
-
-	private Map<IUser, List<IshoppingBasket>> purcheses = new HashMap<IUser, List<IshoppingBasket>>();
 
 	public StoreImp(String name, Collection<Product> products, String address, int rating) {
 		this.name = name;
@@ -46,17 +45,14 @@ public class StoreImp implements IStore {
 		name = store.name;
 		address = store.address;
 		rating = store.rating;
-		
+
 	}
 
-	// ----------------------------------------------------------------------------------------
-	public List<IUser> getOwners() {
-		return Owners;
+	public void myCreator(Creator c) {
+		creator = c;
 	}
-
-	public List<IUser> getManagers() {
-		return Managers;
-	}
+	// ----------------------------------------------------------------------------------------my
+	// info
 
 	public String getName() {
 		return name;
@@ -65,6 +61,7 @@ public class StoreImp implements IStore {
 	public Collection<Product> getProducts() {
 		return inventory.items.values();
 	}
+
 	public List<ProductDetails> getProductsDetails() {
 		return ProductDetails.adapteProdactList(inventory.items.values());
 	}
@@ -82,13 +79,19 @@ public class StoreImp implements IStore {
 	}
 
 	// ----------------------------------------------------------------------------------------
+	// workers
+	public List<StoreOwner_Imp> getOwners() {
+		return Owners;
+	}
+
+	public List<StoreManager_Imp> getManagers() {
+		return Managers;
+	}
+
 	@Override
 	public List<Purchase> viewPurchaseHistory() {
-		// throw new NotImplementedException();
-		// i don't know how we do this
-		// how does purchase look?
-		// TODO
-		return new LinkedList<Purchase>();
+
+		return purchaseHistory;
 	}
 
 	@Override
@@ -99,14 +102,14 @@ public class StoreImp implements IStore {
 	}
 
 	@Override
-	public boolean appointManager(IUser user) {
+	public boolean appointManager(StoreManager_Imp user) {
 		if (Managers.contains(user))
 			return false;
 		return Managers.add(user);
 	}
 
 	@Override
-	public boolean appointOwner(IUser user) {
+	public boolean appointOwner(StoreOwner_Imp user) {
 		if (Owners.contains(user))
 			return false;
 		return Owners.add(user);
@@ -116,7 +119,7 @@ public class StoreImp implements IStore {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 //-------------------------------------------------------------------------- products --	
 
 	@Override
@@ -136,7 +139,7 @@ public class StoreImp implements IStore {
 
 		return inventory.recive_item(new Packet_Of_Prodacts(p));
 	}
-	
+
 	public boolean addProduct(ProductDetails p) {
 		return inventory.recive_item(p);
 	}
@@ -145,6 +148,7 @@ public class StoreImp implements IStore {
 		return inventory.items.get(name);
 
 	}
+
 	public ProductDetails findProductDetailsByName(String name) {
 		return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
 
@@ -154,9 +158,9 @@ public class StoreImp implements IStore {
 		return inventory.findProductByCategory(category);
 
 	}
-	
+
 	public List<ProductDetails> findProductDetailsByCategory(String category) {
-		return  ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
+		return ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
 
 	}
 
@@ -164,17 +168,20 @@ public class StoreImp implements IStore {
 		return inventory.findProductByKeyword(keyword);
 
 	}
+
 	public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
 		return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword));
 
 	}
-// --------------------------------------
+
 	public Boolean CheckItemAvailable(ProductDetails item) {
 		if (findProductByName(item.getName()).getAmount() > item.getAmount())
 			return true;
 
 		return false;
 	}
+
+// ----------------------------------------------------buying
 
 	public double getPrice(String item) {
 
@@ -202,10 +209,7 @@ public class StoreImp implements IStore {
 
 	}
 
-	public List<Purchase> getPurchaseHistory() {
-		return purchaseHistory;
-	}
-
+	// --------------------------------------------------- questions
 	public List<Question> getQuestions() {
 		// TODO Auto-generated method stub
 		return null;
@@ -215,7 +219,5 @@ public class StoreImp implements IStore {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 
 }

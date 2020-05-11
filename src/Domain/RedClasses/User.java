@@ -172,34 +172,8 @@ public class User implements IUser {
 		if (profile == null)
 			return null;
 		return profile.getPurchesHistory();
-//		
-//		if (system_role instanceof Member) {
-//			return System.getInstance().orderHistory(((Member) system_role).getRegistered().getId());
-//		}
-//		return null;
+
 	}
-//
-//	@Override
-//	public boolean isOwner() {
-//		boolean ans = false;
-//		for (Store_role I : store_roles.values()) {
-//			if (I instanceof StoreOwner)
-//				ans = true;
-//		}
-//		return ans;
-//	}
-//
-//	@Override
-//	public boolean isManager() {
-//		// TODO: no manager interface for now
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean isRegistered() {
-//		return system_role instanceof Registered | system_role instanceof Member;
-//	}
-//
 
 	public shoppingCart getCart() {
 		return cart;
@@ -225,12 +199,12 @@ public class User implements IUser {
 	}
 
 	@Override
-	public boolean appointAsOwner(Store_role creator,String store) {
-		if(store_roles.containsKey(store) && !store_roles.get(store).canPromoteToOwner()) {
+	public boolean appointAsOwner(Store_role role) {
+		if(store_roles.containsKey(role.getStore().getName()) && !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
 			return false;
 		}
-		store_roles.remove(store);
-		store_roles.put(store, new StoreOwner_Imp(creator));
+		store_roles.remove(role.getStore().getName());
+		store_roles.put(role.getStore().getName(), role);
 		return true;
 		
 		
@@ -242,10 +216,13 @@ public class User implements IUser {
 	}
 
 	@Override
-	public boolean appointAsManager(Store_role creator, String store) {
-		if(store_roles.containsKey(store))
+	public boolean appointAsManager(Store_role role) {
+		//TODO this is the same as appoint owner
+		if(store_roles.containsKey(role.getStore().getName()) && !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
 			return false;
-		store_roles.put(store, new StoreManager_Imp(creator));
+		}
+		store_roles.remove(role.getStore().getName());
+		store_roles.put(role.getStore().getName(), role);
 		return true;
 	}
 	
@@ -367,6 +344,12 @@ public class User implements IUser {
 		}
 		return output;
 		// return System.getInstance().filterByStoreRating( min, max);
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return "Error still no name";
 	}
 
 

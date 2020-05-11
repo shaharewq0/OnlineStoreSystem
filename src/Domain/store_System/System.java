@@ -385,7 +385,7 @@ public class System implements ISystem {
 	}
 
 	public List<Purchase> getPurchaseHistory(String storeName) {
-		return stores.get(stores.indexOf(storeName)).getPurchaseHistory();
+		return stores.get(stores.indexOf(storeName)).viewPurchaseHistory();
 		//return null;
 	}
 
