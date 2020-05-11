@@ -1,5 +1,7 @@
 package tests.AcceptanceTests.GuestBuyer;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -11,6 +13,11 @@ import static tests.AcceptanceTests.auxiliary.ProductDetails.PRODUCT_THAT_DONT_E
 
 public class SaveProductInShoppingBasketTest extends BaseGuestTest {
     //TODO: determine amount of each product in store
+
+    @BeforeClass
+    public static void setUpClass() {
+        BaseGuestTest.setUpClass();
+    }
 
     @Test
     public void addToBasket() {
@@ -32,4 +39,9 @@ public class SaveProductInShoppingBasketTest extends BaseGuestTest {
         assertFalse(system.addToBasket(guestID, STORE_THAT_DONT_EXIST, PRODUCT1.getName(), 1));
     }
 
+    @AfterClass
+    public static void tearDownClass() {
+        system.clearShoppingCart(guestID);
+        BaseGuestTest.tearDownClass();
+    }
 }

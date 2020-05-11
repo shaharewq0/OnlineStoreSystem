@@ -146,15 +146,21 @@ public class SystemAdapter {
 	}
 
 	//use case 2
-	public void clearShoppingCart() {
-		// TODO dont know which user to check
+	public void clearShoppingCart(int guestID) {
+		// TODO
 	}
 	//use case 2
-	public List<ProductDetails> getShoppingCart() {
-		// TODO dont know which user to check
-		return new LinkedList<>();
+	public List<ProductDetails> watchShoppingCart(int guestID) {
+		// TODO
+		return null;
 	}
-	//use case 2
+
+	public boolean removeProductsFromCart(int guestID, String storeName, String productName, int amount) {
+		// TODO
+		return false;
+	}
+
+		//use case 2
 	public boolean hasItem(String storeName, String productName) {
 		return System.getInstance().getStoreDetails(storeName).findProductByName(productName) != null;
 	}

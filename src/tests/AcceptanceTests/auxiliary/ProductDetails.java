@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductDetails {
+    //TODO maybe add amount
     public static ProductDetails PRODUCT1 = new ProductDetails("product1", "cat1", "store", 10.0);
     public static ProductDetails PRODUCT2 = new ProductDetails("product2", "cat2", "store", 20.0);
     public static ProductDetails PRODUCT3 = new ProductDetails("product3", "cat1", "store", 30.0);
