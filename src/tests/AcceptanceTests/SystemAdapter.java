@@ -4,10 +4,7 @@ import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.shoppingCart;
 import Domain.store_System.System;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-import tests.AcceptanceTests.auxiliary.Question;
-import tests.AcceptanceTests.auxiliary.StoreDetails;
+import tests.AcceptanceTests.auxiliary.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -197,17 +194,28 @@ public class SystemAdapter {
 		return false;
 	}
 
-	public boolean appointStoreOwner(String username) {
-		// TODO need store name and who appoints me
+    public boolean appointOwner(String myusername, String myPassword, String storeName, String hisusername,String hisPassword) {
+		// TODO
 		return false;
 	}
 
-	public boolean appointStoreManager(String username) {
-		// TODO same as above
-		return false;
-	}
+    public boolean appointManager(String myusername, String myPassword, String storeName, String hisusername,String hisPassword) {
+        // TODO
+        return false;
+    }
 
-	public boolean isStoreOwner(String storeName, String username) {
+    public boolean editManagerPermissions(String myusername, String myPassword,String storename, String managername,
+                                          List<Permissions> permissions) {
+        // TODO
+        return false;
+    }
+
+    public boolean fireManager(String myusername, String myPassword, String storeName, String hisusername) {
+        // TODO
+        return false;
+    }
+
+    public boolean isStoreOwner(String storeName, String username) {
 		System system = System.getInstance();
 		StoreImp storeImp = system.getStoreDetails(storeName);
 		// TODO as of now we cant reach user. by username - we can only reach register.
