@@ -12,6 +12,7 @@ class BaseGuestTest extends BaseAccTest {
     }
 
     static void tearDownClass() {
+        //TODO maybe exit or remove guest
         GetStoreDetailsTest.tearDownClass();
     }
 
