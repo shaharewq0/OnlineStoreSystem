@@ -23,7 +23,7 @@ public class OpenStoreTest extends BaseAccTest {
         to determine the order
      */
 
-    public static StoreDetails STORE =  new StoreDetails("store");
+    public static StoreDetails STORE =  new StoreDetails("store", 4);
     public static String STORE_THAT_DONT_EXIST = "wrong store";
 
     @BeforeClass

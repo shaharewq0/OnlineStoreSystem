@@ -12,7 +12,6 @@ import static tests.AcceptanceTests.auxiliary.ProductDetails.PRODUCT1;
 import static tests.AcceptanceTests.auxiliary.ProductDetails.PRODUCT_THAT_DONT_EXIST;
 
 public class SaveProductInShoppingBasketTest extends BaseGuestTest {
-    //TODO: determine amount of each product in store
 
     @BeforeClass
     public static void setUpClass() {

@@ -17,7 +17,6 @@ import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WatchAndEditShoppingCartTest extends BaseGuestTest {
-    //TODO: determine amount of each product in store and handle on tests
 
     @BeforeClass
     public static void setUpClass() {

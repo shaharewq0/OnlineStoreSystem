@@ -56,7 +56,7 @@ public class ManageInventoryTest extends BaseAccTest {
     public void D_EditProduct() {
         assertTrue(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT1.getName(), PRODUCT1_CHANGED_PRICE));
         assertTrue(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT2.getName(), PRODUCT2_CHANGED_CATEGORY));
-        assertTrue(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3.getName(), PRODUCT3_CHANGED_NAME));
+        assertTrue(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3.getName(), PRODUCT3_CHANGED_AMOUNT));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class ManageInventoryTest extends BaseAccTest {
     public void F_EditProductThatDontExist() {
         assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT1.getName(), PRODUCT1_CHANGED_PRICE));
         assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT2.getName(), PRODUCT2_CHANGED_CATEGORY));
-        assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3.getName(), PRODUCT3_CHANGED_NAME));
+        assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3.getName(), PRODUCT3_CHANGED_AMOUNT));
     }
 
 
@@ -85,7 +85,7 @@ public class ManageInventoryTest extends BaseAccTest {
     public void H_EditProductFromStoreThatDontExist() {
         assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT1.getName(), PRODUCT1_CHANGED_PRICE));
         assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT2.getName(), PRODUCT2_CHANGED_CATEGORY));
-        assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT3.getName(), PRODUCT3_CHANGED_NAME));
+        assertFalse(system.EditProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT3.getName(), PRODUCT3_CHANGED_AMOUNT));
     }
 
     @Test

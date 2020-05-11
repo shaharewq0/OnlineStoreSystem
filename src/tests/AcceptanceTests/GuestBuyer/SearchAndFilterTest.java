@@ -38,7 +38,10 @@ public class SearchAndFilterTest extends BaseAccTest {
 
     @Test
     public void searchProductByKeyword() {
-        //TODO
+        //assume keyword check words from product name
+        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2, PRODUCT3);
+        List<ProductDetails> products = system.searchProductByCategory("product");
+        assertEqualsLists(TrueProducts, products);
     }
 
     @Test
@@ -50,12 +53,16 @@ public class SearchAndFilterTest extends BaseAccTest {
 
     @Test
     public void filterByRating() {
-        //TODO
+        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2);
+        List<ProductDetails> products = system.filterByRating(3, 5);
+        assertEqualsLists(TrueProducts, products);
     }
 
     @Test
     public void filterByStoreRating() {
-        //TODO
+        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2, PRODUCT3);
+        List<ProductDetails> products = system.filterByStoreRating(3, 5);
+        assertEqualsLists(TrueProducts, products);
     }
 
     @Test
