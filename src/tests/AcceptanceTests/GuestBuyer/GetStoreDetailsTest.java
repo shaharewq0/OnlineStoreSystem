@@ -44,9 +44,7 @@ public class GetStoreDetailsTest extends BaseAccTest {
     public void getProductsFromStore() {
         List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2, PRODUCT3);
         List<ProductDetails> products = system.getProductsFromStore(STORE.getName());
-        assertNotNull(products);
-        assertEquals(products.size(), TrueProducts.size());
-        assertTrue(products.containsAll(TrueProducts));
+        assertEqualsLists(TrueProducts, products);
     }
 
     @Test

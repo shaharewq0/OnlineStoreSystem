@@ -108,6 +108,27 @@ public class SystemAdapter {
 	public List<ProductDetails> searchProductByKeyword(String keyword) {
 		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByKeyword(keyword));
 	}
+
+	public List<ProductDetails> filterByPrice(double minPrice, double maxPrice) {
+		//TODO
+		return null;
+	}
+
+	public List<ProductDetails> filterByRating(int minRating, int maxRating) {
+		//TODO
+		return null;
+	}
+
+	public List<ProductDetails> filterByStoreRating(int minRating, int maxRating) {
+		//TODO
+		return null;
+	}
+
+	public List<ProductDetails> filterByCategory(String category) {
+		//TODO
+		return null;
+	}
+
 	//use case 2
 	public boolean inBasket(String storeName, String productName) {
 		// TODO dont know which user to check
