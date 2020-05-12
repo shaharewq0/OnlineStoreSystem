@@ -38,7 +38,7 @@ public class System implements ISystem {
 	private int TempGuestID = 1;
 	private Map<Integer, User> guest = new HashMap<>();
 	private Map<String, Registered> membersprofiles = new HashMap<>();
-	private Map<User, Member> onlinemember = new HashMap<>();
+	private Map<String, Member> onlinemember = new HashMap<>();
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
 	private Map<String, StoreImp> stores = new HashMap<String, StoreImp>();
 	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
@@ -119,7 +119,7 @@ public class System implements ISystem {
 			return null;
 		}
 		Profile.LogLogin(user);
-		onlinemember.put(user, new Member(user));
+		onlinemember.put(id, new Member(user));
 		EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
 		return Profile;
 
