@@ -1,17 +1,18 @@
 package Domain.store_System.Roles;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import Domain.RedClasses.User;
-import Domain.Store.Purchase;
+import Domain.RedClasses.UserPurchase;
+import Domain.RedClasses.User_Purchase_History;
 import Domain.Store.workers.Store_role;
 
 public class Registered {
 	private String id;
-	private List<Purchase> myPurcase = new LinkedList<Purchase>();
+	private User_Purchase_History history = new User_Purchase_History();
+	//private List<Purchase> myPurcase = new LinkedList<Purchase>();
 	public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
 
 	public Registered(String id) {
@@ -28,12 +29,12 @@ public class Registered {
 
 	}
 
-	public void LogHistory(Purchase p) {
-		myPurcase.add(p);
+	public void LogHistory(UserPurchase p) {
+		history.history.add(p);
 	}
 
-	public List<Purchase> getPurchesHistory() {
-		return myPurcase;
+	public List<UserPurchase> getPurchesHistory() {
+		return history.history;
 	}
 
 	public void LogLogout(User user) {

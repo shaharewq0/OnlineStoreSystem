@@ -5,8 +5,8 @@ import java.util.List;
 
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 
@@ -25,7 +25,7 @@ public interface Store_role {
 
 	boolean removeItem(String prodactname);
 
-	public List<Purchase> getPurchaseHistory();
+	public List<StorePurchase> getPurchaseHistory();
 
 	boolean editManagerPermesions(String managername, List<String> permesions);
 

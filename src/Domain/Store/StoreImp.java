@@ -26,7 +26,8 @@ public class StoreImp implements IStore {
 	private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
 	private String address;
 	private int rating;
-	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
+	
+	private Store_Purchase_History purchaseHistory = new Store_Purchase_History();
 	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
 	private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
@@ -101,9 +102,9 @@ public class StoreImp implements IStore {
 	}
 
 	@Override
-	public List<Purchase> viewPurchaseHistory() {
+	public List<StorePurchase> viewPurchaseHistory() {
 
-		return purchaseHistory;
+		return purchaseHistory.PastPurchase;
 	}
 
 	@Override
@@ -241,7 +242,7 @@ public class StoreImp implements IStore {
 		if(findProductByName(item)== null)
 			ErrorLogger.GetInstance().Add_Log(this.toString() + "- cant find item to calc price");
 			
-		//TODO add discount here
+		//TODO add discount type 1 here
 
 		return findProductByName(item).getPrice();
 	}
@@ -267,12 +268,19 @@ public class StoreImp implements IStore {
 		return takeout;
 	}
 
+	public boolean addPurchase(StorePurchase p)
+	{
+		purchaseHistory.PastPurchase.add(p);
+		return true;
+	}
+	
 	public List<Discount> getDiscounts(String name) {
 		Product p = findProductByName(name);
 		return discounts.get(p);
 
 	}
 
+	
 	// --------------------------------------------------- questions
 	public Collection<Question> getQuestions() {
 

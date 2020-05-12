@@ -9,8 +9,8 @@ import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -71,7 +71,7 @@ public class StoreOwner_Imp implements  Store_role {
 	}
 
 	@Override
-	public List<Purchase> getPurchaseHistory() {
+	public List<StorePurchase> getPurchaseHistory() {
 		return myJob.store.viewPurchaseHistory();
 
 	}

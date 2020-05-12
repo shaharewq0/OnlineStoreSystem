@@ -15,8 +15,8 @@ import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
@@ -346,7 +346,7 @@ public class System implements ISystem {
 		return null;
 	}
 
-	public List<Purchase> getPurchaseHistory(String storeName) {
+	public List<StorePurchase> getPurchaseHistory(String storeName) {
 		return stores.get(storeName).viewPurchaseHistory();
 
 		// return null;

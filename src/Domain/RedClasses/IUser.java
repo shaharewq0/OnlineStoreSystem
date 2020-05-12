@@ -34,7 +34,7 @@ public interface IUser {
 //    public boolean isManager();
 //    public boolean isRegistered();
 //    public shoppingCart getCart();
-    public List<Purchase> getPurchaseHistory();
+    public List<UserPurchase> getPurchaseHistory();
 
 	public boolean getFired(String store);
 

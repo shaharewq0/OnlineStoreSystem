@@ -24,7 +24,7 @@ public interface IStore {
 
 	public int getRating();
 
-	public List<Purchase> viewPurchaseHistory() ;
+	public List<StorePurchase> viewPurchaseHistory() ;
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 

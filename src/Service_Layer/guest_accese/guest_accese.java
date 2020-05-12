@@ -88,6 +88,7 @@ public class guest_accese {
 		return System.getInstance().getGuest(guestID).deleteProductInBasket(prodactname, storename, amount);
 	}
 
+	//2.8
 	public boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
@@ -106,6 +107,7 @@ public class guest_accese {
 			usecase2_8_4_Guest_Refund(bank, price);
 			return false;
 		}
+		System.getInstance().getGuest(guestID).Complet_Purchase(price);
 		return true;
 	}
 
@@ -127,7 +129,6 @@ public class guest_accese {
 	}
 
 	public List<Product> usecase2_8_5_Update_inventory(int guestID) {
-
 		return System.getInstance().getGuest(guestID).getCart().getItems();
 	}
 

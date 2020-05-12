@@ -1,17 +1,14 @@
 package Domain.RedClasses;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.Store.workers.Creator;
-import Domain.Store.workers.StoreManager_Imp;
-import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -162,12 +159,13 @@ public class User implements IUser {
 
 	}
 
-	public List<Purchase> getPurchaseHistory() {
+	public List<UserPurchase> getPurchaseHistory() {
 		// TODO imp
 		return null;
 	}
 
-	public List<Purchase> watchHistory() {
+	// TODO check srvice layer
+	public List<UserPurchase> watchHistory() {
 		if (profile == null)
 			return null;
 		return profile.getPurchesHistory();
@@ -210,7 +208,7 @@ public class User implements IUser {
 		return profile.store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
 	}
 
-	//TODO move to register
+	// TODO move to register
 	@Override
 	public boolean appointAsOwner(Store_role role) {
 		if (profile == null || profile.store_roles.containsKey(role.getStore().getName())
@@ -224,18 +222,19 @@ public class User implements IUser {
 	}
 
 	public boolean appointManager(String storeName, String username, String otherPassword) {
-		
+
 		if (profile == null)
 			return false;
 
-		return profile.store_roles.get(storeName).appointManager(System.getInstance().getMember(username, otherPassword));
+		return profile.store_roles.get(storeName)
+				.appointManager(System.getInstance().getMember(username, otherPassword));
 
 	}
 
 	@Override
 	public boolean appointAsManager(Store_role role) {
 		// TODO this is the same as appoint owner
-		if(profile == null)
+		if (profile == null)
 			return false;
 		Map<String, Store_role> store_roles = profile.store_roles;
 		if (store_roles.containsKey(role.getStore().getName())
@@ -271,16 +270,16 @@ public class User implements IUser {
 		return store_roles.get(last_store_looked_at).giveRespond(ansewr, qustionID);
 	}
 
-	public List<Purchase> ViewAquistionHistory(String storeName) {
+	public List<StorePurchase> ViewAquistionHistory(String storeName) {
 		if (sysMangaer != null)
 			return sysMangaer.getPurchaseHistory(storeName);
 		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.get(storeName).getPurchaseHistory();
 	}
 
-	public List<Purchase> ViewAquistionHistoryOfUser(String username) {
+	public List<UserPurchase> ViewAquistionHistoryOfUser(String username) {
 		if (sysMangaer != null)
-			return sysMangaer.getPurchaseHistory(username);
+			return sysMangaer.getPurchaseHistoryofUser(username);
 		return null;
 	}
 
@@ -289,6 +288,16 @@ public class User implements IUser {
 		return store_roles.get(storename).editManagerPermesions(managername, permesions);
 	}
 
+	// note this functions
+	public void Complet_Purchase(double price) {
+		UserPurchase purchase = cart.Complet_Purchase();
+		purchase.TotalePrice = price;
+		if (profile != null) {
+			profile.getPurchesHistory().add(purchase);
+		}
+		// TODO Auto-generated method stub
+
+	}
 	// Static -
 	// ------------------------------------------------------------------------------------------------------------------
 
@@ -374,8 +383,8 @@ public class User implements IUser {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		if(profile == null)
-		return "Error still no name";
+		if (profile == null)
+			return "Error still no name";
 		return profile.getId();
 	}
 

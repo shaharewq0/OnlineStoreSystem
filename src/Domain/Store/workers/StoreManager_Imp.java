@@ -8,10 +8,9 @@ import java.util.Map;
 
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
-import Domain.RedClasses.User;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_manager;
 import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
@@ -92,7 +91,7 @@ public class StoreManager_Imp implements Store_role {
 	}
 
 	@Override
-	public List<Purchase> getPurchaseHistory() {
+	public List<StorePurchase> getPurchaseHistory() {
 		if (!permisions.contains("getPurchaseHistory"))
 			return null;
 		return MyJob.store.viewPurchaseHistory();

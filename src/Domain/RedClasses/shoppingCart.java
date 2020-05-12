@@ -71,4 +71,12 @@ public class shoppingCart implements IshoppingCart {
 		}
 		return takeout;
 	}
+
+	public UserPurchase Complet_Purchase() {
+		UserPurchase p = new UserPurchase();
+		for (shoppingBasket basket : baskets.values()) {
+			 p.eachPurchase.add(basket.Complet_Purchase());
+		}
+		return p;
+	}
 }

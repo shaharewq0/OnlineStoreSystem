@@ -7,6 +7,7 @@ import Domain.Store.Discount;
 import Domain.Store.IStore;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
+import Domain.Store.StorePurchase;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
 import Domain.info.ProductDetails;
@@ -69,7 +70,7 @@ public class StoreStub implements IStore {
 
     
     @Override
-    public List<Purchase> viewPurchaseHistory() {
+    public List<StorePurchase> viewPurchaseHistory() {
         return null;
     }
 

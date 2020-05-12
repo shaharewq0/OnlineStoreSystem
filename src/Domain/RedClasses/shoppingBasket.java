@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Store.Discount;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 
 public class shoppingBasket implements IshoppingBasket {
@@ -58,6 +60,7 @@ public class shoppingBasket implements IshoppingBasket {
 		for (String item : products.keySet()) {
 			price += store.getPrice(item) * products.get(item);
 		}
+		//TODO look for type 2 and 3 discount
 		return price;
 	}
 
@@ -67,5 +70,16 @@ public class shoppingBasket implements IshoppingBasket {
 			output.add(store.TakeItem(item, products.get(item)));
 		}
 		return output;
+	}
+
+	
+	public StorePurchase Complet_Purchase() {
+		List<Discount> allDiscounts = new LinkedList<Discount>();
+		for (String item : products.keySet()) {
+			allDiscounts.addAll( store.getDiscounts(item));
+		}
+		StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice(), allDiscounts);
+		store.addPurchase(SP);
+		return SP;
 	}
 }
