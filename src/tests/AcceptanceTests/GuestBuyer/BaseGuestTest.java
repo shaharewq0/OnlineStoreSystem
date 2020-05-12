@@ -10,10 +10,4 @@ class BaseGuestTest extends BaseAccTest {
         GetStoreDetailsTest.setUpClass();
         guestID = system.newGuest();
     }
-
-    static void tearDownClass() {
-        //TODO maybe exit or remove guest
-        GetStoreDetailsTest.tearDownClass();
-    }
-
 }

@@ -1,6 +1,9 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import tests.AcceptanceTests.BaseAccTest;
@@ -62,10 +65,5 @@ public class LogoutTest extends BaseAccTest {
     public void tearDown() {
         if(!expectedOutput)
             system.logout(USERNAME, PASSWORD);
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        LoginTest.tearDownClass();
     }
 }

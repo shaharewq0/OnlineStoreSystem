@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -46,12 +45,5 @@ public class OpenStoreTest extends BaseAccTest {
     public void C_openStoreTwiceWithDifferentUser() {
         assertFalse(system.openStore(USERNAME + "2", PASSWORD + "2", STORE));
             // #2 user can't open store with existing store name
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        system.removeStore(STORE);
-        system.logout(USERNAME, PASSWORD);
-        LoginTest.tearDownClass();
     }
 }

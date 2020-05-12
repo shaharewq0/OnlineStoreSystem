@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.StoreOwner;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
@@ -23,10 +22,5 @@ public class EditStoreManagerPermissionsTest extends BaseAccTest {
     @Test
     public void editPermissions() {
         //TODO
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        AppointAndFireStoreManagerTest.tearDownClass();
     }
 }

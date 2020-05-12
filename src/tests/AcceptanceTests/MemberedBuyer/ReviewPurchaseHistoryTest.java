@@ -1,6 +1,5 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
@@ -26,11 +25,4 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
 //        List<PurchaseDetails> purchases = system.viewPurchaseHistory();
 //        assertEqualsLists(TruePurchases, purchases);
     }
-
-    @AfterClass
-    public static void tearDownClass() {
-        PurchaseTest.tearDownClass();
-    }
-
-
 }

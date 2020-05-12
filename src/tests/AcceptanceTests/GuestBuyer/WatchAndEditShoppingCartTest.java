@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.GuestBuyer;
 
 import Domain.info.ProductDetails;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -75,10 +74,5 @@ public class WatchAndEditShoppingCartTest extends BaseGuestTest {
     @Test
     public void removeFromShoppingCartStoreDontExist() {
         assertTrue(system.removeProductsFromCart(guestID, STORE_THAT_DONT_EXIST, PRODUCT1.getName(), 1));
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        BaseGuestTest.tearDownClass();
     }
 }

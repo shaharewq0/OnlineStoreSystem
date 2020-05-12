@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.StoreOwner;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -46,10 +45,5 @@ public class AppointAndFireStoreManagerTest extends BaseAccTest {
     @Test
     public void E_fireNotManager(){
         assertFalse(system.fireManager(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME));
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        AppointStoreOwnerTest.tearDownClass();
     }
 }

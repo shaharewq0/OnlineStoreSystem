@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.GuestBuyer;
 
 import Domain.info.ProductDetails;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
@@ -51,10 +50,5 @@ public class GetStoreDetailsTest extends BaseAccTest {
     public void getProductsFromStoreDontExist() {
         List<ProductDetails> products = system.getProductsFromStore(STORE_THAT_DONT_EXIST);
         assertTrue(products == null || products.isEmpty());
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        ManageInventoryTest.tearDownClass();
     }
 }

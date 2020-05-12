@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.StoreOwner;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
@@ -40,11 +39,5 @@ public class AppointStoreOwnerTest extends BaseAccTest {
     @Test
     public void appointNotMember(){
         assertFalse(system.appointOwner(USERNAME, PASSWORD, STORE.getName(), NOT_USERNAME, NOT_PASSWORD));
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        OpenStoreTest.tearDownClass();
-        system.removeUser(APPOINTEE_USERNAME, APPOINTEE_PASSWORD);
     }
 }

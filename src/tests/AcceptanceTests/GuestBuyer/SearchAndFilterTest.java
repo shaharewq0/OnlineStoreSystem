@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.GuestBuyer;
 
 import Domain.info.ProductDetails;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
@@ -70,10 +69,5 @@ public class SearchAndFilterTest extends BaseAccTest {
         List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT3);
         List<ProductDetails> products = system.filterByCategory(PRODUCT1.getCategory().get(0));
         assertEqualsLists(TrueProducts, products);
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        GetStoreDetailsTest.tearDownClass();
     }
 }

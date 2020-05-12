@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.StoreOwner;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -93,10 +92,5 @@ public class ManageInventoryTest extends BaseAccTest {
         assertFalse(system.RemoveProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT1.getName()));
         assertFalse(system.RemoveProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT2.getName()));
         assertFalse(system.RemoveProduct(USERNAME, PASSWORD, STORE_THAT_DONT_EXIST, PRODUCT3.getName()));
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        OpenStoreTest.tearDownClass();
     }
 }

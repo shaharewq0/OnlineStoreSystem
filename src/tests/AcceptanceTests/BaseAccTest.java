@@ -1,5 +1,7 @@
 package tests.AcceptanceTests;
 
+import org.junit.AfterClass;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -15,6 +17,7 @@ public class BaseAccTest {
         assertTrue(actual.containsAll(expected));
     }
 
+    @AfterClass
     public static void tearDownAll() {
         system.resetSystem();
     }

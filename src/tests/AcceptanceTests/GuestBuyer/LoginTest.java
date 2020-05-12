@@ -1,7 +1,6 @@
 package tests.AcceptanceTests.GuestBuyer;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,10 +59,5 @@ public class LoginTest extends BaseAccTest {
     public void tearDown() {
         if(expectedOutput)
             system.logout(username, password);
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        system.removeUser(USERNAME, PASSWORD);
     }
 }
