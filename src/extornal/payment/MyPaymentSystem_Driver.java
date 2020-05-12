@@ -4,16 +4,21 @@ import java.util.HashMap;
 
 public class MyPaymentSystem_Driver implements MyPaymentSystem {
 
-	static PaymentMethed current_supplyer = null;
+	private PaymentMethed current_supplyer = null;
 
 	static HashMap<String, PaymentMethed> list = null;
 	static {
 		list = new HashMap<String, PaymentMethed>();
 		list.put(Pay_pal.name, new Pay_pal());
 		list.put(Isracard.name, new Isracard());
-		current_supplyer = list.get(Pay_pal.name);
+		
 	}
 
+	public MyPaymentSystem_Driver()
+	{
+		current_supplyer = list.get(Pay_pal.name);
+	}
+	
 	public boolean pay(bankAccount card_num, int amount) {
 		if (card_num == null || amount < 0)
 			return false;

@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tests.AcceptanceTests.auxiliary.ProductDetails;
+import Domain.info.ProductDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class GuestBuyerTests extends AccTest {

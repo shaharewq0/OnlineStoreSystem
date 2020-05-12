@@ -3,15 +3,15 @@ package tests.AcceptanceTests;
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import Domain.Store.shoppingCart;
-import Domain.store_System.Registered;
+import Domain.info.ProductDetails;
 import Domain.store_System.System;
+import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -78,7 +78,7 @@ public class SystemAdapter {
 		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
 		if (pro == null)
 			return null;
-		return new ProductDetails(pro);
+		return new ProductDetails(pro,0);
 	}
 	//use case 2
 	public List<ProductDetails> searchProductByName(String name) {
@@ -118,17 +118,18 @@ public class SystemAdapter {
 	
 	
 	public boolean addProductToStore(String storeName, String productName) {
-		System system = System.getInstance();
-		// Product p = system.searchProductsByName(productName).get(0);
-		StoreImp store = system.getStoreDetails(storeName);
-		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
-		// we assume the product and store exist....
+//		System system = System.getInstance();
+//		// Product p = system.searchProductsByName(productName).get(0);
+//		StoreImp store = system.getStoreDetails(storeName);
+//		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
+//		// we assume the product and store exist....
+		return false;
 	}
 
 	public boolean RemoveProduct(String storeName, String productName) {
 		System system = System.getInstance();
 		Product p = system.searchProductsByName(productName).get(0);
-		return system.getStoreDetails(storeName).removeProduct(p);
+		return system.getStoreDetails(storeName).removeProduct(productName);
 	}
 
 	public boolean appointStoreOwner(String username) {
@@ -161,7 +162,8 @@ public class SystemAdapter {
 	}
 
 	public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
-		return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
+		return null;
+		//return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
 	}
 
 	public List<Question> getStoreQuestions(String storeName) {

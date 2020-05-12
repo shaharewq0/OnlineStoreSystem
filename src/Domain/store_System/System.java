@@ -1,21 +1,56 @@
 package Domain.store_System;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import Domain.Store.*;
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.IshoppingBasket;
+import Domain.RedClasses.User;
+import Domain.RedClasses.shoppingCart;
+import Domain.Store.IStore;
+import Domain.Store.MyPair;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
+import Domain.store_System.Roles.Registered;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
+import extornal.payment.MyPaymentSystem;
+import extornal.payment.MyPaymentSystem_Driver;
+import extornal.payment.PaymentMethed;
+import extornal.supply.MySupplySystem;
+import extornal.supply.MySupplySystem_Driver;
+import extornal.supply.Supplyer;
 
 public class System implements ISystem {
-	PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
-	List<Registered> registered = new LinkedList<>();
-	List<StoreImp> stores = new LinkedList<>();
-	List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
+
+	private int TempGuestID = 1;
+	private Map<Integer, User> guest = new HashMap<>();
+	private Map<String,Registered> members = new HashMap<>();
+	
+	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
+	private List<Registered> registered = new LinkedList<>();
+	private List<StoreImp> stores = new LinkedList<>();
+	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
+	private MyPaymentSystem paymentdriver = new MyPaymentSystem_Driver();
+	private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
 	private static System instance = null;
 
-	public void init(Object paymentsys, Object supplysys, Object Firstuser) {
+	public int ImNew() {
+		TempGuestID++;
+		guest.put(TempGuestID, new User());
+		return TempGuestID;
+	}
+
+	public User getGuest(int id) {
+		return guest.get(id);
+	}
+
+	public void init(Object Firstuser) {
 		// temp
 	}
 
@@ -76,7 +111,7 @@ public class System implements ISystem {
 		return stores;
 	}
 
-	public List<Product> getProductsFromStore(String name) {
+	public Collection<Product> getProductsFromStore(String name) {
 		for (StoreImp s : stores) {
 			if (s.getName().equals(name)) {
 				return s.getProducts();
@@ -184,20 +219,15 @@ public class System implements ISystem {
 		if (!UpdateStorage(cart)) {
 			return false;
 		}
-		double price = calcPrice(cart);
-		navigatePayment(creditCard, price);
-		navigateSupply(cart, address);
+		double price = cart.CalcPrice();
+		// TODO i dont think we need this functions
+		// navigatePayment(creditCard, price);
+		// navigateSupply(cart, address);
 		return true;
 	}
 
-	// TODO implement
-	private double calcPrice(shoppingCart c) {
-		return 0.0;
-	}
-
-	// TODO implement
-	private void navigatePayment(int creditCarNum, double price) {
-
+	public PaymentMethed navigatePayment() {
+		return paymentdriver.getPaymentMethed();
 	}
 
 	// TODO implement
@@ -206,7 +236,8 @@ public class System implements ISystem {
 	}
 
 	// TODO implement
-	private void navigateSupply(shoppingCart cart, String address) {
+	public Supplyer navigateSupply() {
+		return supplydriver.getSupplayer();
 
 	}
 
@@ -250,5 +281,45 @@ public class System implements ISystem {
 		}
 
 		return baskets;
+	}
+
+	@Override
+	public boolean CheckItemAvailableA(List<ProductDetails> items) {
+		for (ProductDetails details : items) {
+			if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items) {
+		List<ProductDetails> Available = new LinkedList<>();
+		for (ProductDetails details : items) {
+			if (getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+				Available.add(details);
+			}
+		}
+		return Available;
+	}
+
+	public boolean fillStore(List<Product> Products) {
+		boolean output = true;
+		for (Product product : Products) {
+			output = output & product.getStore().addProduct(product);
+		}
+		return output;
+	}
+
+
+	public User getMember(String myusername, String myPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IUser getUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

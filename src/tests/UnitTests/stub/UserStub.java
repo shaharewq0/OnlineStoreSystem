@@ -2,7 +2,10 @@ package tests.UnitTests.stub;
 
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
+import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class UserStub implements IUser {
     boolean manager=false;
@@ -95,21 +98,21 @@ public class UserStub implements IUser {
     public boolean saveProductInBasket(String productName, String storeName) {
         return false;
     }
-
+//
+//    @Override
+//    public List<MyPair<Product, Integer>> getProductsInCart() {
+//        return null;
+//    }
+//
     @Override
-    public List<MyPair<Product, Integer>> getProductsInCart() {
-        return null;
+    public int deleteProductInBasket(String productName, String storeName, int num) {
+        return 0;
     }
 
-    @Override
-    public boolean deleteProductInBasket(String productName, String storeName, int num) {
-        return false;
-    }
-
-    @Override
-    public boolean purchase() {
-        return false;
-    }
+//    @Override
+//    public boolean purchase() {
+//        return false;
+//    }
 
     @Override
     public boolean logout() {
@@ -125,6 +128,18 @@ public class UserStub implements IUser {
     public List<shoppingCart> watchHistory() {
         return null;
     }
+
+	@Override
+	public shoppingCart getCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Purchase> getPurchaseHistory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

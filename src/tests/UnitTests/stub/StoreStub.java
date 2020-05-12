@@ -5,9 +5,12 @@ import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.Store.Discount;
 import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
+import Domain.info.ProductDetails;
 
 public class StoreStub implements IStore {
     UserStub Owner;
@@ -62,15 +65,8 @@ public class StoreStub implements IStore {
         return 0;
     }
 
-    @Override
-    public boolean removeProduct(Product p) {
-        return false;
-    }
+ 
 
-    @Override
-    public boolean editProduct(Product OLD_p, Product NEW_p) {
-        return false;
-    }
 
     @Override
     public boolean appointOwner(IUser user) {
@@ -88,9 +84,43 @@ public class StoreStub implements IStore {
     }
 
     @Override
-    public List<PurchaseDetails> viewPurchaseHistory() {
-        List<PurchaseDetails> A=new LinkedList<>();
-        A.add(new PurchaseDetails());
-        return A;
+    public List<Purchase> viewPurchaseHistory() {
+        return null;
     }
+
+	@Override
+	public Boolean CheckItemAvailable(ProductDetails items) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getPrice(String item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Product TakeItem(String name, int amout) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Discount> getDiscounts(String name) {
+		//TODO imp
+		return null;
+	}
+
+	@Override
+	public boolean removeProduct(String pName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editProduct(String OLD_p, Product NEW_p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
