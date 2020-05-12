@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Logs.EventLogger;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -34,10 +35,12 @@ public class User implements IUser {
 		cart = new shoppingCart();
 	}
 
+//delte this
 	public User(String address, int creditCardNum) {
 		cart = new shoppingCart();
 	}
 
+	// ------------------------------ user
 	public boolean login(String id, String password) {
 		if (profile != null)
 			return false;
@@ -53,10 +56,6 @@ public class User implements IUser {
 //		return System.getInstance().getAllStores();
 //	}
 
-	public Collection<ProductDetails> watchProductsInStore(String name) {
-		return System.getInstance().getProductsFromStore(name);
-	}
-
 	// TODO rewrite this fucntion
 	// adding a product to a basket. if the product exists add 1 to the amount of
 	// the product in the basket
@@ -64,62 +63,14 @@ public class User implements IUser {
 
 		cart.findBasket(storeName).addProduct(productName, amount);
 		return true;
-//		// - not my
-//		
-//		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
-//		if (myStore == null) {
-//			return false;
-//		}
-//		if (System.getInstance().searchProductsByName(productName).size() == 0) {
-//			return false;
-//		}
-//		List<ProductDetails> Products = System.getInstance().searchProductsByName(productName);
-//		if (Products == null) {
-//			return false;
-//		}
-//		ProductDetails toSave = null;
-//		for (ProductDetails p : Products) {
-//			if ( p.getName().equals(storeName) && myStore.getProducts().contains(p)) {
-//				toSave = p;
-//			}
-//		}
-//		if (toSave == null) {
-//			return false;
-//		}
-//		shoppingBasket toAdd = cart.findBasket(myStore);
-//		if (toAdd == null) {
-//			toAdd = new shoppingBasket(myStore);
-//			toAdd.addProduct(productName, 1);
-//			// cart.addBasket(toAdd);
-//			return true;
-//		} else
-//			toAdd.addProduct(productName, 1);
-//		return true;
+
 	}
 
 	// removing at most amount of num of a product from the basket
 	public int deleteProductInBasket(String productName, String storeName, int num) {
-		return cart.removeItem(storeName, storeName, num);
-//		
-//		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
-//		if (myStore == null) {
-//			return -1;
-//		}
-//		List<ProductDetails> Products = System.getInstance().searchProductsByName(productName);
-//		ProductDetails toDelete = null;
-//		for (ProductDetails p : Products) {
-//			if (p.getName().equals(storeName) & myStore.getProducts().contains(p)) {
-//				toDelete = p;
-//			}
-//		}
-//		if (toDelete == null) {
-//			return -1;
-//		}
-//		shoppingBasket toRemove = cart.findBasket(myStore);
-//		if (toRemove == null) {
-//			return -1;
-//		}
-//		return toRemove.removeProduct(productName, num);
+		EventLogger.GetInstance().Add_Log(this.toString() + "- remove item from cart");
+		return cart.removeItem(storeName, productName, num);
+
 	}
 
 	public List<ProductDetails> getProductsInCart() {
@@ -143,17 +94,22 @@ public class User implements IUser {
 
 	public boolean openStore(String storename, String address, int rating) {
 		StoreImp mystore = logInstanse.OpenStore(new StoreInfo(storename, address, rating));
-		if (profile == null)
+		if (profile == null) {
+			EventLogger.GetInstance().Add_Log(this.toString() + "- trying to open store while not login");
 			return false;
-
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- opening store");
 		profile.store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
 	}
 
 	public boolean openStore(StoreInfo store) {
 		StoreImp mystore = logInstanse.OpenStore(store);
-		if (profile == null)
+		if (profile == null) {
+			EventLogger.GetInstance().Add_Log(this.toString() + "- trying to open store while not login");
 			return false;
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- opening store");
 
 		profile.store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
@@ -161,22 +117,30 @@ public class User implements IUser {
 	}
 
 	public List<UserPurchase> getPurchaseHistory() {
-		// TODO imp
-		return null;
-	}
-
-	// TODO check srvice layer
-	public List<UserPurchase> watchHistory() {
 		if (profile == null)
 			return null;
+
 		return profile.getPurchesHistory();
+	}
+
+	public void Complet_Purchase(double price) {
+		UserPurchase purchase = cart.Complet_Purchase();
+		purchase.TotalePrice = price;
+		if (profile != null) {
+			profile.getPurchesHistory().add(purchase);
+		}
 
 	}
+
+	// -------------------------------------------------- store info
 
 	public shoppingCart getCart() {
 		return cart;
 	}
 
+	public Collection<ProductDetails> watchProductsInStore(String name) {
+		return System.getInstance().getProductsFromStore(name);
+	}
 	// --------------------------------------------------------------- store actions
 
 	public boolean addProduct(String storeName, Product p) {
@@ -209,7 +173,6 @@ public class User implements IUser {
 		return profile.store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
 	}
 
-	// TODO move to register
 	@Override
 	public boolean appointAsOwner(Store_role role) {
 		if (profile == null || profile.store_roles.containsKey(role.getStore().getName())
@@ -284,20 +247,13 @@ public class User implements IUser {
 		return null;
 	}
 
-	public boolean editMangagerPermesions(String storename, String managername, List<String> permesions) {
+	public boolean editManagerPermesions(String storename, String managername, List<String> permesions) {
 		Map<String, Store_role> store_roles = profile.store_roles;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- editing managerPermesions");
 		return store_roles.get(storename).editManagerPermesions(managername, permesions);
 	}
 
-	// note this functions
-	public void Complet_Purchase(double price) {
-		UserPurchase purchase = cart.Complet_Purchase();
-		purchase.TotalePrice = price;
-		if (profile != null) {
-			profile.getPurchesHistory().add(purchase);
-		}
 
-	}
 	// Static -
 	// ------------------------------------------------------------------------------------------------------------------
 

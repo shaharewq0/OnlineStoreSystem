@@ -43,7 +43,7 @@ public class owner_accese {
 	public boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String storename,
 			String managername, List<String> permesions) {
 		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.editMangagerPermesions(storename, managername, permesions);
+		return me.editManagerPermesions(storename, managername, permesions);
 
 	}
 

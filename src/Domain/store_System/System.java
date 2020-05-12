@@ -182,6 +182,7 @@ public class System implements ISystem {
 
 	public boolean fillStore(List<Product> Products) {
 		boolean output = true;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- returning product to store");
 		for (Product product : Products) {
 			output = output & product.getStore().addProduct(product);
 		}
@@ -304,12 +305,9 @@ public class System implements ISystem {
 
 	// ------------------------purchase
 
-
 	public PaymentMethed navigatePayment() {
 		return paymentdriver.getPaymentMethed();
 	}
-
-
 
 	public Supplyer navigateSupply() {
 		return supplydriver.getSupplayer();
