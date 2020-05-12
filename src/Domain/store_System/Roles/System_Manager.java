@@ -6,10 +6,10 @@ import Domain.Store.Purchase;
 import Domain.store_System.System;
 
 public class System_Manager {// extends Member {
+	public String name;
 
-	public System_Manager(Registered registered) {
-
-		// super(registered);
+	public System_Manager(String username) {
+		name = username;
 	}
 
 	public List<Purchase> getPurchaseHistory(String storeName) {

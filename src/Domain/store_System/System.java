@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Logs.ErrorLogger;
+import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
@@ -19,6 +21,7 @@ import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
+import Domain.store_System.Roles.System_Manager;
 import Domain.store_System.Security.PassProtocol_Imp;
 import Domain.store_System.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
@@ -30,12 +33,13 @@ import extornal.supply.Supplyer;
 
 public class System implements ISystem {
 
+	private boolean init = false;
+	private System_Manager manager = null;
 	private int TempGuestID = 1;
 	private Map<Integer, User> guest = new HashMap<>();
 	private Map<String, Registered> membersprofiles = new HashMap<>();
 	private Map<User, Member> onlinemember = new HashMap<>();
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
-	// private List<Registered> registered = new LinkedList<>();
 	private List<StoreImp> stores = new LinkedList<>();
 	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
 	private MyPaymentSystem paymentdriver = new MyPaymentSystem_Driver();
@@ -44,17 +48,43 @@ public class System implements ISystem {
 	private static System instance = null;
 
 	public int ImNew() {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
 		TempGuestID++;
 		guest.put(TempGuestID, new User());
 		return TempGuestID;
 	}
 
 	public User getGuest(int id) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
 		return guest.get(id);
 	}
 
-	public void init(Object Firstuser) {
-		// temp
+	public System_Manager ImManeger(String id, String password) {
+
+		if (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password)) {
+			return null;
+		}
+
+		EventLogger.GetInstance().Add_Log(this.toString() + "-manager login");
+		return manager;
+	}
+
+	public boolean init(String username, String password) {
+
+		if (init) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- system trying to init 2nd time");
+			return false;
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
+		init = true;
+		int guestId = ImNew();
+		User guest = getGuest(guestId);
+		User.register(username, password);
+		manager = new System_Manager(username);
+		guest.login(username, password);
+
+		return true;
+
 	}
 
 	public static System getInstance() {
@@ -66,53 +96,31 @@ public class System implements ISystem {
 
 	public boolean register(String id, String password) {
 		if (!myProtocol.addRegistry(id, password)) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- failed to register");
 			return false;
 		}
 
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new register");
 		membersprofiles.put(id, new Registered(id));
 		return true;
 	}
 
-	// TODO delete this
-	public Registered login(String id, String password) {
-		Registered reg = Registered_contains(id);
-		if (reg == null) {
-			return null;
-		}
-		if (!myProtocol.login(id, password)) {
-			return null;
-		}
-		return reg;
-	}
-
 	public Registered login(String id, String password, User user) {
-		if (!myProtocol.login(id, password))
+		if (!myProtocol.login(id, password)) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- failed to login");
 			return null;
+		}
 
-		Registered Profile = Registered_contains(id);
-
+		Registered Profile = membersprofiles.get(id);
+		if(Profile == null) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() +"- register dont exsist fatal error");
+			return null;
+		}
 		Profile.LogLogin(user);
 		onlinemember.put(user, new Member(user));
+		EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
 		return Profile;
 
-	}
-
-	public Registered Registered_contains(String id) {
-		for (Registered existing : membersprofiles.values()) {
-			if (existing.getId().equals(id)) {
-				return existing;
-			}
-		}
-		return null;
-	}
-
-	private MyPair<String, List<shoppingCart>> containsB(String id, List<MyPair<String, List<shoppingCart>>> toSearch) {
-		for (MyPair<String, List<shoppingCart>> existing : toSearch) {
-			if (existing.getKey().equals(id)) {
-				return existing;
-			}
-		}
-		return null;
 	}
 
 	public StoreImp getStoreDetails(String name) {
@@ -124,6 +132,7 @@ public class System implements ISystem {
 		return null;
 	}
 
+	//TODO delete this
 	public List<StoreImp> getAllStores() {
 		return stores;
 	}
@@ -153,7 +162,8 @@ public class System implements ISystem {
 		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores) {
 			List<ProductDetails> toAdd = s.findProductDetailsByCategory(category);
-			concat2(toReturn, toAdd);
+			toReturn.addAll(toAdd);
+			//concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
@@ -162,26 +172,12 @@ public class System implements ISystem {
 		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores) {
 			List<ProductDetails> toAdd = s.findProductDetailsByKeyword(keyword);
-			concat2(toReturn, toAdd);
+			toReturn.addAll(toAdd);
+			//concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
 
-	private void concat(List<Product> a, List<Product> b) {
-		for (Product p : b) {
-			if (!a.contains(p)) {
-				a.add(p);
-			}
-		}
-	}
-
-	private void concat2(List<ProductDetails> a, List<ProductDetails> b) {
-		for (ProductDetails p : b) {
-			if (!a.contains(p)) {
-				a.add(p);
-			}
-		}
-	}
 
 	public List<Product> filterByPrice(List<Product> base, double min, double max) {
 		List<Product> toReturn = new LinkedList<>();
@@ -223,23 +219,6 @@ public class System implements ISystem {
 		return toReturn;
 	}
 
-	public boolean memberPurchase(String id, shoppingCart cart, int creditCard, String address) {
-		if (purchase(cart, creditCard, address)) {
-			MyPair<String, List<shoppingCart>> toChange = containsB(id, order);
-			if (toChange == null) {
-				List<shoppingCart> cartAdd = new LinkedList<>();
-				cartAdd.add(cart);
-				order.add(new MyPair<>(id, cartAdd));
-				return true;
-			} else {
-				order.remove(toChange);
-				toChange.getValue().add(cart);
-				order.add(toChange);
-				return true;
-			}
-		}
-		return false;
-	}
 
 	public boolean purchase(shoppingCart cart, int creditCard, String address) {
 		if (!UpdateStorage(cart)) {
@@ -277,7 +256,7 @@ public class System implements ISystem {
 		stores.add(newStore);
 		return newStore;
 	}
-	
+
 	public StoreImp openStore(String name, String address, int rating) {
 		for (StoreImp s : stores) {
 			if (s.getName().equals(name)) {
@@ -289,13 +268,13 @@ public class System implements ISystem {
 		return newStore;
 	}
 
-	public List<shoppingCart> orderHistory(String id) {
-		MyPair<String, List<shoppingCart>> toReturn = containsB(id, order);
-		if (toReturn == null) {
-			return new LinkedList<>();
-		}
-		return toReturn.getValue();
-	}
+//	public List<shoppingCart> orderHistory(String id) {
+//		MyPair<String, List<shoppingCart>> toReturn = containsB(id, order);
+//		if (toReturn == null) {
+//			return new LinkedList<>();
+//		}
+//		return toReturn.getValue();
+//	}
 
 	// @Override
 	public List<IshoppingBasket> orderHistory(IStore store) {
@@ -369,26 +348,22 @@ public class System implements ISystem {
 			return onlinemember.get(id);
 		return null;
 	}
-	
-	public boolean LogOut(int guestID)
-	{
+
+	public boolean LogOut(int guestID) {
 		return false;
-		//TODO imp
+		// TODO imp
 	}
 
-	
 	public User getMember(int guestId) {
-		User u =  guest.get(guestId);
-		if(onlinemember.containsValue(u))
+		User u = guest.get(guestId);
+		if (onlinemember.containsValue(u))
 			return u;
 		return null;
 	}
 
 	public List<Purchase> getPurchaseHistory(String storeName) {
 		return stores.get(stores.indexOf(storeName)).viewPurchaseHistory();
-		//return null;
+		// return null;
 	}
-
-
 
 }

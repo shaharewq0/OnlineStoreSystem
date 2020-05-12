@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
@@ -42,16 +41,6 @@ public class shoppingBasket implements IshoppingBasket {
 
 	}
 
-	private MyPair<ProductDetails, Integer> findInBasket(String name) {
-		if (products.containsKey(name)) {
-			Product a = store.findProductByName(name);
-			MyPair<ProductDetails, Integer> item = new MyPair<ProductDetails, Integer>(new ProductDetails(a, products.get(name)),
-					products.get(name));
-			return item;
-		}
-		return null;
-	}
-
 	public StoreImp getStore() {
 		return store;
 	}
@@ -59,21 +48,20 @@ public class shoppingBasket implements IshoppingBasket {
 	public List<ProductDetails> getProducts() {
 		List<ProductDetails> output = new LinkedList<ProductDetails>();
 		for (String name : products.keySet()) {
-			output.add(new ProductDetails(store.findProductByName(name),products.get(name)));
+			output.add(new ProductDetails(store.findProductByName(name), products.get(name)));
 		}
 		return output;
 	}
 
 	public double CalcPrice() {
-		double price =0;
+		double price = 0;
 		for (String item : products.keySet()) {
-		price +=	store.getPrice(item) * products.get(item);
+			price += store.getPrice(item) * products.get(item);
 		}
 		return price;
 	}
 
-	public List<Product> getItems()
-	{
+	public List<Product> getItems() {
 		List<Product> output = new LinkedList<Product>();
 		for (String item : products.keySet()) {
 			output.add(store.TakeItem(item, products.get(item)));

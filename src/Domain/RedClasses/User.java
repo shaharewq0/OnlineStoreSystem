@@ -48,15 +48,9 @@ public class User implements IUser {
 
 		profile = System.getInstance().login(id, password, this);
 		logInstanse = System.getInstance().getLogInstase(id, password);
+		sysMangaer = System.getInstance().ImManeger(id,password);
 		return profile != null;
-//		if (system_role instanceof Guest) {
-//			Registered profile = System.getInstance().login(id, password);
-//			if (profile != null) {
-//				system_role = new Member(profile);
-//				return true;
-//			}
-//		}
-//		return false;
+
 	}
 
 	public List<StoreImp> watchAllStores() {
@@ -180,6 +174,7 @@ public class User implements IUser {
 	}
 
 	// --------------------------------------------------------------- store actions
+	
 	public boolean addProduct(String storeName, Product p) {
 //TODO add fail
 		return store_roles.get(storeName).addItem(p);
@@ -351,6 +346,8 @@ public class User implements IUser {
 		// TODO Auto-generated method stub
 		return "Error still no name";
 	}
+
+	
 
 
 

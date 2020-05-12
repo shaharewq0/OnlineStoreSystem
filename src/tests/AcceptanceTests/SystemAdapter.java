@@ -25,7 +25,8 @@ public class SystemAdapter {
 	// use case 2
 	public boolean login(String username, String password) {
 		// TODO imp
-		return System.getInstance().login(username, password) != null;
+		return false;
+		// return System.getInstance().login(username, password) != null;
 	}
 
 //use case 2
@@ -56,16 +57,18 @@ public class SystemAdapter {
 	}
 
 	public List<PurchaseDetails> getPurchaseHistory(String username) {
-		List<PurchaseDetails> temp = new LinkedList<PurchaseDetails>();
-		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
-			temp.add(new PurchaseDetails(cart));
-		}
-		return temp;
+//		List<PurchaseDetails> temp = new LinkedList<PurchaseDetails>();
+//		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
+//			temp.add(new PurchaseDetails(cart));
+//		}
+//		return temp;
+		return null;
 	}
 
 	public boolean isRegistered(String username) {
 		// TODO function dont exsist
-		return System.getInstance().Registered_contains(username) != null;
+		return false;
+		// return System.getInstance().Registered_contains(username) != null;
 	}
 
 	// use case 2

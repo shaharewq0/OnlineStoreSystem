@@ -20,11 +20,11 @@ public class guest_accese {
 		return System.getInstance().ImNew();
 	}
 
-	//TODO old need to delete
-	public boolean usecase2_3_login(String username, String password) {
-		//TODO old need to delete
-		return System.getInstance().login(username, password) != null;
-	}
+//	//TODO old need to delete
+//	public boolean usecase2_3_login(String username, String password) {
+//		//TODO old need to delete
+//		return System.getInstance().login(username, password) != null;
+//	}
 	
 	public boolean usecase2_3_login(int guestId, String username, String password) {
 		return System.getInstance().getGuest(guestId).login(username, password);

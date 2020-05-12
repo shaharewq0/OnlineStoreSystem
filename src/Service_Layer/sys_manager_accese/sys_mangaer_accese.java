@@ -8,6 +8,12 @@ import Domain.store_System.System;
 
 public class sys_mangaer_accese {
 
+	public boolean InitSystem(String myusername, String MyPassword) {
+		System.getInstance().init(myusername,MyPassword);
+		return false;
+		
+	}
+	
 	public List<Purchase> usecase6_4A_WatchPurchesHistoryofUser(String myusername,String myPassword,String username)
 	{
 		User me = System.getInstance().getMember(myusername, myPassword);
