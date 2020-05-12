@@ -1,13 +1,15 @@
 package tests.UnitTests.stub;
 
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-
-import java.util.LinkedList;
 import java.util.List;
 
+import Domain.RedClasses.IUser;
+import Domain.Store.Discount;
 import Domain.Store.IStore;
-import Domain.Store.IUser;
 import Domain.Store.Product;
+import Domain.Store.Purchase;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
+import Domain.info.ProductDetails;
 
 public class StoreStub implements IStore {
     UserStub Owner;
@@ -62,35 +64,72 @@ public class StoreStub implements IStore {
         return 0;
     }
 
+ 
+
+
+    
     @Override
-    public boolean removeProduct(Product p) {
-        return false;
+    public List<Purchase> viewPurchaseHistory() {
+        return null;
     }
 
-    @Override
-    public boolean editProduct(Product OLD_p, Product NEW_p) {
-        return false;
-    }
+	@Override
+	public Boolean CheckItemAvailable(ProductDetails items) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean appointOwner(IUser user) {
-        return false;
-    }
+	@Override
+	public double getPrice(String item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public boolean appointManager(IUser user) {
-        return false;
-    }
+	@Override
+	public Product TakeItem(String name, int amout) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean fireManager(IUser user) {
-        return false;
-    }
+	@Override
+	public List<Discount> getDiscounts(String name) {
+		//TODO imp
+		return null;
+	}
 
-    @Override
-    public List<PurchaseDetails> viewPurchaseHistory() {
-        List<PurchaseDetails> A=new LinkedList<>();
-        A.add(new PurchaseDetails());
-        return A;
-    }
+	@Override
+	public boolean removeProduct(String pName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editProduct(String OLD_p, Product NEW_p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean appointManager(StoreManager_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean appointOwner(StoreOwner_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean fireManager(StoreManager_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean fireOwner(StoreOwner_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -1,19 +1,23 @@
 package Domain.Store;
 
+import java.util.LinkedList;
 import java.util.List;
 
-public class Product implements IProduct{
+import Domain.info.ProductDetails;
+
+public class Product extends Object  implements IProduct{
     private String name;
-    private String category;
+    private List<String> category;
     private List<String> keyWords;
     private double price;
     private int rating;
     private StoreImp store;
     private int amount;
 
-    public Product(String name , String category, List<String> keyWords , double price , int rating, StoreImp store) {
+    public Product(String name , List<String> category, List<String> keyWords , double price , int rating, StoreImp store) {
         this.name = name;
-        this.category=category;
+        this.category=new LinkedList<String>();
+        this.category.addAll(category);
         
         this.keyWords=keyWords;
         this.price=price;
@@ -22,11 +26,20 @@ public class Product implements IProduct{
         amount=0;
     }
 
-    public String getName() {
+    public Product(ProductDetails p) {
+		name = p.getName();
+		category.addAll(p.getCategory());
+		keyWords.addAll(p.getKeyWords());
+		price = p.getPrice();
+		rating = 0;
+		amount = p.getAmount();
+	}
+
+	public String getName() {
         return name;
     }
 
-    public String getCategory() {
+    public List<String> getCategory() {
         return category;
     }
 
@@ -76,5 +89,17 @@ public class Product implements IProduct{
         }
     }
 
-
+    @Override
+    public String toString()
+    {
+    	String output ="";
+    	output +="name:"+ name + "\n";
+    	output +="category:"+ category + "\n";
+    	output +="rating:"+ rating + "\n";
+    	output +="amount:"+ amount + "\n";
+    	output +="price:"+ price + "\n";
+    	return output;
+    			
+    }
+    
 }

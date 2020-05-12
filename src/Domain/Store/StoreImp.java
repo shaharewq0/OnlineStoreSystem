@@ -1,58 +1,81 @@
 package Domain.Store;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
+import Domain.Logs.ErrorLogger;
+import Domain.Logs.EventLogger;
+import Domain.RedClasses.IUser;
+import Domain.Store.workers.Creator;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
+import Domain.Store.workers.Store_role;
+import Domain.info.ProductDetails;
+import Domain.info.Question;
+import Domain.info.StoreInfo;
+import extornal.supply.Packet_Of_Prodacts;
 
 public class StoreImp implements IStore {
 	private String name;
-	private List<Product> products;
-	private List<IUser> Owners;
-	private List<IUser> Managers;
+	private Creator creator;
+	private Store_Inventory inventory = new Store_Inventory();
+	private Map<String, StoreOwner_Imp> Owners = new HashMap<String, StoreOwner_Imp>();
+	private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
 	private String address;
 	private int rating;
+	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
+	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
+	private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
-	private Map<IUser, List<IshoppingBasket>> purcheses;
+	public StoreImp(String name, Collection<Product> products, String address, int rating) {
 
-	public StoreImp(String name, List<Product> products, String address, int rating) {
 		this.name = name;
-		this.products = new LinkedList<>();
+		inventory.recive_item(new Packet_Of_Prodacts(products));
 		// this.products = products;
 		this.address = address;
 		this.rating = rating;
-		Owners = new LinkedList<>();
-		Managers = new LinkedList<>();
-		purcheses = new HashMap<>();
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created");
 	}
 
 	public StoreImp(String name, String address, int rating) {
 		this.name = name;
-		this.products = new LinkedList<>();
 		this.address = address;
 		this.rating = rating;
-		Owners = new LinkedList<>();
-		Managers = new LinkedList<>();
-		purcheses = new HashMap<>();
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created without items");
 
 	}
 
-	public List<IUser> getOwners() {
-		return Owners;
+	public StoreImp(StoreInfo store) {
+		name = store.name;
+		address = store.address;
+		rating = store.rating;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created without itmes");
+
 	}
 
-	public List<IUser> getManagers() {
-		return Managers;
+	public void myCreator(Creator c) {
+		creator = c;
+	}
+
+	// ----------------------------------------------------------------------------------------my
+	// info
+	public Creator getCreator() {
+		return creator;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public Collection<Product> getProducts() {
+		return inventory.items.values();
+	}
+
+	public List<ProductDetails> getProductsDetails() {
+		return ProductDetails.adapteProdactList(inventory.items.values());
 	}
 
 	public String getAddress() {
@@ -63,95 +86,191 @@ public class StoreImp implements IStore {
 		return rating;
 	}
 
-	@Override
-	public List<PurchaseDetails> viewPurchaseHistory() {
-		// throw new NotImplementedException();
-		// i don't know how we do this
-		// how does purchase look?
-		// TODO
-		return new LinkedList<PurchaseDetails>();
+	public StoreInfo getMyInfo() {
+		return new StoreInfo(name, address, rating, getProductsDetails());
+	}
+
+	// ----------------------------------------------------------------------------------------
+	// workers
+	public Collection<StoreOwner_Imp> getOwners() {
+		return Owners.values();
+	}
+
+	public Collection<StoreManager_Imp> getManagers() {
+		return Managers.values();
 	}
 
 	@Override
-	public boolean fireManager(IUser user) {
-		// asked by owner/manager that given user is under them already so no need for
-		// logic here
-		return Managers.remove(user);
+	public List<Purchase> viewPurchaseHistory() {
+
+		return purchaseHistory;
 	}
 
 	@Override
-	public boolean appointManager(IUser user) {
-		if (Managers.contains(user))
+	public boolean fireManager(StoreManager_Imp user) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
+		return Managers.remove(user.getName()) != null;
+	}
+
+	@Override
+	public boolean fireOwner(StoreOwner_Imp user) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
+		return Owners.remove(user.getName()) != null;
+	}
+
+	@Override
+	public boolean appointManager(StoreManager_Imp worker) {
+		if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
 			return false;
-		return Managers.add(user);
-	}
-
-	@Override
-	public boolean appointOwner(IUser user) {
-		if (Owners.contains(user))
-			return false;
-		return Owners.add(user);
-	}
-
-	@Override
-	public boolean editProduct(Product OLD_p, Product NEW_p) {
-		for (Product p : products) {
-			if (p.compare(OLD_p)) {
-				p.edit(NEW_p);
-				return true;
-			}
 		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
+		return Managers.put(worker.getName(), worker) != null;
+	}
+
+	@Override
+	public boolean appointOwner(StoreOwner_Imp worker) {
+		if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
+			return false;
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
+		return Owners.put(worker.getName(), worker) != null;
+	}
+
+	public boolean editManagerPermesions(String managername, List<String> permesions) {
+		StoreManager_Imp m = Managers.get(managername);
+		if (m != null) {
+			EventLogger.GetInstance().Add_Log(this.toString() + "- edit manager permesions");
+			return m.getNewPermesions(permesions);
+		}
+		ErrorLogger.GetInstance().Add_Log(this.toString() + "edit manager manager dont exsist");
+
 		return false;
 	}
 
+//-------------------------------------------------------------------------- products --	
+
 	@Override
-	public boolean removeProduct(Product p) {
-		return products.remove(p);
+	public boolean editProduct(String OLD_p, Product NEW_p) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- edit item");
+
+		return inventory.editProduct(OLD_p, NEW_p);
+	}
+
+	@Override
+	public boolean removeProduct(String pName) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "-remove product");
+
+		return inventory.removeProduct(pName);
 	}
 
 	public boolean addProduct(Product p) {
-		if (contains(p, products) | !p.getStore().getName().equals(name)) {
+
+		if (!p.getStore().getName().equals(name)) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
+
 			return false;
 		}
-		products.add(p);
-		return true;
+		EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
+
+		return inventory.recive_item(new Packet_Of_Prodacts(p));
 	}
 
-	private boolean contains(Product p, List<Product> products) {
-		for (Product current : products) {
-			if (current.getName().equals(p.getName())) {
-				return true;
-			}
-		}
-		return false;
+	public boolean addProduct(ProductDetails p) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
+
+		return inventory.recive_item(p);
 	}
 
 	public Product findProductByName(String name) {
-		for (Product p : products) {
-			if (p.getName().equals(name)) {
-				return p;
-			}
-		}
+		return inventory.items.get(name);
+
+	}
+
+	public ProductDetails findProductDetailsByName(String name) {
+		if (inventory.items.containsKey(name))
+			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
 		return null;
 	}
 
 	public List<Product> findProductByCategory(String category) {
-		List<Product> toReturn = new LinkedList<>();
-		for (Product p : products) {
-			if (p.getCategory().equals(category)) {
-				toReturn.add(p);
-			}
-		}
-		return toReturn;
+		return inventory.findProductByCategory(category);
+
+	}
+
+	public List<ProductDetails> findProductDetailsByCategory(String category) {
+		return ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
+
 	}
 
 	public List<Product> findProductByKeyword(String keyword) {
-		List<Product> toReturn = new LinkedList<>();
-		for (Product p : products) {
-			if (p != null && p.getKeyWords().contains(keyword)) {
-				toReturn.add(p);
-			}
-		}
-		return toReturn;
+		return inventory.findProductByKeyword(keyword);
+
 	}
+
+	public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
+		return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword));
+
+	}
+
+	public Boolean CheckItemAvailable(ProductDetails item) {
+		if (findProductByName(item.getName()) == null)
+			return false;
+		if (findProductByName(item.getName()).getAmount() > item.getAmount())
+			return true;
+
+		return false;
+	}
+
+// ----------------------------------------------------buying
+
+	public double getPrice(String item) {
+		if(findProductByName(item)== null)
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- cant find item to calc price");
+			
+		//TODO add discount here
+
+		return findProductByName(item).getPrice();
+	}
+
+	@Override
+	synchronized public Product TakeItem(String name, int amount) {
+		Product takeout = null;
+		Product temp = findProductByName(name);
+		if(temp == null) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
+			return null;
+		}
+		if (temp.getAmount() > amount) {
+			EventLogger.GetInstance().Add_Log(this.toString() +"- taking out products full amount");
+			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount, this);
+			temp.removeAmount(amount);
+		} else {
+			EventLogger.GetInstance().Add_Log(this.toString() +"- taking out products not full amount");
+			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount(),
+					this);
+			temp.removeAmount(temp.getAmount());
+		}
+		return takeout;
+	}
+
+	public List<Discount> getDiscounts(String name) {
+		Product p = findProductByName(name);
+		return discounts.get(p);
+
+	}
+
+	// --------------------------------------------------- questions
+	public Collection<Question> getQuestions() {
+
+		return questions.values();
+	}
+
+	public boolean respondToQuestion(String ansewer, int qustionID) {
+		questions.get(qustionID).addAnsewers(ansewer);
+		return true;
+
+	}
+
 }

@@ -55,7 +55,8 @@ public class SystemAdapter {
 	public boolean openStore(StoreDetails storeDetails) {
 		return System.getInstance().openStore(storeDetails.getName(), "London", 9) != null;
 	}
-	//use case 2
+
+	// use case 2
 	public boolean hasStore(String storeName) {
 		return System.getInstance().getStoreDetails(storeName) != null;
 	}
@@ -64,8 +65,6 @@ public class SystemAdapter {
 		return System.getInstance().getStoreDetails(validStoreName).getManagers().toString();
 	}
 
-	
-	
 	public List<PurchaseDetails> getPurchaseHistory(String username) {
 		List<PurchaseDetails> temp = new LinkedList<>();
 		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
@@ -78,7 +77,8 @@ public class SystemAdapter {
 		// TODO function dont exsist
 		return System.getInstance().Registered_contains(username) != null;
 	}
-	//use case 2
+
+	// use case 2
 	public StoreDetails getStoreDetails(String storeName) {
 		StoreImp store = System.getInstance().getStoreDetails(storeName);
 		if (store == null)
@@ -96,19 +96,26 @@ public class SystemAdapter {
 		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
 		if (pro == null)
 			return null;
-		return new ProductDetails(pro);
+		return new ProductDetails(pro, 0);
 	}
-	//use case 2
+
+	// use case 2
 	public List<ProductDetails> searchProductByName(String name) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByName(name));
+		return null;// return
+					// ProductDetails.adapteProdactList(System.getInstance().searchProductsByName(name));
 	}
-	//use case 2
+
+	// use case 2
 	public List<ProductDetails> searchProductByCategory(String category) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByCategory(category));
+		return null;// return
+					// ProductDetails.adapteProdactList(System.getInstance().searchProductsByCategory(category));
 	}
-	//use case 2
+
+	// use case 2
 	public List<ProductDetails> searchProductByKeyword(String keyword) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByKeyword(keyword));
+		return null;
+		// return
+		// ProductDetails.adapteProdactList(System.getInstance().searchProductsByKeyword(keyword));
 	}
 
 	public List<ProductDetails> filterByPrice(double minPrice, double maxPrice) {
@@ -162,8 +169,6 @@ public class SystemAdapter {
 		return System.getInstance().getStoreDetails(storeName).findProductByName(productName) != null;
 	}
 
-	
-	
 	public boolean addProductToStore(String storeName, String productName) {
 		System system = System.getInstance();
 		// Product p = system.searchProductsByName(productName).get(0);
@@ -173,9 +178,10 @@ public class SystemAdapter {
 	}
 
 	public boolean RemoveProduct(String storeName, String productName) {
-		System system = System.getInstance();
-		Product p = system.searchProductsByName(productName).get(0);
-		return system.getStoreDetails(storeName).removeProduct(p);
+//		System system = System.getInstance();
+//		Product p = system.searchProductsByName(productName).get(0);
+//		return system.getStoreDetails(storeName).removeProduct(productName);
+		return false;
 	}
 
 	public boolean addProduct(String username, String password, String storeName, ProductDetails productName) {
@@ -235,7 +241,8 @@ public class SystemAdapter {
 	}
 
 	public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
-		return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
+		return null;
+		// return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
 	}
 
 	public List<Question> getStoreQuestions(String storeName) {
