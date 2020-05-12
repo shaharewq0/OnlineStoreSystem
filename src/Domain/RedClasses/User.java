@@ -42,7 +42,7 @@ public class User implements IUser {
 	}
 
 	public boolean login(String id, String password) {
-		if (profile == null)
+		if (profile != null)
 			return false;
 
 		profile = System.getInstance().login(id, password, this);
@@ -374,7 +374,9 @@ public class User implements IUser {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
+		if(profile == null)
 		return "Error still no name";
+		return profile.getId();
 	}
 
 }

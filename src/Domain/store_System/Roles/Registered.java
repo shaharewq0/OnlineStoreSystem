@@ -9,44 +9,41 @@ import Domain.RedClasses.User;
 import Domain.Store.Purchase;
 import Domain.Store.workers.Store_role;
 
-public class Registered{
-    private String id;
-    private List<Purchase> myPurcase = new LinkedList<Purchase>();
+public class Registered {
+	private String id;
+	private List<Purchase> myPurcase = new LinkedList<Purchase>();
 	public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
-    
-    
-     public Registered(String id) {
-        this.id = id;
-        
-    }
 
-    public String getId() {
-        return id;
-    }
+	public Registered(String id) {
+		this.id = id;
+
+	}
+
+	public String getId() {
+		return id;
+	}
 
 	public void LogLogin(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-
-	public void LogHistory(Purchase p)
-	{
+	public void LogHistory(Purchase p) {
 		myPurcase.add(p);
 	}
-	
+
 	public List<Purchase> getPurchesHistory() {
 		return myPurcase;
 	}
 
 	public void LogLogout(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-//TODO
 	public boolean getFired(String name) {
-		return false;
+		return store_roles.remove(name) != null;
+
 	}
 
 }

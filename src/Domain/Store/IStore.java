@@ -3,10 +3,8 @@ package Domain.Store;
 import java.util.Collection;
 import java.util.List;
 
-import Domain.RedClasses.IUser;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
-import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 
 public interface IStore {

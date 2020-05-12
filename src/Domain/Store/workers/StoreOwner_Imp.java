@@ -8,7 +8,6 @@ import java.util.Map;
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
-import Domain.RedClasses.User;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
