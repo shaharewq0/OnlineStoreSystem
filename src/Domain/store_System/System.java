@@ -35,6 +35,12 @@ public class System implements ISystem {
 
 	private static System instance = null;
 
+	public void removeUser(String username, String password) {
+		//TODO temp
+		membersprofiles.remove(username);
+		myProtocol.deleteRegistry(username, password);
+	}
+
 	public void resetSystem(){
 		instance = null;	//	TODO: temp
 	}

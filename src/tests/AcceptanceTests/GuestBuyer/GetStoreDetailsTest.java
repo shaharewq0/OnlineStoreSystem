@@ -55,7 +55,6 @@ public class GetStoreDetailsTest extends BaseAccTest {
 
     @AfterClass
     public static void tearDownClass() {
-        system.login(USERNAME, PASSWORD); // ManageInventoryTest.tearDownClass() call logout
         ManageInventoryTest.tearDownClass();
     }
 }

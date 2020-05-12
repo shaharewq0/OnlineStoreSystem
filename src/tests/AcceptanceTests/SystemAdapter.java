@@ -3,6 +3,7 @@ package tests.AcceptanceTests;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
+import Domain.store_System.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
@@ -20,6 +21,10 @@ public class SystemAdapter {
 		// Note: also need to delete all?
 	}
 
+	public void resetSystem() {
+		System.getInstance().resetSystem();
+	}
+
 	public int newGuest() {
 		return guest_accese.ImNew();
 	}
@@ -29,8 +34,8 @@ public class SystemAdapter {
 		return guest_accese.usecase2_2_guest_register(username, password);
 	}
 
-	public void removeUser(String username) {
-		/* TODO */
+	public void removeUser(String username, String password) {
+		System.getInstance().removeUser(username, password);
 	}
 
 	// 2.3
