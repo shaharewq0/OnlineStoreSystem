@@ -8,12 +8,18 @@ public class StoreDetails {
     }
 
     private String name;
+    private String address;
+    private int rating;
 
     public StoreDetails(String storeName) {
         name = storeName;
+        address = "london";
+        rating = 4;
     }
 
 	public StoreDetails(StoreImp storeDetails) {
-		 name = storeDetails.getName();
+        name = storeDetails.getName();
+        address = storeDetails.getAddress();
+        rating = storeDetails.getRating();
 	}
 }

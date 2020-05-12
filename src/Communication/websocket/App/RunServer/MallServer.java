@@ -25,20 +25,22 @@ public class MallServer {
     // In order to allow row wss, on need to run the following command in the terminal (from the RunServer folder)
     // sudo haproxy -f ws.cfg
 
-    public static void main(String[] args) throws DeploymentException {
-        Server server = run();
+    // Domain :
+    // wss://workshopv2.ddnsking.com/mall
 
-        new Scanner(System.in).nextLine();
-        server.stop();
+
+    public static void main(String[] args) throws DeploymentException {
+        run();
     }
 
-    public static Server run() throws DeploymentException {
+    public static void run() throws DeploymentException {
         protocols = new ConcurrentHashMap<>();
 
         Server server = new Server("localhost", 8080, "", MallServer.class);
 
         server.start();
-        return server;
+        new Scanner(System.in).nextLine();
+        server.stop();
     }
 
 

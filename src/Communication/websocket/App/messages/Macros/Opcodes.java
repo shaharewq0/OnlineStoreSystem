@@ -13,7 +13,7 @@ public class Opcodes {
     //Gusts
     public static final byte Register = 0x22;
     public static final byte Login = 0x23;
-    public static final byte StoreDetails = 4;
+    public static final byte StoreDetails = 3;
     public static final byte StoreProducts = 5;
     public static final byte ProductDetails = 6;
     public static final byte SearchProductByName = 7;
