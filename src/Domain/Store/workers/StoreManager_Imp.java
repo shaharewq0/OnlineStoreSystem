@@ -12,6 +12,7 @@ import Domain.RedClasses.User;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.workers.appoints.Appoint_manager;
 import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -19,9 +20,11 @@ import Domain.store_System.Roles.Registered;
 
 public class StoreManager_Imp implements Store_role {
 	private Registered user;
-	protected StoreImp store;
+	protected Appoint_manager MyJob = new Appoint_manager();
+//	protected StoreImp store;
+//	private Store_role boss;
 	protected String workername = "";
-	private Store_role boss; // the Owner who appointed current owner, null for original store owner
+	 // the Owner who appointed current owner, null for original store owner
 	protected Map<String, Store_role> OwnerAppointeis;// Owners who got appointed by current owner, for future use
 	protected Map<String, Store_role> ManagerAppointeis;// managers who got appointed by current owner
 	private List<String> permisions = new LinkedList<String>();
@@ -29,8 +32,8 @@ public class StoreManager_Imp implements Store_role {
 
 	public StoreManager_Imp(Store_role creator, String myname) {
 		workername = myname;
-		boss = creator;
-		store = creator.getStore();
+		MyJob.grantor= creator;
+		MyJob.store = creator.getStore();
 		OwnerAppointeis = new HashMap<String, Store_role>();
 		ManagerAppointeis = new HashMap<String, Store_role>();
 		this.permisions.addAll(MangaerPermesions.defult_permesions);
@@ -39,8 +42,8 @@ public class StoreManager_Imp implements Store_role {
 
 	public StoreManager_Imp(Store_role creator, String myname, List<String> permisions) {
 		workername = myname;
-		boss = creator;
-		store = creator.getStore();
+		MyJob.grantor= creator;
+		MyJob.store = creator.getStore();
 		OwnerAppointeis = new HashMap<String, Store_role>();
 		ManagerAppointeis = new HashMap<String, Store_role>();
 		this.permisions.addAll(permisions);
@@ -50,7 +53,7 @@ public class StoreManager_Imp implements Store_role {
 	@Override
 	public StoreImp getStore() {
 
-		return store;
+		return MyJob.store;
 	}
 
 	@Override
@@ -63,7 +66,7 @@ public class StoreManager_Imp implements Store_role {
 		if (!permisions.contains("addItem"))
 			return false;
 
-		return store.addProduct(item);
+		return MyJob.store.addProduct(item);
 
 	}
 
@@ -71,28 +74,28 @@ public class StoreManager_Imp implements Store_role {
 	public boolean addItem(ProductDetails item) {
 		if (!permisions.contains("addItem"))
 			return false;
-		return store.addProduct(item);
+		return MyJob.store.addProduct(item);
 	}
 
 	@Override
 	public boolean editItem(String OLD_item, Product NEW_item) {
 		if (!permisions.contains("editItem"))
 			return false;
-		return store.editProduct(OLD_item, NEW_item);
+		return MyJob.store.editProduct(OLD_item, NEW_item);
 	}
 
 	@Override
 	public boolean removeItem(String prodactname) {
 		if (!permisions.contains("removeItem"))
 			return false;
-		return store.removeProduct(prodactname);
+		return MyJob.store.removeProduct(prodactname);
 	}
 
 	@Override
 	public List<Purchase> getPurchaseHistory() {
 		if (!permisions.contains("getPurchaseHistory"))
 			return null;
-		return store.viewPurchaseHistory();
+		return MyJob.store.viewPurchaseHistory();
 
 	}
 
@@ -100,7 +103,7 @@ public class StoreManager_Imp implements Store_role {
 	public Collection<Question> viewQuestions() {
 		if (!permisions.contains("viewQuestions"))
 			return null;
-		return store.getQuestions();
+		return MyJob.store.getQuestions();
 	}
 
 	@Override
@@ -108,7 +111,7 @@ public class StoreManager_Imp implements Store_role {
 		if (!permisions.contains("giveRespond"))
 			return false;
 
-		return store.respondToQuestion(ansewr, qustionID);
+		return MyJob.store.respondToQuestion(ansewr, qustionID);
 	}
 
 	// ------------------------------------------------------------Role actions
@@ -141,14 +144,14 @@ public class StoreManager_Imp implements Store_role {
 	public boolean fire(String manager) {
 		if (!permisions.contains("fire"))
 			return false;
-		return store.fireManager(manager);
+		return MyJob.store.fireManager(manager);
 		//return manager.getFired(store.getName());
 	}
 	
 	@Override
 	public boolean getfire() {
-		boss.IgotFire(workername);
-		return user.getFired(store.getName());
+		MyJob.grantor.IgotFire(workername);
+		return user.getFired(MyJob.store.getName());
 	}
 
 	@Override
@@ -171,7 +174,7 @@ public class StoreManager_Imp implements Store_role {
 		if (!permisions.contains("editManagerPermesions"))
 			return false;
 
-		return store.editManagerPermesions(managername, permesions);
+		return MyJob.store.editManagerPermesions(managername, permesions);
 	}
 
 	@Override
