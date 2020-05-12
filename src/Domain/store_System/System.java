@@ -1,20 +1,10 @@
 package Domain.store_System;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
 import Domain.RedClasses.shoppingCart;
-import Domain.Store.IStore;
-import Domain.Store.MyPair;
-import Domain.Store.Product;
-import Domain.Store.Purchase;
-import Domain.Store.StoreImp;
+import Domain.Store.*;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
@@ -27,6 +17,8 @@ import extornal.payment.PaymentMethed;
 import extornal.supply.MySupplySystem;
 import extornal.supply.MySupplySystem_Driver;
 import extornal.supply.Supplyer;
+
+import java.util.*;
 
 public class System implements ISystem {
 
@@ -42,6 +34,10 @@ public class System implements ISystem {
 	private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
 	private static System instance = null;
+
+	public void resetSystem(){
+		instance = null;	//	TODO: temp
+	}
 
 	public int ImNew() {
 		TempGuestID++;

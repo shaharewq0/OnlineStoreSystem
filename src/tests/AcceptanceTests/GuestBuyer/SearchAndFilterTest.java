@@ -1,15 +1,15 @@
 package tests.AcceptanceTests.GuestBuyer;
 
+import Domain.info.ProductDetails;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
+import static tests.AcceptanceTests.auxiliary.Products.*;
 
 public class SearchAndFilterTest extends BaseAccTest {
 
@@ -32,7 +32,7 @@ public class SearchAndFilterTest extends BaseAccTest {
     @Test
     public void searchProductByCategory() {
         List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT3);
-        List<ProductDetails> products = system.searchProductByCategory(PRODUCT1.getCategory());
+        List<ProductDetails> products = system.searchProductByCategory(PRODUCT1.getCategory().get(0));
         assertEqualsLists(TrueProducts, products);
     }
 
@@ -68,7 +68,7 @@ public class SearchAndFilterTest extends BaseAccTest {
     @Test
     public void filterByCategory() {
         List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT3);
-        List<ProductDetails> products = system.filterByCategory(PRODUCT1.getCategory());
+        List<ProductDetails> products = system.filterByCategory(PRODUCT1.getCategory().get(0));
         assertEqualsLists(TrueProducts, products);
     }
 

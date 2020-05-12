@@ -56,7 +56,7 @@ public class guest_accese {
 		return User.searchProductsByKeyword(keyword);
 	}
 
-	public static List<ProductDetails> usecase2_5D_1_FilterbyPrice(int minPrice, int maxPrice) {
+	public static List<ProductDetails> usecase2_5D_1_FilterbyPrice(double minPrice, double maxPrice) {
 		return User.filterByPrice(minPrice, maxPrice);
 	}
 
@@ -64,7 +64,7 @@ public class guest_accese {
 		return User.filterByRating(minRating, maxRating);
 	}
 
-	public static List<ProductDetails> usecase2_5D_3_FilterbyCategory(List<String> prodacts, String category) {
+	public static List<ProductDetails> usecase2_5D_3_FilterbyCategory(String category) {
 		return User.filterByCategory(category);
 
 	}

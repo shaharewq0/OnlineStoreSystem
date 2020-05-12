@@ -1,26 +1,20 @@
 package Domain.RedClasses;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import Domain.Store.workers.Creator;
-import Domain.Store.workers.StoreManager_Imp;
-import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
-import Domain.store_System.System;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
+import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
+
+import java.util.*;
 
 public class User implements IUser {
 
@@ -297,7 +291,7 @@ public class User implements IUser {
 		return System.getInstance().searchProductsByKeyword(keyword);
 	}
 
-	static public List<ProductDetails> filterByPrice(int minPrice, int maxPrice) {
+	static public List<ProductDetails> filterByPrice(double minPrice, double maxPrice) {
 
 		List<ProductDetails> output = new LinkedList<ProductDetails>();
 		for (StoreImp store : System.getInstance().getAllStores()) {

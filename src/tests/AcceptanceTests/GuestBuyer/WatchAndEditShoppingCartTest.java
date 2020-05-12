@@ -1,11 +1,11 @@
 package tests.AcceptanceTests.GuestBuyer;
 
+import Domain.info.ProductDetails;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
-import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
+import static tests.AcceptanceTests.auxiliary.Products.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WatchAndEditShoppingCartTest extends BaseGuestTest {

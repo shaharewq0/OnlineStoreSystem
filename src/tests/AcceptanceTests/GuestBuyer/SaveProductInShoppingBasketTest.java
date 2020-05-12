@@ -8,8 +8,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
-import static tests.AcceptanceTests.auxiliary.ProductDetails.PRODUCT1;
-import static tests.AcceptanceTests.auxiliary.ProductDetails.PRODUCT_THAT_DONT_EXIST;
+import static tests.AcceptanceTests.auxiliary.Products.PRODUCT1;
+import static tests.AcceptanceTests.auxiliary.Products.PRODUCT_THAT_DONT_EXIST;
 
 public class SaveProductInShoppingBasketTest extends BaseGuestTest {
 

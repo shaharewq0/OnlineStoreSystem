@@ -15,7 +15,7 @@ import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
-import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
+import static tests.AcceptanceTests.auxiliary.Products.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ManageInventoryTest extends BaseAccTest {

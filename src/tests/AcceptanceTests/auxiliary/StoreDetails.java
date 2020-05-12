@@ -18,8 +18,8 @@ public class StoreDetails {
     }
 
     public StoreDetails(StoreImp storeDetails) {
-		//TODO
         name = storeDetails.getName();
+        rating = storeDetails.getRating();
 	}
 
     @Override

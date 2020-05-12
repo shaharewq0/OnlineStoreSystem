@@ -15,7 +15,7 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
     @BeforeClass
     public static void setUpClass() {
         PurchaseTest.setUpClass();
-        system.login(USERNAME, PASSWORD);
+        system.login(USERNAME, PASSWORD);   // do login with guest id
         //TODO: check that login keep the guest cart
         //  call purchase
     }

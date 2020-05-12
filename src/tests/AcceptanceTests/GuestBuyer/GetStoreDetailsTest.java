@@ -1,11 +1,11 @@
 package tests.AcceptanceTests.GuestBuyer;
 
+import Domain.info.ProductDetails;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.StoreOwner.ManageInventoryTest;
-import tests.AcceptanceTests.auxiliary.ProductDetails;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,7 @@ import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
-import static tests.AcceptanceTests.auxiliary.ProductDetails.*;
+import static tests.AcceptanceTests.auxiliary.Products.*;
 
 public class GetStoreDetailsTest extends BaseAccTest {
 
