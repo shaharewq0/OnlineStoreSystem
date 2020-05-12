@@ -1,6 +1,5 @@
 package Communication.websocket.App.messages.Objects;
 
-import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.MallProtocol;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
@@ -17,8 +16,8 @@ public class LoginMessage extends Client2ServerMessage {
     private String password;
 
 
-    public LoginMessage(String username, String password) {
-        super(Opcodes.Login);
+    public LoginMessage(long id, String username, String password) {
+        super(Opcodes.Login, id);
         this.username = username;
         this.password = password;
     }
@@ -36,6 +35,7 @@ public class LoginMessage extends Client2ServerMessage {
         return "LoginMessage{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", id ='" + getId() + '\'' +
                 '}';
     }
 

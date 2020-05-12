@@ -3,34 +3,62 @@ package Communication.websocket.App.EncoderDecoder;
 import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.DemoMessage;
 import Communication.websocket.App.messages.Objects.LoginMessage;
+import Communication.websocket.App.messages.Objects.LogoutMessage;
+import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.Objects.RegisterMessage;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
-import java.nio.ByteBuffer;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class MessageDecoder implements Decoder.Binary<Message>  {
+public class MessageDecoder implements Decoder.Text<Message>  {
+
 
     @Override
-    public Message decode(ByteBuffer byteBuffer) throws DecodeException {
+    public Message decode(String msg) throws DecodeException {
 
-        byte[] message = byteBuffer.array();
+        JSONParser parser = new JSONParser();
 
-        if(message.length == 0)
-            throw new IllegalArgumentException("illegal message");
+        try{
+            JSONObject recieved = (JSONObject)parser.parse(msg);
+            JSONObject message = (JSONObject)(recieved.get("json_data"));
+            Deque<Byte> bytes = new LinkedList<>();
 
+            long id = (long)recieved.get("cmd_id");
 
-        return decode(message);
+            for (int i = 0; true ; i++) {
+                Object obj = message.get(String.valueOf(i));
 
+                if(obj == null)
+                    break;
+
+                long cur = (long)obj;
+                byte b = (byte)cur;
+                bytes.offer(b);
+            }
+
+            Client2ServerMessage m = (Client2ServerMessage) decode(list2array(bytes));
+            m.setId(id);
+
+            return m;
+
+        }
+        catch(ParseException pe) {
+            pe.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override
-    public boolean willDecode(ByteBuffer byteBuffer) {
+    public boolean willDecode(String byteBuffer) {
         return true;
     }
 
@@ -53,14 +81,18 @@ public class MessageDecoder implements Decoder.Binary<Message>  {
 
         Deque<Deque<Byte>> parameters = parameterize(message);
 
-        switch (opcode(parameters)){
+        byte op = opcode(parameters);
+        switch (op){
             case Opcodes.Demo : return Demo(parameters);
 
             case Opcodes.Register : return Register(parameters);
             case Opcodes.Login : return Login(parameters);
 
 
-            default:  throw new IllegalArgumentException("unknown opcode");
+            case  Opcodes.Logout : return Logout(parameters);
+
+
+            default:  throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
 
@@ -186,7 +218,7 @@ public class MessageDecoder implements Decoder.Binary<Message>  {
             throw new IllegalArgumentException("to much parameter fo a register object!");
         }
 
-        return new RegisterMessage(name, pass);
+        return new RegisterMessage(-1, name, pass);
     }
 
     private Message Login( Deque<Deque<Byte>> parameters){
@@ -202,6 +234,22 @@ public class MessageDecoder implements Decoder.Binary<Message>  {
             throw new IllegalArgumentException("to much parameter fo a register object!");
         }
 
-        return new LoginMessage(name, pass);
+        return new LoginMessage(-1, name, pass);
+    }
+
+
+
+    private Message Logout(Deque<Deque<Byte>> parameters) {
+        Byte    op   = popOpcode(parameters);
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter fo a register object!");
+        }
+
+        if(op != Opcodes.Logout){
+            throw new IllegalArgumentException("to much parameter fo a register object!");
+        }
+
+        return new LogoutMessage(-1);
     }
 }

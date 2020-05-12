@@ -1,6 +1,5 @@
 package Communication.websocket.App.messages.Objects;
 
-import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.MallProtocol;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
@@ -14,7 +13,7 @@ public class DemoMessage extends Client2ServerMessage {
 
 
     public DemoMessage(byte opcode, String content) {
-        super(opcode);
+        super(opcode, 42);
         this.content = content;
     }
 
@@ -26,6 +25,7 @@ public class DemoMessage extends Client2ServerMessage {
     public String toString() {
         return "DemoMessage{" +
                 "content='" + content + '\'' +
+                ", id ='" + getId() + '\'' +
                 '}';
     }
 

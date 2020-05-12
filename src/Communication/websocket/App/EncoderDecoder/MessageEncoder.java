@@ -3,23 +3,24 @@ package Communication.websocket.App.EncoderDecoder;
 
 import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.*;
-import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
+import org.json.simple.JSONObject;
 
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
-import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MessageEncoder implements  Encoder.Binary<Message> {
+public class MessageEncoder implements  Encoder.Text<Message> {
+
+    private JSONObject json;
 
 
     @Override
-    public ByteBuffer encode(Message msg) throws EncodeException {
-        return ByteBuffer.wrap(((Server2ClientMessage)msg).visit(this));
+    public String encode(Message msg) throws EncodeException {
+        return ((Server2ClientMessage)msg).visit(this) ;
     }
 
 
@@ -54,20 +55,21 @@ public class MessageEncoder implements  Encoder.Binary<Message> {
         return  arr;
     }
 
-    public byte[] accept(AckMessage msg){
-        LinkedList<Byte> lst = new LinkedList<>();
+    public String accept(AckMessage msg){
+        json = new JSONObject();
+        json.put("cmd_id", msg.getReplayForID());
+        json.put("result", msg.getOpcode());
 
-        lst.offer(msg.getOpcode());
-
-        return list2array(lst);
+        return  json.toString();
     }
 
-    public byte[] accept(NackMessage msg){
-        LinkedList<Byte> lst = new LinkedList<>();
+    public String accept(NackMessage msg){
+        json = new JSONObject();
+        json.put("cmd_id", msg.getReplayForID());
+        json.put("result", msg.getOpcode());
 
-        lst.offer(msg.getOpcode());
+        return  json.toString();
 
-        return list2array(lst);
     }
 
 

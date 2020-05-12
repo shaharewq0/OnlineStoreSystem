@@ -2,16 +2,20 @@ package Communication.websocket.App;
 
 import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
+import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import org.glassfish.tyrus.server.Server;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ServerEndpoint(
@@ -27,7 +31,10 @@ public class MallServer {
 
 
     public static void main(String[] args) throws DeploymentException {
+        run();
+    }
 
+    public static void run() throws DeploymentException {
         protocols = new ConcurrentHashMap<>();
 
         Server server = new Server("localhost", 8080, "", MallServer.class);
@@ -36,7 +43,6 @@ public class MallServer {
         new Scanner(System.in).nextLine();
         server.stop();
     }
-
 
 
 
@@ -62,7 +68,7 @@ public class MallServer {
         if(response != null){
             try {
                 session.getBasicRemote().sendObject(response);
-                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s", session.getId(), msg.toString());
+                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s", session.getId(), response.toString());
             } catch (IOException | EncodeException e) {
                 e.printStackTrace();
             }
@@ -70,7 +76,7 @@ public class MallServer {
     }
 
     @OnError
-    public void onError(Session session, Throwable e){
+    public void onError(Throwable e){
         e.printStackTrace();
     }
 
@@ -80,4 +86,24 @@ public class MallServer {
         protocols.remove(session);
     }
 
+
+
+    /**
+     * convert a klist to array
+     * @return the list to convert
+     */
+    private byte[] list2array(Deque<Byte> lst){
+
+        int size = lst.size();
+        int i = 0;
+
+        byte[] arr = new byte[size];
+
+        for (Byte b: lst){
+            arr[i] = b;
+            i++;
+        }
+
+        return  arr;
+    }
 }

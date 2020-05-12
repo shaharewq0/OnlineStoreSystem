@@ -6,12 +6,25 @@ import Communication.websocket.App.messages.api.Server2ClientMessage;
 
 public class NackMessage extends Server2ClientMessage {
 
-    public NackMessage() {
-        super(Opcodes.Nack);
+    public NackMessage(long replayForID) {
+        super(Opcodes.Nack, replayForID);
     }
 
     @Override
-    public byte[] visit(MessageEncoder encoder) {
+    public String visit(MessageEncoder encoder) {
         return encoder.accept(this);
+    }
+
+    @Override
+    public String toString() {
+        return "NackMessage{" +
+                " replyFor ='" + getReplayForID() + '\'' +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return  !(o == null || getClass() != o.getClass());
     }
 }

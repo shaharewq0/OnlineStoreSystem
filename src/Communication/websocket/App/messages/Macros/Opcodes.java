@@ -33,7 +33,7 @@ public class Opcodes {
 
 
     //member
-    public static final byte Logout = 21;
+    public static final byte Logout = 0x31;
     public static final byte OpenStore = 22;
     public static final byte PurchasesHistory = 23;
 

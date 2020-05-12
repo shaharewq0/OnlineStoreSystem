@@ -1,6 +1,5 @@
 package Communication.websocket.App.messages.Objects;
 
-import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.MallProtocol;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
@@ -17,8 +16,8 @@ public class RegisterMessage extends Client2ServerMessage {
     private String password;
 
 
-    public RegisterMessage(String username, String password) {
-        super(Opcodes.Register);
+    public RegisterMessage(long id, String username, String password) {
+        super(Opcodes.Register, id);
         this.username = username;
         this.password = password;
     }
@@ -51,6 +50,7 @@ public class RegisterMessage extends Client2ServerMessage {
         return "RegisterMessage{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", id ='" + getId() + '\'' +
                 '}';
     }
 

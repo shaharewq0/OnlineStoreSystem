@@ -6,12 +6,25 @@ import Communication.websocket.App.messages.api.Server2ClientMessage;
 
 public class AckMessage extends Server2ClientMessage {
 
-    public AckMessage() {
-        super(Opcodes.Ack);
+    public AckMessage(long replayForID) {
+        super(Opcodes.Ack, replayForID);
     }
 
     @Override
-    public byte[] visit(MessageEncoder encoder) {
+    public String visit(MessageEncoder encoder) {
         return encoder.accept(this);
+    }
+
+    @Override
+    public String toString() {
+        return "AckMessage{" +
+                " replyFor ='" + getReplayForID() + '\'' +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return  !(o == null || getClass() != o.getClass());
     }
 }

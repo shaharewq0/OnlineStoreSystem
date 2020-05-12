@@ -1,8 +1,6 @@
 package Communication.websocket.App;
 
-import Communication.websocket.App.messages.Objects.DemoMessage;
-import Communication.websocket.App.messages.Objects.LoginMessage;
-import Communication.websocket.App.messages.Objects.RegisterMessage;
+import Communication.websocket.App.messages.Objects.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
@@ -20,15 +18,18 @@ public class MallProtocol implements MessagingProtocol<Message> {
 
 
     public Message accept(DemoMessage msg){
-        return null;
+        return new NackMessage(msg.getId());
     }
 
     public Message accept(RegisterMessage msg){
-        return null;
+        return new AckMessage(msg.getId());
     }
 
     public Message accept(LoginMessage msg){
-        return null;
+        return new AckMessage(msg.getId());
     }
 
+    public Message accept(LogoutMessage msg) {
+        return new AckMessage(msg.getId());
+    }
 }
