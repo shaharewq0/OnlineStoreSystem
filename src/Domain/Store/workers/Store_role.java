@@ -24,20 +24,24 @@ public interface Store_role {
 
 	boolean removeItem(String prodactname);
 
-	List<Purchase> getPurchaseHistory();
+	public List<Purchase> getPurchaseHistory();
 
 	boolean editManagerPermesions(String managername, List<String> permesions);
 
-	List<Question> viewQuestions();
+	public List<Question> viewQuestions();
 
 	boolean giveRespond(String ansewr, int qustionID);
 
 	boolean canPromoteToOwner();
 
-	StoreImp getStore();
+	public StoreImp getStore();
 
 	boolean getfire();
 
 	boolean IgotFire(String worker);
+
+	boolean getNewPermesions(List<String> Permesions);
+
+	public String getName();
 
 }

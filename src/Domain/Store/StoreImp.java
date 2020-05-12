@@ -19,8 +19,8 @@ public class StoreImp implements IStore {
 	private String name;
 	private Creator creator;
 	private Store_Inventory inventory = new Store_Inventory();
-	private List<StoreOwner_Imp> Owners = new LinkedList<StoreOwner_Imp>();
-	private List<StoreManager_Imp> Managers = new LinkedList<StoreManager_Imp>();
+	private Map<String, StoreOwner_Imp> Owners = new HashMap<String, StoreOwner_Imp>();
+	private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
 	private String address;
 	private int rating;
 	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
@@ -51,6 +51,7 @@ public class StoreImp implements IStore {
 	public void myCreator(Creator c) {
 		creator = c;
 	}
+
 	// ----------------------------------------------------------------------------------------my
 	// info
 
@@ -80,12 +81,12 @@ public class StoreImp implements IStore {
 
 	// ----------------------------------------------------------------------------------------
 	// workers
-	public List<StoreOwner_Imp> getOwners() {
-		return Owners;
+	public Collection<StoreOwner_Imp> getOwners() {
+		return Owners.values();
 	}
 
-	public List<StoreManager_Imp> getManagers() {
-		return Managers;
+	public Collection<StoreManager_Imp> getManagers() {
+		return Managers.values();
 	}
 
 	@Override
@@ -98,26 +99,25 @@ public class StoreImp implements IStore {
 	public boolean fireManager(IUser user) {
 		// asked by owner/manager that given user is under them already so no need for
 		// logic here
-		return Managers.remove(user);
+		return Managers.remove(user.getName()) != null;
 	}
 
 	@Override
-	public boolean appointManager(StoreManager_Imp user) {
-		if (Managers.contains(user))
+	public boolean appointManager(StoreManager_Imp worker) {
+		if (Managers.containsKey(worker.getName()))
 			return false;
-		return Managers.add(user);
+		return Managers.put(worker.getName(), worker) != null;
 	}
 
 	@Override
 	public boolean appointOwner(StoreOwner_Imp user) {
-		if (Owners.contains(user))
+		if (Owners.containsKey(user.getName()))
 			return false;
-		return Owners.add(user);
+		return Owners.put(user.getName(), user) != null;
 	}
 
 	public boolean editManagerPermesions(String managername, List<String> permesions) {
-		// TODO Auto-generated method stub
-		return false;
+		return Managers.get(managername).getNewPermesions(permesions);
 	}
 
 //-------------------------------------------------------------------------- products --	

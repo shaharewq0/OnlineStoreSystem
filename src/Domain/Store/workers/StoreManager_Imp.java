@@ -5,10 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 
@@ -22,16 +24,23 @@ public class StoreManager_Imp implements Store_role {
 	// -------------------------------------------------------------------------Contractors
 
 	public StoreManager_Imp(Store_role creator, String myname) {
-
+		workername = myname;
+		boss = creator;
+		store = creator.getStore();
+		OwnerAppointeis = new HashMap<String, Store_role>();
+		ManagerAppointeis = new HashMap<String, Store_role>();
+		this.permisions.addAll(MangaerPermesions.defult_permesions);
+		EventLogger.GetInstance().Add_Log(this.toString() + "- Created Manager");
 	}
 
-	public StoreManager_Imp(Store_role creator, String name, List<String> permisions) {
-		workername = name;
+	public StoreManager_Imp(Store_role creator, String myname, List<String> permisions) {
+		workername = myname;
 		boss = creator;
 		store = creator.getStore();
 		OwnerAppointeis = new HashMap<String, Store_role>();
 		ManagerAppointeis = new HashMap<String, Store_role>();
 		this.permisions.addAll(permisions);
+		EventLogger.GetInstance().Add_Log(this.toString() + "- Created Manager");
 	}
 
 	@Override
@@ -40,6 +49,10 @@ public class StoreManager_Imp implements Store_role {
 		return store;
 	}
 
+	@Override
+	public String getName() {
+		return workername;
+	}
 	// ---------------------------------------------store action
 	@Override
 	public boolean addItem(Product item) {
@@ -112,7 +125,7 @@ public class StoreManager_Imp implements Store_role {
 	public boolean appointManager(IUser user) {
 		if (!permisions.contains("appointManager"))
 			return false;
-		Store_role newRole = new StoreManager_Imp(this, user.getName());
+		Store_role newRole = new StoreManager_Imp(this, user.getName() );
 		if (user.appointAsManager(newRole)) {
 			ManagerAppointeis.put(user.getName(), newRole);
 			return true;
@@ -156,6 +169,16 @@ public class StoreManager_Imp implements Store_role {
 		return store.editManagerPermesions(managername, permesions);
 	}
 
+	@Override
+	public boolean getNewPermesions(List<String> permesions)
+	{
+		EventLogger.GetInstance().Add_Log(this.toString() + "- my Permesions have changed");
+		this.permisions = (new LinkedList<String>());
+		this.permisions.addAll(permesions);
+		return true;
+		
+	}
+	
 	@Override
 	public boolean canPromoteToOwner() {
 		return true;
