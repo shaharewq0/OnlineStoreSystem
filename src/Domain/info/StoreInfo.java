@@ -27,7 +27,7 @@ public class StoreInfo {
 	public StoreInfo(StoreDetails store) {
 		this.name = store.getName();
 		this.address = "unown";
-		this.rating = 0;
+		this.rating = store.getRating();
 		this.products = new LinkedList<ProductDetails>();
 
 	}

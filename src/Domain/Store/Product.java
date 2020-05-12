@@ -1,6 +1,7 @@
 package Domain.Store;
 
 import Domain.info.ProductDetails;
+import Domain.store_System.System;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Product extends Object  implements IProduct{
 		price = p.getPrice();
 		rating = p.getRating();
 		amount = p.getAmount();
+		store = System.getInstance().getStoreDetails(p.getStoreName());
 	}
 
 	public String getName() {

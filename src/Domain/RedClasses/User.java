@@ -1,10 +1,5 @@
 package Domain.RedClasses;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -19,7 +14,10 @@ import Domain.store_System.Roles.System_Manager;
 import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class User implements IUser {
 
@@ -131,9 +129,9 @@ public class User implements IUser {
 	public boolean logout() {
 		if (profile == null || logInstanse == null)
 			return false;
+		profile.LogLogout(this);
 		profile = null;
 		logInstanse = null;
-		profile.LogLogout(this);
 		return true;
 //		if (system_role instanceof Member) {
 //			system_role = new Guest();
@@ -153,7 +151,7 @@ public class User implements IUser {
 
 	public boolean openStore(StoreInfo store) {
 		StoreImp mystore = logInstanse.OpenStore(store);
-		if (profile == null)
+		if (profile == null || mystore == null)
 			return false;
 
 		profile.store_roles.put(mystore.getName(), new Creator(mystore));

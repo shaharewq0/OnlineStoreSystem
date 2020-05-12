@@ -2,7 +2,6 @@ package Service_Layer.sys_manager_accese;
 
 import Domain.RedClasses.User;
 import Domain.RedClasses.UserPurchase;
-import Domain.Store.Purchase;
 import Domain.Store.StorePurchase;
 import Domain.store_System.System;
 
@@ -22,7 +21,7 @@ public class sys_mangaer_accese {
 		return me.ViewAquistionHistoryOfUser(username);
 	}
 	
-	public static List<Purchase> usecase6_4B_WatchPurchesHistoryofStore(String myusername,String myPassword,String storename)
+	public static List<StorePurchase> usecase6_4B_WatchPurchesHistoryofStore(String myusername, String myPassword, String storename)
 	{
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.ViewAquistionHistory(storename);

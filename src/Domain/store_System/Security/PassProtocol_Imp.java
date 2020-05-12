@@ -1,11 +1,11 @@
 package Domain.store_System.Security;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 public final class PassProtocol_Imp implements PasswordProtocol{
-    public static PassProtocol_Imp Instance=new PassProtocol_Imp();
+    public static PassProtocol_Imp Instance=null;
     public static HashMap<String,String> table;
     public static MessageDigest messageDigest;
 
@@ -46,8 +46,13 @@ public final class PassProtocol_Imp implements PasswordProtocol{
     }
 
     public static PassProtocol_Imp getInstance() {
+        if (Instance == null) {
+            Instance = new PassProtocol_Imp();
+        }
         return Instance;
     }
 
-
+    public void reset() {
+        Instance = null;    //TODO: temp
+    }
 }

@@ -1,20 +1,12 @@
 package Domain.store_System;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
+import Domain.Logs.ErrorLogger;
+import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
 import Domain.RedClasses.shoppingCart;
-import Domain.Store.IStore;
-import Domain.Store.MyPair;
-import Domain.Store.Product;
-import Domain.Store.Purchase;
-import Domain.Store.StoreImp;
+import Domain.Store.*;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
@@ -57,7 +49,7 @@ public class System implements ISystem {
 	// ----------------------------------init
 	public System_Manager ImManeger(String id, String password) {
 
-		if (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password)) {
+		if (manager != null && (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password))) {
 			return null;
 		}
 
@@ -84,6 +76,7 @@ public class System implements ISystem {
 	}
 
 	public void resetSystem(){
+		myProtocol.reset();
 		instance = null;	//	TODO: temp
 	}
     

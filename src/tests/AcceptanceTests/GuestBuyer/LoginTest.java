@@ -1,6 +1,7 @@
 package tests.AcceptanceTests.GuestBuyer;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,8 +51,9 @@ public class LoginTest extends BaseAccTest {
     @Test
     public void loginTwice() {
         if(expectedOutput) {
-            assertEquals(system.login(username, password), expectedOutput); // #1
-            assertFalse(system.login(username, password)); // #2 user can't login twice
+            int guestID = system.newGuest();
+            assertEquals(system.login(guestID, username, password), expectedOutput); // #1
+            assertFalse(system.login(guestID, username, password)); // #2 user can't login twice
         }
     }
 
@@ -59,5 +61,10 @@ public class LoginTest extends BaseAccTest {
     public void tearDown() {
         if(expectedOutput)
             system.logout(username, password);
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        tearDownAll();
     }
 }

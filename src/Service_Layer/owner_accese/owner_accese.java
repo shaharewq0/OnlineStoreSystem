@@ -2,7 +2,6 @@ package Service_Layer.owner_accese;
 
 import Domain.RedClasses.User;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StorePurchase;
 import Domain.info.Question;
 import Domain.store_System.System;
@@ -65,7 +64,7 @@ public class owner_accese {
 		return me.giveRespond(ansewr, QustionID);
 	}
 
-	public static List<Purchase> usecase4_10_ViewAcquisitionHistory(String myusername, String myPassword, String storename) {
+	public static List<StorePurchase> usecase4_10_ViewAcquisitionHistory(String myusername, String myPassword, String storename) {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.ViewAquistionHistory(storename);
 	}
