@@ -2,17 +2,14 @@ package Domain.Store;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
-import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;

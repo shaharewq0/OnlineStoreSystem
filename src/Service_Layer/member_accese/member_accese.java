@@ -4,7 +4,6 @@ import java.util.List;
 
 import Domain.RedClasses.User;
 import Domain.RedClasses.UserPurchase;
-import Domain.Store.Purchase;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;

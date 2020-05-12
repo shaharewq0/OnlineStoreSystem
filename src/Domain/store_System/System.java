@@ -8,7 +8,6 @@ import java.util.Map;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
 import Domain.RedClasses.shoppingCart;
@@ -155,7 +154,7 @@ public class System implements ISystem {
 	// TODO need to delete one of thouse
 	public User getMember(int guestId) {
 		User u = guest.get(guestId);
-		if (onlinemember.containsValue(u))
+		if (onlinemember.containsKey(u.getName()))
 			return u;
 		return null;
 	}
@@ -304,25 +303,13 @@ public class System implements ISystem {
 	}
 
 	// ------------------------purchase
-	public boolean purchase(shoppingCart cart, int creditCard, String address) {
-		if (!UpdateStorage(cart)) {
-			return false;
-		}
-		double price = cart.CalcPrice();
-		// TODO i dont think we need this functions
-		// navigatePayment(creditCard, price);
-		// navigateSupply(cart, address);
-		return true;
-	}
+
 
 	public PaymentMethed navigatePayment() {
 		return paymentdriver.getPaymentMethed();
 	}
 
-	// TODO implement
-	private boolean UpdateStorage(shoppingCart cart) {
-		return true;
-	}
+
 
 	public Supplyer navigateSupply() {
 		return supplydriver.getSupplayer();

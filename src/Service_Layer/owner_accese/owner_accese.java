@@ -5,7 +5,6 @@ import java.util.List;
 
 import Domain.RedClasses.User;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StorePurchase;
 import Domain.info.Question;
 import Domain.store_System.System;
