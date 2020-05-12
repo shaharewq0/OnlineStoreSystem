@@ -1,6 +1,6 @@
 package Communication.websocket.App.messages.Objects;
 
-import Communication.websocket.App.MallProtocol;
+import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 

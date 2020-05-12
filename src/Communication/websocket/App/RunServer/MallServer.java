@@ -1,19 +1,14 @@
-package Communication.websocket.App;
+package Communication.websocket.App.RunServer;
 
 import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
-import Communication.websocket.App.messages.api.Client2ServerMessage;
+import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Message;
 import org.glassfish.tyrus.server.Server;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,28 +20,31 @@ import java.util.concurrent.ConcurrentHashMap;
 )
 public class MallServer {
 
-    /** a map of message protocols by the session */
-    private static Map<Session,MallProtocol> protocols;
 
-
+    // IMPORTANT !!!!
+    // In order to allow row wss, on need to run the following command in the terminal (from the RunServer folder)
+    // sudo haproxy -f ws.cfg
 
     public static void main(String[] args) throws DeploymentException {
-        run();
+        Server server = run();
+
+        new Scanner(System.in).nextLine();
+        server.stop();
     }
 
-    public static void run() throws DeploymentException {
+    public static Server run() throws DeploymentException {
         protocols = new ConcurrentHashMap<>();
 
         Server server = new Server("localhost", 8080, "", MallServer.class);
 
         server.start();
-        new Scanner(System.in).nextLine();
-        server.stop();
+        return server;
     }
 
 
 
-
+    /** a map of message protocols by the session */
+    private static Map<Session, MallProtocol> protocols;
 
     public MallServer() { }
 

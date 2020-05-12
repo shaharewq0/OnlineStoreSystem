@@ -20,6 +20,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
     @Override
     public String encode(Message msg) throws EncodeException {
+
         return ((Server2ClientMessage)msg).visit(this) ;
     }
 

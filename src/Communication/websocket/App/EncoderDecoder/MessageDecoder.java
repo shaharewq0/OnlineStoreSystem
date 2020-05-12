@@ -24,14 +24,13 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     @Override
     public Message decode(String msg) throws DecodeException {
 
-        JSONParser parser = new JSONParser();
-
         try{
-            JSONObject recieved = (JSONObject)parser.parse(msg);
-            JSONObject message = (JSONObject)(recieved.get("json_data"));
+            JSONParser parser = new JSONParser();
+            JSONObject received = (JSONObject)parser.parse(msg);
+            JSONObject message = (JSONObject)(received.get("json_data"));
             Deque<Byte> bytes = new LinkedList<>();
 
-            long id = (long)recieved.get("cmd_id");
+            long id = (long)received.get("cmd_id");
 
             for (int i = 0; true ; i++) {
                 Object obj = message.get(String.valueOf(i));
@@ -50,8 +49,8 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             return m;
 
         }
-        catch(ParseException pe) {
-            pe.printStackTrace();
+        catch(Exception pe) {
+            System.out.println("[!!! IMPORTANT !!!] Received unknown message: : " + msg);
         }
 
         return null;

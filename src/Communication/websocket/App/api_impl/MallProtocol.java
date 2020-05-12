@@ -1,4 +1,4 @@
-package Communication.websocket.App;
+package Communication.websocket.App.api_impl;
 
 import Communication.websocket.App.messages.Objects.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;

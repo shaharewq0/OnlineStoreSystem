@@ -1,6 +1,6 @@
 package Communication.websocket.App.messages.api;
 
-import Communication.websocket.App.MallProtocol;
+import Communication.websocket.App.api_impl.MallProtocol;
 
 /** a message from client to server */
 public abstract class Client2ServerMessage extends OpcededMessage {
