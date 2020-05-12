@@ -132,6 +132,7 @@ public class User implements IUser {
 		profile = null;
 		logInstanse = null;
 		profile.LogLogout(this);
+		System.getInstance().logout(this);
 		return true;
 //		if (system_role instanceof Member) {
 //			system_role = new Guest();
@@ -295,7 +296,6 @@ public class User implements IUser {
 		if (profile != null) {
 			profile.getPurchesHistory().add(purchase);
 		}
-		// TODO Auto-generated method stub
 
 	}
 	// Static -

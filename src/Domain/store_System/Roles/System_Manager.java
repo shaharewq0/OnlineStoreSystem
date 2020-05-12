@@ -19,6 +19,6 @@ public class System_Manager {// extends Member {
 	}
 
 	public List<UserPurchase> getPurchaseHistoryofUser(String username) {
-		return System.getInstance().getUser(username).getPurchaseHistory();
+		return System.getInstance().getUser(username).getPurchesHistory();
 	}
 }
