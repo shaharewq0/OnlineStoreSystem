@@ -1,8 +1,8 @@
 package tests.AcceptanceTests;
 
+import Domain.RedClasses.shoppingCart;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
-import Domain.Store.shoppingCart;
 import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.*;
 
@@ -16,7 +16,6 @@ public class SystemAdapter {
 	}
 
 	public int newGuest() {
-		//TODO: call ImNew at guestAccess
 		return 0;
 	}
 
@@ -96,7 +95,7 @@ public class SystemAdapter {
 		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
 		if (pro == null)
 			return null;
-		return new ProductDetails(pro, 0);
+		return null; //new ProductDetails(pro, 0);
 	}
 
 	// use case 2
@@ -173,8 +172,9 @@ public class SystemAdapter {
 		System system = System.getInstance();
 		// Product p = system.searchProductsByName(productName).get(0);
 		StoreImp store = system.getStoreDetails(storeName);
-		return store.addProduct(new Product(productName, "cat", new LinkedList<>(), 5, 1, store));
+//		return store.addProduct(new Product(productName, "cat", new LinkedList<>(), 5, 1, store));
 		// we assume the product and store exist....
+		return false;
 	}
 
 	public boolean RemoveProduct(String storeName, String productName) {
