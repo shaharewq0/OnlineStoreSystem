@@ -40,25 +40,21 @@ public class System implements ISystem {
 	private Map<String, Registered> membersprofiles = new HashMap<>();
 	private Map<User, Member> onlinemember = new HashMap<>();
 	private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
-	private List<StoreImp> stores = new LinkedList<>();
+	private Map<String, StoreImp> stores = new HashMap<String, StoreImp>();
 	private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
 	private MyPaymentSystem paymentdriver = new MyPaymentSystem_Driver();
 	private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
 	private static System instance = null;
 
-	public int ImNew() {
-		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
-		TempGuestID++;
-		guest.put(TempGuestID, new User());
-		return TempGuestID;
+	public static System getInstance() {
+		if (instance == null) {
+			instance = new System();
+		}
+		return instance;
 	}
 
-	public User getGuest(int id) {
-		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
-		return guest.get(id);
-	}
-
+	// ----------------------------------init
 	public System_Manager ImManeger(String id, String password) {
 
 		if (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password)) {
@@ -87,11 +83,17 @@ public class System implements ISystem {
 
 	}
 
-	public static System getInstance() {
-		if (instance == null) {
-			instance = new System();
-		}
-		return instance;
+	// ---------------------------------- users
+	public int ImNew() {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
+		TempGuestID++;
+		guest.put(TempGuestID, new User());
+		return TempGuestID;
+	}
+
+	public User getGuest(int id) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
+		return guest.get(id);
 	}
 
 	public boolean register(String id, String password) {
@@ -112,8 +114,8 @@ public class System implements ISystem {
 		}
 
 		Registered Profile = membersprofiles.get(id);
-		if(Profile == null) {
-			ErrorLogger.GetInstance().Add_Log(this.toString() +"- register dont exsist fatal error");
+		if (Profile == null) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- register dont exsist fatal error");
 			return null;
 		}
 		Profile.LogLogin(user);
@@ -123,33 +125,80 @@ public class System implements ISystem {
 
 	}
 
-	public StoreImp getStoreDetails(String name) {
-		for (StoreImp s : stores) {
-			if (s.getName().equals(name)) {
-				return s;
-			}
-		}
+	public User getMember(String myusername, String myPassword) {
+		if (!myProtocol.login(myusername, myPassword))
+			return null;
+		if (onlinemember.containsKey(myusername))
+			return onlinemember.get(myusername).getUser();
 		return null;
 	}
+	
+	// -------------------------------Store
+	public StoreImp openStore(StoreInfo store) {
+		if (stores.containsKey(store.name))
+			return null;
 
-	//TODO delete this
-	public List<StoreImp> getAllStores() {
-		return stores;
+		StoreImp newStore = new StoreImp(store);
+		stores.put(store.name, newStore);
+		return newStore;
+	}
+	
+	// TODO delete one of thouse functions
+	public StoreImp openStore(String name, String address, int rating) {
+		StoreInfo store = new StoreInfo(name, address, rating);
+		if (stores.containsKey(store.name))
+			return null;
+
+		StoreImp newStore = new StoreImp(store);
+		stores.put(store.name, newStore);
+		return newStore;
+	}
+
+	public boolean fillStore(List<Product> Products) {
+		boolean output = true;
+		for (Product product : Products) {
+			output = output & product.getStore().addProduct(product);
+		}
+		return output;
+	}
+	
+	public StoreImp getStoreDetails(String name) {
+		if (stores.containsKey(name))
+			return stores.get(name);
+
+		return null;
 	}
 
 	public Collection<ProductDetails> getProductsFromStore(String name) {
+		if (stores.containsKey(name))
+			return stores.get(name).getProductsDetails();
 
-		for (StoreImp s : stores) {
-			if (s.getName().equals(name)) {
-				return s.getProductsDetails();
-			}
-		}
 		return null;
+
 	}
 
+	public List<IshoppingBasket> orderHistory(IStore store) {
+
+		List<IshoppingBasket> baskets = new LinkedList<>();
+
+		for (MyPair<String, List<shoppingCart>> pair : order) {
+			List<shoppingCart> carts = pair.getValue();
+
+			for (shoppingCart cart : carts) {
+				for (IshoppingBasket basket : cart.getBaskets()) {
+					if (basket.getStore() == store) {
+						baskets.add(basket);
+					}
+				}
+			}
+		}
+		return baskets;
+	}
+
+	// ------------------------------ find products
 	public List<ProductDetails> searchProductsByName(String name) {
 		List<ProductDetails> toReturn = new LinkedList<>();
-		for (StoreImp s : stores) {
+		for (StoreImp s : stores.values()) {
 			ProductDetails toAdd = s.findProductDetailsByName(name);
 			if (toAdd != null) {
 				toReturn.add(toAdd);
@@ -160,24 +209,23 @@ public class System implements ISystem {
 
 	public List<ProductDetails> searchProductsByCategory(String category) {
 		List<ProductDetails> toReturn = new LinkedList<>();
-		for (StoreImp s : stores) {
+		for (StoreImp s : stores.values()) {
 			List<ProductDetails> toAdd = s.findProductDetailsByCategory(category);
 			toReturn.addAll(toAdd);
-			//concat2(toReturn, toAdd);
+			// concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
 
 	public List<ProductDetails> searchProductsByKeyword(String keyword) {
 		List<ProductDetails> toReturn = new LinkedList<>();
-		for (StoreImp s : stores) {
+		for (StoreImp s : stores.values()) {
 			List<ProductDetails> toAdd = s.findProductDetailsByKeyword(keyword);
 			toReturn.addAll(toAdd);
-			//concat2(toReturn, toAdd);
+			// concat2(toReturn, toAdd);
 		}
 		return toReturn;
 	}
-
 
 	public List<Product> filterByPrice(List<Product> base, double min, double max) {
 		List<Product> toReturn = new LinkedList<>();
@@ -219,7 +267,7 @@ public class System implements ISystem {
 		return toReturn;
 	}
 
-
+	// ------------------------purchase
 	public boolean purchase(shoppingCart cart, int creditCard, String address) {
 		if (!UpdateStorage(cart)) {
 			return false;
@@ -240,68 +288,17 @@ public class System implements ISystem {
 		return true;
 	}
 
-	// TODO implement
 	public Supplyer navigateSupply() {
 		return supplydriver.getSupplayer();
 
 	}
 
-	public StoreImp openStore(StoreInfo store) {
-		for (StoreImp s : stores) {
-			if (s.getName().equals(store.name)) {
-				return null;
-			}
-		}
-		StoreImp newStore = new StoreImp(store);
-		stores.add(newStore);
-		return newStore;
-	}
 
-	public StoreImp openStore(String name, String address, int rating) {
-		for (StoreImp s : stores) {
-			if (s.getName().equals(name)) {
-				return null;
-			}
-		}
-		StoreImp newStore = new StoreImp(name, address, rating);
-		stores.add(newStore);
-		return newStore;
-	}
-
-//	public List<shoppingCart> orderHistory(String id) {
-//		MyPair<String, List<shoppingCart>> toReturn = containsB(id, order);
-//		if (toReturn == null) {
-//			return new LinkedList<>();
-//		}
-//		return toReturn.getValue();
-//	}
-
-	// @Override
-	public List<IshoppingBasket> orderHistory(IStore store) {
-
-		List<IshoppingBasket> baskets = new LinkedList<>();
-
-		for (MyPair<String, List<shoppingCart>> pair : order) {
-			List<shoppingCart> carts = pair.getValue();
-
-			for (shoppingCart cart : carts) {
-				for (IshoppingBasket basket : cart.getBaskets()) {
-					if (basket.getStore() == store) {
-						baskets.add(basket);
-					}
-
-				}
-
-			}
-
-		}
-
-		return baskets;
-	}
 
 	// @Override
 	public boolean CheckItemAvailableA(List<ProductDetails> items) {
 		for (ProductDetails details : items) {
+			// StoreImp s = s
 			if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
 				return false;
 			}
@@ -310,32 +307,20 @@ public class System implements ISystem {
 	}
 
 	// @Override
-	public List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items) {
-		List<ProductDetails> Available = new LinkedList<>();
-		for (ProductDetails details : items) {
-			if (getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
-				Available.add(details);
-			}
-		}
-		return Available;
-	}
+//	public List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items) {
+//		List<ProductDetails> Available = new LinkedList<>();
+//		for (ProductDetails details : items) {
+//			if (getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+//				Available.add(details);
+//			}
+//		}
+//		return Available;
+//	}
 
-	public boolean fillStore(List<Product> Products) {
-		boolean output = true;
-		for (Product product : Products) {
-			output = output & product.getStore().addProduct(product);
-		}
-		return output;
-	}
+	
 
-	public User getMember(String myusername, String myPassword) {
-		if (!myProtocol.login(myusername, myPassword))
-			return null;
-		if (onlinemember.containsKey(myusername))
-			return onlinemember.get(myusername).getUser();
-		return null;
-	}
-
+	
+//
 	public IUser getUser(String username) {
 		// TODO Auto-generated method stub
 		return null;
@@ -362,8 +347,13 @@ public class System implements ISystem {
 	}
 
 	public List<Purchase> getPurchaseHistory(String storeName) {
-		return stores.get(stores.indexOf(storeName)).viewPurchaseHistory();
+		return stores.get(storeName).viewPurchaseHistory();
+
 		// return null;
+	}
+
+	public Collection<StoreImp> getAllStores() {
+		return stores.values();
 	}
 
 }

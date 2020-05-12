@@ -1,14 +1,19 @@
 package Domain.store_System.Roles;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import Domain.RedClasses.User;
 import Domain.Store.Purchase;
+import Domain.Store.workers.Store_role;
 
 public class Registered{
     private String id;
     private List<Purchase> myPurcase = new LinkedList<Purchase>();
+	public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
+    
     
      public Registered(String id) {
         this.id = id;
@@ -37,6 +42,11 @@ public class Registered{
 	public void LogLogout(User user) {
 		// TODO Auto-generated method stub
 		
+	}
+
+//TODO
+	public boolean getFired(String name) {
+		return false;
 	}
 
 }

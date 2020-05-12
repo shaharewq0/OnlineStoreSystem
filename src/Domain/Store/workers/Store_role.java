@@ -19,7 +19,7 @@ public interface Store_role {
 
 	boolean appointManager(IUser user);
 
-	boolean fire(IUser manager);
+	boolean fire(String manager);
 
 	boolean editItem(String OLD_item, Product NEW_item);
 

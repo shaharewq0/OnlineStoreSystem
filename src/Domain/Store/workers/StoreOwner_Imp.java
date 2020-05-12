@@ -8,13 +8,16 @@ import java.util.Map;
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
+import Domain.RedClasses.User;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
+import Domain.store_System.Roles.Registered;
 
 public class StoreOwner_Imp implements  Store_role {
+	private Registered user;
 	protected StoreImp store;
 	protected String workername = "";
 	private Store_role boss; // the Owner who appointed current owner, null for original store owner
@@ -109,16 +112,17 @@ public class StoreOwner_Imp implements  Store_role {
 	}
 
 	@Override
-	public boolean fire(IUser manager) {
+	public boolean fire(String manager) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "Owner fire worker");
-		return manager.getFired(store.getName());
+
+		return store.fireManager(manager);
+
 	}
 
 	@Override
 	public boolean getfire() {
-		store.fireOwner(this);
 		boss.IgotFire(workername);
-		return true;
+		return user.getFired(store.getName());
 	}
 
 	@Override
@@ -156,5 +160,7 @@ public class StoreOwner_Imp implements  Store_role {
 
 		return workername;
 	}
+
+
 
 }

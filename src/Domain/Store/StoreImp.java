@@ -107,16 +107,28 @@ public class StoreImp implements IStore {
 	}
 
 	@Override
-	public boolean fireManager(StoreManager_Imp user) {
+	public boolean fireManager(String user) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
-		return Managers.remove(user.getName()) != null;
+		if(Managers.containsKey(user) && Owners.containsKey(user))
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- fatel error worker is owner and manager");
+		if(Managers.containsKey(user)) {
+			if(Managers.get(user).getfire())
+			return Managers.remove(user) != null;
+			
+		}
+		if(Owners.containsKey(user)) {
+			if(Owners.get(user).getfire())
+			return Owners.remove(user) != null;
+		}
+		
+		return false;
 	}
 
-	@Override
-	public boolean fireOwner(StoreOwner_Imp user) {
-		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
-		return Owners.remove(user.getName()) != null;
-	}
+//	@Override
+//	public boolean fireOwner(StoreOwner_Imp user) {
+//		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
+//		return Owners.remove(user.getName()) != null;
+//	}
 
 	@Override
 	public boolean appointManager(StoreManager_Imp worker) {

@@ -44,8 +44,8 @@ public interface IStore {
 
 	boolean appointOwner(StoreOwner_Imp user);
 
-	boolean fireManager(StoreManager_Imp user);
 
-	boolean fireOwner(StoreOwner_Imp user);
+
+	boolean fireManager(String user);
 
 }

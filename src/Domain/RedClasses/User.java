@@ -32,7 +32,6 @@ public class User implements IUser {
 	// ---- dont need to be here
 
 	// TODO move this to register and call it from member system role
-	private Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
 
 	public User() {
 		cart = new shoppingCart();
@@ -48,14 +47,14 @@ public class User implements IUser {
 
 		profile = System.getInstance().login(id, password, this);
 		logInstanse = System.getInstance().getLogInstase(id, password);
-		sysMangaer = System.getInstance().ImManeger(id,password);
+		sysMangaer = System.getInstance().ImManeger(id, password);
 		return profile != null;
 
 	}
 
-	public List<StoreImp> watchAllStores() {
-		return System.getInstance().getAllStores();
-	}
+//	public List<StoreImp> watchAllStores() {
+//		return System.getInstance().getAllStores();
+//	}
 
 	public Collection<ProductDetails> watchProductsInStore(String name) {
 		return System.getInstance().getProductsFromStore(name);
@@ -146,13 +145,19 @@ public class User implements IUser {
 
 	public boolean openStore(String storename, String address, int rating) {
 		StoreImp mystore = logInstanse.OpenStore(new StoreInfo(storename, address, rating));
-		store_roles.put(mystore.getName(), new Creator(mystore));
+		if (profile == null)
+			return false;
+
+		profile.store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
 	}
 
 	public boolean openStore(StoreInfo store) {
 		StoreImp mystore = logInstanse.OpenStore(store);
-		store_roles.put(mystore.getName(), new Creator(mystore));
+		if (profile == null)
+			return false;
+
+		profile.store_roles.put(mystore.getName(), new Creator(mystore));
 		return mystore != null;
 
 	}
@@ -174,76 +179,102 @@ public class User implements IUser {
 	}
 
 	// --------------------------------------------------------------- store actions
-	
+
 	public boolean addProduct(String storeName, Product p) {
 //TODO add fail
-		return store_roles.get(storeName).addItem(p);
+		if (profile == null)
+			return false;
+
+		return profile.store_roles.get(storeName).addItem(p);
 	}
 
 	public boolean editProduct(String storeName, String prodactname, Product newdetail) {
-		return store_roles.get(storeName).editItem(prodactname, newdetail);
+		if (profile == null)
+			return false;
+
+		return profile.store_roles.get(storeName).editItem(prodactname, newdetail);
 	}
 
 	public boolean removeProduct(String storeName, String prodactname) {
 
-		return store_roles.get(storeName).removeItem(prodactname);
+		if (profile == null)
+			return false;
+
+		return profile.store_roles.get(storeName).removeItem(prodactname);
 	}
 
 	public boolean appointOwner(String storeName, String username, String otherPassword) {
-		return store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
+		if (profile == null)
+			return false;
+
+		return profile.store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
 	}
 
+	//TODO move to register
 	@Override
 	public boolean appointAsOwner(Store_role role) {
-		if(store_roles.containsKey(role.getStore().getName()) && !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
+		if (profile == null || profile.store_roles.containsKey(role.getStore().getName())
+				&& !profile.store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
 			return false;
 		}
-		store_roles.remove(role.getStore().getName());
-		store_roles.put(role.getStore().getName(), role);
+		profile.store_roles.remove(role.getStore().getName());
+		profile.store_roles.put(role.getStore().getName(), role);
 		return true;
-		
-		
+
 	}
-	
+
 	public boolean appointManager(String storeName, String username, String otherPassword) {
-		return store_roles.get(storeName).appointManager(System.getInstance().getMember(username, otherPassword));
+		
+		if (profile == null)
+			return false;
+
+		return profile.store_roles.get(storeName).appointManager(System.getInstance().getMember(username, otherPassword));
 
 	}
 
 	@Override
 	public boolean appointAsManager(Store_role role) {
-		//TODO this is the same as appoint owner
-		if(store_roles.containsKey(role.getStore().getName()) && !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
+		// TODO this is the same as appoint owner
+		if(profile == null)
+			return false;
+		Map<String, Store_role> store_roles = profile.store_roles;
+		if (store_roles.containsKey(role.getStore().getName())
+				&& !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
 			return false;
 		}
 		store_roles.remove(role.getStore().getName());
 		store_roles.put(role.getStore().getName(), role);
 		return true;
 	}
-	
+
 	public boolean fireManager(String storeName, String username) {
-		return store_roles.get(storeName).fire(System.getInstance().getUser(username));
+		Map<String, Store_role> store_roles = profile.store_roles;
+		return store_roles.get(storeName).fire(username);
 	}
 
 	@Override
 	public boolean getFired(String store) {
+		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.remove(store) != null;
 	}
-	
+
 	private String last_store_looked_at = "";
 
 	public Collection<Question> viewQuestions(String storeName) {
 		last_store_looked_at = storeName;
+		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.get(storeName).viewQuestions();
 	}
 
 	public boolean giveRespond(String ansewr, int qustionID) {
+		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.get(last_store_looked_at).giveRespond(ansewr, qustionID);
 	}
 
 	public List<Purchase> ViewAquistionHistory(String storeName) {
 		if (sysMangaer != null)
 			return sysMangaer.getPurchaseHistory(storeName);
+		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.get(storeName).getPurchaseHistory();
 	}
 
@@ -254,11 +285,10 @@ public class User implements IUser {
 	}
 
 	public boolean editMangagerPermesions(String storename, String managername, List<String> permesions) {
-		// TODO Auto-generated method stub
+		Map<String, Store_role> store_roles = profile.store_roles;
 		return store_roles.get(storename).editManagerPermesions(managername, permesions);
 	}
-	
-	
+
 	// Static -
 	// ------------------------------------------------------------------------------------------------------------------
 
@@ -346,13 +376,5 @@ public class User implements IUser {
 		// TODO Auto-generated method stub
 		return "Error still no name";
 	}
-
-	
-
-
-
-
-
-
 
 }

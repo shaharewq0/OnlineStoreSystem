@@ -121,14 +121,9 @@ public class StoreStub implements IStore {
 		return false;
 	}
 
-	@Override
-	public boolean fireManager(StoreManager_Imp user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public boolean fireOwner(StoreOwner_Imp user) {
+	public boolean fireManager(String user) {
 		// TODO Auto-generated method stub
 		return false;
 	}

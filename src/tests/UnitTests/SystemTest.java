@@ -74,10 +74,10 @@ public class SystemTest {
         assertTrue(a != null);
         assertTrue(b != null);
         assertTrue(c == null);
-        List<StoreImp> allStores = s.getAllStores();
-        assertTrue(allStores.contains(a));
-        assertTrue(allStores.contains(b));
-        assertTrue(!allStores.contains(c));
+//        List<StoreImp> allStores = s.getAllStores();
+//        assertTrue(allStores.contains(a));
+//        assertTrue(allStores.contains(b));
+//        assertTrue(!allStores.contains(c));
     }
 //
 //    @Test
