@@ -237,7 +237,7 @@ public class User implements IUser {
 	
 	private String last_store_looked_at = "";
 
-	public List<Question> viewQuestions(String storeName) {
+	public Collection<Question> viewQuestions(String storeName) {
 		last_store_looked_at = storeName;
 		return store_roles.get(storeName).viewQuestions();
 	}

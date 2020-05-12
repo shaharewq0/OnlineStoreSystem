@@ -6,10 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Logs.ErrorLogger;
+import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
+import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
@@ -25,19 +28,23 @@ public class StoreImp implements IStore {
 	private int rating;
 	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
 	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
+	private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
 	public StoreImp(String name, Collection<Product> products, String address, int rating) {
+
 		this.name = name;
 		inventory.recive_item(new Packet_Of_Prodacts(products));
 		// this.products = products;
 		this.address = address;
 		this.rating = rating;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created");
 	}
 
 	public StoreImp(String name, String address, int rating) {
 		this.name = name;
 		this.address = address;
 		this.rating = rating;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created without items");
 
 	}
 
@@ -45,6 +52,7 @@ public class StoreImp implements IStore {
 		name = store.name;
 		address = store.address;
 		rating = store.rating;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- new Store is created without itmes");
 
 	}
 
@@ -54,6 +62,9 @@ public class StoreImp implements IStore {
 
 	// ----------------------------------------------------------------------------------------my
 	// info
+	public Creator getCreator() {
+		return creator;
+	}
 
 	public String getName() {
 		return name;
@@ -96,51 +107,79 @@ public class StoreImp implements IStore {
 	}
 
 	@Override
-	public boolean fireManager(IUser user) {
-		// asked by owner/manager that given user is under them already so no need for
-		// logic here
+	public boolean fireManager(StoreManager_Imp user) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
 		return Managers.remove(user.getName()) != null;
 	}
 
 	@Override
+	public boolean fireOwner(StoreOwner_Imp user) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
+		return Owners.remove(user.getName()) != null;
+	}
+
+	@Override
 	public boolean appointManager(StoreManager_Imp worker) {
-		if (Managers.containsKey(worker.getName()))
+		if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
 			return false;
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
 		return Managers.put(worker.getName(), worker) != null;
 	}
 
 	@Override
-	public boolean appointOwner(StoreOwner_Imp user) {
-		if (Owners.containsKey(user.getName()))
+	public boolean appointOwner(StoreOwner_Imp worker) {
+		if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
 			return false;
-		return Owners.put(user.getName(), user) != null;
+		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
+		return Owners.put(worker.getName(), worker) != null;
 	}
 
 	public boolean editManagerPermesions(String managername, List<String> permesions) {
-		return Managers.get(managername).getNewPermesions(permesions);
+		StoreManager_Imp m = Managers.get(managername);
+		if (m != null) {
+			EventLogger.GetInstance().Add_Log(this.toString() + "- edit manager permesions");
+			return m.getNewPermesions(permesions);
+		}
+		ErrorLogger.GetInstance().Add_Log(this.toString() + "edit manager manager dont exsist");
+
+		return false;
 	}
 
 //-------------------------------------------------------------------------- products --	
 
 	@Override
 	public boolean editProduct(String OLD_p, Product NEW_p) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "- edit item");
+
 		return inventory.editProduct(OLD_p, NEW_p);
 	}
 
 	@Override
 	public boolean removeProduct(String pName) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "-remove product");
+
 		return inventory.removeProduct(pName);
 	}
 
 	public boolean addProduct(Product p) {
+
 		if (!p.getStore().getName().equals(name)) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
+
 			return false;
 		}
+		EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
 
 		return inventory.recive_item(new Packet_Of_Prodacts(p));
 	}
 
 	public boolean addProduct(ProductDetails p) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
+
 		return inventory.recive_item(p);
 	}
 
@@ -150,8 +189,9 @@ public class StoreImp implements IStore {
 	}
 
 	public ProductDetails findProductDetailsByName(String name) {
-		return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
-
+		if (inventory.items.containsKey(name))
+			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
+		return null;
 	}
 
 	public List<Product> findProductByCategory(String category) {
@@ -175,6 +215,8 @@ public class StoreImp implements IStore {
 	}
 
 	public Boolean CheckItemAvailable(ProductDetails item) {
+		if (findProductByName(item.getName()) == null)
+			return false;
 		if (findProductByName(item.getName()).getAmount() > item.getAmount())
 			return true;
 
@@ -184,6 +226,10 @@ public class StoreImp implements IStore {
 // ----------------------------------------------------buying
 
 	public double getPrice(String item) {
+		if(findProductByName(item)== null)
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- cant find item to calc price");
+			
+		//TODO add discount here
 
 		return findProductByName(item).getPrice();
 	}
@@ -192,10 +238,16 @@ public class StoreImp implements IStore {
 	synchronized public Product TakeItem(String name, int amount) {
 		Product takeout = null;
 		Product temp = findProductByName(name);
+		if(temp == null) {
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
+			return null;
+		}
 		if (temp.getAmount() > amount) {
+			EventLogger.GetInstance().Add_Log(this.toString() +"- taking out products full amount");
 			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount, this);
 			temp.removeAmount(amount);
 		} else {
+			EventLogger.GetInstance().Add_Log(this.toString() +"- taking out products not full amount");
 			takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount(),
 					this);
 			temp.removeAmount(temp.getAmount());
@@ -210,14 +262,15 @@ public class StoreImp implements IStore {
 	}
 
 	// --------------------------------------------------- questions
-	public List<Question> getQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Question> getQuestions() {
+
+		return questions.values();
 	}
 
-	public boolean respondToQuestion(String ansewr, int qustionID) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean respondToQuestion(String ansewer, int qustionID) {
+		questions.get(qustionID).addAnsewers(ansewer);
+		return true;
+
 	}
 
 }

@@ -1,5 +1,6 @@
 package Domain.Store.workers;
 
+import java.util.Collection;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
@@ -28,7 +29,7 @@ public interface Store_role {
 
 	boolean editManagerPermesions(String managername, List<String> permesions);
 
-	public List<Question> viewQuestions();
+	public Collection<Question> viewQuestions();
 
 	boolean giveRespond(String ansewr, int qustionID);
 

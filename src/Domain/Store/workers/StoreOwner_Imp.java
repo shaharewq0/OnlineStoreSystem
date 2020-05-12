@@ -1,5 +1,6 @@
 package Domain.Store.workers;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 
-public class StoreOwner_Imp implements StoreOwner, Store_role {
+public class StoreOwner_Imp implements  Store_role {
 	protected StoreImp store;
 	protected String workername = "";
 	private Store_role boss; // the Owner who appointed current owner, null for original store owner
@@ -71,7 +72,7 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 	}
 
 	@Override
-	public List<Question> viewQuestions() {
+	public Collection<Question> viewQuestions() {
 		return store.getQuestions();
 	}
 
@@ -115,6 +116,7 @@ public class StoreOwner_Imp implements StoreOwner, Store_role {
 
 	@Override
 	public boolean getfire() {
+		store.fireOwner(this);
 		boss.IgotFire(workername);
 		return true;
 	}

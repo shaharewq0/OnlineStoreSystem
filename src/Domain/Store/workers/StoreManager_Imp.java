@@ -1,5 +1,6 @@
 package Domain.Store.workers;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class StoreManager_Imp implements Store_role {
 	}
 
 	@Override
-	public List<Question> viewQuestions() {
+	public Collection<Question> viewQuestions() {
 		if (!permisions.contains("viewQuestions"))
 			return null;
 		return store.getQuestions();
@@ -142,6 +143,7 @@ public class StoreManager_Imp implements Store_role {
 
 	@Override
 	public boolean getfire() {
+		store.fireManager(this);
 		boss.IgotFire(workername);
 		return true;
 	}

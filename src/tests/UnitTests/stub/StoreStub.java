@@ -67,11 +67,7 @@ public class StoreStub implements IStore {
  
 
 
-    @Override
-    public boolean fireManager(IUser user) {
-        return false;
-    }
-
+    
     @Override
     public List<Purchase> viewPurchaseHistory() {
         return null;
@@ -121,6 +117,18 @@ public class StoreStub implements IStore {
 
 	@Override
 	public boolean appointOwner(StoreOwner_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean fireManager(StoreManager_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean fireOwner(StoreOwner_Imp user) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -1,5 +1,6 @@
 package Service_Layer.owner_accese;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.User;
@@ -27,21 +28,23 @@ public class owner_accese {
 		return me.editProduct(storeName, prodactname, newdetail);
 	}
 
-	public boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,String hisPassword) {
+	public boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,
+			String hisPassword) {
 		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.appointOwner(storeName, hisusername,hisPassword);
+		return me.appointOwner(storeName, hisusername, hisPassword);
 	}
 
-	public boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username,String hisPassword) {
+	public boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username,
+			String hisPassword) {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.appointManager(storeName, username, hisPassword);
 	}
 
-	public boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword,String storename, String managername,
-			List<String> permesions) {
+	public boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String storename,
+			String managername, List<String> permesions) {
 		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.editMangagerPermesions(storename ,managername, permesions);
-	
+		return me.editMangagerPermesions(storename, managername, permesions);
+
 	}
 
 	public boolean usecase4_7_FireManager(String myusername, String myPassword, String storeName, String username) {
@@ -51,7 +54,9 @@ public class owner_accese {
 
 	public List<Question> usecase4_9_ViewMembersQuestions(String myusername, String myPassword, String storeName) {
 		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.viewQuestions(storeName);
+		List<Question> questions = new LinkedList<Question>();
+		questions.addAll(me.viewQuestions(storeName));
+		return questions;
 	}
 
 	public boolean usecase4_9_RespondToQuestion(String myusername, String myPassword, String ansewr, int QustionID) {
@@ -63,8 +68,5 @@ public class owner_accese {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.ViewAquistionHistory(storename);
 	}
-
-
-	
 
 }

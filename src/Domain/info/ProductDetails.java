@@ -39,7 +39,9 @@ public class ProductDetails {
         this.price = pro.getPrice();
     }
 
-    public double getPrice() {
+
+
+	public double getPrice() {
     	return price;
     }
     
