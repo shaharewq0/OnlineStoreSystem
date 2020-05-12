@@ -3,6 +3,7 @@ package tests.UnitTests.stub;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
+import Domain.RedClasses.UserPurchase;
 import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
 import Domain.Store.workers.Store_role;
@@ -137,7 +138,7 @@ public class UserStub implements IUser {
 //	}
 
 	@Override
-	public List<Purchase> getPurchaseHistory() {
+	public List<UserPurchase> getPurchaseHistory() {
 		// TODO Auto-generated method stub
 		return null;
 	}

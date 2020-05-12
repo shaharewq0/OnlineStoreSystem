@@ -1,5 +1,8 @@
 package Domain.Store;
 
+import java.util.Collection;
+import java.util.List;
+
 public class Discount {
 
 	
@@ -10,6 +13,12 @@ public class Discount {
 
 	public double implamentDis(double add) {
 		return add;
+	}
+
+	
+	public static Collection<Discount> Copy(List<Discount> discounts) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

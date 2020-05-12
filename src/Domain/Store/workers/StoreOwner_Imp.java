@@ -9,15 +9,20 @@ import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
+import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
+import Domain.store_System.Roles.Registered;
 
 public class StoreOwner_Imp implements  Store_role {
-	protected StoreImp store;
+	private Registered user;
+	protected Appoint_Owner myJob = new Appoint_Owner();
+//	protected StoreImp store;
+//	private Store_role boss;
 	protected String workername = "";
-	private Store_role boss; // the Owner who appointed current owner, null for original store owner
+	 // the Owner who appointed current owner, null for original store owner
 	protected Map<String, Store_role> OwnerAppointeis;// Owners who got appointed by current owner, for future use
 	protected Map<String, Store_role> ManagerAppointeis;// managers who got appointed by current owner
 	// -------------------------------------------------------------------------Contractors
@@ -27,8 +32,8 @@ public class StoreOwner_Imp implements  Store_role {
 
 	public StoreOwner_Imp(Store_role creator, String myname) {
 		workername = myname;
-		boss = creator;
-		store = creator.getStore();
+		myJob.grantor= creator;
+		myJob.store = creator.getStore();
 		OwnerAppointeis = new HashMap<String, Store_role>();
 		ManagerAppointeis = new HashMap<String, Store_role>();
 		EventLogger.GetInstance().Add_Log(this.toString() + "- Created Owner");
@@ -36,50 +41,50 @@ public class StoreOwner_Imp implements  Store_role {
 
 	@Override
 	public StoreImp getStore() {
-		return store;
+		return myJob.store;
 	}
 
 	// ---------------------------------------------store action
 	@Override
 	public boolean addItem(Product item) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "Owner add item");
-		return store.addProduct(item);
+		return myJob.store.addProduct(item);
 
 	}
 
 	@Override
 	public boolean addItem(ProductDetails item) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "-Owner add item");
-		return store.addProduct(item);
+		return myJob.store.addProduct(item);
 	}
 
 	@Override
 	public boolean editItem(String OLD_item, Product NEW_item) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "-Owner edit item");
-		return store.editProduct(OLD_item, NEW_item);
+		return myJob.store.editProduct(OLD_item, NEW_item);
 	}
 
 	@Override
 	public boolean removeItem(String prodactname) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "-Owner remove item");
-		return store.removeProduct(prodactname);
+		return myJob.store.removeProduct(prodactname);
 	}
 
 	@Override
-	public List<Purchase> getPurchaseHistory() {
-		return store.viewPurchaseHistory();
+	public List<StorePurchase> getPurchaseHistory() {
+		return myJob.store.viewPurchaseHistory();
 
 	}
 
 	@Override
 	public Collection<Question> viewQuestions() {
-		return store.getQuestions();
+		return myJob.store.getQuestions();
 	}
 
 	@Override
 	public boolean giveRespond(String ansewr, int qustionID) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "-Owner gives Respond");
-		return store.respondToQuestion(ansewr, qustionID);
+		return myJob.store.respondToQuestion(ansewr, qustionID);
 	}
 
 	// ------------------------------------------------------------Role actions
@@ -109,16 +114,17 @@ public class StoreOwner_Imp implements  Store_role {
 	}
 
 	@Override
-	public boolean fire(IUser manager) {
+	public boolean fire(String manager) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "Owner fire worker");
-		return manager.getFired(store.getName());
+
+		return myJob.store.fireManager(manager);
+
 	}
 
 	@Override
 	public boolean getfire() {
-		store.fireOwner(this);
-		boss.IgotFire(workername);
-		return true;
+		myJob.grantor.IgotFire(workername);
+		return user.getFired(myJob.store.getName());
 	}
 
 	@Override
@@ -137,7 +143,7 @@ public class StoreOwner_Imp implements  Store_role {
 	@Override
 	public boolean editManagerPermesions(String managername, List<String> permesions) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "-Owner changed other manager permesions");
-		return store.editManagerPermesions(managername, permesions);
+		return myJob.store.editManagerPermesions(managername, permesions);
 	}
 
 	@Override
@@ -156,5 +162,7 @@ public class StoreOwner_Imp implements  Store_role {
 
 		return workername;
 	}
+
+
 
 }

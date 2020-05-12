@@ -3,10 +3,8 @@ package Domain.Store;
 import java.util.Collection;
 import java.util.List;
 
-import Domain.RedClasses.IUser;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
-import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 
 public interface IStore {
@@ -26,7 +24,7 @@ public interface IStore {
 
 	public int getRating();
 
-	public List<Purchase> viewPurchaseHistory() ;
+	public List<StorePurchase> viewPurchaseHistory() ;
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 
@@ -44,8 +42,8 @@ public interface IStore {
 
 	boolean appointOwner(StoreOwner_Imp user);
 
-	boolean fireManager(StoreManager_Imp user);
 
-	boolean fireOwner(StoreOwner_Imp user);
+
+	boolean fireManager(String user);
 
 }

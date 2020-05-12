@@ -1,6 +1,7 @@
 package Service_Layer.member_accese;
 
 import Domain.RedClasses.User;
+import Domain.RedClasses.UserPurchase;
 import Domain.Store.Purchase;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;

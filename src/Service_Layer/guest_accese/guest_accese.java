@@ -20,11 +20,11 @@ public class guest_accese {
 		return System.getInstance().ImNew();
 	}
 
-	//TODO old need to delete
-	public static boolean usecase2_3_login(String username, String password) {
-		//TODO old need to delete
-		return System.getInstance().login(username, password) != null;
-	}
+//	//TODO old need to delete
+//	public boolean usecase2_3_login(String username, String password) {
+//		//TODO old need to delete
+//		return System.getInstance().login(username, password) != null;
+//	}
 	
 	public static boolean usecase2_3_login(int guestId, String username, String password) {
 		return System.getInstance().getGuest(guestId).login(username, password);
@@ -88,7 +88,8 @@ public class guest_accese {
 		return System.getInstance().getGuest(guestID).deleteProductInBasket(prodactname, storename, amount);
 	}
 
-	public static boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
+	//2.8
+	public boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
 		List<Product> items = usecase2_8_5_Update_inventory(guestID);
@@ -106,6 +107,7 @@ public class guest_accese {
 			usecase2_8_4_Guest_Refund(bank, price);
 			return false;
 		}
+		System.getInstance().getGuest(guestID).Complet_Purchase(price);
 		return true;
 	}
 
@@ -126,8 +128,7 @@ public class guest_accese {
 		return false;
 	}
 
-	public static List<Product> usecase2_8_5_Update_inventory(int guestID) {
-
+	public List<Product> usecase2_8_5_Update_inventory(int guestID) {
 		return System.getInstance().getGuest(guestID).getCart().getItems();
 	}
 

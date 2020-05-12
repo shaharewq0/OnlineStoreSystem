@@ -2,6 +2,7 @@ package Service_Layer.manager_accese;
 
 import Domain.RedClasses.User;
 import Domain.Store.Purchase;
+import Domain.Store.StorePurchase;
 import Domain.info.Question;
 import Domain.store_System.System;
 

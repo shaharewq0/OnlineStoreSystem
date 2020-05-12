@@ -17,6 +17,7 @@ public class StoreInfo {
 		this.name = name;
 		this.address = address;
 		this.rating = rating;
+		//maybe we dont need products here
 		this.products = new LinkedList<ProductDetails>();
 		for (ProductDetails product : products) {
 			this.products.add(product);

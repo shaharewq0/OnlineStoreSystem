@@ -26,7 +26,8 @@ public class StoreImp implements IStore {
 	private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
 	private String address;
 	private int rating;
-	private List<Purchase> purchaseHistory = new LinkedList<Purchase>();
+	
+	private Store_Purchase_History purchaseHistory = new Store_Purchase_History();
 	private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
 	private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
@@ -101,22 +102,34 @@ public class StoreImp implements IStore {
 	}
 
 	@Override
-	public List<Purchase> viewPurchaseHistory() {
+	public List<StorePurchase> viewPurchaseHistory() {
 
-		return purchaseHistory;
+		return purchaseHistory.PastPurchase;
 	}
 
 	@Override
-	public boolean fireManager(StoreManager_Imp user) {
+	public boolean fireManager(String user) {
 		EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
-		return Managers.remove(user.getName()) != null;
+		if(Managers.containsKey(user) && Owners.containsKey(user))
+			ErrorLogger.GetInstance().Add_Log(this.toString() + "- fatel error worker is owner and manager");
+		if(Managers.containsKey(user)) {
+			if(Managers.get(user).getfire())
+			return Managers.remove(user) != null;
+			
+		}
+		if(Owners.containsKey(user)) {
+			if(Owners.get(user).getfire())
+			return Owners.remove(user) != null;
+		}
+		
+		return false;
 	}
 
-	@Override
-	public boolean fireOwner(StoreOwner_Imp user) {
-		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
-		return Owners.remove(user.getName()) != null;
-	}
+//	@Override
+//	public boolean fireOwner(StoreOwner_Imp user) {
+//		EventLogger.GetInstance().Add_Log(this.toString() + "- fire Owner from store");
+//		return Owners.remove(user.getName()) != null;
+//	}
 
 	@Override
 	public boolean appointManager(StoreManager_Imp worker) {
@@ -229,7 +242,7 @@ public class StoreImp implements IStore {
 		if(findProductByName(item)== null)
 			ErrorLogger.GetInstance().Add_Log(this.toString() + "- cant find item to calc price");
 			
-		//TODO add discount here
+		//TODO add discount type 1 here
 
 		return findProductByName(item).getPrice();
 	}
@@ -255,12 +268,19 @@ public class StoreImp implements IStore {
 		return takeout;
 	}
 
+	public boolean addPurchase(StorePurchase p)
+	{
+		purchaseHistory.PastPurchase.add(p);
+		return true;
+	}
+	
 	public List<Discount> getDiscounts(String name) {
 		Product p = findProductByName(name);
 		return discounts.get(p);
 
 	}
 
+	
 	// --------------------------------------------------- questions
 	public Collection<Question> getQuestions() {
 
