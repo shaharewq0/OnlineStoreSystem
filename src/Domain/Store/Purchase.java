@@ -48,6 +48,8 @@ public class Purchase {
 		return Acquisition.Copy(transaction);
 	}
 
+
+
 	public PaymentMethed getPayMethed() {
 		return payMethed;
 	}
