@@ -23,10 +23,11 @@ public class AppointStoreOwnerTest extends BaseAccTest {
 
     @BeforeClass
     public static void setUpClass() {
-        system.register(APPOINTEE_USERNAME, APPOINTEE_PASSWORD);
-
         OpenStoreTest.setUpClass();
         system.openStore(USERNAME, PASSWORD, STORE);
+
+        system.register(APPOINTEE_USERNAME, APPOINTEE_PASSWORD);
+        system.login(APPOINTEE_USERNAME, APPOINTEE_PASSWORD);
     }
 
     @Test

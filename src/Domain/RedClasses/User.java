@@ -1,10 +1,5 @@
 package Domain.RedClasses;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Logs.EventLogger;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
@@ -180,8 +175,10 @@ public class User implements IUser {
 	public boolean appointOwner(String storeName, String username, String otherPassword) {
 		if (profile == null)
 			return false;
-
-		return profile.store_roles.get(storeName).appointOwner(System.getInstance().getMember(username, otherPassword));
+		User appointee = System.getInstance().getMember(username, otherPassword);
+		if(appointee == null)
+			return false;
+		return profile.store_roles.get(storeName).appointOwner(appointee);
 	}
 
 	@Override
@@ -200,9 +197,10 @@ public class User implements IUser {
 
 		if (profile == null)
 			return false;
-
-		return profile.store_roles.get(storeName)
-				.appointManager(System.getInstance().getMember(username, otherPassword));
+		User appointee = System.getInstance().getMember(username, otherPassword);
+		if(appointee == null)
+			return false;
+		return profile.store_roles.get(storeName).appointManager(appointee);
 
 	}
 
