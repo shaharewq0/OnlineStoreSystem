@@ -13,9 +13,16 @@ public class StoreDetails {
     private String adress;
     private int rating;
 
+    public StoreDetails(String name,String adress, int rating) {
+        this.name = name;
+        this.rating = rating;
+        this.adress = adress;
+    }
+
     public StoreDetails(String name, int rating) {
         this.name = name;
         this.rating = rating;
+        this.adress = "unkwon";
     }
 
     public StoreDetails(StoreImp storeDetails) {

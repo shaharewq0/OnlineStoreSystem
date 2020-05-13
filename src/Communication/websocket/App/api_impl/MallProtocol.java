@@ -165,7 +165,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(OpenStoreMessage msg) {
-        if(memeber.usecase3_2_OpenStore(username, paasword, new StoreDetails(msg.getName(), 0))){
+        if(memeber.usecase3_2_OpenStore(username, paasword, new StoreDetails(msg.getName(), msg.getAddres(), 0))){
             return new AckMessage(msg.getId());
         }
 

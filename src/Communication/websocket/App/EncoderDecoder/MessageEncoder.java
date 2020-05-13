@@ -68,7 +68,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     private JSONObject list2jason(List<Byte> lst){
 
         JSONObject jsn = new JSONObject();
-        
+
         int i = 0;
 
         for (Byte b: lst){
