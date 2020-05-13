@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import Domain.Store.Product;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class StoreInfo {

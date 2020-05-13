@@ -2,7 +2,6 @@ package Domain.info;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Set;
 
 public class MangaerPermesions {
 
