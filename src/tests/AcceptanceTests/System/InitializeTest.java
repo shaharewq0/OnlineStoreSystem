@@ -2,6 +2,8 @@ package tests.AcceptanceTests.System;
 
 import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
+import tests.AcceptanceTests.auxiliary.DummyPayment;
+import tests.AcceptanceTests.auxiliary.DummySupply;
 
 /* TODO:
 *   - implement initialize
@@ -12,6 +14,6 @@ import tests.AcceptanceTests.BaseAccTest;
 public class InitializeTest extends BaseAccTest {
     @Test
     public void initialize() {
-        system.init();
+        system.init(new DummyPayment(), new DummySupply());
     }
 }

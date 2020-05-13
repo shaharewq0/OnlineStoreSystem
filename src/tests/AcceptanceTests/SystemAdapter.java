@@ -7,18 +7,14 @@ import Domain.store_System.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-import tests.AcceptanceTests.auxiliary.Question;
-import tests.AcceptanceTests.auxiliary.StoreDetails;
+import tests.AcceptanceTests.auxiliary.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class SystemAdapter {
-	public void init() {
+	public void init(DummyPayment payment, DummySupply supply) {
 		// TODO
-		// Note: call with DummyPayment and DummySupply
-		// Note: also need to delete all?
 	}
 
 	public void resetSystem() {

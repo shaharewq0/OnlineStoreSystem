@@ -2,7 +2,9 @@ package tests.AcceptanceTests.StoreOwner;
 
 
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.MemberedBuyer.OpenStoreTest;
 
@@ -12,6 +14,7 @@ import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppointStoreOwnerTest extends BaseAccTest {
     static String APPOINTEE_USERNAME = "appointee username";
     static String APPOINTEE_PASSWORD = "appointee password";
