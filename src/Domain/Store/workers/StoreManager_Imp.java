@@ -1,11 +1,5 @@
 package Domain.Store.workers;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
 import Domain.Store.Product;
@@ -16,6 +10,8 @@ import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.Roles.Registered;
+
+import java.util.*;
 
 public class StoreManager_Imp implements Store_role {
 	private Registered user;
@@ -121,6 +117,7 @@ public class StoreManager_Imp implements Store_role {
 			return false;
 		Store_role newRole = new StoreOwner_Imp(this, user.getName());
 		if (user.appointAsOwner(newRole)) {
+			MyJob.store.appointOwner((StoreOwner_Imp) newRole);
 			OwnerAppointeis.put(user.getName(), newRole);
 			return true;
 		}
@@ -133,6 +130,7 @@ public class StoreManager_Imp implements Store_role {
 			return false;
 		Store_role newRole = new StoreManager_Imp(this, user.getName() );
 		if (user.appointAsManager(newRole)) {
+			MyJob.store.appointManager((StoreManager_Imp) newRole);
 			ManagerAppointeis.put(user.getName(), newRole);
 			return true;
 		}

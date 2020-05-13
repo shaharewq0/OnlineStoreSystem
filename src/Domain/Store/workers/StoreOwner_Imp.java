@@ -1,10 +1,5 @@
 package Domain.Store.workers;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.RedClasses.IUser;
@@ -15,6 +10,11 @@ import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.Roles.Registered;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StoreOwner_Imp implements  Store_role {
 	private Registered user;
@@ -93,6 +93,7 @@ public class StoreOwner_Imp implements  Store_role {
 	public boolean appointOwner(IUser user) {
 		Store_role newRole = new StoreOwner_Imp(this, user.getName());
 		if (user.appointAsOwner(newRole)) {
+			myJob.store.appointOwner((StoreOwner_Imp) newRole);
 			OwnerAppointeis.put(user.getName(), newRole);
 			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Owner");
 			return true;
@@ -105,6 +106,7 @@ public class StoreOwner_Imp implements  Store_role {
 	public boolean appointManager(IUser user) {
 		Store_role newRole = new StoreManager_Imp(this, user.getName());
 		if (user.appointAsManager(newRole)) {
+			myJob.store.appointManager((StoreManager_Imp) newRole);
 			ManagerAppointeis.put(user.getName(), newRole);
 			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Manager");
 			return true;

@@ -5,6 +5,7 @@ import org.junit.Test;
 import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.GuestBuyer.PurchaseTest;
 
+import static org.junit.Assert.fail;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 
@@ -21,6 +22,7 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
 
     @Test
     public void reviewPurchaseHistory() {
+        fail("not implemented!");
 //        List<PurchaseDetails> TruePurchases = Arrays.asList();
 //        List<PurchaseDetails> purchases = system.viewPurchaseHistory();
 //        assertEqualsLists(TruePurchases, purchases);
