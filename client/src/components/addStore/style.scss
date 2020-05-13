@@ -1,0 +1,50 @@
+.base-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .input1{
+        padding: 0 1rem;
+        .name-input{
+            border-radius: 25px;
+            width: 300px;
+            height: 50px;
+        }
+    }
+    .input2{
+        padding: 0 1rem;
+        .address-input{
+            border-radius: 25px;
+            width: 300px;
+            height: 50px;
+        }
+    }
+
+
+    .buttoms {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 3em;
+        width: 250px;
+        .back{
+          padding: 10px 24px;
+          .b{
+            border-radius: 12px;
+            font-size: 20px;
+            background-color: #87CEFA;
+            border: 2px solid #000000;
+          }
+        }
+        .create{
+          padding: 10px 24px;
+          .c{
+            border-radius: 12px;
+            font-size: 20px;
+            background-color: #87CEFA;
+            border: 2px solid #000000;
+          }
+        }
+      }
+}

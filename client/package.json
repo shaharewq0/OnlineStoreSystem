@@ -1,0 +1,64 @@
+{
+  "name": "p-l",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-native-community/cli": "^4.8.0",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "arraybuffer-concat": "0.0.1",
+    "babel": "^6.23.0",
+    "bootstrap": "^4.4.1",
+    "expo": "^37.0.8",
+    "find-babel-config": "^1.2.0",
+    "react-native-reanimated": "^1.8.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.7.0",
+    "react-navigation": "^4.3.9",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "reactstrap": "^8.4.1",
+    "redux": "^4.0.5",
+    "ws": "^7.2.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-flow-strip-types": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "bulma": "^0.8.2",
+    "node-sass": "^4.14.1",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1",
+    "utf-8-validate": "^5.0.2"
+  }
+}
