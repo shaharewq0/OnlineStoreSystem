@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.info.ProductDetails;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
 
@@ -60,6 +61,16 @@ public class Store_Inventory implements inventory {
 			}
 		}
 		return toReturn;
+	}
+
+
+	public boolean recive_item(ProductDetails p) {
+		if(items.containsKey(p.getName())) {
+			items.get(p.getName()).addToAmount(p.getAmount());
+		}
+			else
+				items.put(p.getName(), new Product(p));
+		return true;
 	}
 
 }

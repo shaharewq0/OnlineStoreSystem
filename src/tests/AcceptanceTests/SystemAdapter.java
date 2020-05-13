@@ -1,181 +1,195 @@
 package tests.AcceptanceTests;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import Domain.RedClasses.IUser;
-import Domain.RedClasses.shoppingCart;
-import Domain.Store.IStore;
 import Domain.Store.Product;
-import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
+import Domain.info.StoreInfo;
 import Domain.store_System.System;
-import Domain.store_System.Roles.Registered;
-import Domain.store_System.Security.PassProtocol_Imp;
+import Service_Layer.guest_accese.guest_accese;
+import Service_Layer.member_accese.member_accese;
+import Service_Layer.owner_accese.owner_accese;
 import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 import tests.AcceptanceTests.auxiliary.Question;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class SystemAdapter {
 	public void init() {
+		// TODO
 		// Note: call with DummyPayment and DummySupply
 		// Note: also need to delete all?
 	}
-	//use case 2
-	public boolean login(String username, String password) {
-		// TODO imp
-		return System.getInstance().login(username, password) != null;
+
+	public void resetSystem() {
+		System.getInstance().resetSystem();
 	}
-//use case 2
+
+	public int newGuest() {
+		return guest_accese.ImNew();
+	}
+
+	// 2.2
 	public boolean register(String username, String password) {
-		return System.getInstance().register(username, password);
+		return guest_accese.usecase2_2_guest_register(username, password);
 	}
 
-	public void logout() {
-		// TODO not implemented as of yet
+	public void removeUser(String username, String password) {
+		System.getInstance().removeUser(username, password);
 	}
 
-	public boolean isLoggedIn() {
-		// TODO function not implemented
-		return false;
+	// 2.3
+	public boolean login(String username, String password) {
+		return guest_accese.usecase2_3_login(guest_accese.ImNew(), username, password);
 	}
 
-	public boolean openStore(StoreDetails storeDetails) {
-		return System.getInstance().openStore(storeDetails.getName(), "London", 9) != null;
-	}
-	//use case 2
-	public boolean hasStore(String storeName) {
-		return System.getInstance().getStoreDetails(storeName) != null;
+	// 2.3
+	public boolean login(int guestID, String username, String password) {
+		return guest_accese.usecase2_3_login(guestID, username, password);
 	}
 
-	public String getStoreManager(String validStoreName) {
-		return System.getInstance().getStoreDetails(validStoreName).getManagers().toString();
-	}
-
-	
-	
-	public List<PurchaseDetails> getPurchaseHistory(String username) {
-		List<PurchaseDetails> temp = new LinkedList<PurchaseDetails>();
-		for (shoppingCart cart : System.getInstance().orderHistory(username)) {
-			temp.add(new PurchaseDetails(cart));
-		}
-		return temp;
-	}
-
-	public boolean isRegistered(String username) {
-		// TODO function dont exsist
-		return System.getInstance().Registered_contains(username) != null;
-	}
-	//use case 2
+	// 2.4A
 	public StoreDetails getStoreDetails(String storeName) {
-		StoreImp store = System.getInstance().getStoreDetails(storeName);
-		if (store == null)
-			return null;
-		return new StoreDetails(store);
+		return guest_accese.usecase2_4A_getStoreDetails(storeName);
 	}
-	//use case 2
-	public ProductDetails getProductDetails(String storeName, String productName) {
-		Product pro = System.getInstance().getStoreDetails(storeName).findProductByName(productName);
-		if (pro == null)
+
+	// 2.4B
+	public List<ProductDetails> getProductsFromStore(String storeName) {
+		StoreInfo s = guest_accese.usecase2_4B_getStoreProdacts(storeName);
+		if(s == null)
 			return null;
-		return new ProductDetails(pro,0);
+		return s.getProducts();
 	}
-	//use case 2
+
+	// 2.5A
 	public List<ProductDetails> searchProductByName(String name) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByName(name));
+		return guest_accese.usecase2_5A_searchProductByName(name);
 	}
-	//use case 2
+
+	// 2.5B
 	public List<ProductDetails> searchProductByCategory(String category) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByCategory(category));
+		return guest_accese.usecase2_5B_searchProductByCategory(category);
 	}
-	//use case 2
+
+	// 2.5C
 	public List<ProductDetails> searchProductByKeyword(String keyword) {
-		return ProductDetails.adapteProdactList(System.getInstance().searchProductsByKeyword(keyword));
-	}
-	//use case 2
-	public boolean inBasket(String storeName, String productName) {
-		// TODO dont know which user to check
-		return false;
-	}
-	//use case 2
-	public void addToBasket(String storeName, String productName) {
-		// TODO dont know which user to check
-	}
-	//use case 2
-	public void clearShoppingCart() {
-		// TODO dont know which user to check
-	}
-	//use case 2
-	public List<ProductDetails> getShoppingCart() {
-		// TODO dont know which user to check
-		return new LinkedList<>();
-	}
-	//use case 2
-	public boolean hasItem(String storeName, String productName) {
-		return System.getInstance().getStoreDetails(storeName).findProductByName(productName) != null;
+		return guest_accese.usecase2_5C_searchProductByKeyword(keyword);
 	}
 
-	
-	
-	public boolean addProductToStore(String storeName, String productName) {
-//		System system = System.getInstance();
-//		// Product p = system.searchProductsByName(productName).get(0);
-//		StoreImp store = system.getStoreDetails(storeName);
-//		return store.addProduct(new Product(productName, "cat", new LinkedList<String>(), 5, 1, store));
-//		// we assume the product and store exist....
-		return false;
+	// 2.5D1
+	public List<ProductDetails> filterByPrice(double minPrice, double maxPrice) {
+		return guest_accese.usecase2_5D_1_FilterbyPrice(minPrice, maxPrice);
 	}
 
-	public boolean RemoveProduct(String storeName, String productName) {
-		System system = System.getInstance();
-		Product p = system.searchProductsByName(productName).get(0);
-		return system.getStoreDetails(storeName).removeProduct(productName);
+	// 2.5D2
+	public List<ProductDetails> filterByRating(int minRating, int maxRating) {
+		return guest_accese.usecase2_5D_2_FilterbyRating(minRating, maxRating);
 	}
 
-	public boolean appointStoreOwner(String username) {
-		// TODO need store name and who appoints me
-		return false;
+	// 2.5D3
+	public List<ProductDetails> filterByCategory(String category) {
+		return guest_accese.usecase2_5D_3_FilterbyCategory(category);
 	}
 
-	public boolean appointStoreManager(String username) {
-		// TODO same as above
-		return false;
+	// 2.5D4
+	public List<ProductDetails> filterByStoreRating(int minRating, int maxRating) {
+		return guest_accese.usecase2_5D_4_FilterbyStoreRating(minRating, maxRating);
 	}
 
-	public boolean isStoreOwner(String storeName, String username) {
-		System system = System.getInstance();
-		StoreImp storeImp = system.getStoreDetails(storeName);
-		// TODO as of now we cant reach user. by username - we can only reach register.
-		// in next version
-		// system role will move to register
-		return false;
+	// 2.6
+	public boolean addToBasket(int guestID, String storeName, String productName, int amount) {
+		return guest_accese.usecase2_6_saveProductToBasket(guestID, storeName, productName, amount);
 	}
 
-	public boolean isStoreManager(String storeName, String username) {
-		// TODO same as above
-		return false;
+	// 2.7A
+	public List<ProductDetails> watchShoppingCart(int guestID) {
+		return guest_accese.usecase2_7A_WatchProdactsInCart(guestID);
 	}
 
-	public boolean removeStoreManager(String storeName, String username) {
-		// TODO same as above
-		return false;
+	// 2.7B
+	public boolean removeProductsFromCart(int guestID, String storeName, String productName, int amount) {
+		return guest_accese.usecase2_7b_RemoveProdactsInCart(guestID, storeName, productName, amount) > 0;
 	}
 
-	public List<PurchaseDetails> getStoreSellingHistory(String storeName) {
+	// 2.8
+	public void purchase() {
+		// TODO
+	}
+
+	// 3.1
+	public boolean logout(String username, String password) {
+		return member_accese.usecase3_1_Logout(username, password);
+	}
+
+	// 3.2
+	public boolean openStore(String username, String password, StoreDetails storeDetails) {
+		return member_accese.usecase3_2_OpenStore(username, password, storeDetails);
+	}
+
+	// 3.7
+	public List<PurchaseDetails> getPurchaseHistory(String username, String password) {
+// TODO
+		//		return member_accese.usecase3_7_ReviewPurchasesHistory(username, password);
 		return null;
-		//return System.getInstance().getStoreDetails(storeName).viewPurchaseHistory();
 	}
 
+	// 4.1.1
+	public boolean addProduct(String username, String password, String storeName, ProductDetails product) {
+		return owner_accese.usecase4_1_1_AddingProdacsToStore(username, password, storeName, new Product(product));
+	}
+
+	// 4.1.2
+	public boolean RemoveProduct(String username, String password, String storeName, String productName) {
+		return owner_accese.usecase4_1_2_RemoveItem(username, password, storeName, productName);
+	}
+
+	// 4.1.3
+	public boolean EditProduct(String username, String password, String storeName, String productName,
+							   ProductDetails newProductDet) {
+		return owner_accese.usecase4_1_3_EditProduct(username, password, storeName, productName, new Product(newProductDet));
+	}
+
+	// 4.3
+    public boolean appointOwner(String myusername, String myPassword, String storeName, String hisusername,String hisPassword) {
+		return owner_accese.usecase4_3_appointOwner(myusername, myPassword, storeName, hisusername, hisPassword);
+	}
+
+	// 4.5
+    public boolean appointManager(String myusername, String myPassword, String storeName, String hisusername,String hisPassword) {
+		return  owner_accese.usecase4_5_appointManager(myusername, myPassword, storeName, hisusername, hisPassword);
+    }
+
+    // 4.6
+    public boolean editManagerPermissions(String myusername, String myPassword,String storename, String managername,
+                                          List<String> permissions) {
+		return owner_accese.usecase4_6_editMangagerPermesions(myusername, myPassword, storename, managername, permissions);
+    }
+
+    // 4.7
+    public boolean fireManager(String myusername, String myPassword, String storeName, String hisusername) {
+		return owner_accese.usecase4_7_FireManager(myusername, myPassword, storeName, hisusername);
+    }
+
+	// 4.10
+	public List<PurchaseDetails> getStoreSellingHistory(String username, String password, String storeName) {
+	// TODO
+		//		return owner_accese.usecase4_10_ViewAcquisitionHistory(username, password, storeName);
+		return null;
+	}
+
+	// 4.9
 	public List<Question> getStoreQuestions(String storeName) {
 		// TODO this is not implemented in version 1
 		return new LinkedList<>();
 	}
 
+	// 4.9
 	public void askQuestion(String storeName, Question question) {
 		// TODO this is not implemented in version 1
 
 	}
 
+	// 4.9
 	public void answerQuestion(Question question) {
 		// TODO this is not implemented in version 1
 

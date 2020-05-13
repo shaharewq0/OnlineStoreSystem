@@ -1,15 +1,50 @@
 package Domain.store_System.Roles;
 
-public class Registered{
-    private String id;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    
-    public Registered(String id) {
-        this.id = id;
-    }
+import Domain.RedClasses.User;
+import Domain.RedClasses.UserPurchase;
+import Domain.RedClasses.User_Purchase_History;
+import Domain.Store.workers.Store_role;
 
-    public String getId() {
-        return id;
-    }
+public class Registered {
+	private String id;
+	private User_Purchase_History history = new User_Purchase_History();
+	//private List<Purchase> myPurcase = new LinkedList<Purchase>();
+	public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
+
+	public Registered(String id) {
+		this.id = id;
+
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void LogLogin(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void LogHistory(UserPurchase p) {
+		history.history.add(p);
+	}
+
+	public List<UserPurchase> getPurchesHistory() {
+		return history.history;
+	}
+
+	public void LogLogout(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean getFired(String name) {
+		return store_roles.remove(name) != null;
+
+	}
 
 }

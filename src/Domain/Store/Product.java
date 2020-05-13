@@ -1,5 +1,8 @@
 package Domain.Store;
 
+import Domain.info.ProductDetails;
+import Domain.store_System.System;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +19,6 @@ public class Product extends Object  implements IProduct{
         this.name = name;
         this.category=new LinkedList<String>();
         this.category.addAll(category);
-        
         this.keyWords=keyWords;
         this.price=price;
         this.rating=rating;
@@ -24,7 +26,17 @@ public class Product extends Object  implements IProduct{
         amount=0;
     }
 
-    public String getName() {
+    public Product(ProductDetails p) {
+		name = p.getName();
+		category = new LinkedList<>(p.getCategory());
+		keyWords = new LinkedList<>(p.getKeyWords());
+		price = p.getPrice();
+		rating = p.getRating();
+		amount = p.getAmount();
+		store = System.getInstance().getStoreDetails(p.getStoreName());
+	}
+
+	public String getName() {
         return name;
     }
 

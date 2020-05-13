@@ -5,5 +5,5 @@ import java.util.List;
 
 public class Store_Purchase_History {
 
-	List<Purchase> PastPurchase = new LinkedList<Purchase>(); 
+	List<StorePurchase> PastPurchase = new LinkedList<StorePurchase>(); 
 }

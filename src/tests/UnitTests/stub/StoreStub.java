@@ -1,8 +1,5 @@
 package tests.UnitTests.stub;
 
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
-
-import java.util.LinkedList;
 import java.util.List;
 
 import Domain.RedClasses.IUser;
@@ -10,6 +7,9 @@ import Domain.Store.Discount;
 import Domain.Store.IStore;
 import Domain.Store.Product;
 import Domain.Store.Purchase;
+import Domain.Store.StorePurchase;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.info.ProductDetails;
 
 public class StoreStub implements IStore {
@@ -68,23 +68,9 @@ public class StoreStub implements IStore {
  
 
 
+    
     @Override
-    public boolean appointOwner(IUser user) {
-        return false;
-    }
-
-    @Override
-    public boolean appointManager(IUser user) {
-        return false;
-    }
-
-    @Override
-    public boolean fireManager(IUser user) {
-        return false;
-    }
-
-    @Override
-    public List<Purchase> viewPurchaseHistory() {
+    public List<StorePurchase> viewPurchaseHistory() {
         return null;
     }
 
@@ -120,6 +106,25 @@ public class StoreStub implements IStore {
 
 	@Override
 	public boolean editProduct(String OLD_p, Product NEW_p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean appointManager(StoreManager_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean appointOwner(StoreOwner_Imp user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean fireManager(String user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
