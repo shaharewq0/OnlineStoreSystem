@@ -2,17 +2,15 @@ package tests.UnitTests.CommunicationLayer;
 
 import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.messages.Macros.Opcodes;
-import Communication.websocket.App.messages.Objects.LoginMessage;
-import Communication.websocket.App.messages.Objects.LogoutMessage;
-import Communication.websocket.App.messages.Objects.RegisterMessage;
-import org.json.simple.JSONObject;
+import Communication.websocket.App.messages.Objects.client2server.LoginMessage;
+import Communication.websocket.App.messages.Objects.client2server.LogoutMessage;
+import Communication.websocket.App.messages.Objects.client2server.RegisterMessage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.websocket.DecodeException;
-import java.nio.ByteBuffer;
 
 
 public class MessageDecoderTest {

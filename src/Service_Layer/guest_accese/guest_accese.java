@@ -15,6 +15,10 @@ import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class guest_accese {
 
+	public static int ImNew(){
+		return System.getInstance().ImNew();
+	}
+
 	public boolean usecase2_3_login(String username, String password) {
 		return System.getInstance().login(username, password) != null;
 	}
@@ -23,11 +27,11 @@ public class guest_accese {
 		return System.getInstance().register(username, password);
 	}
 
-	public StoreDetails usecase2_4A_getStoreDetails(String storeName) {
+	public StoreInfo usecase2_4A_getStoreDetails(String storeName) {
 		StoreImp store = System.getInstance().getStoreDetails(storeName);
 		if (store == null)
 			return null;
-		return new StoreDetails(store);
+		return store.getMyInfo();
 	}
 
 	public StoreInfo usecase2_4B_getStoreProdacts(String storeName) {

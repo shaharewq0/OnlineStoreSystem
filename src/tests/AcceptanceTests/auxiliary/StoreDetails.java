@@ -17,6 +17,12 @@ public class StoreDetails {
         rating = 4;
     }
 
+    public StoreDetails(String storeName, String address) {
+        name = storeName;
+        this.address = address;
+        rating = 4;
+    }
+
 	public StoreDetails(StoreImp storeDetails) {
         name = storeDetails.getName();
         address = storeDetails.getAddress();

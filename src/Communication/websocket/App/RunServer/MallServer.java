@@ -4,6 +4,7 @@ import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Service_Layer.guest_accese.guest_accese;
 import org.glassfish.tyrus.server.Server;
 
 import javax.websocket.*;
@@ -48,12 +49,15 @@ public class MallServer {
     /** a map of message protocols by the session */
     private static Map<Session, MallProtocol> protocols;
 
+
+
     public MallServer() { }
 
     @OnOpen
     public void onOpen(Session session){
         System.out.printf("[" + LocalDateTime.now() + "]: " + "Opened session. id: %s\n", session.getId());
-        protocols.put(session, new MallProtocol());
+
+        protocols.put(session, new MallProtocol(guest_accese.ImNew()));
     }
 
 

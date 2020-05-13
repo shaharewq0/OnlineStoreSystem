@@ -1,13 +1,13 @@
-package Communication.websocket.App.messages.Objects;
+package Communication.websocket.App.messages.Objects.server2client;
 
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
 
-public class AckMessage extends Server2ClientMessage {
+public class NackMessage extends Server2ClientMessage {
 
-    public AckMessage(long replayForID) {
-        super(Opcodes.Ack, replayForID);
+    public NackMessage(long replayForID) {
+        super(Opcodes.Nack, replayForID);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class AckMessage extends Server2ClientMessage {
 
     @Override
     public String toString() {
-        return "AckMessage{" +
+        return "NackMessage{" +
                 " replyFor ='" + getReplayForID() + '\'' +
                 "}";
     }

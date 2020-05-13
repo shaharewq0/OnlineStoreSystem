@@ -1,14 +1,16 @@
-package Communication.websocket.App.messages.Objects;
+package Communication.websocket.App.messages.Objects.client2server;
 
 import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 
-public class LogoutMessage extends Client2ServerMessage {
+import java.util.Objects;
 
-    public LogoutMessage(long id) {
-        super(Opcodes.Logout, id);
+public class ViewPerchesHistory extends Client2ServerMessage {
+
+    public ViewPerchesHistory( long id) {
+        super(Opcodes.PurchasesHistory, id);
     }
 
     @Override
@@ -24,9 +26,6 @@ public class LogoutMessage extends Client2ServerMessage {
 
     @Override
     public String toString() {
-        return "LogoutMessage{" +
-                ", id ='" + getId() + '\'' +
-                "}";
-
+        return "ViewPerchesHistory{}";
     }
 }

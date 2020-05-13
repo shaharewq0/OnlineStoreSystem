@@ -12,8 +12,7 @@ import Domain.store_System.System;
 
 public class owner_accese {
 
-	public boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
-			Product p) {
+	public boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName, Product p) {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.addProduct(storeName, p);
 	}
