@@ -9,6 +9,7 @@ import org.junit.runners.MethodSorters;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE_THAT_DONT_EXIST;
@@ -68,11 +69,11 @@ public class WatchAndEditShoppingCartTest extends BaseGuestTest {
 
     @Test
     public void removeFromShoppingCartProductDontExist() {
-        assertTrue(system.removeProductsFromCart(guestID, STORE.getName(), PRODUCT3.getName(), 1));
+        assertFalse(system.removeProductsFromCart(guestID, STORE.getName(), PRODUCT3.getName(), 1));
     }
 
     @Test
     public void removeFromShoppingCartStoreDontExist() {
-        assertTrue(system.removeProductsFromCart(guestID, STORE_THAT_DONT_EXIST, PRODUCT1.getName(), 1));
+        assertFalse(system.removeProductsFromCart(guestID, STORE_THAT_DONT_EXIST, PRODUCT1.getName(), 1));
     }
 }

@@ -11,6 +11,9 @@ import static tests.AcceptanceTests.auxiliary.Products.PRODUCT1;
 import static tests.AcceptanceTests.auxiliary.Products.PRODUCT_THAT_DONT_EXIST;
 
 public class SaveProductInShoppingBasketTest extends BaseGuestTest {
+/* TODO:
+    test fails because the system doesnt check if product/store/(amount?) exist
+ */
 
     @BeforeClass
     public static void setUpClass() {

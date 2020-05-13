@@ -60,11 +60,11 @@ public class StoreManagerTests {
 //        system.logout();
 //
 //        system.addToBasket(validStoreName, validProductName);
-//        //TODO: buy from basket
+//        //buy from basket
 //
 //        system.login(username, password);
 //        assertFalse(system.getStoreSellingHistory(validStoreName).isEmpty());
-//        //TODO: check selling history
+//        //check selling history
 //    }
 //
 //    @Test

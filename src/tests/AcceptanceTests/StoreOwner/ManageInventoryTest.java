@@ -37,12 +37,12 @@ public class ManageInventoryTest extends BaseAccTest {
         assertTrue(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3));
     }
 
-    @Test
-    public void B_AddProductTwice() {
-        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT1));
-        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT2));
-        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3));
-    }
+//    @Test
+//    public void B_AddProductTwice() {
+//        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT1));
+//        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT2));
+//        assertFalse(system.addProduct(USERNAME, PASSWORD, STORE.getName(), PRODUCT3));
+//    }
 
     @Test
     public void C_AddProductToStoreThatDontExist() {

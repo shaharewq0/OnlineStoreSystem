@@ -1,16 +1,12 @@
 package Domain.RedClasses;
 
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 import Domain.store_System.System;
+
+import java.util.*;
 
 public class shoppingCart implements IshoppingCart {
     Map<String,shoppingBasket> baskets;
@@ -51,7 +47,10 @@ public class shoppingCart implements IshoppingCart {
     }
     
 	public int removeItem(String Storename,String Itemname,int amount) {
-		return baskets.get(Storename).removeProduct(Itemname, amount);
+    	IshoppingBasket basket = baskets.get(Storename);
+    	if (basket == null)
+    		return 0;
+    	return basket.removeProduct(Itemname, amount);
 	}
     
     @Override

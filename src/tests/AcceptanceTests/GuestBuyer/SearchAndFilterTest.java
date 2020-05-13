@@ -39,7 +39,7 @@ public class SearchAndFilterTest extends BaseAccTest {
     public void searchProductByKeyword() {
         //assume keyword check words from product name
         List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2, PRODUCT3);
-        List<ProductDetails> products = system.searchProductByCategory("product");
+        List<ProductDetails> products = system.searchProductByKeyword("product");
         assertEqualsLists(TrueProducts, products);
     }
 

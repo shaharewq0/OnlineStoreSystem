@@ -111,10 +111,6 @@ public class SystemAdapter {
 		return guest_accese.usecase2_7b_RemoveProdactsInCart(guestID, storeName, productName, amount) > 0;
 	}
 
-	public void clearShoppingCart(int guestID) {
-		// TODO
-	}
-
 	// 2.8
 	public void purchase() {
 		// TODO
@@ -197,9 +193,5 @@ public class SystemAdapter {
 	public void answerQuestion(Question question) {
 		// TODO this is not implemented in version 1
 
-	}
-
-	public void removeStore(StoreDetails store) {
-		// TODO required for testing
 	}
 }

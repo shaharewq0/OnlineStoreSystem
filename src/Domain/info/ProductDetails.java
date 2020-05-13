@@ -99,7 +99,7 @@ public class ProductDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDetails that = (ProductDetails) o;
-        return amount == that.amount &&
+        return //amount == that.amount &&
                 rating == that.rating &&
                 Double.compare(that.price, price) == 0 &&
                 Objects.equals(keyWords, that.keyWords) &&

@@ -99,7 +99,7 @@ public class User implements IUser {
 
 	// removing at most amount of num of a product from the basket
 	public int deleteProductInBasket(String productName, String storeName, int num) {
-		return cart.removeItem(storeName, storeName, num);
+		return cart.removeItem(storeName, productName, num);
 //		
 //		StoreImp myStore = System.getInstance().getStoreDetails(storeName);
 //		if (myStore == null) {
@@ -182,23 +182,29 @@ public class User implements IUser {
 //TODO add fail
 		if (profile == null)
 			return false;
-
-		return profile.store_roles.get(storeName).addItem(p);
+		Store_role role = profile.store_roles.get(storeName);
+		if(role == null)
+			return false;
+		return role.addItem(p);
 	}
 
 	public boolean editProduct(String storeName, String prodactname, Product newdetail) {
 		if (profile == null)
 			return false;
-
-		return profile.store_roles.get(storeName).editItem(prodactname, newdetail);
+		Store_role role = profile.store_roles.get(storeName);
+		if(role == null)
+			return false;
+		return role.editItem(prodactname, newdetail);
 	}
 
 	public boolean removeProduct(String storeName, String prodactname) {
 
 		if (profile == null)
 			return false;
-
-		return profile.store_roles.get(storeName).removeItem(prodactname);
+		Store_role role = profile.store_roles.get(storeName);
+		if(role == null)
+			return false;
+		return role.removeItem(prodactname);
 	}
 
 	public boolean appointOwner(String storeName, String username, String otherPassword) {
@@ -336,7 +342,7 @@ public class User implements IUser {
 		List<ProductDetails> output = new LinkedList<ProductDetails>();
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			for (Product product : store.getProducts()) {
-				if (product.getPrice() < maxPrice && product.getPrice() > minPrice)
+				if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
 					output.add(new ProductDetails(product, product.getAmount()));
 			}
 		}
@@ -348,7 +354,7 @@ public class User implements IUser {
 		List<ProductDetails> output = new LinkedList<ProductDetails>();
 		for (StoreImp store : System.getInstance().getAllStores()) {
 			for (Product product : store.getProducts()) {
-				if (product.getRating() < maxRating && product.getPrice() > minRating)
+				if (product.getRating() <= maxRating && product.getRating() >= minRating)
 					output.add(new ProductDetails(product, product.getAmount()));
 			}
 		}
