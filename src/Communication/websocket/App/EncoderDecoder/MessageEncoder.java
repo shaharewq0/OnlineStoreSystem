@@ -157,6 +157,21 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         }
     }
 
+    private void offerProductsNames( LinkedList<Byte> lst, List<ProductDetails> toOffer){
+
+        boolean first = true;
+
+        for (ProductDetails cur: toOffer) {
+
+            if(!first)
+                offerListDelimiter(lst);
+
+            offerString(lst, cur.getName());
+
+            first = false;
+        }
+    }
+
 
 
 
@@ -211,7 +226,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(StoreProductsResponseMessage msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerList(lst, msg.getProducts());
+        offerProductsNames(lst, msg.getProducts());
 
         return createJsonString(msg.getReplayForID(), lst);
     }

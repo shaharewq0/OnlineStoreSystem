@@ -5,7 +5,9 @@ import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Domain.RedClasses.UserPurchase;
 import Domain.Store.Purchase;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Service_Layer.guest_accese.guest_accese;
@@ -67,7 +69,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(LoginMessage msg){
-        if(guest.usecase2_3_login(msg.getUsername(), msg.getPassword())){
+        if(guest.usecase2_3_login(gustID, msg.getUsername(), msg.getPassword())){
             username = msg.getUsername();
             paasword = msg.getPassword();
 
@@ -87,10 +89,10 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(StorDetailsMessage msg) {
-        StoreInfo detils = guest.usecase2_4A_getStoreDetails(msg.getName());
+        StoreDetails detils = guest.usecase2_4A_getStoreDetails(msg.getName());
 
         if(detils != null) {
-            return new StorDetailsResponseMessage(msg.getId(), detils.name, detils.address, (byte) detils.rating);
+            return new StorDetailsResponseMessage(msg.getId(), detils.getName(), "todo", (byte) detils.getRating()); // TODO
         }
 
         return new NackMessage(msg.getId());
@@ -163,7 +165,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(OpenStoreMessage msg) {
-        if(memeber.usecase3_2_OpenStore(username, paasword, new StoreDetails(msg.getName(), msg.getAddres()))){
+        if(memeber.usecase3_2_OpenStore(username, paasword, new StoreDetails(msg.getName(), 0))){
             return new AckMessage(msg.getId());
         }
 
@@ -171,7 +173,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(ViewPerchesHistory msg) {
-        List<Purchase> history = memeber.usecase3_7_ReviewPurchasesHistory(username, paasword);
+        List<UserPurchase> history = memeber.usecase3_7_ReviewPurchasesHistory(username, paasword);
 
         if(history != null){
             return new PerchesListResponse((byte)-1,msg.getId(), history);
@@ -181,7 +183,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(HistoryOfUserMessage msg) {
-        List<Purchase> history = manager.usecase6_4A_WatchPurchesHistoryofUser(username, paasword, msg.getName());
+        List<UserPurchase> history = manager.usecase6_4A_WatchPurchesHistoryofUser(username, paasword, msg.getName());
 
         if(history != null){
             return new PerchesListResponse((byte)-1,msg.getId(), history);
@@ -191,10 +193,10 @@ public class MallProtocol implements MessagingProtocol<Message> {
     }
 
     public Message accept(HistoryOfStoreMessage msg) {
-        List<Purchase> history = manager.usecase6_4B_WatchPurchesHistoryofStore(username, paasword, msg.getName());
+        List<StorePurchase> history = manager.usecase6_4B_WatchPurchesHistoryofStore(username, paasword, msg.getName());
 
         if(history != null){
-            return new PerchesListResponse((byte)-1,msg.getId(), history);
+       //     return new PerchesListResponse((byte)-1,msg.getId(), history);
         }
 
         return new NackMessage(msg.getId());

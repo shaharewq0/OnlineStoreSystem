@@ -2,6 +2,7 @@ package Communication.websocket.App.messages.Objects.server2client;
 
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
+import Domain.RedClasses.UserPurchase;
 import Domain.Store.Purchase;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.Objects;
 
 public class PerchesListResponse extends Server2ClientMessage {
 
-    private List<Purchase> purchase;
+    private List<UserPurchase> purchase;
 
-    public PerchesListResponse(byte opcode, long replayForID, List<Purchase> purchase) {
+    public PerchesListResponse(byte opcode, long replayForID, List<UserPurchase> purchase) {
         super(opcode, replayForID);
         this.purchase = purchase;
     }
@@ -21,7 +22,7 @@ public class PerchesListResponse extends Server2ClientMessage {
         return encoder.accept(this);
     }
 
-    public List<Purchase> getPurchase() {
+    public List<UserPurchase> getPurchase() {
         return purchase;
     }
 

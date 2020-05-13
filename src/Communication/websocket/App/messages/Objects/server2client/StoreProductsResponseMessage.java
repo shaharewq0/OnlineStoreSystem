@@ -3,15 +3,16 @@ package Communication.websocket.App.messages.Objects.server2client;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
+import Domain.info.ProductDetails;
 
 import java.util.List;
 import java.util.Objects;
 
 public class StoreProductsResponseMessage extends Server2ClientMessage {
 
-    private List<String> products;
+    private List<ProductDetails> products;
 
-    public StoreProductsResponseMessage(long replayForID, List<String> products) {
+    public StoreProductsResponseMessage(long replayForID, List<ProductDetails> products) {
         super(Opcodes.StoreProducts, replayForID);
         this.products = products;
     }
@@ -22,7 +23,7 @@ public class StoreProductsResponseMessage extends Server2ClientMessage {
         return encoder.accept(this);
     }
 
-    public List<String> getProducts() {
+    public List<ProductDetails> getProducts() {
         return products;
     }
 
