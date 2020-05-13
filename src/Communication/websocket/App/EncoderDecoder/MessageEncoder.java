@@ -23,7 +23,10 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     @Override
     public String encode(Message msg) throws EncodeException {
 
-        return ((Server2ClientMessage)msg).visit(this) ;
+        String response = ((Server2ClientMessage)msg).visit(this);
+        System.out.println(response);
+
+        return  response;
     }
 
 
@@ -65,8 +68,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     private JSONObject list2jason(List<Byte> lst){
 
         JSONObject jsn = new JSONObject();
-
-        int size = lst.size();
+        
         int i = 0;
 
         for (Byte b: lst){

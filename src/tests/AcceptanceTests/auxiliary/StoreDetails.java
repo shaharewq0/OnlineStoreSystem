@@ -10,6 +10,7 @@ public class StoreDetails {
     }
 
     private String name;
+    private String adress;
     private int rating;
 
     public StoreDetails(String name, int rating) {
@@ -20,6 +21,7 @@ public class StoreDetails {
     public StoreDetails(StoreImp storeDetails) {
         name = storeDetails.getName();
         rating = storeDetails.getRating();
+        adress = storeDetails.getAddress();
 	}
 
     public int getRating() {
@@ -31,7 +33,12 @@ public class StoreDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StoreDetails that = (StoreDetails) o;
-        return Objects.equals(name, that.name) &&
-                rating == that.rating;
+        return getRating() == that.getRating() &&
+                getName().equals(that.getName()) &&
+                Objects.equals(getAdress(), that.getAdress());
+    }
+
+    public String getAdress() {
+        return adress;
     }
 }

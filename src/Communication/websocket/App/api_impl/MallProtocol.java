@@ -92,7 +92,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
         StoreDetails detils = guest.usecase2_4A_getStoreDetails(msg.getName());
 
         if(detils != null) {
-            return new StorDetailsResponseMessage(msg.getId(), detils.getName(), "todo", (byte) detils.getRating()); // TODO
+            return new StorDetailsResponseMessage(msg.getId(), detils.getName(), detils.getAdress(), (byte) detils.getRating()); // TODO
         }
 
         return new NackMessage(msg.getId());

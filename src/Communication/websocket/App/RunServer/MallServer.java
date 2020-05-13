@@ -72,7 +72,7 @@ public class MallServer {
         if(response != null){
             try {
                 session.getBasicRemote().sendObject(response);
-                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s", session.getId(), response.toString());
+                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n", session.getId(), response.toString());
             } catch (IOException | EncodeException e) {
                 e.printStackTrace();
             }
