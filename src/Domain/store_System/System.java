@@ -2,7 +2,6 @@ package Domain.store_System;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.RedClasses.IshoppingBasket;
 import Domain.RedClasses.User;
 import Domain.RedClasses.shoppingCart;
@@ -135,7 +134,34 @@ public class System implements ISystem {
 			return onlinemember.get(myusername).getUser();
 		return null;
 	}
-	
+
+	public boolean logout(User user) {
+		EventLogger.GetInstance().Add_Log(this.toString() + "user went offline");
+		return onlinemember.remove(user.getName()) != null;
+
+	}
+
+	public Registered getUser(String username) {
+
+		return membersprofiles.get(username);
+	}
+
+	public Member getLogInstase(String id, String password) {
+		if (!myProtocol.login(id, password))
+			return null;
+		if (onlinemember.containsKey(id))
+			return onlinemember.get(id);
+		return null;
+	}
+
+	// TODO need to delete one of thouse
+	public User getMember(int guestId) {
+		User u = guest.get(guestId);
+		if (onlinemember.containsKey(u.getName()))
+			return u;
+		return null;
+	}
+
 	// -------------------------------Store
 	public StoreImp openStore(StoreInfo store) {
 		if (stores.containsKey(store.name))
@@ -145,7 +171,7 @@ public class System implements ISystem {
 		stores.put(store.name, newStore);
 		return newStore;
 	}
-	
+
 	// TODO delete one of thouse functions
 	public StoreImp openStore(String name, String address, int rating) {
 		StoreInfo store = new StoreInfo(name, address, rating);
@@ -159,12 +185,13 @@ public class System implements ISystem {
 
 	public boolean fillStore(List<Product> Products) {
 		boolean output = true;
+		EventLogger.GetInstance().Add_Log(this.toString() + "- returning product to store");
 		for (Product product : Products) {
 			output = output & product.getStore().addProduct(product);
 		}
 		return output;
 	}
-	
+
 	public StoreImp getStoreDetails(String name) {
 		if (stores.containsKey(name))
 			return stores.get(name);
@@ -196,6 +223,15 @@ public class System implements ISystem {
 			}
 		}
 		return baskets;
+	}
+
+	public Collection<StoreImp> getAllStores() {
+		return stores.values();
+	}
+
+	public List<StorePurchase> getPurchaseHistory(String storeName) {
+		return stores.get(storeName).viewPurchaseHistory();
+
 	}
 
 	// ------------------------------ find products
@@ -271,32 +307,15 @@ public class System implements ISystem {
 	}
 
 	// ------------------------purchase
-	public boolean purchase(shoppingCart cart, int creditCard, String address) {
-		if (!UpdateStorage(cart)) {
-			return false;
-		}
-		double price = cart.CalcPrice();
-		// TODO i dont think we need this functions
-		// navigatePayment(creditCard, price);
-		// navigateSupply(cart, address);
-		return true;
-	}
 
 	public PaymentMethed navigatePayment() {
 		return paymentdriver.getPaymentMethed();
-	}
-
-	// TODO implement
-	private boolean UpdateStorage(shoppingCart cart) {
-		return true;
 	}
 
 	public Supplyer navigateSupply() {
 		return supplydriver.getSupplayer();
 
 	}
-
-
 
 	// @Override
 	public boolean CheckItemAvailableA(List<ProductDetails> items) {
@@ -309,54 +328,6 @@ public class System implements ISystem {
 		return true;
 	}
 
-	// @Override
-//	public List<ProductDetails> CheckItemAvailableB(List<ProductDetails> items) {
-//		List<ProductDetails> Available = new LinkedList<>();
-//		for (ProductDetails details : items) {
-//			if (getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
-//				Available.add(details);
-//			}
-//		}
-//		return Available;
-//	}
-
-	
-
-	
-//
-	public IUser getUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Member getLogInstase(String id, String password) {
-		if (!myProtocol.login(id, password))
-			return null;
-		if (onlinemember.containsKey(id))
-			return onlinemember.get(id);
-		return null;
-	}
-
-	public boolean LogOut(int guestID) {
-		return false;
-		// TODO imp
-	}
-
-	public User getMember(int guestId) {
-		User u = guest.get(guestId);
-		if (onlinemember.containsValue(u))
-			return u;
-		return null;
-	}
-
-	public List<StorePurchase> getPurchaseHistory(String storeName) {
-		return stores.get(storeName).viewPurchaseHistory();
-
-		// return null;
-	}
-
-	public Collection<StoreImp> getAllStores() {
-		return stores.values();
-	}
+//-------------------------------------------------------
 
 }

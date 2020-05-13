@@ -1,16 +1,5 @@
 package Domain.store_System;
 
-import java.util.Collection;
-import java.util.List;
-
-import Domain.RedClasses.IshoppingBasket;
-import Domain.RedClasses.shoppingCart;
-import Domain.Store.*;
-import Domain.info.ProductDetails;
-import Domain.store_System.Roles.Registered;
-import extornal.payment.PaymentMethed;
-import extornal.supply.Supplyer;
-
 public interface ISystem {
 //    public boolean register(String id, String password);
 //    public Registered login(String id, String password);
