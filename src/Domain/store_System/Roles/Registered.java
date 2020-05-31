@@ -1,12 +1,14 @@
 package Domain.store_System.Roles;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import Domain.RedClasses.User;
 import Domain.RedClasses.UserPurchase;
 import Domain.RedClasses.User_Purchase_History;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 
 public class Registered {
@@ -44,7 +46,18 @@ public class Registered {
 
 	public boolean getFired(String name) {
 		return store_roles.remove(name) != null;
+	}
 
+	public List<String> storesOwned() {
+		List<String> stores = new LinkedList<>();
+
+		store_roles.forEach((store, role) -> {
+			if (role instanceof StoreOwner_Imp) {
+				stores.add(store);
+			}
+		});
+
+		return  stores;
 	}
 
 }

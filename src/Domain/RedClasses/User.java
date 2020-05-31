@@ -288,6 +288,10 @@ public class User implements IUser {
 		return System.getInstance().searchProductsByName(name);
 	}
 
+	static public ProductDetails searchProductByName(String name, String store) {
+		return System.getInstance().searchProductByName(name, store);
+	}
+
 	static public List<ProductDetails> searchProductsByCategory(String category) {
 		return System.getInstance().searchProductsByCategory(category);
 	}
@@ -351,6 +355,13 @@ public class User implements IUser {
 		if (profile == null)
 			return "Error still no name";
 		return profile.getId();
+	}
+
+	public List<String> storeOwned() {
+		if(profile != null)
+			return profile.storesOwned();
+
+		return  new LinkedList<>();
 	}
 
 }

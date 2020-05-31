@@ -11,6 +11,11 @@ import java.util.List;
 
 public class owner_accese {
 
+	public static List<String> ownStores(int guestID){
+		User me = System.getInstance().getMember(guestID);
+		return me.storeOwned();
+	}
+
 	public static boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
 			Product p) {
 		User me = System.getInstance().getMember(myusername, myPassword);

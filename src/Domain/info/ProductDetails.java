@@ -28,6 +28,18 @@ public class ProductDetails {
         this.keyWords = Arrays.asList(name.split(" "));
     }
 
+    public ProductDetails(String name, List<String> category,List<String> kewwords, String storeName, int amount,double price) {
+        this.name = name;
+        this.category = new LinkedList<>();
+        this.category.addAll(category);
+        this.storeName = storeName;
+        this.amount = amount;
+        this.price = price;
+        this.keyWords = Arrays.asList(name.split(" "));
+        this.keyWords.addAll(kewwords);
+        this.rating = 0;
+    }
+
     public ProductDetails(String name, List<String> category, String storeName, int amount,double price, int rating) {
         this.name = name;
         this.category = new LinkedList<>();

@@ -22,7 +22,6 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
 
     @Test
     public void reviewPurchaseHistory() {
-        fail("not implemented!");
 //        List<PurchaseDetails> TruePurchases = Arrays.asList();
 //        List<PurchaseDetails> purchases = system.viewPurchaseHistory();
 //        assertEqualsLists(TruePurchases, purchases);

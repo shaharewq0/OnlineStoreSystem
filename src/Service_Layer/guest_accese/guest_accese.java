@@ -5,7 +5,7 @@ import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
-import extornal.payment.bankAccount;
+import extornal.payment.CreditCard;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -25,7 +25,11 @@ public class guest_accese {
 //		//TODO old need to delete
 //		return System.getInstance().login(username, password) != null;
 //	}
-	
+
+	static public ProductDetails searchProductByName(String name, String store) {
+		return User.searchProductByName(name, store);
+	}
+
 	public static boolean usecase2_3_login(int guestId, String username, String password) {
 		return System.getInstance().getGuest(guestId).login(username, password);
 	}
@@ -89,7 +93,7 @@ public class guest_accese {
 	}
 
 	//2.8
-	public boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
+	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, inventory whereToSend) {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
 		List<Product> items = usecase2_8_5_Update_inventory(guestID);
@@ -123,12 +127,12 @@ public class guest_accese {
 		return System.getInstance().fillStore(products);
 	}
 
-	public static boolean usecase2_8_4_Guest_Refund(bankAccount cardnumber, double amount) {
+	public static boolean usecase2_8_4_Guest_Refund(CreditCard cardnumber, double amount) {
 		System.getInstance().navigatePayment().pay(cardnumber, amount);
 		return false;
 	}
 
-	public List<Product> usecase2_8_5_Update_inventory(int guestID) {
+	public static List<Product> usecase2_8_5_Update_inventory(int guestID) {
 		return System.getInstance().getGuest(guestID).getCart().getItems();
 	}
 

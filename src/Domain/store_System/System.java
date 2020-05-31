@@ -246,6 +246,21 @@ public class System implements ISystem {
 		return toReturn;
 	}
 
+	public ProductDetails searchProductByName(String name, String Store) {
+		ProductDetails toReturn = null;
+		for (StoreImp s : stores.values()) {
+			if(!s.getName().equals(stores)){
+				continue;
+			}
+
+			ProductDetails product = s.findProductDetailsByName(name);
+			if (product != null) {
+				return product;
+			}
+		}
+		return toReturn;
+	}
+
 	public List<ProductDetails> searchProductsByCategory(String category) {
 		List<ProductDetails> toReturn = new LinkedList<>();
 		for (StoreImp s : stores.values()) {

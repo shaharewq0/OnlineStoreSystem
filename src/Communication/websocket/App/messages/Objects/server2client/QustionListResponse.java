@@ -2,19 +2,19 @@ package Communication.websocket.App.messages.Objects.server2client;
 
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
-import Domain.RedClasses.UserPurchase;
-import Domain.Store.Purchase;
+import Domain.info.Question;
 
 import java.util.List;
 import java.util.Objects;
 
-public class PerchesListResponse extends Server2ClientMessage {
+public class QustionListResponse extends Server2ClientMessage {
 
-    private List<UserPurchase> purchase;
+    private List<Question> questions;
 
-    public PerchesListResponse(byte opcode, long replayForID, List<UserPurchase> purchase) {
+    public QustionListResponse(byte opcode, long replayForID, List<Question> questions) {
         super(opcode, replayForID);
-        this.purchase = purchase;
+
+        this.questions = questions;
     }
 
     @Override
@@ -22,27 +22,27 @@ public class PerchesListResponse extends Server2ClientMessage {
         return encoder.accept(this);
     }
 
-    public List<UserPurchase> getPurchase() {
-        return purchase;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PerchesListResponse that = (PerchesListResponse) o;
-        return getPurchase().equals(that.getPurchase());
+        QustionListResponse that = (QustionListResponse) o;
+        return getQuestions().equals(that.getQuestions());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPurchase());
+        return Objects.hash(getQuestions());
     }
 
     @Override
     public String toString() {
-        return "PerchesListResponse{" +
-                "purchase=" + purchase +
+        return "QustionListResponse{" +
+                "questions=" + questions +
                 '}';
     }
 }

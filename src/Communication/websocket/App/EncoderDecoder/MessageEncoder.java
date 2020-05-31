@@ -5,6 +5,8 @@ import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
+import Domain.RedClasses.UserPurchase;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import org.json.simple.JSONObject;
 
@@ -159,6 +161,51 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         }
     }
 
+    /**
+     * offer a list to a list of bytes
+     * @param lst the list
+     * @param toOffer the list to offer
+     */
+    private void offerUserPurchesList( LinkedList<Byte> lst, List<UserPurchase> toOffer){
+        boolean first = true;
+
+        for (UserPurchase cur: toOffer) {
+
+            if(!first)
+                offerDelimiter(lst);
+
+            offerStorePurchesList(lst, cur.eachPurchase, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3);
+            first = false;
+        }
+
+    }
+
+    private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> purches){
+        offerStorePurchesList(lst, purches, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3);
+    }
+
+    private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> toOffer, byte deleliter1, byte deleliter2, byte deleliter3){
+
+        boolean first = true;
+
+        for (StorePurchase cur: toOffer) {
+
+            if(!first)
+                offerByte(lst, deleliter1);
+
+            OfferStorePurchase(lst, cur, deleliter2, deleliter3);
+            first = false;
+        }
+    }
+
+    private void OfferStorePurchase(LinkedList<Byte> lst, StorePurchase toOffer, byte deleliter2, byte deleliter3){
+        offerString(lst, toOffer.get_Store_Name());
+        offerByte(lst, deleliter2);
+        offerProducts(lst, toOffer.getItems(), deleliter3);
+        offerByte(lst, deleliter2);
+        offerString(lst, String.valueOf(toOffer.getPrice()));
+    }
+
     private void offerProductsNames( LinkedList<Byte> lst, List<ProductDetails> toOffer){
 
         boolean first = true;
@@ -169,6 +216,25 @@ public class MessageEncoder implements  Encoder.Text<Message> {
                 offerListDelimiter(lst);
 
             offerString(lst, cur.getName());
+
+            first = false;
+        }
+    }
+
+    private void offerProducts( LinkedList<Byte> lst, List<ProductDetails> toOffer, byte deleliter){
+
+        boolean first = true;
+
+        for (ProductDetails cur: toOffer) {
+
+            if(!first)
+                offerListDelimiter(lst);
+
+            offerString(lst, cur.getName());
+            offerByte(lst, deleliter);
+            offerByte(lst, (byte) cur.getAmount()); // TODO
+            offerByte(lst, deleliter);
+            offerString(lst, String.valueOf(cur.getPrice()));
 
             first = false;
         }
@@ -225,7 +291,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         return createJsonString(msg.getReplayForID(), lst);
     }
 
-    public String accept(StoreProductsResponseMessage msg) {
+    public String accept(ProductDetailsListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
         offerProductsNames(lst, msg.getProducts());
@@ -233,19 +299,32 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         return createJsonString(msg.getReplayForID(), lst);
     }
 
-    public String accept(ProductDetailsListResponse msg) {
+
+    public String accept(UserPurchaseListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerProductList(lst, msg.getProducts());
+        offerUserPurchesList(lst, msg.getPurchase());
 
         return createJsonString(msg.getReplayForID(), lst);
     }
 
-    public String accept(PerchesListResponse msg) {
+    public String accept(QustionListResponse msg) {
+        // todo : impliment
+        return null;
+    }
+
+    public String accept(StorePurchaseListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        //offerProductList(lst, msg.getPurchase().);
-        // todo : impliment
+        offerStorePurchesList(lst, msg.getPurchases());
+
+        return createJsonString(msg.getReplayForID(), lst);
+    }
+
+    public String accept(StoreListResponse msg) {
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerList(lst, msg.getStores());
 
         return createJsonString(msg.getReplayForID(), lst);
     }

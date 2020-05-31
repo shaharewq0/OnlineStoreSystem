@@ -8,9 +8,9 @@ public class Isracard implements PaymentMethed {
 	private final String logmsg = "A transaction,of size {0} has been made to {1}";
 
 	@Override
-	public boolean pay(bankAccount card_num, double amount) {
-		card_num.getMoney(amount);
-		EventLogger.GetInstance().Add_Log(logmsg + Double.toString(amount) + "," + card_num.name);
+	public boolean pay(CreditCard card_num, double amount) {
+		//card_num.getMoney(amount);
+		//EventLogger.GetInstance().Add_Log(logmsg + Double.toString(amount) + "," + card_num.name);
 		return true;
 	}
 }

@@ -9,12 +9,12 @@ import extornal.payment.Isracard;
 import extornal.payment.MyPaymentSystem;
 import extornal.payment.MyPaymentSystem_Driver;
 import extornal.payment.Pay_pal;
-import extornal.payment.bankAccount;
+import extornal.payment.CreditCard;
 
 public class Payment_Tests {
 
-	private bankAccount bank1 = new bankAccount("bank1", 99933);
-	private bankAccount bank2 = new bankAccount("bank2", 5366);
+	private CreditCard bank1 = new CreditCard("123", "02/23", "311", "yosi yosi");
+	private CreditCard bank2 =new CreditCard("321", "01/24", "476", "pil pilon");
 	MyPaymentSystem mss = null;
 	@Before
 	public void setUp() throws Exception {

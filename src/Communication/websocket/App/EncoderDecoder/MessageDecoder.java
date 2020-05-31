@@ -11,8 +11,7 @@ import org.json.simple.parser.JSONParser;
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 public class MessageDecoder implements Decoder.Text<Message>  {
 
@@ -39,7 +38,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
                 bytes.offer(b);
             }
 
-            Client2ServerMessage m = (Client2ServerMessage) decode(list2array(bytes));
+            Client2ServerMessage m = (Client2ServerMessage) decode(bytes);
             m.setId(id);
 
             return m;
@@ -72,7 +71,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     // ------------------------------------------------------------- general decode -------------------------------------------------------------
 
 
-    private Message decode(byte[] message) {
+    private Message decode(Deque<Byte> message) {
 
         Deque<Deque<Byte>> parameters = parameterize(message);
 
@@ -80,6 +79,10 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         switch (op){
             case Opcodes.Demo : return Demo(parameters);
 
+            //extras
+            case Opcodes.viewOwnedStores : return viewOwnedStores(parameters);
+
+            //Gust
             case Opcodes.Register : return Register(parameters);
             case Opcodes.Login : return Login(parameters);
             case Opcodes.StoreDetails : return StoreDetails(parameters);
@@ -90,13 +93,27 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.Save2Basket : return save2Basket(parameters);
             case Opcodes.ProductsInCarts : return ProductsInCarts(parameters);
             case Opcodes.RemoveFromCart : return RemoveFromCart(parameters);
+            case Opcodes.Purches : return Purches(parameters);
 
-
+            //member
             case Opcodes.Logout : return Logout(parameters);
             case Opcodes.OpenStore : return OpenStore(parameters);
             case Opcodes.PurchasesHistory : return PurchasesHistory(parameters);
 
+            // manager
+            case  Opcodes.ViewMemberQustions : return ViewMemberQustions(parameters);
+            case  Opcodes.Response2Qustion : return Response2Qustion(parameters);
+            case  Opcodes.viewAquisitionHistory : return viewAquisitionHistory(parameters);
 
+            // owner
+            case Opcodes.AddProduct2Store :  return AddProduct2Store(parameters);
+            case Opcodes.RemoveItem : return RemoveItem(parameters);
+            case Opcodes.Add2Product : return Add2Product(parameters);
+            case Opcodes.Appoint : return Appoint(parameters);
+            case Opcodes.FireManager : return FireManager(parameters);
+
+
+            // system manager
             case Opcodes.HistoryOfUser : return HistoryOfUser(parameters);
             case Opcodes.HistoryOfStore : return HistoryOfStore(parameters);
 
@@ -105,29 +122,38 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         }
     }
 
+
     /**
      * recive a message ad split it into the parameters, and convert to lists
      * @param message the mesaage
      * @return a list of the parameters by order
      */
-    private Deque<Deque<Byte>> parameterize(byte[] message){
+    private Deque<Deque<Byte>> parameterize(Deque<Byte> message){
+        return parameterize(message, Delimiters.PARAMETER_DELIMITER);
+    }
+
+    private Deque<Deque<Byte>> parameterize(Deque<Byte> message, byte delimiter){
 
         Deque<Byte> curParamList;
         Deque<Deque<Byte>> parametes = new LinkedList<>();
         int curIndex = 0;
+        Iterator<Byte> iter = message.iterator();
+        byte cur;
 
         //opcode
         curParamList = new LinkedList<>();
-        curParamList.offer(message[curIndex]);
+        curParamList.offer(iter.next());
         parametes.offer(curParamList);
         curIndex++;
 
         // rest
-        for (; curIndex <  message.length; curIndex++) {
+        while (iter.hasNext()) {
             curParamList = new LinkedList<>();
 
-            for (; curIndex <  message.length && message[curIndex] != Delimiters.PARAMETER_DELIMITER; curIndex++) {
-                curParamList.offer(message[curIndex]);
+            cur = iter.next();
+            while (iter.hasNext() && cur != delimiter){
+                curParamList.offer(cur);
+                cur = iter.next();
             }
 
             parametes.offer(curParamList);
@@ -147,24 +173,18 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     }
 
 
-    /**
-     * convert a klist to array
-     * @return the list to convert
-     */
-    private byte[] list2array(Deque<Byte> lst){
+    private byte[] list2array(Deque<Byte> param) {
+        byte[] ret = new byte[param.size()];
 
-        int size = lst.size();
-        int i = 0;
+        int pos = 0;
 
-        byte[] arr = new byte[size];
-
-        for (Byte b: lst){
-            arr[i] = b;
-            i++;
+        for (byte b :param) {
+            ret[pos] = b;
+            pos++;
         }
-
-        return  arr;
+        return ret;
     }
+
 
 
 
@@ -208,6 +228,23 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             throw new IllegalArgumentException("could not decode message.");
 
         return new String(list2array(param));
+    }
+
+    private List<String> popStringListL1(Deque<Deque<Byte>> parameters) {
+        Deque<Byte> param = parameters.poll();
+        LinkedList<String> ret = new LinkedList<>();
+
+        if (param == null)
+            throw new IllegalArgumentException("could not decode message.");
+
+        Deque<Deque<Byte>> lst = parameterize(param, Delimiters.LIST_DELIMITER);
+
+        while (lst.size() > 0) {
+            String curr = popString(lst);
+            ret.offer(curr);
+        }
+
+        return ret;
     }
 
 
@@ -452,4 +489,176 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         return new HistoryOfUserMessage(-1,name);
     }
 
+    private Message ViewMemberQustions(Deque<Deque<Byte>> parameters) {
+        Byte    op   = popOpcode(parameters);
+        String  name = popString(parameters);
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.ViewMemberQustions){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+        return new ViewMemberQustionsMessage(-1,name);
+    }
+
+
+    private Message Response2Qustion(Deque<Deque<Byte>> parameters) {
+        Byte    op   = popOpcode(parameters);
+        String  name = popString(parameters);
+        byte    qid = popByte(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.Response2Qustion){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new Response2QuestionMessage(-1,name, qid);
+    }
+
+    private Message Purches(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  card    = popString(parameters);
+        String  edate   = popString(parameters);
+        String  css     = popString(parameters);
+        String  owner   = popString(parameters);
+        String  adress  = popString(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.PurchasesHistory){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new PurchaseMessage(-1,card, edate, css, owner, adress);
+    }
+
+    private Message AddProduct2Store(Deque<Deque<Byte>> parameters) {
+        Byte    op          = popOpcode(parameters);
+        String  name        = popString(parameters);
+        double  price       = Double.parseDouble(popString(parameters));
+        List<String>  cats  = popStringListL1(parameters);
+        List<String>  keyws = popStringListL1(parameters);
+        String  storename   = popString(parameters);
+        byte ammount        = popByte(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.AddProduct2Store){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new CreateProductMessage(-1,name,price, cats, keyws, storename, ammount);
+    }
+
+    private Message Appoint(Deque<Deque<Byte>> parameters) {
+        Byte    op          = popOpcode(parameters);
+        String  username    = popString(parameters);
+        String  storename   = popString(parameters);
+        byte    role        = popByte(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.Appoint){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new AppointMessage(-1,username, storename,role);
+    }
+
+    private Message FireManager(Deque<Deque<Byte>> parameters) {
+        Byte    op          = popOpcode(parameters);
+        String  username    = popString(parameters);
+        String  store       = popString(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.FireManager){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new FireMessage(-1,username, store);
+    }
+
+    private Message RemoveItem(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  product = popString(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.RemoveItem){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new RemoveProductMessage(-1,store, product);
+    }
+
+    private Message Add2Product(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  product = popString(parameters);
+        String  store   = popString(parameters);
+        byte    ammount = popByte(parameters); // TODO
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.Add2Product){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new Add2ProductMessage(-1,product, store, ammount);
+    }
+
+    private Message viewOwnedStores(Deque<Deque<Byte>> parameters) {
+        Byte op = popOpcode(parameters);
+
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.viewOwnedStores){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new ViewOwnedStoresMessage((byte)-1);
+    }
+
+    private Message viewAquisitionHistory(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.viewAquisitionHistory){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new ViewAquisitionMessage((byte)-1, store);
+    }
 }
