@@ -7,7 +7,6 @@ import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
 import Domain.RedClasses.UserPurchase;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -18,15 +17,14 @@ import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
 import Service_Layer.sys_manager_accese.sys_mangaer_accese;
 import extornal.payment.CreditCard;
-import extornal.supply.inventory;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;
 
 class SubInstructions {
 
-    public static final int usecase4_5_appointManager_code = 10;
-    public static final int usecase4_3_appointOwner_code = 11;
+     static final int usecase4_5_appointManager_code = 10;
+     static final int usecase4_3_appointOwner_code = 11;
 }
 
 
@@ -244,9 +242,8 @@ public class MallProtocol implements MessagingProtocol<Message> {
 
     public Message accept(PurchaseMessage msg) {
         CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner());
-        inventory where2send = ...;
 
-        if(guest_accese.usecase2_8_Purchase_products(gustID, card, where2send)){
+        if(guest_accese.usecase2_8_Purchase_products(gustID, card, msg.getShipAdress())){
             return new AckMessage(msg.getId());
         }
 

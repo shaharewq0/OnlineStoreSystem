@@ -16,6 +16,17 @@ public class owner_accese {
 		return me.storeOwned();
 	}
 
+	public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername) {
+		return false;
+		//TODO : impliment
+	}
+
+	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username) {
+		return false;
+		//TODO : impliment
+	}
+
+
 	public static boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
 			Product p) {
 		User me = System.getInstance().getMember(myusername, myPassword);

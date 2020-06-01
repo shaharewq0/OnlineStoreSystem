@@ -115,6 +115,11 @@ public class guest_accese {
 		return true;
 	}
 
+	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, String clientAdress) {
+		return false;
+		//TODO : impliment
+	}
+
 	public static boolean usecase2_8_1_Check_available_products(int guestID) {
 		return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
 	}

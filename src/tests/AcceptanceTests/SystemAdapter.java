@@ -1,5 +1,6 @@
 package tests.AcceptanceTests;
 
+import Domain.RedClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
@@ -7,6 +8,7 @@ import Domain.store_System.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
+import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.*;
 
 import java.util.LinkedList;
@@ -38,6 +40,14 @@ public class SystemAdapter {
 	public boolean login(String username, String password) {
 		return guest_accese.usecase2_3_login(guest_accese.ImNew(), username, password);
 	}
+
+	public int login_code(String username, String password) {
+		int id = guest_accese.ImNew();
+		if(guest_accese.usecase2_3_login(guest_accese.ImNew(), username, password))
+			return id;
+		return -1;
+	}
+
 
 	// 2.3
 	public boolean login(int guestID, String username, String password) {
@@ -108,8 +118,8 @@ public class SystemAdapter {
 	}
 
 	// 2.8
-	public void purchase() {
-		// TODO
+	public boolean purchase(int guestID, String card, String edate, String css, String cardOwner, String shipAdress) {
+		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner), shipAdress);
 	}
 
 	// 3.1
@@ -123,10 +133,8 @@ public class SystemAdapter {
 	}
 
 	// 3.7
-	public List<PurchaseDetails> getPurchaseHistory(String username, String password) {
-// TODO
-		//		return member_accese.usecase3_7_ReviewPurchasesHistory(username, password);
-		return null;
+	public List<UserPurchase> getPurchaseHistory(String username, String password) {
+				return member_accese.usecase3_7_ReviewPurchasesHistory(username, password);
 	}
 
 	// 4.1.1

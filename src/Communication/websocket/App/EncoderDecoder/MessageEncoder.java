@@ -8,6 +8,7 @@ import Communication.websocket.App.messages.api.Server2ClientMessage;
 import Domain.RedClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
+import Domain.info.Question;
 import org.json.simple.JSONObject;
 
 import javax.websocket.EncodeException;
@@ -126,13 +127,17 @@ public class MessageEncoder implements  Encoder.Text<Message> {
      * @param toOffer the list to offer
      */
     private void offerList( LinkedList<Byte> lst, List<String> toOffer){
+        offerList(lst,toOffer, Delimiters.LIST_DELIMITER);
+    }
+
+    private void offerList( LinkedList<Byte> lst, List<String> toOffer, byte delemiter){
 
         boolean first = true;
 
         for (String cur: toOffer) {
 
             if(!first)
-                offerListDelimiter(lst);
+                offerByte(lst, delemiter);
 
             offerString(lst, cur);
             first = false;
@@ -240,6 +245,21 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         }
     }
 
+    private void offerQustionList( LinkedList<Byte> lst, List<Question> toOffer){
+
+        boolean first = true;
+
+        for (Question cur: toOffer) {
+
+            if(!first)
+                offerListDelimiter(lst);
+
+            offerList(lst, cur.getAnsewers(), Delimiters.LIST_DELIMITER_L2);
+
+            first = false;
+        }
+    }
+
 
 
 
@@ -309,8 +329,11 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     }
 
     public String accept(QustionListResponse msg) {
-        // todo : impliment
-        return null;
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerQustionList(lst, msg.getQuestions());
+
+        return createJsonString(msg.getReplayForID(), lst);
     }
 
     public String accept(StorePurchaseListResponse msg) {
