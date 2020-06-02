@@ -47,6 +47,13 @@ public interface Store_role {
 
     boolean getNewPermesions(List<String> Permesions);
 
+    boolean addDiscount(String discount);
+
+    boolean removeDiscount(int discountID);
+
     String getName();
 
+    boolean addacquisition(String acquisition);
+
+    boolean removeacquisition(int acquisitionID);
 }

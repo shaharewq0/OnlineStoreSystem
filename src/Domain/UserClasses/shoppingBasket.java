@@ -60,12 +60,8 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public double CalcPrice() {
-        double price = 0;
-        for (String item : Item_holder.keySet()) {
-            price += store.getPrice(item) * Item_holder.get(item);
-        }
-        //TODO look for type 2 and 3 discount
-        return price;
+        List<ProductDetails> products = getProducts();
+        return store.getPrice(products);
     }
 
     public List<Product> getItems() {
@@ -78,12 +74,26 @@ public class shoppingBasket implements IshoppingBasket {
 
 
     public StorePurchase Complet_Purchase() {
-        List<Discount> allDiscounts = new LinkedList<Discount>();
-        for (String item : Item_holder.keySet()) {
-            allDiscounts.addAll(store.getDiscounts(item));
-        }
-        StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice(), allDiscounts);
+
+        StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice());
         store.addPurchase(SP);
         return SP;
+    }
+
+    public boolean CheckItemAvailable() {
+        for (ProductDetails details : getProducts()) {
+            // StoreImp s = s
+            if (!store.CheckItemAvailable(details)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean CheckAcquisitions() {
+        if (!store.CheckAcquisitions(getProducts()))
+            return false;
+        return true;
+
     }
 }

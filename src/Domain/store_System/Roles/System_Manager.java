@@ -4,7 +4,7 @@ import java.util.List;
 
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 public class System_Manager {// extends Member {
 	public String name;

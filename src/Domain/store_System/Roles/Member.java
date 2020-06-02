@@ -3,7 +3,7 @@ package Domain.store_System.Roles;
 import Domain.UserClasses.User;
 import Domain.Store.StoreImp;
 import Domain.info.StoreInfo;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 public class Member implements System_Role {
 	// private Registered registered;

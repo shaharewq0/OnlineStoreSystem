@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import Domain.UserClasses.shoppingBasket;
 import Domain.Store.StoreImp;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 import java.util.LinkedList;
 

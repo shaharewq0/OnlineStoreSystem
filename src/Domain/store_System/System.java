@@ -1,11 +1,13 @@
-package Domain.UserClasses;
+package Domain.store_System;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.Store.*;
+import Domain.UserClasses.IshoppingBasket;
+import Domain.UserClasses.User;
+import Domain.UserClasses.shoppingCart;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
-import Domain.store_System.ISystem;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
@@ -340,15 +342,15 @@ public class System implements ISystem {
     }
 
     // @Override
-    public boolean CheckItemAvailableA(List<ProductDetails> items) {
-        for (ProductDetails details : items) {
-            // StoreImp s = s
-            if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
-                return false;
-            }
-        }
-        return true;
-    }
+//    public boolean CheckItemAvailableA(List<ProductDetails> items) {
+//        for (ProductDetails details : items) {
+//            // StoreImp s = s
+//            if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
 
     //-------------------------------------------------------Tegrati

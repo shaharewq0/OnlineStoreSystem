@@ -3,7 +3,7 @@ package Service_Layer.sys_manager_accese;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 import java.util.List;
 

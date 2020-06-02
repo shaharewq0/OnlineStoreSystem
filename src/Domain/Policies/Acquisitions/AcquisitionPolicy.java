@@ -91,9 +91,12 @@ public class AcquisitionPolicy extends BasePolicy {
                 .reduce(true, Boolean::logicalAnd);
     }
 
-    public void removeAcquisition(int acqNum) {
-        if (acqNum >= 0 && acqNum < acquisitions.size())
+    public boolean removeAcquisition(int acqNum) {
+        if (acqNum >= 0 && acqNum < acquisitions.size()) {
             acquisitions.remove(acqNum);
+            return true;
+        }
+        return false;
     }
 
     @Override

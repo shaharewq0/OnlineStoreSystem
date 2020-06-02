@@ -7,6 +7,8 @@ import java.util.Map;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
+import Domain.Policies.Acquisitions.AcquisitionPolicy;
+import Domain.Policies.Discounts.DiscountPolicy;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
@@ -23,9 +25,10 @@ public class StoreImp implements IStore {
     private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
     private String address;
     private int rating;
+    private DiscountPolicy discounts = new DiscountPolicy();
+    private AcquisitionPolicy acquisitions = new AcquisitionPolicy();
 
     private Store_Purchase_History purchaseHistory = new Store_Purchase_History();
-    private Map<Product, List<Discount>> discounts = new HashMap<Product, List<Discount>>();
     private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
     public StoreImp(String name, Collection<Product> products, String address, int rating) {
@@ -88,8 +91,7 @@ public class StoreImp implements IStore {
         return new StoreInfo(name, address, rating, getProductsDetails());
     }
 
-    // ----------------------------------------------------------------------------------------
-    // workers
+    // ---------------------------------------------------------------------------------workers
     public Collection<StoreOwner_Imp> getOwners() {
         return Owners.values();
     }
@@ -234,15 +236,19 @@ public class StoreImp implements IStore {
         return false;
     }
 
+    public boolean CheckAcquisitions(List<ProductDetails> products) {
+        return acquisitions.canPurchase(products);
+    }
+
 // ----------------------------------------------------buying
 
-    public double getPrice(String item) {
-        if (findProductByName(item) == null)
-            ErrorLogger.GetInstance().Add_Log(this.toString() + "- cant find item to calc price");
+    public double getPrice(List<ProductDetails> items) {
 
-        //TODO add discount type 1 here
-
-        return findProductByName(item).getPrice();
+        for (ProductDetails PD : items) {
+            if (PD.getStoreName() != this.name)
+                ErrorLogger.GetInstance().Add_Log(this.toString() + "- calculating price for product in wrong store");
+        }
+        return discounts.applyDiscounts(items);
     }
 
     @Override
@@ -271,10 +277,18 @@ public class StoreImp implements IStore {
         return true;
     }
 
-    public List<Discount> getDiscounts(String name) {
-        Product p = findProductByName(name);
-        return discounts.get(p);
+    public String getDiscounts(String name) {
+       return discounts.toString();
 
+    }
+
+    // ----------------------------------------------------discount
+    public boolean addDiscount(String discount) {
+        return discounts.addDiscount(discount);
+    }
+
+    public boolean removeDiscount(int discountID) {
+        return discounts.removeDiscount(discountID);
     }
 
 
@@ -294,4 +308,12 @@ public class StoreImp implements IStore {
         return creator != null || Owners.values().size() > 0;
     }
 
+
+    public boolean addacquisition(String acquisition) {
+        return acquisitions.addAcquisitionPolicy(acquisition);
+    }
+
+    public boolean removeacquisition(int acquisitionID) {
+        return acquisitions.removeAcquisition(acquisitionID);
+    }
 }

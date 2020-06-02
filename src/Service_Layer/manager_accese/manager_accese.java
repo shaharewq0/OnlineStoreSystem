@@ -3,7 +3,7 @@ package Service_Layer.manager_accese;
 import Domain.UserClasses.User;
 import Domain.Store.StorePurchase;
 import Domain.info.Question;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 import java.util.LinkedList;
 import java.util.List;

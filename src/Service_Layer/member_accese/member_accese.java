@@ -3,7 +3,7 @@ package Service_Layer.member_accese;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.info.StoreInfo;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;

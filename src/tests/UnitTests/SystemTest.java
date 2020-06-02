@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import Domain.Store.StoreImp;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 
 public class SystemTest {
     private System s = System.getInstance();

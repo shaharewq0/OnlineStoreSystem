@@ -3,6 +3,7 @@ package Domain.UserClasses;
 
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
+import Domain.store_System.System;
 
 import java.util.*;
 
@@ -73,6 +74,23 @@ public class shoppingCart implements IshoppingCart {
     public boolean CheckTegrati_CartPerStore() {
         for (shoppingBasket b : baskets.values()) {
             if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean CheckItemAvailable() {
+        for (shoppingBasket SB : baskets.values()) {
+            if (!SB.CheckItemAvailable())
+                return false;
+        }
+        return true;
+
+    }
+
+    public boolean CheckAcquisitions() {
+        for (shoppingBasket SB : baskets.values()) {
+            if(!SB.CheckAcquisitions())
                 return false;
         }
         return true;

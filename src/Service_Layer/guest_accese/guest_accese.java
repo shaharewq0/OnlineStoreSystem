@@ -4,7 +4,7 @@ import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
-import Domain.UserClasses.System;
+import Domain.store_System.System;
 import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import extornal.supply.Packet_Of_Prodacts;
@@ -103,6 +103,7 @@ public class guest_accese {
 	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, inventory whereToSend) {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
+
 		List<Product> items = usecase2_8_5_Update_inventory(guestID);
 		double price = usecase2_8_2_Calculate_price(guestID);
 		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
@@ -132,8 +133,10 @@ public class guest_accese {
 		User user = System.getInstance().getGuest(guestID);
 		if(user == null)
 			return false;
+		//TODO this is wrong
+		return user.CheckItemAvailableA()&& user.CheckAcquisitions();
 		//User.CheckAvilibleItems();
-		return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
+		//return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
 	}
 
 	public static double usecase2_8_2_Calculate_price(int guestID) {

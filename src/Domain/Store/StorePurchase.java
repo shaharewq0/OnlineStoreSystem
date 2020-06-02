@@ -10,17 +10,15 @@ public class StorePurchase {
 
 	private double price;
 	private List<ProductDetails> items;
-	private List<Discount> discounts;
 	//private Acquisition transaction;
 	//private PaymentMethed payMethed;
 	private String store;
 
-	public StorePurchase(List<ProductDetails> items, String store,double price,List<Discount> discounts) {
+	public StorePurchase(List<ProductDetails> items, String store,double price) {
 		this.items = items;
 		this.store = store;
 		this.price = price;
-		discounts = new LinkedList<Discount>(); 
-		discounts.addAll(Discount.Copy(discounts));
+
 		//CalcPrice_AndFindDiscouns();
 	}
 
@@ -38,17 +36,8 @@ public class StorePurchase {
 		return items;
 	}
 
-	public List<Discount> getDiscounts() {
-		List<Discount> discounts = new LinkedList<Discount>();
-		for (Discount dis : this.discounts) {
-			discounts.add(Discount.Copy(dis));
-		}
-		return discounts;
-	}
 
-	public Acquisition getTransaction() {
-		return null;//TODO Acquisition.Copy(transaction);
-	}
+
 
 	public PaymentMethed getPayMethed() {
 		return null;//TODO payMethed;

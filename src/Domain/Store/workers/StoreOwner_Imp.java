@@ -188,9 +188,29 @@ public class StoreOwner_Imp implements  Store_role {
 	}
 
 	@Override
+	public boolean addDiscount(String discount) {
+		return getStore().addDiscount(discount);
+	}
+
+	@Override
+	public boolean removeDiscount(int discountID) {
+		return getStore().removeDiscount(discountID);
+	}
+
+	@Override
 	public String getName() {
 
 		return workername;
+	}
+
+	@Override
+	public boolean addacquisition(String acquisition) {
+		return getStore().addacquisition(acquisition);
+	}
+
+	@Override
+	public boolean removeacquisition(int acquisitionID) {
+		return getStore().removeacquisition(acquisitionID);
 	}
 
 	public boolean CheckTegrati_ImMangaer() {

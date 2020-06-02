@@ -43,10 +43,10 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
     public void reviewPurchaseHistory() {
         UserPurchase p = new UserPurchase();
         List<ProductDetails> prodects = new LinkedList<>();
-        prodects.add(new ProductDetails(PRODUCT1.getName(),new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
-        prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
-        double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
-        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price, new LinkedList<>()));
+        prodects.add(new ProductDetails(PRODUCT1.getName(), new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
+        prodects.add(new ProductDetails(PRODUCT2.getName(), new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
+        double price = 1 * PRODUCT1.getPrice() + 5 * PRODUCT2.getPrice();
+        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
 
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);

@@ -1,5 +1,6 @@
 package Domain.Policies.Discounts;
 
+import Domain.Logs.ErrorLogger;
 import Domain.Policies.BasePolicy;
 import Domain.info.ProductDetails;
 
@@ -93,7 +94,7 @@ public class DiscountPolicy extends BasePolicy {
         try {
             d = discountFactory(stringSplitToStack(discount, REGEX));
         } catch (Exception e) {
-            // error log "wrong format"
+            ErrorLogger.GetInstance().Add_Log("IN Discount" + " got wrong discount format");
             return false;
         }
         discounts.add(d);
@@ -115,9 +116,12 @@ public class DiscountPolicy extends BasePolicy {
                         .reduce(0.0, Double::sum);
     }
 
-    public void removeDiscount(int disNum) {
-        if (disNum >= 0 && disNum < discounts.size())
+    public boolean removeDiscount(int disNum) {
+        if (disNum >= 0 && disNum < discounts.size()) {
             discounts.remove(disNum);
+            return true;
+        }
+        return false;
     }
 
     @Override
