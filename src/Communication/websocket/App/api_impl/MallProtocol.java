@@ -1,5 +1,6 @@
 package Communication.websocket.App.api_impl;
 
+import Communication.websocket.App.RunServer.MallServer;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
@@ -38,8 +39,10 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
 
     private String username;
     private String paasword;
+    private MallServer server;
 
-    public MallProtocol() {
+    public MallProtocol(MallServer server) {
+        this.server = server;
         this.gustID = guest_accese.ImNew();
         username = "";
         paasword = "";
@@ -56,7 +59,14 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        //Notifier notifier = (Notifier) o;
+        String[] ar = ((String)arg).split("!@!");
+        String user = ar[0];
+        String msg = ar[1];
 
+        if(user.equals(username)){
+            server.send(this, msg);
+        }
     }
 
 

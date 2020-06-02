@@ -5,6 +5,8 @@ import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.Creator;
+import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -13,6 +15,7 @@ import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
 import Domain.store_System.System;
+import Service_Layer.guest_accese.guest_accese;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.Collection;
@@ -60,10 +63,8 @@ public class User implements IUser {
 	// adding a product to a basket. if the product exists add 1 to the amount of
 	// the product in the basket
 	public boolean saveProductInBasket(String productName, String storeName, int amount) {
-
 		cart.findBasket(storeName).addProduct(productName, amount);
 		return true;
-
 	}
 
 	// removing at most amount of num of a product from the basket
@@ -186,6 +187,8 @@ public class User implements IUser {
 		Registered appointee = System.getInstance().getUserProfile(hisusername);
 		if(appointee == null)
 			return false;
+
+
 		return profile.store_roles.get(storeName).appointOwner(appointee);
 	}
 
@@ -223,7 +226,6 @@ public class User implements IUser {
 
 	@Override
 	public boolean appointAsManager(Store_role role) {
-		// TODO this is the same as appoint owner
 		if (profile == null)
 			return false;
 		Map<String, Store_role> store_roles = profile.store_roles;
@@ -231,6 +233,13 @@ public class User implements IUser {
 				&& !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
 			return false;
 		}
+
+		if(store_roles.containsKey(role.getStore().getName())){
+			if(store_roles.get(role.getStore().getName()) instanceof StoreManager_Imp){
+				return false; // already manager
+			}
+		}
+
 		store_roles.remove(role.getStore().getName());
 		store_roles.put(role.getStore().getName(), role);
 		return true;

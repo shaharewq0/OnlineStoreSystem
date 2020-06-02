@@ -250,7 +250,7 @@ public class System implements ISystem {
     public ProductDetails searchProductByName(String name, String Store) {
         ProductDetails toReturn = null;
         for (StoreImp s : stores.values()) {
-            if (!s.getName().equals(stores)) {
+            if (!s.getName().equals(Store)) {
                 continue;
             }
 

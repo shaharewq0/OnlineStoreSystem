@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
@@ -27,7 +28,6 @@ import static tests.AcceptanceTests.auxiliary.Products.PRODUCT2;
 
 public class ReviewPurchaseHistoryTest extends BaseAccTest {
     private static int guestID;
-// TODO: implement later
 
     @BeforeClass
     public static void setUpClass() {
@@ -48,9 +48,13 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
         prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
         p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price, new LinkedList<>()));
-
+        p.TotalePrice = price;
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
+
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);
+
+
+
         assertEqualsLists(TruePurchases, purchases);
     }
 }

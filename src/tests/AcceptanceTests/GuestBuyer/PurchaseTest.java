@@ -6,6 +6,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import tests.AcceptanceTests.auxiliary.CreditCards;
 
+import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
+import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
+
 public class PurchaseTest extends BaseGuestTest {
 
     @BeforeClass

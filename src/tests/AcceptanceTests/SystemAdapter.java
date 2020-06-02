@@ -2,6 +2,7 @@ package tests.AcceptanceTests;
 
 import Domain.RedClasses.UserPurchase;
 import Domain.Store.Product;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
@@ -175,10 +176,8 @@ public class SystemAdapter {
     }
 
 	// 4.10
-	public List<PurchaseDetails> getStoreSellingHistory(String username, String password, String storeName) {
-	// TODO
-		//		return owner_accese.usecase4_10_ViewAcquisitionHistory(username, password, storeName);
-		return null;
+	public List<StorePurchase> getStoreSellingHistory(String username, String password, String storeName) {
+		return owner_accese.usecase4_10_ViewAcquisitionHistory(username, password, storeName);
 	}
 
 	// 4.9

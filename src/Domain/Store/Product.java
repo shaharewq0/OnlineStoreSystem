@@ -38,6 +38,7 @@ public class Product extends Object implements IProduct {
             Amount.add(new concreate_Product());
         //amount = p.getAmount();
         //store = System.getInstance().getStoreDetails(p.getStoreName());
+        storename = p.getStoreName();
     }
 
     public String getName() {

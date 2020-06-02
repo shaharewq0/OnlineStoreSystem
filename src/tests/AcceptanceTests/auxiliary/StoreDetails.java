@@ -48,4 +48,13 @@ public class StoreDetails {
     public String getAdress() {
         return adress;
     }
+
+    @Override
+    public String toString() {
+        return "StoreDetails{" +
+                "name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }

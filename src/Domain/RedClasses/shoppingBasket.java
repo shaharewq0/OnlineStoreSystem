@@ -83,7 +83,10 @@ public class shoppingBasket implements IshoppingBasket {
     public StorePurchase Complet_Purchase() {
         List<Discount> allDiscounts = new LinkedList<Discount>();
         for (String item : Item_holder.keySet()) {
-            allDiscounts.addAll(store.getDiscounts(item));
+            List<Discount> lst = store.getDiscounts(item);
+            if(lst != null) {
+                allDiscounts.addAll(lst);
+            }
         }
         StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice(), allDiscounts);
         store.addPurchase(SP);

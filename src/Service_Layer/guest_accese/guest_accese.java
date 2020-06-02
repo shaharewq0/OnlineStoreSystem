@@ -77,6 +77,18 @@ public class guest_accese {
 	// need guest ID
 	public static boolean usecase2_6_saveProductToBasket(int guestID, String storename, String prodactname, int amount) {
 
+		StoreDetails store = guest_accese.usecase2_4A_getStoreDetails(storename);
+		ProductDetails product = guest_accese.searchProductByName(prodactname, storename);
+
+		if(store == null)
+			return false;
+
+		if(product == null)
+			return false;
+
+		if(product.getAmount() < amount)
+			return false;
+
 		return System.getInstance().getGuest(guestID).saveProductInBasket(prodactname, storename,amount);
 	}
 

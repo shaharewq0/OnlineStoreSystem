@@ -4,6 +4,7 @@ import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Communication.websocket.api.MessagingProtocol;
 import org.glassfish.tyrus.server.Server;
 
 import javax.websocket.*;
@@ -46,7 +47,19 @@ public class MallServer {
 
 
     /** a map of message protocols by the session */
-    private static Map<Session, MallProtocol> protocols;
+    private static Map<Session, MessagingProtocol<Message>> protocols;
+
+    public void send(MessagingProtocol<Message> protocol, String msg){
+        protocols.forEach(((session, messageMessagingProtocol) -> {
+            if(messageMessagingProtocol == protocol){
+                try {
+                    session.getBasicRemote().sendText(msg);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }));
+    }
 
 
 
@@ -56,7 +69,7 @@ public class MallServer {
     public void onOpen(Session session){
         System.out.printf("[" + LocalDateTime.now() + "]: " + "Opened session. id: %s\n", session.getId());
 
-        protocols.put(session, new MallProtocol());
+        protocols.put(session, new MallProtocol(this));
     }
 
 
@@ -64,7 +77,7 @@ public class MallServer {
     public void onMessage(Session session, Message msg){
         System.out.printf("[" + LocalDateTime.now() + "]: " + "message received. session id: %s.  Message : %s\n", session.getId(), msg.toString());
 
-        MallProtocol protocol = Objects.requireNonNull(protocols.get(session));
+        MessagingProtocol<Message> protocol = Objects.requireNonNull(protocols.get(session));
         Message response = protocol.process(msg);
 
         // sand back if there is a response

@@ -55,8 +55,7 @@ public class ProductDetails {
         this.name = pro.getName();
         this.category = new LinkedList<String>();
         category.addAll(pro.getCategory());
-        //TODO fix this
-       // this.storeName = pro.getStore().getName();
+        this.storeName = pro.getStore();
         this.amount = amount;
         keyWords = new LinkedList<>(pro.getKeyWords());
         this.price = pro.getPrice();
@@ -111,13 +110,18 @@ public class ProductDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductDetails that = (ProductDetails) o;
-        return //amount == that.amount &&
-                rating == that.rating &&
-                Double.compare(that.price, price) == 0 &&
-                Objects.equals(keyWords, that.keyWords) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(category, that.category) &&
-                Objects.equals(storeName, that.storeName);
+        ProductDetails details = (ProductDetails) o;
+        return //getAmount() == details.getAmount() &&
+                //getRating() == details.getRating() &&
+                //Double.compare(details.getPrice(), getPrice()) == 0 &&
+                //Objects.equals(getKeyWords(), details.getKeyWords()) &&
+                Objects.equals(getName(), details.getName()) &&
+                //Objects.equals(getCategory(), details.getCategory()) &&
+                Objects.equals(getStoreName(), details.getStoreName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating(), getPrice());
     }
 }
