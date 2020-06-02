@@ -334,4 +334,13 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
 
         return  new NackMessage(msg.getId());
     }
+
+    public Message accept(EditPermitionsMessage msg) {
+
+        if(owner_accese.usecase4_6_editMangagerPermesions(username, paasword, msg.getStoreName(), msg.getManagerName(), msg.getPermitions())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
 }

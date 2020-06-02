@@ -8,7 +8,6 @@ import Communication.websocket.App.messages.Macros.Opcodes;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 import java.util.*;
@@ -17,7 +16,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
 
     @Override
-    public Message decode(String msg) throws DecodeException {
+    public Message decode(String msg) {
 
         try{
             JSONParser parser = new JSONParser();
@@ -111,6 +110,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.Add2Product : return Add2Product(parameters);
             case Opcodes.Appoint : return Appoint(parameters);
             case Opcodes.FireManager : return FireManager(parameters);
+            case  Opcodes.editMangagerPermesions : return editMangagerPermesions(parameters);
 
 
             // system manager
@@ -136,7 +136,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         Deque<Byte> curParamList;
         Deque<Deque<Byte>> parametes = new LinkedList<>();
-        int curIndex = 0;
         Iterator<Byte> iter = message.iterator();
         byte cur;
 
@@ -144,7 +143,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         curParamList = new LinkedList<>();
         curParamList.offer(iter.next());
         parametes.offer(curParamList);
-        curIndex++;
 
         // rest
         while (iter.hasNext()) {
@@ -660,5 +658,22 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         }
 
         return new ViewAquisitionMessage((byte)-1, store);
+    }
+
+    private Message editMangagerPermesions(Deque<Deque<Byte>> parameters) {
+        Byte            op          = popOpcode(parameters);
+        String          store       = popString(parameters);
+        String          manager     = popString(parameters);
+        List<String>    permotions  = popStringListL1(parameters);
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.editMangagerPermesions){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new EditPermitionsMessage((byte)-1, store,manager, permotions);
     }
 }
