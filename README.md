@@ -1,3 +1,3 @@
 # OnlineStoreSystem
 
-Worshop course, 2020
+Workshop course, 2020
