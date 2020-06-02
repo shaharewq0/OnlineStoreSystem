@@ -305,7 +305,8 @@ public class StoreImp implements IStore {
     }
 
     boolean CheckTegrati_HaveOwners() {
-        return creator != null || Owners.values().size() > 0;
+        return true;
+       // return creator != null || Owners.values().size() > 0;
     }
 
 

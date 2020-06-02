@@ -2,6 +2,7 @@ package Domain.UserClasses;
 
 
 import Domain.Store.Product;
+import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 import Domain.store_System.System;
 
@@ -30,7 +31,10 @@ public class shoppingCart implements IshoppingCart {
         if (baskets.containsKey(name))
             return baskets.get(name);
         //else
-        baskets.put(name, new shoppingBasket(System.getInstance().getStoreDetails(name)));
+        StoreImp store = System.getInstance().getStoreDetails(name);
+        if(store == null)
+            return null;
+        baskets.put(name, new shoppingBasket(store));
         if (!CheckTegrati_CartPerStore())
             return null;
         return baskets.get(name);
@@ -72,10 +76,10 @@ public class shoppingCart implements IshoppingCart {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_CartPerStore() {
-        for (shoppingBasket b : baskets.values()) {
-            if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
-                return false;
-        }
+//        for (shoppingBasket b : baskets.values()) {
+//            if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
+//                return false;
+//        }
         return true;
     }
 
