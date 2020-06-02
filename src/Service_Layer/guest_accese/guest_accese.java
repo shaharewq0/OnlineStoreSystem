@@ -5,6 +5,7 @@ import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
+import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
@@ -20,11 +21,7 @@ public class guest_accese {
 		return System.getInstance().ImNew();
 	}
 
-//	//TODO old need to delete
-//	public boolean usecase2_3_login(String username, String password) {
-//		//TODO old need to delete
-//		return System.getInstance().login(username, password) != null;
-//	}
+
 
 	static public ProductDetails searchProductByName(String name, String store) {
 		return User.searchProductByName(name, store);
@@ -116,7 +113,8 @@ public class guest_accese {
 	}
 
 	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, String clientAdress) {
-		return false;
+		return usecase2_8_Purchase_products(guestID, bank,new userAddress(clientAdress));
+	//	return false;
 		//TODO : impliment
 	}
 

@@ -27,15 +27,15 @@ public class StoreOwner_Imp implements  Store_role {
 	protected Map<String, Store_role> ManagerAppointeis;// managers who got appointed by current owner
 	// -------------------------------------------------------------------------Contractors
 
-	protected StoreOwner_Imp() {
-	}
+	public StoreOwner_Imp(){}
 
-	public StoreOwner_Imp(Store_role creator, String myname) {
-		workername = myname;
+	public StoreOwner_Imp(Store_role creator, Registered myname) {
+		user = myname;
+		workername = myname.getId();
 		myJob.grantor= creator;
 		myJob.store = creator.getStore();
-		OwnerAppointeis = new HashMap<String, Store_role>();
-		ManagerAppointeis = new HashMap<String, Store_role>();
+		OwnerAppointeis = new HashMap<>();
+		ManagerAppointeis = new HashMap<>();
 		EventLogger.GetInstance().Add_Log(this.toString() + "- Created Owner");
 	}
 
@@ -89,12 +89,26 @@ public class StoreOwner_Imp implements  Store_role {
 
 	// ------------------------------------------------------------Role actions
 
+	//TODO delete
+//	@Override
+//	public boolean appointOwner(IUser user) {
+//		StoreOwner_Imp newRole = new StoreOwner_Imp(this, user.getName());
+//		if (user.appointAsOwner(newRole)) {
+//			myJob.store.appointOwner(newRole);
+//			OwnerAppointeis.put(user.getName(), newRole);
+//			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Owner");
+//			return true;
+//		}
+//		ErrorLogger.GetInstance().Add_Log(this.toString() + "Owner Failed to appoint new Owner");
+//		return false;
+//	}
+
 	@Override
-	public boolean appointOwner(IUser user) {
-		Store_role newRole = new StoreOwner_Imp(this, user.getName());
+	public boolean appointOwner(Registered user) {
+		StoreOwner_Imp newRole = new StoreOwner_Imp(this, user);
 		if (user.appointAsOwner(newRole)) {
-			myJob.store.appointOwner((StoreOwner_Imp) newRole);
-			OwnerAppointeis.put(user.getName(), newRole);
+			myJob.store.appointOwner(newRole);
+			OwnerAppointeis.put(user.getId(), newRole);
 			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Owner");
 			return true;
 		}
@@ -102,12 +116,26 @@ public class StoreOwner_Imp implements  Store_role {
 		return false;
 	}
 
+	//TODO delete
+//	@Override
+//	public boolean appointManager(IUser user) {
+//		StoreManager_Imp newRole = new StoreManager_Imp(this, user.getName());
+//		if (user.appointAsManager(newRole)) {
+//			myJob.store.appointManager(newRole);
+//			ManagerAppointeis.put(user.getName(), newRole);
+//			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Manager");
+//			return true;
+//		}
+//		ErrorLogger.GetInstance().Add_Log(this.toString() + "Owner Failed to appoint new Manager");
+//		return false;
+//	}
+
 	@Override
-	public boolean appointManager(IUser user) {
-		Store_role newRole = new StoreManager_Imp(this, user.getName());
+	public boolean appointManager(Registered user) {
+		StoreManager_Imp newRole = new StoreManager_Imp(this, user);
 		if (user.appointAsManager(newRole)) {
-			myJob.store.appointManager((StoreManager_Imp) newRole);
-			ManagerAppointeis.put(user.getName(), newRole);
+			myJob.store.appointManager(newRole);
+			ManagerAppointeis.put(user.getId(), newRole);
 			EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Manager");
 			return true;
 		}

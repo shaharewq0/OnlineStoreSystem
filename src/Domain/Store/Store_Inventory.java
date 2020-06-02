@@ -73,4 +73,9 @@ public class Store_Inventory implements inventory {
 		return true;
 	}
 
+	public ProductDetails findProductDetailsByName(String name) {
+		if (items.containsKey(name))
+			return new ProductDetails(items.get(name), items.get(name).getAmount());
+		return null;
+	}
 }

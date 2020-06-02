@@ -27,16 +27,6 @@ public class shoppingCart implements IshoppingCart {
        return output;
     }
 
-
-    public shoppingBasket findBasket(StoreImp s){
-        for(shoppingBasket basket : getBaskets()){
-            if(basket.getStore().getName().equals(s.getName())){
-                return basket;
-            }
-        }
-        return null;
-    }
-
     public shoppingBasket findBasket(String name){
     	if(baskets.containsKey(name))
     		return baskets.get(name);

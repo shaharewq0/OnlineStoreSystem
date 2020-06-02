@@ -9,40 +9,45 @@ import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
+import Domain.store_System.Roles.Registered;
 
 public interface Store_role {
-	boolean addItem(Product item);
+    boolean addItem(Product item);
 
-	boolean addItem(ProductDetails item);
+    boolean addItem(ProductDetails item);
 
-	boolean appointOwner(IUser user);
+   // boolean appointOwner(IUser user);
 
-	boolean appointManager(IUser user);
+    boolean appointOwner(Registered user);
 
-	boolean fire(String manager);
+  //  boolean appointManager(IUser user);
 
-	boolean editItem(String OLD_item, Product NEW_item);
+    boolean appointManager(Registered user);
 
-	boolean removeItem(String prodactname);
+    boolean fire(String manager);
 
-	public List<StorePurchase> getPurchaseHistory();
+    boolean editItem(String OLD_item, Product NEW_item);
 
-	boolean editManagerPermesions(String managername, List<String> permesions);
+    boolean removeItem(String prodactname);
 
-	public Collection<Question> viewQuestions();
+    List<StorePurchase> getPurchaseHistory();
 
-	boolean giveRespond(String ansewr, int qustionID);
+    boolean editManagerPermesions(String managername, List<String> permesions);
 
-	boolean canPromoteToOwner();
+    Collection<Question> viewQuestions();
 
-	public StoreImp getStore();
+    boolean giveRespond(String ansewr, int qustionID);
 
-	boolean getfire();
+    boolean canPromoteToOwner();
 
-	boolean IgotFire(String worker);
+    StoreImp getStore();
 
-	boolean getNewPermesions(List<String> Permesions);
+    boolean getfire();
 
-	public String getName();
+    boolean IgotFire(String worker);
+
+    boolean getNewPermesions(List<String> Permesions);
+
+    String getName();
 
 }
