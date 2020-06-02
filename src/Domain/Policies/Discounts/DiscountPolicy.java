@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /*
@@ -114,10 +115,18 @@ public class DiscountPolicy extends BasePolicy {
                         .reduce(0.0, Double::sum);
     }
 
+    public void removeDiscount(int disNum) {
+        if (disNum >= 0 && disNum < discounts.size())
+            discounts.remove(disNum);
+    }
+
     @Override
     public String toString() {
+        AtomicInteger i = new AtomicInteger();
         return "Discounts{" +
-                discounts.stream().map(Discount::toString).reduce("", (acc, cur) -> acc + "\n\t" + cur) +
+                discounts.stream()
+                        .map(Discount::toString)
+                        .reduce("", (acc, cur) -> acc + "\n\t" + (i.getAndIncrement()) + ". " + cur) +
                 "\n}";
     }
 

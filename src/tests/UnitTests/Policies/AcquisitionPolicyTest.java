@@ -22,22 +22,22 @@ public class AcquisitionPolicyTest {
 
 
     private String accepted = "Acquisition{\n" +
-            "\tMin. amount of 'p1' is 20\n" +
-            "\tMax. amount of 'p2' is 15\n" +
-            "\tMax. amount of 'p3' is 10\n" +
-            "\tAndAcquisition{\n" +
+            "\t0. Min. amount of 'p1' is 20\n" +
+            "\t1. Max. amount of 'p2' is 15\n" +
+            "\t2. Max. amount of 'p3' is 10\n" +
+            "\t3. AndAcquisition{\n" +
             "\t\tMin. amount of 'p1' is 20\n" +
             "\t\tMax. amount of 'p3' is 10\n" +
             "\t}\n" +
-            "\tOrAcquisition{\n" +
+            "\t4. OrAcquisition{\n" +
             "\t}\n" +
-            "\tOrAcquisition{\n" +
+            "\t5. OrAcquisition{\n" +
             "\t}\n" +
-            "\tOrAcquisition{\n" +
+            "\t6. OrAcquisition{\n" +
             "\t\tMax. amount of 'p2' is 15\n" +
             "\t\tMin. amount of 'p1' is 20\n" +
             "\t}\n" +
-            "\tXorAcquisition{\n" +
+            "\t7. XorAcquisition{\n" +
             "\t\tMin. amount of 'p1' is 20\n" +
             "\t\tMax. amount of 'p2' is 15\n" +
             "\t\tMax. amount of 'p3' is 10\n" +

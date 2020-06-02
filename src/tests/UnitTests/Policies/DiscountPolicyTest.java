@@ -25,22 +25,22 @@ public class DiscountPolicyTest {
     private String d14 = "10#3" + d1;
 
     private String accepted = "Discounts{\n" +
-            "\tDiscount on 'p1': 20% until 10/10/2020\n" +
-            "\tDiscount on 'p2': 15% until 11/11/2020 if Amount >= 2\n" +
-            "\tDiscount on 'p3': 10% until 01/11/2020 if Price >= 10.2\n" +
-            "\tAndDiscount{\n" +
+            "\t0. Discount on 'p1': 20% until 10/10/2020\n" +
+            "\t1. Discount on 'p2': 15% until 11/11/2020 if Amount >= 2\n" +
+            "\t2. Discount on 'p3': 10% until 01/11/2020 if Price >= 10.2\n" +
+            "\t3. AndDiscount{\n" +
             "\t\tDiscount on 'p1': 20% until 10/10/2020\n" +
             "\t\tDiscount on 'p3': 10% until 01/11/2020 if Price >= 10.2\n" +
             "\t}\n" +
-            "\tOrDiscount{\n" +
+            "\t4. OrDiscount{\n" +
             "\t}\n" +
-            "\tOrDiscount{\n" +
+            "\t5. OrDiscount{\n" +
             "\t}\n" +
-            "\tOrDiscount{\n" +
+            "\t6. OrDiscount{\n" +
             "\t\tDiscount on 'p2': 15% until 11/11/2020 if Amount >= 2\n" +
             "\t\tDiscount on 'p1': 20% until 10/10/2020\n" +
             "\t}\n" +
-            "\tXorDiscount{\n" +
+            "\t7. XorDiscount{\n" +
             "\t\tDiscount on 'p1': 20% until 10/10/2020\n" +
             "\t\tDiscount on 'p2': 15% until 11/11/2020 if Amount >= 2\n" +
             "\t\tDiscount on 'p3': 10% until 01/11/2020 if Price >= 10.2\n" +

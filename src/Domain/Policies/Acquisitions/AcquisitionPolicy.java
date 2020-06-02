@@ -6,6 +6,7 @@ import Domain.info.ProductDetails;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /*
@@ -90,10 +91,18 @@ public class AcquisitionPolicy extends BasePolicy {
                 .reduce(true, Boolean::logicalAnd);
     }
 
+    public void removeAcquisition(int acqNum) {
+        if (acqNum >= 0 && acqNum < acquisitions.size())
+            acquisitions.remove(acqNum);
+    }
+
     @Override
     public String toString() {
+        AtomicInteger i = new AtomicInteger();
         return "Acquisition{" +
-                acquisitions.stream().map(Acquisition::toString).reduce("", (acc, cur) -> acc + "\n\t" + cur) +
+                acquisitions.stream()
+                        .map(Acquisition::toString)
+                        .reduce("", (acc, cur) -> acc + "\n\t" + (i.getAndIncrement()) + ". " + cur) +
                 "\n}";
     }
 }
