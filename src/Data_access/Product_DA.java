@@ -19,12 +19,6 @@ public class Product_DA extends DOA<Product>{
     }
 
     @Override
-    public List<Product> getAll() {
-        Query query = entityManager.createQuery("SELECT * FROM"+TABLE_NAME);
-        return query.getResultList();
-    }
-
-    @Override
     public void save(Product product) {
         executeInsideTransaction(entityManager -> entityManager.persist(product));
     }

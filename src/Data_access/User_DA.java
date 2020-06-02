@@ -21,12 +21,6 @@ public class User_DA extends DOA<User> {
     }
 
     @Override
-    public List<User> getAll() {
-        Query query=entityManager.createQuery("SELECT * FROM "+TABLE_NAME);
-        return query.getResultList();
-    }
-
-    @Override
     public void save(User user) {
         executeInsideTransaction(entityManager -> entityManager.persist(user));
     }

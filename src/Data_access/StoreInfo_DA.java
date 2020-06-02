@@ -20,12 +20,6 @@ public class StoreInfo_DA extends DOA<StoreInfo> {
     }
 
     @Override
-    public List<StoreInfo> getAll() {
-        Query query=entityManager.createQuery("SELECT * FROM"+TABLE_NAME);
-        return query.getResultList();
-    }
-
-    @Override
     public void save(StoreInfo storeInfo) {
         executeInsideTransaction(entityManager -> entityManager.persist(storeInfo));
     }

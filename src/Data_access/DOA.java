@@ -1,9 +1,8 @@
 package Data_access;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import Domain.Store.Product;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -20,8 +19,14 @@ public abstract class DOA<T> {
         entityManager=emf.createEntityManager();
     }
 
+
+    public List<T> getAll(){
+        Query query = entityManager.createQuery("SELECT * FROM"+TABLE_NAME);
+        return query.getResultList();
+    }
+
+
     public abstract Optional<T> get(int id);
-    public abstract List<T> getAll();
     public abstract void save(T t);
     public abstract void update(T t,String[] params);
     public abstract void delete(T t);
