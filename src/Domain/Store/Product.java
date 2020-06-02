@@ -16,14 +16,14 @@ public class Product extends Object implements IProduct {
     private String storename;
     //private int amount;
 
-    public Product(String name, List<String> category, List<String> keyWords, double price, int rating, StoreImp store) {
+    public Product(String name, List<String> category, List<String> keyWords, double price, int rating, String storename) {
         this.name = name;
         this.category = new LinkedList<String>();
         this.category.addAll(category);
         this.keyWords = keyWords;
         this.price = price;
         this.rating = rating;
-        storename = store.getName();
+        this.storename = storename;
         //this.store=store;
         //amount=0;
     }
@@ -32,6 +32,7 @@ public class Product extends Object implements IProduct {
         name = p.getName();
         category = new LinkedList<>(p.getCategory());
         keyWords = new LinkedList<>(p.getKeyWords());
+        storename = p.getStoreName();
         price = p.getPrice();
         rating = p.getRating();
         for (int i = 0; i < p.getAmount(); i++)
@@ -40,6 +41,8 @@ public class Product extends Object implements IProduct {
         //store = System.getInstance().getStoreDetails(p.getStoreName());
         storename = p.getStoreName();
     }
+
+
 
     public String getName() {
         return name;

@@ -2,7 +2,7 @@ package Domain.store_System.Roles;
 
 import java.util.List;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.store_System.System;
 

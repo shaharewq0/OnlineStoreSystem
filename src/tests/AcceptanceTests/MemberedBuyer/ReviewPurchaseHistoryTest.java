@@ -1,6 +1,6 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
@@ -13,12 +13,10 @@ import tests.AcceptanceTests.GuestBuyer.LoginTest;
 import tests.AcceptanceTests.GuestBuyer.PurchaseTest;
 import tests.AcceptanceTests.auxiliary.CreditCards;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
@@ -28,6 +26,7 @@ import static tests.AcceptanceTests.auxiliary.Products.PRODUCT2;
 
 public class ReviewPurchaseHistoryTest extends BaseAccTest {
     private static int guestID;
+// TODO: implement later
 
     @BeforeClass
     public static void setUpClass() {
@@ -44,17 +43,13 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
     public void reviewPurchaseHistory() {
         UserPurchase p = new UserPurchase();
         List<ProductDetails> prodects = new LinkedList<>();
-        prodects.add(new ProductDetails(PRODUCT1.getName(),new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
-        prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
-        double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
-        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price, new LinkedList<>()));
-        p.TotalePrice = price;
+        prodects.add(new ProductDetails(PRODUCT1.getName(), new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
+        prodects.add(new ProductDetails(PRODUCT2.getName(), new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
+        double price = 1 * PRODUCT1.getPrice() + 5 * PRODUCT2.getPrice();
+        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
+
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
-
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);
-
-
-
         assertEqualsLists(TruePurchases, purchases);
     }
 }

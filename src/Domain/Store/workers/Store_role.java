@@ -3,7 +3,6 @@ package Domain.Store.workers;
 import java.util.Collection;
 import java.util.List;
 
-import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -48,6 +47,13 @@ public interface Store_role {
 
     boolean getNewPermesions(List<String> Permesions);
 
+    boolean addDiscount(String discount);
+
+    boolean removeDiscount(int discountID);
+
     String getName();
 
+    boolean addacquisition(String acquisition);
+
+    boolean removeacquisition(int acquisitionID);
 }

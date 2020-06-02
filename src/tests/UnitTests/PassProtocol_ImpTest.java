@@ -2,8 +2,8 @@ package tests.UnitTests;
 
 import org.junit.Test;
 
-import Domain.store_System.Security.PassProtocol_Imp;
-import Domain.store_System.Security.PasswordProtocol;
+import extornal.Security.PassProtocol_Imp;
+import extornal.Security.PasswordProtocol;
 
 import static org.junit.Assert.*;
 

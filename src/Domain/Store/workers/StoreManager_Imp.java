@@ -2,7 +2,6 @@ package Domain.Store.workers;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -184,11 +183,11 @@ public class StoreManager_Imp implements Store_role {
             return false;
         if (Owner_Appointees.containsKey(worker)) {
             Owner_Appointees.remove(worker);
-            return true;
+            return CheckTegrati_ImMangaer() && true;
         }
         if (Manager_Appointees.containsKey(worker)) {
             Manager_Appointees.remove(worker);
-            return true;
+            return CheckTegrati_ImMangaer() && true;
         }
         return false;
     }
@@ -210,9 +209,44 @@ public class StoreManager_Imp implements Store_role {
 
     }
 
+    //------------------------------------------------------------
+    @Override
+    public boolean addDiscount(String discount) {
+        if (!permission.contains("addDiscount"))
+            return false;
+        return getStore().addDiscount(discount);
+    }
+
+    @Override
+    public boolean removeDiscount(int discountID) {
+        if (!permission.contains("removeDiscount"))
+            return false;
+        return getStore().removeDiscount(discountID);
+    }
+
+
+    @Override
+    public boolean addacquisition(String acquisition) {
+        if (!permission.contains("addacquisition"))
+            return false;
+        return getStore().addacquisition(acquisition);
+    }
+
+    @Override
+    public boolean removeacquisition(int acquisitionID) {
+        if (!permission.contains("removeacquisition"))
+            return false;
+        return getStore().removeacquisition(acquisitionID);
+    }
+
     @Override
     public boolean canPromoteToOwner() {
-        return true;
+        return CheckTegrati_ImMangaer() && true;
+    }
+
+    public boolean CheckTegrati_ImMangaer() {
+        return user != null;
+
     }
 
 }

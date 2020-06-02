@@ -28,11 +28,11 @@ public interface IStore {
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 
-	public double getPrice(String item);
+	public double getPrice(List<ProductDetails> item);
 
 	public Product TakeItem(String name, int amout);
 
-	public List<Discount> getDiscounts(String name);
+	public String getDiscounts(String name);
 
 	boolean removeProduct(String pName);
 

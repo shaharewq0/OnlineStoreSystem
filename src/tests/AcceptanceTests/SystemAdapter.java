@@ -1,6 +1,6 @@
 package tests.AcceptanceTests;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;

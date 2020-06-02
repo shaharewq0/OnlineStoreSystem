@@ -4,8 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import Domain.Store.StoreImp;
-import tests.UnitTests.stub.StoreStub;
-import tests.UnitTests.stub.UserStub;
 
 public class StoreOwner_ImpTest {
 

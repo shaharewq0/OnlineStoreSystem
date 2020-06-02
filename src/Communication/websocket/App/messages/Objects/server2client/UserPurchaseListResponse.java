@@ -2,8 +2,7 @@ package Communication.websocket.App.messages.Objects.server2client;
 
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
-import Domain.RedClasses.UserPurchase;
-import Domain.Store.Purchase;
+import Domain.UserClasses.UserPurchase;
 
 import java.util.List;
 import java.util.Objects;

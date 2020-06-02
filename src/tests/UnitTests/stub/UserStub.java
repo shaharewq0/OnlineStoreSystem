@@ -2,12 +2,9 @@ package tests.UnitTests.stub;
 
 import java.util.List;
 
-import Domain.RedClasses.IUser;
-import Domain.RedClasses.UserPurchase;
-import Domain.RedClasses.shoppingCart;
-import Domain.Store.*;
+import Domain.UserClasses.IUser;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.workers.Store_role;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 public class UserStub implements IUser {
     boolean manager=false;

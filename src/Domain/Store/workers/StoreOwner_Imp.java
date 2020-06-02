@@ -2,7 +2,6 @@ package Domain.Store.workers;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -157,15 +156,16 @@ public class StoreOwner_Imp implements  Store_role {
 		return user.getFired(myJob.store.getName());
 	}
 
+	//when someone you appoint gets fired and he notify you
 	@Override
 	public boolean IgotFire(String worker) {
 		if (OwnerAppointeis.containsKey(worker)) {
 			OwnerAppointeis.remove(worker);
-			return true;
+			return CheckTegrati_ImMangaer()&&true;
 		}
 		if (ManagerAppointeis.containsKey(worker)) {
 			ManagerAppointeis.remove(worker);
-			return true;
+			return CheckTegrati_ImMangaer()&&true;
 		}
 		return false;
 	}
@@ -188,11 +188,34 @@ public class StoreOwner_Imp implements  Store_role {
 	}
 
 	@Override
+	public boolean addDiscount(String discount) {
+		return getStore().addDiscount(discount);
+	}
+
+	@Override
+	public boolean removeDiscount(int discountID) {
+		return getStore().removeDiscount(discountID);
+	}
+
+	@Override
 	public String getName() {
 
 		return workername;
 	}
 
+	@Override
+	public boolean addacquisition(String acquisition) {
+		return getStore().addacquisition(acquisition);
+	}
 
+	@Override
+	public boolean removeacquisition(int acquisitionID) {
+		return getStore().removeacquisition(acquisitionID);
+	}
+
+	public boolean CheckTegrati_ImMangaer() {
+		return user!=null;
+
+	}
 
 }

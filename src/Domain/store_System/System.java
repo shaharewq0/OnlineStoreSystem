@@ -2,17 +2,17 @@ package Domain.store_System;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IshoppingBasket;
-import Domain.RedClasses.User;
-import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
+import Domain.UserClasses.IshoppingBasket;
+import Domain.UserClasses.User;
+import Domain.UserClasses.shoppingCart;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
-import Domain.store_System.Security.PassProtocol_Imp;
-import Domain.store_System.Security.PasswordProtocol;
+import extornal.Security.PassProtocol_Imp;
+import extornal.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
 import extornal.payment.MyPaymentSystem_Driver;
 import extornal.payment.PaymentMethed;
@@ -70,7 +70,7 @@ public class System implements ISystem {
         manager = new System_Manager(username);
         guest.login(username, password);
 
-        return true;
+        return CheckTegrati_oneManager();
 
     }
 
@@ -123,6 +123,9 @@ public class System implements ISystem {
         Profile.LogLogin(user);
         onlinemember.put(id, new Member(user));
         EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
+        if (!CheckTegrati_oneManager()) {
+            return null;
+        }
         return Profile;
 
     }
@@ -137,7 +140,12 @@ public class System implements ISystem {
 
     public boolean logout(User user) {
         EventLogger.GetInstance().Add_Log(this.toString() + "user went offline");
-        return onlinemember.remove(user.getName()) != null;
+        Member m = onlinemember.remove(user.getName());
+        if (m != null && !CheckTegrati_oneManager()) {
+            onlinemember.put(user.getName(), m);
+            return false;
+        }
+        return m != null;
 
     }
 
@@ -334,16 +342,20 @@ public class System implements ISystem {
     }
 
     // @Override
-    public boolean CheckItemAvailableA(List<ProductDetails> items) {
-        for (ProductDetails details : items) {
-            // StoreImp s = s
-            if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
-                return false;
-            }
-        }
-        return true;
+//    public boolean CheckItemAvailableA(List<ProductDetails> items) {
+//        for (ProductDetails details : items) {
+//            // StoreImp s = s
+//            if (!getStoreDetails(details.getStoreName()).CheckItemAvailable(details)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+
+
+    //-------------------------------------------------------Tegrati
+    public boolean CheckTegrati_oneManager() {
+        return manager != null && getUserProfile(manager.name) != null;
+
     }
-
-//-------------------------------------------------------
-
 }
