@@ -157,15 +157,16 @@ public class StoreOwner_Imp implements  Store_role {
 		return user.getFired(myJob.store.getName());
 	}
 
+	//when someone you appoint gets fired and he notify you
 	@Override
 	public boolean IgotFire(String worker) {
 		if (OwnerAppointeis.containsKey(worker)) {
 			OwnerAppointeis.remove(worker);
-			return true;
+			return CheckTegrati_ImMangaer()&&true;
 		}
 		if (ManagerAppointeis.containsKey(worker)) {
 			ManagerAppointeis.remove(worker);
-			return true;
+			return CheckTegrati_ImMangaer()&&true;
 		}
 		return false;
 	}
@@ -193,6 +194,9 @@ public class StoreOwner_Imp implements  Store_role {
 		return workername;
 	}
 
+	public boolean CheckTegrati_ImMangaer() {
+		return user!=null;
 
+	}
 
 }

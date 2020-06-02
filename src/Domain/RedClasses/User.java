@@ -200,17 +200,17 @@ public class User implements IUser {
 		return true;
 
 	}
-//
-//	public boolean appointManager(String storeName, String username, String otherPassword) {
-//
-//		if (profile == null)
-//			return false;
-//		User appointee = System.getInstance().getMember(username, otherPassword);
-//		if(appointee == null)
-//			return false;
-//		return profile.store_roles.get(storeName).appointManager(appointee);
-//
-//	}
+
+	public boolean appointManager(String storeName, String username) {
+
+		if (profile == null)
+			return false;
+		Registered appointee = System.getInstance().getUserProfile(username);
+		if(appointee == null)
+			return false;
+		return profile.store_roles.get(storeName).appointManager(appointee);
+
+	}
 
 	@Override
 	public boolean appointAsManager(Store_role role) {

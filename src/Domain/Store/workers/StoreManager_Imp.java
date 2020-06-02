@@ -184,11 +184,11 @@ public class StoreManager_Imp implements Store_role {
             return false;
         if (Owner_Appointees.containsKey(worker)) {
             Owner_Appointees.remove(worker);
-            return true;
+            return CheckTegrati_ImMangaer()&&true;
         }
         if (Manager_Appointees.containsKey(worker)) {
             Manager_Appointees.remove(worker);
-            return true;
+            return  CheckTegrati_ImMangaer()&&true;
         }
         return false;
     }
@@ -212,7 +212,12 @@ public class StoreManager_Imp implements Store_role {
 
     @Override
     public boolean canPromoteToOwner() {
-        return true;
+        return  CheckTegrati_ImMangaer()&&true;
+    }
+
+    public boolean CheckTegrati_ImMangaer() {
+        return user!=null;
+
     }
 
 }

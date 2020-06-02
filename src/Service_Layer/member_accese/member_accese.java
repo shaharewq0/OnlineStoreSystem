@@ -36,16 +36,22 @@ public class member_accese {
 	
 	public static boolean usecase3_1_Logout(int guestId) {
 		User me = System.getInstance().getMember(guestId);
+		if(me==null)
+			return false;
 		return me.logout();
 	}
 
 	public static boolean usecase3_2_OpenStore(int guestId, StoreDetails store) {
 		User me = System.getInstance().getMember(guestId);
+		if(me==null)
+			return false;
 		return me.openStore(new StoreInfo(store));
 	}
 
 	public static List<UserPurchase> usecase3_7_ReviewPurchasesHistory(int guestId) {
 		User me = System.getInstance().getMember(guestId);
+		if(me==null)
+			return null;
 		return me.getPurchaseHistory();
 
 	}

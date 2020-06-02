@@ -24,11 +24,12 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public void addProduct(String name, int amount) {
-        if (Item_holder.containsKey(name)) {
-            Item_holder.replace(name, Item_holder.get(name) + amount);
-        } else {
-            Item_holder.put(name, amount);
-        }
+        if (store.findProductByName(name) != null)
+            if (Item_holder.containsKey(name)) {
+                Item_holder.replace(name, Item_holder.get(name) + amount);
+            } else {
+                Item_holder.put(name, amount);
+            }
     }
 
     public int removeProduct(String name, int num) {
