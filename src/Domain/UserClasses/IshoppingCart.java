@@ -1,4 +1,4 @@
-package Domain.RedClasses;
+package Domain.UserClasses;
 
 
 import java.util.Collection;

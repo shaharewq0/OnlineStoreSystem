@@ -1,4 +1,4 @@
-package Domain.RedClasses;
+package Domain.UserClasses;
 
 import Domain.Logs.EventLogger;
 import Domain.Store.Product;
@@ -12,7 +12,6 @@ import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
-import Domain.store_System.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.Collection;

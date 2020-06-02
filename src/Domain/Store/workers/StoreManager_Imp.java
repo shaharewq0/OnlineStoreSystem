@@ -2,7 +2,6 @@ package Domain.Store.workers;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IUser;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;

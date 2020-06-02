@@ -1,10 +1,10 @@
 package tests.AcceptanceTests;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;

@@ -1,9 +1,9 @@
 package Service_Layer.member_accese;
 
-import Domain.RedClasses.User;
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.User;
+import Domain.UserClasses.UserPurchase;
 import Domain.info.StoreInfo;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;

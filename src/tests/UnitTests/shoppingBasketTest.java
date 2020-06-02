@@ -4,11 +4,9 @@ import Domain.info.ProductDetails;
 import org.junit.Before;
 import org.junit.Test;
 
-import Domain.RedClasses.shoppingBasket;
-import Domain.Store.MyPair;
-import Domain.Store.Product;
+import Domain.UserClasses.shoppingBasket;
 import Domain.Store.StoreImp;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 
 import java.util.LinkedList;
 

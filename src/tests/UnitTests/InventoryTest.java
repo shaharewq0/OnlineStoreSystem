@@ -1,11 +1,7 @@
 package tests.UnitTests;
 
-import Domain.RedClasses.shoppingBasket;
 import Domain.Store.Product;
-import Domain.Store.StoreImp;
 import Domain.Store.Store_Inventory;
-import Domain.info.ProductDetails;
-import Domain.store_System.System;
 import extornal.supply.Packet_Of_Prodacts;
 import org.junit.Before;
 import org.junit.Test;

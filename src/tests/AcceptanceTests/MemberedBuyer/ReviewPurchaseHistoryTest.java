@@ -1,6 +1,6 @@
 package tests.AcceptanceTests.MemberedBuyer;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
@@ -13,7 +13,6 @@ import tests.AcceptanceTests.GuestBuyer.LoginTest;
 import tests.AcceptanceTests.GuestBuyer.PurchaseTest;
 import tests.AcceptanceTests.auxiliary.CreditCards;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

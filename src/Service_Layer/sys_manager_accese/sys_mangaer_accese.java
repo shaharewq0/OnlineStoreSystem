@@ -1,9 +1,9 @@
 package Service_Layer.sys_manager_accese;
 
-import Domain.RedClasses.User;
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.User;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 
 import java.util.List;
 

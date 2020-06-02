@@ -2,13 +2,7 @@ package tests.UnitTests;
 
 import org.junit.Test;
 
-import Domain.RedClasses.User;
-import Domain.Store.MyPair;
-import Domain.Store.Product;
-import Domain.Store.StoreImp;
-import Domain.store_System.System;
-
-import java.util.LinkedList;
+import Domain.UserClasses.User;
 
 import static org.junit.Assert.*;
 

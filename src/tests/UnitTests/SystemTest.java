@@ -4,12 +4,10 @@ package tests.UnitTests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import Domain.Store.StoreImp;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 
 public class SystemTest {
     private System s = System.getInstance();

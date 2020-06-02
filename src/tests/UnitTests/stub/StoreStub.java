@@ -2,11 +2,9 @@ package tests.UnitTests.stub;
 
 import java.util.List;
 
-import Domain.RedClasses.IUser;
 import Domain.Store.Discount;
 import Domain.Store.IStore;
 import Domain.Store.Product;
-import Domain.Store.Purchase;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;

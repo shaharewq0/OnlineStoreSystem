@@ -1,4 +1,4 @@
-package Domain.store_System.Security;
+package extornal.Security;
 
 public interface PasswordProtocol {
         boolean addRegistry(String id,String password);

@@ -5,7 +5,7 @@ import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
@@ -16,7 +16,6 @@ import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class MessageEncoder implements  Encoder.Text<Message> {
 

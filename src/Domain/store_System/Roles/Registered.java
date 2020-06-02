@@ -5,12 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import Domain.RedClasses.User;
-import Domain.RedClasses.UserPurchase;
-import Domain.RedClasses.User_Purchase_History;
+import Domain.UserClasses.User;
+import Domain.UserClasses.UserPurchase;
+import Domain.UserClasses.User_Purchase_History;
 import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
-import Domain.store_System.System;
 
 public class Registered {
     private String id;

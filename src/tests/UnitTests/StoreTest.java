@@ -1,14 +1,12 @@
 package tests.UnitTests;
 
 import Domain.info.ProductDetails;
-import Domain.store_System.System;
 import org.junit.Before;
 import org.junit.Test;
 
 import Domain.Store.*;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 

@@ -1,9 +1,9 @@
 package Domain.store_System.Roles;
 
-import Domain.RedClasses.User;
+import Domain.UserClasses.User;
 import Domain.Store.StoreImp;
 import Domain.info.StoreInfo;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 
 public class Member implements System_Role {
 	// private Registered registered;

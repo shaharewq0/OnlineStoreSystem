@@ -1,10 +1,10 @@
 package Service_Layer.owner_accese;
 
-import Domain.RedClasses.User;
+import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
 import Domain.info.Question;
-import Domain.store_System.System;
+import Domain.UserClasses.System;
 
 import java.util.LinkedList;
 import java.util.List;

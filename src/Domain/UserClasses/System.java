@@ -1,18 +1,16 @@
-package Domain.store_System;
+package Domain.UserClasses;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
-import Domain.RedClasses.IshoppingBasket;
-import Domain.RedClasses.User;
-import Domain.RedClasses.shoppingCart;
 import Domain.Store.*;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
+import Domain.store_System.ISystem;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
-import Domain.store_System.Security.PassProtocol_Imp;
-import Domain.store_System.Security.PasswordProtocol;
+import extornal.Security.PassProtocol_Imp;
+import extornal.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
 import extornal.payment.MyPaymentSystem_Driver;
 import extornal.payment.PaymentMethed;
