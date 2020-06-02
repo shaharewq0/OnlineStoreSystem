@@ -5,11 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Domain.Store.workers.StoreManager_Imp;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
 import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
+import Domain.store_System.System;
 
 public class Registered {
     private String id;
@@ -52,7 +54,7 @@ public class Registered {
         List<String> stores = new LinkedList<>();
 
         store_roles.forEach((store, role) -> {
-            if (role instanceof StoreOwner_Imp) {
+            if (role instanceof StoreOwner_Imp || role instanceof StoreManager_Imp) {
                 stores.add(store);
             }
         });
@@ -62,6 +64,12 @@ public class Registered {
 
 
     public boolean appointAsOwner(Store_role role) {
+        if(store_roles.containsKey(role.getStore().getName())){
+            if(store_roles.get(role.getStore().getName()) instanceof StoreOwner_Imp){
+                return false; // already owner
+            }
+        }
+
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;
@@ -74,6 +82,13 @@ public class Registered {
                 && !store_roles.get(role.getStore().getName()).canPromoteToOwner()) {
             return false;
         }
+
+        if(store_roles.containsKey(role.getStore().getName())){
+            if(store_roles.get(role.getStore().getName()) instanceof StoreManager_Imp){
+                return false; // already manager
+            }
+        }
+
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;

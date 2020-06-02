@@ -81,6 +81,19 @@ public class guest_accese {
 		User user = System.getInstance().getGuest(guestID);
 		if(user == null)
 			return false;
+
+		StoreDetails store = guest_accese.usecase2_4A_getStoreDetails(storename);
+		ProductDetails product = guest_accese.searchProductByName(prodactname, storename);
+
+		if(store == null)
+			return false;
+
+		if(product == null)
+			return false;
+
+		if(product.getAmount() < amount)
+			return false;
+
 		return user.saveProductInBasket(prodactname, storename,amount);
 	}
 
@@ -125,8 +138,6 @@ public class guest_accese {
 
 	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, String clientAdress) {
 		return usecase2_8_Purchase_products(guestID, bank,new userAddress(clientAdress));
-	//	return false;
-		//TODO : impliment
 	}
 
 	public static boolean usecase2_8_1_Check_available_products(int guestID) {

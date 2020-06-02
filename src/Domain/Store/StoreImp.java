@@ -1,9 +1,6 @@
 package Domain.Store;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
@@ -315,5 +312,29 @@ public class StoreImp implements IStore {
 
     public boolean removeacquisition(int acquisitionID) {
         return acquisitions.removeAcquisition(acquisitionID);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StoreImp storeImp = (StoreImp) o;
+        return //getRating() == storeImp.getRating() &&
+                Objects.equals(getName(), storeImp.getName()) //&&
+                /*Objects.equals(getCreator(), storeImp.getCreator()) &&
+                Objects.equals(inventory, storeImp.inventory) &&
+                Objects.equals(getOwners(), storeImp.getOwners()) &&
+                Objects.equals(getManagers(), storeImp.getManagers()) &&
+                Objects.equals(getAddress(), storeImp.getAddress()) &&
+                Objects.equals(discounts, storeImp.discounts) &&
+                Objects.equals(acquisitions, storeImp.acquisitions) &&
+                Objects.equals(purchaseHistory, storeImp.purchaseHistory) &&
+                Objects.equals(getQuestions(), storeImp.getQuestions())*/;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getCreator(), inventory, getOwners(), getManagers(), getAddress(), getRating(), discounts, acquisitions, purchaseHistory, getQuestions());
     }
 }

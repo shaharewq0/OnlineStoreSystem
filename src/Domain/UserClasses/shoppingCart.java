@@ -73,7 +73,8 @@ public class shoppingCart implements IshoppingCart {
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_CartPerStore() {
         for (shoppingBasket b : baskets.values()) {
-            if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
+            boolean b1 = baskets.keySet().contains(b.getStore().getName());
+            if (b1 && !b.equals(baskets.get(b.getStore().getName())))
                 return false;
         }
         return true;

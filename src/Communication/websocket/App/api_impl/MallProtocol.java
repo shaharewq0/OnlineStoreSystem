@@ -7,7 +7,7 @@ import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
 import Domain.Notifier.Notifier;
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;

@@ -1,6 +1,6 @@
 package tests.AcceptanceTests.SystemManager;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
@@ -47,7 +47,7 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         prodects.add(new ProductDetails(PRODUCT1.getName(),new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
         prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
-        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price, new LinkedList<>()));
+        p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
         p.TotalePrice = price;
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
 
@@ -66,7 +66,7 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
 
-        List<StorePurchase> TruePurchases = Collections.singletonList(new StorePurchase(prodects, STORE.getName(), price, new LinkedList<>()));
+        List<StorePurchase> TruePurchases = Collections.singletonList(new StorePurchase(prodects, STORE.getName(), price));
 
         List<StorePurchase> purchases = system.getStoreSellingHistory(USERNAME, PASSWORD, STORE.getName());
 

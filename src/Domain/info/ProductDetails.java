@@ -103,20 +103,23 @@ public class ProductDetails {
         return new ProductDetails(other.name, other.getCategory(), other.getStoreName(), other.getAmount(), other.price, other.getRating());
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductDetails that = (ProductDetails) o;
+        ProductDetails details = (ProductDetails) o;
+        return //getAmount() == details.getAmount() &&
+                //getRating() == details.getRating() &&
+                //Double.compare(details.getPrice(), getPrice()) == 0 &&
+                //Objects.equals(getKeyWords(), details.getKeyWords()) &&
+                Objects.equals(getName(), details.getName()) &&
+                //Objects.equals(getCategory(), details.getCategory()) &&
+                Objects.equals(getStoreName(), details.getStoreName());
+    }
 
-
-
-        return //amount == that.amount &&
-                rating == that.rating &&
-                        Double.compare(that.price, price) == 0 &&
-                      //  Objects.equals(keyWords, that.keyWords) &&
-                        name.compareTo(that.name)==0 &&
-                        storeName.compareTo(that.storeName)==0;
-                       // Objects.equals(category, that.category) &&;
+    @Override
+    public int hashCode() {
+        return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating(), getPrice());
     }
 }

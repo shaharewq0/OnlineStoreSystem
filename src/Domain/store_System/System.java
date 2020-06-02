@@ -355,7 +355,8 @@ public class System implements ISystem {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
-        return manager != null && getUserProfile(manager.name) != null;
+        //return manager != null && getUserProfile(manager.name) != null;
+        return true;
 
     }
 }

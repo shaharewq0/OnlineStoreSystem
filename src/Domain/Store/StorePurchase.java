@@ -2,6 +2,7 @@ package Domain.Store;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import Domain.info.ProductDetails;
 import extornal.payment.PaymentMethed;
@@ -62,4 +63,18 @@ public class StorePurchase {
 //	}
 
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		StorePurchase that = (StorePurchase) o;
+		return Double.compare(that.getPrice(), getPrice()) == 0 &&
+				Objects.equals(getItems(), that.getItems()) &&
+				Objects.equals(store, that.store);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getPrice(), getItems(), store);
+	}
 }

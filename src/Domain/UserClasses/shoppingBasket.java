@@ -1,9 +1,6 @@
 package Domain.UserClasses;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import Domain.Store.Discount;
 import Domain.Store.Product;
@@ -95,5 +92,20 @@ public class shoppingBasket implements IshoppingBasket {
             return false;
         return true;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        shoppingBasket that = (shoppingBasket) o;
+        boolean b1 =  Objects.equals(Item_holder, that.Item_holder);
+        boolean b2 =  Objects.equals(getStore(), that.getStore());
+        return b1 && b2;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Item_holder, getStore());
     }
 }
