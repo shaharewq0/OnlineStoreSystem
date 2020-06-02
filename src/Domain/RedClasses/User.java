@@ -189,6 +189,15 @@ public class User implements IUser {
 		return profile.store_roles.get(storeName).appointOwner(appointee);
 	}
 
+	public boolean appointManager(String storeName, String hisusername) {
+		if (profile == null)
+			return false;
+		Registered appointee = System.getInstance().getUserProfile(hisusername);
+		if(appointee == null)
+			return false;
+		return profile.store_roles.get(storeName).appointManager(appointee);
+	}
+
 	@Override
 	public boolean appointAsOwner(Store_role role) {
 		if (profile == null || profile.store_roles.containsKey(role.getStore().getName())

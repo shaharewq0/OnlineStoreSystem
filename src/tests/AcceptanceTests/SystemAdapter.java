@@ -64,7 +64,7 @@ public class SystemAdapter {
 		StoreInfo s = guest_accese.usecase2_4B_getStoreProdacts(storeName);
 		if(s == null)
 			return null;
-		return s.getProducts();
+		return s.products;
 	}
 
 	// 2.5A

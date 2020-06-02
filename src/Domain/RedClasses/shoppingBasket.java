@@ -31,6 +31,10 @@ public class shoppingBasket implements IshoppingBasket {
         }
     }
 
+    public void addProduct(Product p) {
+        addProduct(p.getName(), p.getAmount());
+    }
+
     public int removeProduct(String name, int num) {
         if (Item_holder.containsKey(name)) {
             int current = Item_holder.get(name);
@@ -85,4 +89,5 @@ public class shoppingBasket implements IshoppingBasket {
         store.addPurchase(SP);
         return SP;
     }
+
 }

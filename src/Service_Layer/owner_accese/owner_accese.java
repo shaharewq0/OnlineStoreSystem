@@ -57,8 +57,8 @@ public class owner_accese {
 	}
 
 	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username) {
-		return false;
-		//TODO : impliment
+		User me = System.getInstance().getMember(myusername, myPassword);
+		return me.appointManager(storeName, username);
 	}
 	public static boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String storename,
 			String managername, List<String> permesions) {
