@@ -27,8 +27,8 @@ import java.util.Observer;
 
 class SubInstructions {
 
-     static final int usecase4_5_appointManager_code = 10;
-     static final int usecase4_3_appointOwner_code = 11;
+     static final int usecase4_5_appointManager_code = 0x10;
+     static final int usecase4_3_appointOwner_code = 0x11;
 }
 
 
@@ -107,7 +107,6 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
         member_accese.usecase3_1_Logout(gustID);
         username = "";
         paasword = "";
-        gustID = -777;
 
         return new AckMessage(msg.getId());
     }
@@ -179,7 +178,7 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
         List<ProductDetails> products = guest_accese.usecase2_7A_WatchProdactsInCart(gustID);
 
         if(products != null) {
-            return new ProductDetailsListResponse(msg.getId(), products);
+            return new PrductsInCartResponse(msg.getId(), products);
         }
 
         return new NackMessage(msg.getId());
@@ -284,13 +283,13 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
     public Message accept(AppointMessage msg) {
 
         if(msg.getRole() == SubInstructions.usecase4_5_appointManager_code){
-            if(owner_accese.usecase4_5_appointManager(username, paasword,msg.getStorename(),msg.getUsername())){
+            if(owner_accese.usecase4_5_appointManager(gustID,msg.getStorename(),msg.getUsername())){
                 return new AckMessage(msg.getId());
             }
         }
 
         if(msg.getRole() == SubInstructions.usecase4_3_appointOwner_code){
-            if(owner_accese.usecase4_3_appointOwner(username, paasword,msg.getStorename(),msg.getUsername())){
+            if(owner_accese.usecase4_3_appointOwner(gustID,msg.getStorename(),msg.getUsername())){
                 return new AckMessage(msg.getId());
             }
         }

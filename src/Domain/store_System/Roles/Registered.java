@@ -54,7 +54,7 @@ public class Registered {
         List<String> stores = new LinkedList<>();
 
         store_roles.forEach((store, role) -> {
-            if (role instanceof StoreOwner_Imp) {
+            if (role instanceof StoreOwner_Imp || role instanceof StoreManager_Imp) {
                 stores.add(store);
             }
         });

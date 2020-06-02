@@ -7,13 +7,13 @@ import Domain.info.ProductDetails;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductDetailsListResponse extends Server2ClientMessage {
+public class PrductsInCartResponse extends Server2ClientMessage {
 
     private List<ProductDetails> products;
 
 
 
-    public ProductDetailsListResponse(long replayForID,List<ProductDetails> products) {
+    public PrductsInCartResponse(long replayForID,List<ProductDetails> products) {
         super((byte)-1, replayForID);
 
         this.products = products;
@@ -33,7 +33,7 @@ public class ProductDetailsListResponse extends Server2ClientMessage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductDetailsListResponse that = (ProductDetailsListResponse) o;
+        PrductsInCartResponse that = (PrductsInCartResponse) o;
         return getProducts().equals(that.getProducts());
     }
 
@@ -44,7 +44,7 @@ public class ProductDetailsListResponse extends Server2ClientMessage {
 
     @Override
     public String toString() {
-        return "ProductDetailsListResponse{" +
+        return "PrductsInCartResponse{" +
                 "products=" + products.toString() +
                 '}';
     }

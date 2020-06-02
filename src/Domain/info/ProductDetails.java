@@ -124,4 +124,17 @@ public class ProductDetails {
     public int hashCode() {
         return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating(), getPrice());
     }
+
+    @Override
+    public String toString() {
+        return "ProductDetails{" +
+                "keyWords=" + keyWords +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                ", storeName='" + storeName + '\'' +
+                ", amount=" + amount +
+                ", rating=" + rating +
+                ", price=" + price +
+                '}';
+    }
 }

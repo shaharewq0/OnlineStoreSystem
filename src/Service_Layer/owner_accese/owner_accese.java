@@ -47,6 +47,11 @@ public class owner_accese {
 		return me.appointOwner(storeName, hisusername);
 	}
 
+	public static boolean usecase4_3_appointOwner(int gustID, String storeName, String hisusername) {
+		User me = System.getInstance().getMember(gustID);
+		return me.appointOwner(storeName, hisusername);
+	}
+
 
 	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username,
 			String hisPassword) {
@@ -60,12 +65,22 @@ public class owner_accese {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.appointManager(storeName, username);
 	}
+
+	public static boolean usecase4_5_appointManager(int guestID, String storeName, String username) {
+		User me = System.getInstance().getMember(guestID);
+		return me.appointManager(storeName, username);
+	}
+
+
+
 	public static boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String storename,
 			String managername, List<String> permesions) {
 		User me = System.getInstance().getMember(myusername, myPassword);
 		return me.editManagerPermesions(storename, managername, permesions);
 
 	}
+
+
 
 	public static boolean usecase4_7_FireManager(String myusername, String myPassword, String storeName, String username) {
 		User me = System.getInstance().getMember(myusername, myPassword);

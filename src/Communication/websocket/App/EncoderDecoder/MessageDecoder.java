@@ -14,9 +14,10 @@ import java.util.*;
 
 public class MessageDecoder implements Decoder.Text<Message>  {
 
-
     @Override
     public Message decode(String msg) {
+
+        System.out.println("row message: " + msg);
 
         try{
             JSONParser parser = new JSONParser();
@@ -152,6 +153,10 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             while (iter.hasNext() && cur != delimiter){
                 curParamList.offer(cur);
                 cur = iter.next();
+            }
+
+            if(!iter.hasNext()){
+                curParamList.offer(cur);
             }
 
             parametes.offer(curParamList);
@@ -391,7 +396,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  store = popString(parameters);
         String  product = popString(parameters);
-        Byte    amount = popByte(parameters);
+        String  amount = popString(parameters);
 
         if(parameters.size() > 0){
             throw new IllegalArgumentException("to much parameter!");
@@ -400,7 +405,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         if(op != Opcodes.Save2Basket){
             throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
         }
-        return new AddProduct2BasketMessage(-1, store, product, amount);
+        return new AddProduct2BasketMessage(-1, store, product, Integer.parseInt(amount));
     }
 
     private Message productByKeyword(Deque<Deque<Byte>> parameters) {

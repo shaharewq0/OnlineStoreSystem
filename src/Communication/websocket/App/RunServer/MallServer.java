@@ -5,7 +5,13 @@ import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.api.MessagingProtocol;
+import Domain.Store.Product;
+import Domain.info.ProductDetails;
+import Service_Layer.guest_accese.guest_accese;
+import Service_Layer.member_accese.member_accese;
+import Service_Layer.owner_accese.owner_accese;
 import org.glassfish.tyrus.server.Server;
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -35,13 +41,47 @@ public class MallServer {
     }
 
     public static void run() throws DeploymentException {
-        protocols = new ConcurrentHashMap<>();
+        initSysyem();
 
+        protocols = new ConcurrentHashMap<>();
         Server server = new Server("localhost", 8080, "", MallServer.class);
 
         server.start();
         new Scanner(System.in).nextLine();
         server.stop();
+    }
+
+    private static void initSysyem(){
+        int guestID = guest_accese.ImNew();
+        if(guest_accese.usecase2_2_guest_register("abc", "abc")){
+            System.out.println("good1");
+        }
+        else {
+            System.out.println("bad1");
+        }
+
+        if(guest_accese.usecase2_3_login(guestID,"abc", "abc")){
+            System.out.println("good2");
+        }
+        else {
+            System.out.println("bad2");
+        }
+
+        if(member_accese.usecase3_2_OpenStore("abc", "abc", new StoreDetails("ebay", "tel aviv 12", 4))){
+            System.out.println("good3");
+        }
+        else {
+            System.out.println("bad3");
+        }
+
+        List<String> lst = new LinkedList<>();
+        lst.add("fruits");
+        if(owner_accese.usecase4_1_1_AddingProdacsToStore("abc", "abc", "ebay", new Product(new ProductDetails("banana", lst, "ebay", 300, 20.15)))){
+            System.out.println("good4");
+        }
+        else {
+            System.out.println("bad4");
+        }
     }
 
 

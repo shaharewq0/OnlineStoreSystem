@@ -27,7 +27,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String encode(Message msg) throws EncodeException {
 
         String response = ((Server2ClientMessage)msg).visit(this);
-        System.out.println(response);
+        System.out.println("row response :" + response);
 
         return  response;
     }
@@ -158,9 +158,30 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             if(!first)
                 offerListDelimiter(lst);
 
-            offerString(lst, cur.getStoreName());
+            offerString(lst, cur.getName());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
-            offerByte(lst, (byte)cur.getAmount());
+            offerString(lst, String.valueOf(cur.getPrice()));
+            offerByte(lst, Delimiters.LIST_DELIMITER_L2);
+            offerString(lst, cur.getStoreName());
+
+            first = false;
+        }
+    }
+
+    private void offerCartList( LinkedList<Byte> lst, List<ProductDetails> toOffer){
+
+        boolean first = true;
+
+        for (ProductDetails cur: toOffer) {
+
+            if(!first)
+                offerListDelimiter(lst);
+
+            offerString(lst, cur.getName());
+            offerByte(lst, Delimiters.LIST_DELIMITER_L2);
+            offerString(lst, String.valueOf(cur.getAmount()));
+            offerByte(lst, Delimiters.LIST_DELIMITER_L2);
+            offerString(lst, cur.getStoreName());
 
             first = false;
         }
@@ -314,7 +335,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(ProductDetailsListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerProductsNames(lst, msg.getProducts());
+        offerProductList(lst, msg.getProducts());
 
         return createJsonString(msg.getReplayForID(), lst);
     }
@@ -348,6 +369,14 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         LinkedList<Byte> lst = new LinkedList<>();
 
         offerList(lst, msg.getStores());
+
+        return createJsonString(msg.getReplayForID(), lst);
+    }
+
+    public String accept(PrductsInCartResponse msg) {
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerCartList(lst, msg.getProducts());
 
         return createJsonString(msg.getReplayForID(), lst);
     }
