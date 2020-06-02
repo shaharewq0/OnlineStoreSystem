@@ -1,0 +1,322 @@
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@68837a77- new register
+Domain.store_System.System@4909b8da- new register
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- user login
+Domain.store_System.System@4909b8da-manager login
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8dauser went offline
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- user login
+Domain.store_System.System@4909b8da-manager login
+Domain.store_System.System@4909b8dauser went offline
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da-manager login
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da-manager login
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da- new guest
+Domain.store_System.System@4909b8da-manager login
+Domain.store_System.System@54a097cc- new register
+Domain.store_System.System@54a097cc- new guest
+Domain.store_System.System@54a097cc- new guest
+Domain.store_System.System@54a097cc- user login
+Domain.store_System.System@54a097cc-manager login
+Domain.Store.StoreImp@7f560810- new Store is created without itmes
+Domain.UserClasses.User@69d9c55- opening store
+Domain.Store.workers.Creator@61a485d2- Created StoreOwner
+Domain.Store.workers.Creator@61a485d2Owner add item
+Domain.Store.StoreImp@7f560810-add product
+Domain.Store.workers.Creator@61a485d2Owner add item
+Domain.Store.StoreImp@7f560810-add product
+Domain.Store.workers.Creator@61a485d2Owner add item
+Domain.Store.StoreImp@7f560810-add product
+Domain.store_System.System@54a097ccuser went offline
+Domain.store_System.System@2669b199- new register
+Domain.store_System.System@2669b199- new guest
+Domain.store_System.System@2669b199- new guest
+Domain.store_System.System@2669b199- user login
+Domain.store_System.System@2669b199-manager login
+Domain.Store.StoreImp@2344fc66- new Store is created without itmes
+Domain.UserClasses.User@458ad742- opening store
+Domain.Store.workers.Creator@5afa04c- Created StoreOwner
+Domain.Store.workers.Creator@5afa04cOwner add item
+Domain.Store.StoreImp@2344fc66-add product
+Domain.Store.workers.Creator@5afa04cOwner add item
+Domain.Store.StoreImp@2344fc66-add product
+Domain.Store.workers.Creator@5afa04cOwner add item
+Domain.Store.StoreImp@2344fc66-add product
+Domain.store_System.System@2669b199user went offline
+Domain.store_System.System@6a024a67- new register
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- user login
+Domain.store_System.System@6a024a67-manager login
+Domain.Store.StoreImp@7921b0a2- new Store is created without itmes
+Domain.UserClasses.User@174d20a- opening store
+Domain.Store.workers.Creator@66d2e7d9- Created StoreOwner
+Domain.Store.workers.Creator@66d2e7d9Owner add item
+Domain.Store.StoreImp@7921b0a2-add product
+Domain.Store.workers.Creator@66d2e7d9Owner add item
+Domain.Store.StoreImp@7921b0a2-add product
+Domain.Store.workers.Creator@66d2e7d9Owner add item
+Domain.Store.StoreImp@7921b0a2-add product
+Domain.store_System.System@6a024a67user went offline
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@6a024a67- new guest
+Domain.store_System.System@100fc185- new register
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- user login
+Domain.store_System.System@100fc185-manager login
+Domain.Store.StoreImp@643b1d11- new Store is created without itmes
+Domain.UserClasses.User@2ef5e5e3- opening store
+Domain.Store.workers.Creator@36d4b5c- Created StoreOwner
+Domain.Store.workers.Creator@36d4b5cOwner add item
+Domain.Store.StoreImp@643b1d11-add product
+Domain.Store.workers.Creator@36d4b5cOwner add item
+Domain.Store.StoreImp@643b1d11-add product
+Domain.Store.workers.Creator@36d4b5cOwner add item
+Domain.Store.StoreImp@643b1d11-add product
+Domain.store_System.System@100fc185user went offline
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.UserClasses.User@51efea79- remove item from cart
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.UserClasses.User@51efea79- remove item from cart
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.UserClasses.User@51efea79- remove item from cart
+Domain.store_System.System@100fc185- new guest
+Domain.store_System.System@100fc185- new guest
+Domain.UserClasses.User@51efea79- remove item from cart
+Domain.store_System.System@100fc185- new guest
+Domain.UserClasses.User@51efea79- remove item from cart
+Domain.store_System.System@5034c75a- new register
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- user login
+Domain.store_System.System@5034c75a-manager login
+Domain.Store.StoreImp@396a51ab- new Store is created without itmes
+Domain.UserClasses.User@51081592- opening store
+Domain.Store.workers.Creator@7f9a81e8- Created StoreOwner
+Domain.Store.workers.Creator@7f9a81e8Owner add item
+Domain.Store.StoreImp@396a51ab-add product
+Domain.Store.workers.Creator@7f9a81e8Owner add item
+Domain.Store.StoreImp@396a51ab-add product
+Domain.Store.workers.Creator@7f9a81e8Owner add item
+Domain.Store.StoreImp@396a51ab-add product
+Domain.store_System.System@5034c75auser went offline
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5034c75a- new guest
+Domain.store_System.System@5419f379- new register
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- new guest
+Domain.store_System.System@5419f379- user login
+Domain.store_System.System@5419f379-manager login
+Domain.store_System.System@5419f379user went offline
+Domain.store_System.System@7c16905e- new register
+Domain.store_System.System@7c16905e- new guest
+Domain.store_System.System@7c16905e- new guest
+Domain.store_System.System@7c16905e- user login
+Domain.store_System.System@7c16905e-manager login
+Domain.Store.StoreImp@2a5ca609- new Store is created without itmes
+Domain.UserClasses.User@20e2cbe0- opening store
+Domain.Store.workers.Creator@68be2bc2- Created StoreOwner
+Domain.UserClasses.User@20e2cbe0- trying to open store while not login
+Domain.store_System.System@28feb3fa- new register
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- user login
+Domain.store_System.System@28feb3fa-manager login
+Domain.Store.StoreImp@675d3402- new Store is created without itmes
+Domain.UserClasses.User@51565ec2- opening store
+Domain.Store.workers.Creator@482f8f11- Created StoreOwner
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.store_System.System@28feb3fauser went offline
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- user login
+Domain.store_System.System@28feb3fa-manager login
+Domain.UserClasses.User@1593948d- trying to open store while not login
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.Store.workers.Creator@482f8f11Owner add item
+Domain.Store.StoreImp@675d3402-add product
+Domain.store_System.System@28feb3fauser went offline
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- user login
+Domain.store_System.System@28feb3fa-manager login
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.Store.StoreImp@675d3402- taking out products full amount
+Domain.Store.StoreImp@675d3402- taking out products full amount
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@28feb3fa- new guest
+Domain.store_System.System@26be92ad- new register
+Domain.store_System.System@26be92ad- new guest
+Domain.store_System.System@26be92ad- new guest
+Domain.store_System.System@26be92ad- user login
+Domain.store_System.System@26be92ad-manager login
+Domain.Store.StoreImp@4c70fda8- new Store is created without itmes
+Domain.UserClasses.User@224edc67- opening store
+Domain.Store.workers.Creator@14acaea5- Created StoreOwner
+Domain.Store.workers.Creator@14acaea5Owner add item
+Domain.Store.StoreImp@4c70fda8-add product
+Domain.Store.workers.Creator@14acaea5Owner add item
+Domain.Store.StoreImp@4c70fda8-add product
+Domain.Store.workers.Creator@14acaea5Owner add item
+Domain.Store.StoreImp@4c70fda8-add product
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner edit item
+Domain.Store.StoreImp@4c70fda8- edit item
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.Store.workers.Creator@14acaea5-Owner remove item
+Domain.Store.StoreImp@4c70fda8-remove product
+Domain.store_System.System@59fa1d9b- new register
+Domain.store_System.System@59fa1d9b- new guest
+Domain.store_System.System@59fa1d9b- new guest
+Domain.store_System.System@59fa1d9b- user login
+Domain.store_System.System@59fa1d9b-manager login
+Domain.Store.StoreImp@28d25987- new Store is created without itmes
+Domain.UserClasses.User@4501b7af- opening store
+Domain.Store.workers.Creator@523884b2- Created StoreOwner
+Domain.store_System.System@59fa1d9b- new register
+Domain.store_System.System@59fa1d9b- new guest
+Domain.store_System.System@59fa1d9b- new guest
+Domain.store_System.System@59fa1d9b- user login
+Domain.store_System.System@59fa1d9b-manager login
+Domain.Store.workers.StoreOwner_Imp@61832929- Created Owner
+Domain.Store.StoreImp@28d25987- appoint new manager in store
+Domain.Store.workers.Creator@523884b2Owner appoint new Owner
+Domain.Store.workers.StoreOwner_Imp@29774679- Created Owner
+Domain.Store.workers.Creator@523884b2Owner appoint new Owner
+Domain.store_System.System@5e5792a0- new register
+Domain.store_System.System@5e5792a0- new guest
+Domain.store_System.System@5e5792a0- new guest
+Domain.store_System.System@5e5792a0- user login
+Domain.store_System.System@5e5792a0-manager login
+Domain.Store.StoreImp@26653222- new Store is created without itmes
+Domain.UserClasses.User@3532ec19- opening store
+Domain.Store.workers.Creator@68c4039c- Created StoreOwner
+Domain.store_System.System@5e5792a0- new register
+Domain.store_System.System@5e5792a0- new guest
+Domain.store_System.System@5e5792a0- new guest
+Domain.store_System.System@5e5792a0- user login
+Domain.store_System.System@5e5792a0-manager login
+Domain.Store.workers.StoreManager_Imp@47c62251- Created Manager
+Domain.Store.StoreImp@26653222- appoint new manager in store
+Domain.Store.workers.Creator@68c4039cOwner appoint new Manager
+Domain.Store.workers.StoreManager_Imp@3e6fa38a- Created Manager
+Domain.Store.workers.Creator@68c4039cOwner appoint new Manager
+Domain.Store.workers.Creator@68c4039cOwner fire worker
+Domain.Store.StoreImp@26653222- fire manager from store
+Domain.Store.workers.Creator@68c4039cOwner fire worker
+Domain.Store.StoreImp@26653222- fire manager from store
+Domain.store_System.System@42d80b78- new register
+Domain.store_System.System@42d80b78- new guest
+Domain.store_System.System@42d80b78- new guest
+Domain.store_System.System@42d80b78- user login
+Domain.store_System.System@42d80b78-manager login
+Domain.Store.StoreImp@3bfdc050- new Store is created without itmes
+Domain.UserClasses.User@1bce4f0a- opening store
+Domain.Store.workers.Creator@5e3a8624- Created StoreOwner
+Domain.store_System.System@42d80b78- new register
+Domain.store_System.System@42d80b78- new guest
+Domain.store_System.System@42d80b78- new guest
+Domain.store_System.System@42d80b78- user login
+Domain.store_System.System@42d80b78-manager login
+Domain.Store.workers.StoreManager_Imp@5c3bd550- Created Manager
+Domain.Store.StoreImp@3bfdc050- appoint new manager in store
+Domain.Store.workers.Creator@5e3a8624Owner appoint new Manager
+Domain.UserClasses.User@1bce4f0a- editing managerPermesions
+Domain.Store.workers.Creator@5e3a8624-Owner changed other manager permesions
+Domain.Store.StoreImp@3bfdc050- edit manager permesions
+Domain.Store.workers.StoreManager_Imp@5c3bd550- my Permesions have changed
+Domain.UserClasses.User@1bce4f0a- editing managerPermesions
+Domain.Store.workers.Creator@5e3a8624-Owner changed other manager permesions
+Domain.Store.StoreImp@3bfdc050- edit manager permesions
+Domain.Store.workers.StoreManager_Imp@5c3bd550- my Permesions have changed
+Domain.UserClasses.User@1bce4f0a- editing managerPermesions
+Domain.Store.workers.Creator@5e3a8624-Owner changed ot
