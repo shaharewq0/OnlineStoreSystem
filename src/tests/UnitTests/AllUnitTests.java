@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import tests.UnitTests.CommunicationLayer.MessageDecoderTest;
 import tests.UnitTests.CommunicationLayer.MessageEncoderTest;
+import tests.UnitTests.Policies.AcquisitionPolicyTest;
+import tests.UnitTests.Policies.DiscountPolicyTest;
 
 @RunWith(Suite.class)
     @Suite.SuiteClasses({
@@ -18,7 +20,9 @@ import tests.UnitTests.CommunicationLayer.MessageEncoderTest;
         EventLoggerTest.class,
         ErrorLoggerTest.class,
         MessageDecoderTest.class,
-        MessageEncoderTest.class
+            MessageEncoderTest.class,
+            DiscountPolicyTest.class,
+            AcquisitionPolicyTest.class,
 })
 
 public class AllUnitTests {
