@@ -5,6 +5,7 @@ import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Domain.Notifier.Notifier;
 import Domain.RedClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
@@ -20,6 +21,8 @@ import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 class SubInstructions {
 
@@ -29,7 +32,7 @@ class SubInstructions {
 
 
 
-public class MallProtocol implements MessagingProtocol<Message> {
+public class MallProtocol implements MessagingProtocol<Message>, Observer {
 
     private int gustID;
 
@@ -40,6 +43,7 @@ public class MallProtocol implements MessagingProtocol<Message> {
         this.gustID = guest_accese.ImNew();
         username = "";
         paasword = "";
+        Notifier.getInstance().addObserver(this); // register to the notifier
     }
 
 
@@ -48,6 +52,11 @@ public class MallProtocol implements MessagingProtocol<Message> {
     public Message process(Message msg) {
         System.out.println("handling :" + msg.toString());
         return ((Client2ServerMessage)msg).visit(this);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 
 
