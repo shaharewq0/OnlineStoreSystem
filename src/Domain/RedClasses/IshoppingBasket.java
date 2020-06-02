@@ -7,14 +7,14 @@ import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 
 public interface IshoppingBasket {
-	public void addProduct(String name, int amount);
+	 void addProduct(String name, int amount);
 
-	public int removeProduct(String name, int num);
+	 int removeProduct(String name, int num);
 
-	public StoreImp getStore();
+	 StoreImp getStore();
 
-	public List<ProductDetails> getProducts();
-	public double CalcPrice();
-	public List<Product> getItems();
+	 List<ProductDetails> getProducts();
+	 double CalcPrice();
+	 List<Product> getItems();
 
 }

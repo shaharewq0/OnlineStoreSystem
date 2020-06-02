@@ -28,15 +28,15 @@ public interface IUser {
 //    public boolean isManager();
 //    public boolean isRegistered();
 //    public shoppingCart getCart();
-    public List<UserPurchase> getPurchaseHistory();
+     List<UserPurchase> getPurchaseHistory();
 
-	public boolean getFired(String store);
+	 boolean getFired(String store);
 
-	public boolean appointAsOwner(Store_role newRole);
+	 boolean appointAsOwner(Store_role newRole);
 
-	public boolean appointAsManager(Store_role newRole);
+	 boolean appointAsManager(Store_role newRole);
 
-	public String getName();
+	 String getName();
 
 //	public boolean appointAsOwner(Store_role creator, String store);
 }

@@ -177,11 +177,11 @@ public class StoreImp implements IStore {
 
 	public boolean addProduct(Product p) {
 
-		if (!p.getStore().getName().equals(name)) {
-			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
-
-			return false;
-		}
+//		if (!p.getStore().getName().equals(name)) {
+//			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
+//
+//			return false;
+//		}
 		EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
 
 		return inventory.recive_item(new Packet_Of_Prodacts(p));
@@ -199,9 +199,10 @@ public class StoreImp implements IStore {
 	}
 
 	public ProductDetails findProductDetailsByName(String name) {
-		if (inventory.items.containsKey(name))
-			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
-		return null;
+		return inventory.findProductDetailsByName(name);
+//		if (inventory.items.containsKey(name))
+//			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
+//		return null;
 	}
 
 	public List<Product> findProductByCategory(String category) {

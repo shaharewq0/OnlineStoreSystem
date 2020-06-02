@@ -55,7 +55,8 @@ public class ProductDetails {
         this.name = pro.getName();
         this.category = new LinkedList<String>();
         category.addAll(pro.getCategory());
-        this.storeName = pro.getStore().getName();
+        //TODO fix this
+       // this.storeName = pro.getStore().getName();
         this.amount = amount;
         keyWords = new LinkedList<>(pro.getKeyWords());
         this.price = pro.getPrice();

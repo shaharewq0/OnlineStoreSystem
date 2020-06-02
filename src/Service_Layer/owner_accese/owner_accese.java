@@ -16,15 +16,7 @@ public class owner_accese {
 		return me.storeOwned();
 	}
 
-	public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername) {
-		return false;
-		//TODO : impliment
-	}
 
-	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username) {
-		return false;
-		//TODO : impliment
-	}
 
 
 	public static boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
@@ -46,16 +38,28 @@ public class owner_accese {
 
 	public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,
 			String hisPassword) {
-		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.appointOwner(storeName, hisusername, hisPassword);
+		return usecase4_3_appointOwner( myusername,  myPassword,  storeName,  hisusername);
+//		User me = System.getInstance().getMember(myusername, myPassword);
+//		return me.appointOwner(storeName, hisusername, hisPassword);
 	}
+	public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername) {
+		User me = System.getInstance().getMember(myusername, myPassword);
+		return me.appointOwner(storeName, hisusername);
+	}
+
 
 	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username,
 			String hisPassword) {
-		User me = System.getInstance().getMember(myusername, myPassword);
-		return me.appointManager(storeName, username, hisPassword);
+		return  usecase4_5_appointManager(myusername,myPassword,storeName,username);
+		//return  usecase4_5_appointManager( myusername,  myPassword,  storeName);
+//		User me = System.getInstance().getMember(myusername, myPassword);
+//		return me.appointManager(storeName, username, hisPassword);
 	}
 
+	public static boolean usecase4_5_appointManager(String myusername, String myPassword, String storeName, String username) {
+		return false;
+		//TODO : impliment
+	}
 	public static boolean usecase4_6_editMangagerPermesions(String myusername, String myPassword, String storename,
 			String managername, List<String> permesions) {
 		User me = System.getInstance().getMember(myusername, myPassword);
