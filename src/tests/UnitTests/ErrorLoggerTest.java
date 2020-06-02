@@ -1,15 +1,13 @@
 package tests.UnitTests;
 
-import org.junit.Test;
-
-import Domain.Logs.ErrorLogger;
-import Domain.Logs.Log;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import static org.junit.Assert.*;
+import Domain.Logs.ErrorLogger;
+import Domain.Logs.Log;
 
 public class ErrorLoggerTest {
 

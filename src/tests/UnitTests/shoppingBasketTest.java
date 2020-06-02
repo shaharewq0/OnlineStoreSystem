@@ -1,27 +1,29 @@
 package tests.UnitTests;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.LinkedList;
+
 import org.junit.Test;
 
 import Domain.RedClasses.shoppingBasket;
 import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
+import Domain.info.ProductDetails;
 import Domain.store_System.System;
 
-import java.util.LinkedList;
-
-import static org.junit.Assert.*;
-
 public class shoppingBasketTest {
-/*
+
     @Test
     public void addProduct(){
         StoreImp s = System.getInstance().openStore("r","tel aviv",3);
-        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
+        ProductDetails p = new ProductDetails("itemname", new LinkedList<>(), s.getName(), 4, 7.2);// new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
         s.addProduct(p);
         shoppingBasket basket = new shoppingBasket(s);
-        basket.addProduct(p);
+        basket.addProduct(p.getName(),1);
         MyPair<Product,Integer> productInBasket=null;
+        List<>
         for(MyPair<Product,Integer> current :basket.getProducts()){
             if(current.getKey()==p){
                 productInBasket = current;
@@ -67,5 +69,5 @@ public class shoppingBasketTest {
         assertTrue(productInBasket == null);
         assertTrue(basket.getProducts().size()==0);
     }
-*/
+
 }

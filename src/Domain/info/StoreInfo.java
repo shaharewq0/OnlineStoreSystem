@@ -1,10 +1,10 @@
 package Domain.info;
 
-import tests.AcceptanceTests.auxiliary.StoreDetails;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 public class StoreInfo {
 
@@ -26,8 +26,8 @@ public class StoreInfo {
 
 	public StoreInfo(StoreDetails store) {
 		this.name = store.getName();
-		this.address = store.getAdress();
-		this.rating = store.getRating();
+		this.address = "unown";
+		this.rating = 0;
 		this.products = new LinkedList<ProductDetails>();
 
 	}
@@ -49,7 +49,4 @@ public class StoreInfo {
 //		}
 //	}
 
-	public List<ProductDetails> getProducts() {
-		return products;
-	}
 }
