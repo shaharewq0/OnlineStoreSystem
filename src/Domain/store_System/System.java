@@ -70,7 +70,7 @@ public class System implements ISystem {
         manager = new System_Manager(username);
         guest.login(username, password);
 
-        return CheckTegrati_oneManager();
+        return true;
 
     }
 
@@ -123,9 +123,9 @@ public class System implements ISystem {
         Profile.LogLogin(user);
         onlinemember.put(id, new Member(user));
         EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
-//        if (!CheckTegrati_oneManager()) {
-//            return null;
-//        }
+        if (onlinemember.size() > 1 && !CheckTegrati_oneManager()) {
+            return null;
+        }
         return Profile;
 
     }
@@ -355,8 +355,7 @@ public class System implements ISystem {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
-        return  true;
-       // return manager != null && getUserProfile(manager.name) != null;
+        return manager != null && getUserProfile(manager.name) != null;
 
     }
 }

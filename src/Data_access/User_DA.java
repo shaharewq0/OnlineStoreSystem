@@ -1,6 +1,7 @@
 package Data_access;
 
-import Domain.RedClasses.User;
+
+import Domain.UserClasses.User;
 
 import javax.persistence.*;
 import java.util.List;

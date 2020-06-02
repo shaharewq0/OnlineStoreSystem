@@ -84,10 +84,10 @@ public class Store_Inventory implements inventory {
 
     public boolean checkConstrains_hase1Ofitem(){
 
-//        for (Product P:items.values()) {
-//            if(P.getAmount() <0)
-//                return false;
-//        }
+        for (Product P:items.values()) {
+            if(P.getAmount() <0)
+                return false;
+        }
         return true;
     }
 }

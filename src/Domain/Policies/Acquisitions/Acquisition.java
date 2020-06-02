@@ -4,7 +4,7 @@ import Domain.info.ProductDetails;
 
 import java.util.List;
 
-interface Acquisition {
+public interface Acquisition {
     // at all acquisitions, productName can be 'ALL' to represent store condition
 
 

@@ -1,6 +1,6 @@
 package Data_access;
 
-import Domain.RedClasses.shoppingCart;
+import Domain.UserClasses.shoppingCart;
 
 import java.util.Optional;
 

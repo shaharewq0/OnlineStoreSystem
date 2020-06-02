@@ -1,6 +1,6 @@
 package Data_access;
 
-import Domain.Store.Acquisition;
+import Domain.Policies.Acquisitions.Acquisition;
 
 import java.util.Optional;
 
