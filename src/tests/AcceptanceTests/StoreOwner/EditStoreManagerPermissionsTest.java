@@ -11,6 +11,7 @@ import tests.AcceptanceTests.BaseAccTest;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
@@ -47,6 +48,6 @@ public class EditStoreManagerPermissionsTest extends BaseAccTest {
     public void C_AddPermissionsToNotManager() {
         permissions.add(MangaerPermesions.permesions[0]);
         permissions.add(MangaerPermesions.permesions[1]);
-        assertTrue(system.editManagerPermissions(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME + "2", permissions));
+        assertFalse(system.editManagerPermissions(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME + "2", permissions));
     }
 }
