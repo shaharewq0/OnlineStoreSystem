@@ -7,14 +7,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class User_DA implements DOA<User> {
+public class User_DA extends DOA<User> {
 
-    private EntityManager entityManager;
-    private String TABLE_NAME="USER_TABLE";
 
     public User_DA(){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("persistence");
-        entityManager= emf.createEntityManager();
+        super();
+        TABLE_NAME="USER_TABLE";
     }
 
     @Override
@@ -44,16 +42,4 @@ public class User_DA implements DOA<User> {
         executeInsideTransaction(entityManager -> entityManager.remove(user));
     }
 
-    private void executeInsideTransaction(Consumer<EntityManager> action) {
-        EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            action.accept(entityManager);
-            tx.commit();
-        }
-        catch (RuntimeException e) {
-            tx.rollback();
-            throw e;
-        }
-    }
 }
