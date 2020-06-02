@@ -60,9 +60,11 @@ public class User implements IUser {
     // adding a product to a basket. if the product exists add 1 to the amount of
     // the product in the basket
     public boolean saveProductInBasket(String productName, String storeName, int amount) {
-
-        cart.findBasket(storeName).addProduct(productName, amount);
-        return true;
+        shoppingBasket basket = cart.findBasket(storeName);
+        if (basket == null)
+            return false;
+        return basket.addProduct(productName, amount);
+        //return true;
 
     }
 

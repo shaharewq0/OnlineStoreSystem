@@ -67,6 +67,10 @@ public class ProductDetails {
         return price;
     }
 
+    public double getTotalPrice() {
+        return price * amount;
+    }
+
     public List<String> getKeyWords() {
         return keyWords;
     }
@@ -120,6 +124,6 @@ public class ProductDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating(), getPrice());
+        return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating());
     }
 }

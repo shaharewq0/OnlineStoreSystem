@@ -20,13 +20,16 @@ public class shoppingBasket implements IshoppingBasket {
         Item_holder = new HashMap<>();
     }
 
-    public void addProduct(String name, int amount) {
+    public boolean addProduct(String name, int amount) {
+        if(store.findProductByName(name)== null)
+            return false;
         if (store.findProductByName(name) != null)
             if (Item_holder.containsKey(name)) {
                 Item_holder.replace(name, Item_holder.get(name) + amount);
             } else {
                 Item_holder.put(name, amount);
             }
+        return true;
     }
 
     public int removeProduct(String name, int num) {

@@ -108,7 +108,7 @@ public class DiscountPolicy extends BasePolicy {
     }
 
     public double applyDiscounts(List<ProductDetails> products) {
-        double totalPrice = products.stream().map(ProductDetails::getPrice).reduce(0.0, Double::sum);
+        double totalPrice = products.stream().map(ProductDetails::getTotalPrice).reduce(0.0, Double::sum);
         return totalPrice -
                 discounts.stream()
                         .filter(d -> d.hasDiscount(products))

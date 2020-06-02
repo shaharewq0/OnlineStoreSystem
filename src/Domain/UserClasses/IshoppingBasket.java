@@ -7,7 +7,7 @@ import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 
 public interface IshoppingBasket {
-	 void addProduct(String name, int amount);
+	 boolean addProduct(String name, int amount);
 
 	 int removeProduct(String name, int num);
 
