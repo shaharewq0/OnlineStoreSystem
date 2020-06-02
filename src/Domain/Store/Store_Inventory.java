@@ -24,7 +24,7 @@ public class Store_Inventory implements inventory {
             else
                 items.put(p.getName(), p);
         }
-        return true;
+        return true && checkConstrains_hase1Ofitem();
 
     }
 
@@ -32,13 +32,13 @@ public class Store_Inventory implements inventory {
         if (!items.containsKey(productname))
             return false;
         items.remove(productname);
-        return true;
+        return true && checkConstrains_hase1Ofitem();
     }
 
     public boolean editProduct(String old_p, Product new_p) {
         if (items.containsKey(old_p)) {
             items.replace(old_p, new_p);
-            return true;
+            return true &&checkConstrains_hase1Ofitem();
         }
         return false;
     }
@@ -69,7 +69,7 @@ public class Store_Inventory implements inventory {
             items.get(p.getName()).addToAmount(p.getAmount());
         } else
             items.put(p.getName(), new Product(p));
-        return true;
+        return true &&checkConstrains_hase1Ofitem();
     }
 
     public ProductDetails findProductDetailsByName(String name) {
@@ -80,5 +80,13 @@ public class Store_Inventory implements inventory {
 
     public Product getItem(String name) {
         return items.get(name);
+    }
+
+    public boolean checkConstrains_hase1Ofitem(){
+        for (Product P:items.values()) {
+            if(P.getAmount() <0)
+                return false;
+        }
+        return true;
     }
 }
