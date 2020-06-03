@@ -52,36 +52,7 @@ public class MallServer {
     }
 
     private static void initSysyem(){
-        int guestID = guest_accese.ImNew();
-        if(guest_accese.usecase2_2_guest_register("abc", "abc")){
-            System.out.println("good1");
-        }
-        else {
-            System.out.println("bad1");
-        }
 
-        if(guest_accese.usecase2_3_login(guestID,"abc", "abc")){
-            System.out.println("good2");
-        }
-        else {
-            System.out.println("bad2");
-        }
-
-        if(member_accese.usecase3_2_OpenStore("abc", "abc", new StoreDetails("ebay", "tel aviv 12", 4))){
-            System.out.println("good3");
-        }
-        else {
-            System.out.println("bad3");
-        }
-
-        List<String> lst = new LinkedList<>();
-        lst.add("fruits");
-        if(owner_accese.usecase4_1_1_AddingProdacsToStore("abc", "abc", "ebay", new Product(new ProductDetails("banana", lst, "ebay", 300, 20.15)))){
-            System.out.println("good4");
-        }
-        else {
-            System.out.println("bad4");
-        }
     }
 
 
@@ -93,7 +64,8 @@ public class MallServer {
         protocols.forEach(((session, messageMessagingProtocol) -> {
             if(messageMessagingProtocol == protocol){
                 try {
-                    session.getBasicRemote().sendText(msg);
+                    System.out.println("sending special message : " + msg);
+                    session.getBasicRemote().sendText(MessageEncoder.string2jason(msg));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

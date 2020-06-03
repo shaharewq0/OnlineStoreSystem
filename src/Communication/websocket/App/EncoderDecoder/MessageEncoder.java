@@ -67,7 +67,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
      * convert a list to jason array
      * @return the list to convert
      */
-    private JSONObject list2jason(List<Byte> lst){
+    public JSONObject list2jason(List<Byte> lst){
 
         JSONObject jsn = new JSONObject();
 
@@ -79,6 +79,20 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         }
 
         return  jsn;
+    }
+
+    public static String string2jason(String msg){
+
+        JSONObject jsn = new JSONObject();
+
+        int i = 0;
+
+        for (Byte b: msg.getBytes()){
+            jsn.put(String.valueOf(i), b);
+            i++;
+        }
+
+        return  jsn.toString();
     }
 
     /**

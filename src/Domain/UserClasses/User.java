@@ -1,6 +1,7 @@
 package Domain.UserClasses;
 
 import Domain.Logs.EventLogger;
+import Domain.Notifier.Notifier;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -45,9 +46,11 @@ public class User implements IUser {
         if (profile != null)
             return false;
 
+
         profile = System.getInstance().login(id, password, this);
         logInstanse = System.getInstance().getLogInstase(id, password);
         sysMangaer = System.getInstance().ImManeger(id, password);
+
         return profile != null;
 
     }
@@ -86,6 +89,7 @@ public class User implements IUser {
         profile = null;
         logInstanse = null;
         System.getInstance().logout(this);
+
         return true;
 //		if (system_role instanceof Member) {
 //			system_role = new Guest();
@@ -95,6 +99,9 @@ public class User implements IUser {
     }
 
     public boolean openStore(String storename, String address, int rating) {
+
+        Notifier.getInstance().update("abc", "abc" +" openning a store! (From server)");
+
         StoreImp mystore = logInstanse.OpenStore(new StoreInfo(storename, address, rating));
         if (profile == null) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- trying to open store while not login");
@@ -106,6 +113,9 @@ public class User implements IUser {
     }
 
     public boolean openStore(StoreInfo store) {
+
+        Notifier.getInstance().update("abc", "abc" +" openning a store! (From server)");
+
         StoreImp mystore = logInstanse.OpenStore(store);
         if (profile == null || mystore == null) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- trying to open store while not login");

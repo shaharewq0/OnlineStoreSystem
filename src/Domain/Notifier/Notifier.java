@@ -22,6 +22,7 @@ public class Notifier extends Observable {
     } */
 
     public void update(String userName, String msg){
+        notifier.setChanged();
         notifier.notifyObservers(userName + "!@!" + msg);
     }
 

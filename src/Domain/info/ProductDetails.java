@@ -26,6 +26,7 @@ public class ProductDetails {
         this.amount = amount;
         this.price = price;
         this.keyWords = Arrays.asList(name.split(" "));
+        this.rating = 0;
     }
 
     public ProductDetails(String name, List<String> category, List<String> kewwords, String storeName, int amount, double price) {
@@ -35,8 +36,7 @@ public class ProductDetails {
         this.storeName = storeName;
         this.amount = amount;
         this.price = price;
-        this.keyWords = Arrays.asList(name.split(" "));
-        this.keyWords.addAll(kewwords);
+        this.keyWords = kewwords;
         this.rating = 0;
     }
 
@@ -125,5 +125,18 @@ public class ProductDetails {
     @Override
     public int hashCode() {
         return Objects.hash(getKeyWords(), getName(), getCategory(), getStoreName(), getAmount(), getRating());
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDetails{" +
+                "keyWords=" + keyWords +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                ", storeName='" + storeName + '\'' +
+                ", amount=" + amount +
+                ", rating=" + rating +
+                ", price=" + price +
+                '}';
     }
 }

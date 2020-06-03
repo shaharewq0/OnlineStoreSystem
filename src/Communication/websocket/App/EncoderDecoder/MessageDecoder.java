@@ -165,6 +165,34 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         return  parametes;
     }
 
+    private Deque<Deque<Byte>> parameterizeNoOp(Deque<Byte> message, byte delimiter){
+
+        Deque<Byte> curParamList;
+        Deque<Deque<Byte>> parametes = new LinkedList<>();
+        Iterator<Byte> iter = message.iterator();
+        byte cur;
+
+        // rest
+        while (iter.hasNext()) {
+            curParamList = new LinkedList<>();
+
+            cur = iter.next();
+            while (iter.hasNext() && cur != delimiter){
+                curParamList.offer(cur);
+                cur = iter.next();
+            }
+
+            if(!iter.hasNext()){
+                curParamList.offer(cur);
+            }
+
+            parametes.offer(curParamList);
+        }
+
+        return  parametes;
+    }
+
+
 
     /**
      * retruve the opcode
@@ -219,6 +247,19 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         return param.getFirst();
     }
 
+
+
+
+    private int popInt(Deque<Deque<Byte>> parameters){
+        return Integer.parseInt(popString(parameters));
+    }
+
+    private double popDouble(Deque<Deque<Byte>> parameters){
+        return Double.parseDouble(popString(parameters));
+    }
+
+
+
     /**
      * pop a string from the parameters. removes the parameter from the list.
      * @param parameters the parameters
@@ -240,7 +281,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         if (param == null)
             throw new IllegalArgumentException("could not decode message.");
 
-        Deque<Deque<Byte>> lst = parameterize(param, Delimiters.LIST_DELIMITER);
+        Deque<Deque<Byte>> lst = parameterizeNoOp(param, Delimiters.LIST_DELIMITER);
 
         while (lst.size() > 0) {
             String curr = popString(lst);
@@ -396,7 +437,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  store = popString(parameters);
         String  product = popString(parameters);
-        String  amount = popString(parameters);
+        int  amount = popInt(parameters);
 
         if(parameters.size() > 0){
             throw new IllegalArgumentException("to much parameter!");
@@ -405,7 +446,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         if(op != Opcodes.Save2Basket){
             throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
         }
-        return new AddProduct2BasketMessage(-1, store, product, Integer.parseInt(amount));
+        return new AddProduct2BasketMessage(-1, store, product,amount);
     }
 
     private Message productByKeyword(Deque<Deque<Byte>> parameters) {
@@ -547,11 +588,11 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     private Message AddProduct2Store(Deque<Deque<Byte>> parameters) {
         Byte    op          = popOpcode(parameters);
         String  name        = popString(parameters);
-        double  price       = Double.parseDouble(popString(parameters));
+        double  price       = popDouble(parameters);
         List<String>  cats  = popStringListL1(parameters);
         List<String>  keyws = popStringListL1(parameters);
         String  storename   = popString(parameters);
-        byte ammount        = popByte(parameters);
+        int ammount         = popInt(parameters);
 
 
         if(parameters.size() > 0){
