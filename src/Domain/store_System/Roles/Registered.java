@@ -1,34 +1,49 @@
 package Domain.store_System.Roles;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import Domain.Logs.ErrorLogger;
+import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
 import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.Store_role;
+import Domain.store_System.ClintObserver;
+import Domain.store_System.MSGObservable;
 import Domain.store_System.System;
 
-public class Registered {
+public class Registered implements MSGObservable {
     private String id;
+
+
+    private List<ClintObserver> clints = new LinkedList();
+    // clint A.notfi --- Clint C.notfi
+    private List<String> MSG_box = new LinkedList<>();
+
+
+
     private User_Purchase_History history = new User_Purchase_History();
     //private List<Purchase> myPurcase = new LinkedList<Purchase>();
     public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
 
     public Registered(String id) {
         this.id = id;
+        add_msg("welcome to the system");
 
     }
+
 
     public String getId() {
         return id;
     }
 
     public void LogLogin(User user) {
+        //nofile all
+    }
+
+    public void LogLogout(User user) {
         // TODO Auto-generated method stub
 
     }
@@ -41,13 +56,11 @@ public class Registered {
         return history.history;
     }
 
-    public void LogLogout(User user) {
-        // TODO Auto-generated method stub
 
-    }
 
-    public boolean getFired(String name) {
-        return store_roles.remove(name) != null;
+    public boolean getFired(String Storename) {
+        add_msg("you where fired from " + Storename);
+        return store_roles.remove(Storename) != null;
     }
 
     public List<String> storesOwned() {
@@ -63,9 +76,21 @@ public class Registered {
     }
 
 
+    public boolean appointAsCreator(Creator role) {
+        if (store_roles.containsKey(role.getStore().getName())) {
+                ErrorLogger.GetInstance().Add_Log(this.toString() + " fatel error : im trying to beacome creator of exsisting store" );
+                return false; // already owner
+
+        }
+
+        store_roles.put(role.getStore().getName(), role);
+        return true;
+
+    }
+
     public boolean appointAsOwner(Store_role role) {
-        if(store_roles.containsKey(role.getStore().getName())){
-            if(store_roles.get(role.getStore().getName()) instanceof StoreOwner_Imp){
+        if (store_roles.containsKey(role.getStore().getName())) {
+            if (store_roles.get(role.getStore().getName()) instanceof StoreOwner_Imp) {
                 return false; // already owner
             }
         }
@@ -83,8 +108,8 @@ public class Registered {
             return false;
         }
 
-        if(store_roles.containsKey(role.getStore().getName())){
-            if(store_roles.get(role.getStore().getName()) instanceof StoreManager_Imp){
+        if (store_roles.containsKey(role.getStore().getName())) {
+            if (store_roles.get(role.getStore().getName()) instanceof StoreManager_Imp) {
                 return false; // already manager
             }
         }
@@ -94,5 +119,34 @@ public class Registered {
         return true;
     }
 
+    public void add_msg(String msg) {
+        MSG_box.add(msg);
+        notifyUser();
+    }
 
+    public void notifyUser() {
+        //TODO
+    }
+
+    public boolean add_Observer(ClintObserver O) {
+        clints.add(O);
+        return true;
+    }
+
+    public boolean remove_Observer(ClintObserver O) {
+
+        //TODO need testing
+        if (clints.contains(O)) {
+            clints.remove(O);
+            return true;
+        }
+        return false;
+
+    }
+
+    public List<String> getMessges() {
+        List<String> msgs = MSG_box;
+        MSG_box = new LinkedList<>();
+        return msgs;
+    }
 }

@@ -4,6 +4,7 @@ import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
+import Domain.store_System.ClintObserver;
 import Domain.store_System.System;
 import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
@@ -31,6 +32,14 @@ public class guest_accese {
 			return false;
 		return user.login(username, password);
 	}
+
+	public static boolean usecase2_3_login(int guestId, String username, String password, ClintObserver Observer) {
+		User user = System.getInstance().getGuest(guestId);
+		if(user == null)
+			return false;
+		return user.login(username, password);
+	}
+
 
 	public static boolean usecase2_2_guest_register(String username, String password) {
 		return User.register(username, password);

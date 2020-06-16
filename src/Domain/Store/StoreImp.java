@@ -104,10 +104,11 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    public boolean fireManager(String user) {
+    public boolean fireWorker(String user) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
         if (Managers.containsKey(user) && Owners.containsKey(user))
             ErrorLogger.GetInstance().Add_Log(this.toString() + "- fatel error worker is owner and manager");
+
         if (Managers.containsKey(user)) {
             if (Managers.get(user).getfire())
                 return Managers.remove(user) != null && CheckTegrati_HaveOwners();
@@ -302,6 +303,7 @@ public class StoreImp implements IStore {
     }
 
     boolean CheckTegrati_HaveOwners() {
+      //  return true;
         return creator != null || Owners.values().size() > 0;
     }
 

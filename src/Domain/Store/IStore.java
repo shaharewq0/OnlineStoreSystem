@@ -44,6 +44,6 @@ public interface IStore {
 
 
 
-	boolean fireManager(String user);
+	boolean fireWorker(String user);
 
 }
