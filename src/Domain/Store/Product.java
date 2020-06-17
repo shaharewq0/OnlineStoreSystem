@@ -13,7 +13,7 @@ public class Product extends Object implements IProduct {
     private double price;
     private int rating;
     //will change to be single
-    private Stack<concreate_Product> Amount = new Stack<>();
+    private Product_boundle Amount = new Product_boundle();
     // private String storename;
     //private int amount;
 
@@ -33,14 +33,9 @@ public class Product extends Object implements IProduct {
         name = p.getName();
         category = new LinkedList<>(p.getCategory());
         keyWords = new LinkedList<>(p.getKeyWords());
-        //storename = p.getStoreName();
         price = p.getPrice();
         rating = p.getRating();
-        for (int i = 0; i < p.getAmount(); i++)
-            Amount.add(new concreate_Product());
-        //amount = p.getAmount();
-        //store = System.getInstance().getStoreDetails(p.getStoreName());
-        //storename = p.getStoreName();
+        Amount.add(p.getAmount());
     }
 
 
@@ -79,9 +74,7 @@ public class Product extends Object implements IProduct {
 
     public void addToAmount(int add) {
 
-        for (int i = 0; i < add; i++)
-            Amount.add(new concreate_Product());
-        // amount+=add;
+        Amount.add(add);
     }
 
     public int getAmount() {
@@ -92,11 +85,10 @@ public class Product extends Object implements IProduct {
     public int removeAmount(int amount) {
         if (Amount.size() < amount) {
             int temp = Amount.size();
-            Amount = new Stack<>();
+            Amount.remove(temp);
             return temp;
         } else {
-            for (int i = 0; i < amount; i++)
-                Amount.pop();
+            Amount.remove(amount);
             // this.amount = this.amount - amount;
             return amount;
         }
