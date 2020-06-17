@@ -362,7 +362,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
 
@@ -374,7 +374,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getRating() <= maxRating && product.getRating() >= minRating)
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
         return output;
@@ -386,7 +386,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getCategory().contains(category))
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
         return output;
@@ -398,7 +398,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             if (store.getRating() > minRating && store.getRating() < maxRating)
                 for (Product product : store.getProducts()) {
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
                 }
         }
         return output;

@@ -1,5 +1,6 @@
 package Service_Layer.guest_accese;
 
+import Domain.Store.MyPair;
 import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
@@ -126,7 +127,8 @@ public class guest_accese {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
 
-		List<Product> items = usecase2_8_5_Update_inventory(guestID);
+
+		List<MyPair<Product,String>> items = usecase2_8_5_Update_inventory(guestID);
 		double price = usecase2_8_2_Calculate_price(guestID);
 		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
 		if (!didPay) {
@@ -134,7 +136,7 @@ public class guest_accese {
 			return false;
 		}
 		Packet_Of_Prodacts pack = new Packet_Of_Prodacts();
-		pack.items.addAll(items);
+		pack.add_items(items);
 		boolean didSupplay = System.getInstance().navigateSupply().order(pack, whereToSend);
 		if (!didSupplay) {
 			usecase2_8_3_ReturnProdoctsToStore(items);
@@ -164,7 +166,7 @@ public class guest_accese {
 		return user.getCart().CalcPrice();
 	}
 
-	public static boolean usecase2_8_3_ReturnProdoctsToStore(List<Product> products) {
+	public static boolean usecase2_8_3_ReturnProdoctsToStore(List<MyPair<Product,String>> products) {
 		return System.getInstance().fillStore(products);
 	}
 
@@ -173,7 +175,7 @@ public class guest_accese {
 		//return false;
 	}
 
-	public static List<Product> usecase2_8_5_Update_inventory(int guestID) {
+	public static List<MyPair<Product,String>> usecase2_8_5_Update_inventory(int guestID) {
 		User user = System.getInstance().getGuest(guestID);
 		if(user == null)
 			return null;

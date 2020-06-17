@@ -12,18 +12,19 @@ public class Product extends Object implements IProduct {
     private List<String> keyWords;
     private double price;
     private int rating;
+    //will change to be single
     private Stack<concreate_Product> Amount = new Stack<>();
-    private String storename;
+    // private String storename;
     //private int amount;
 
-    public Product(String name, List<String> category, List<String> keyWords, double price, int rating, String storename) {
+    public Product(String name, List<String> category, List<String> keyWords, double price, int rating) {
         this.name = name;
         this.category = new LinkedList<String>();
         this.category.addAll(category);
         this.keyWords = keyWords;
         this.price = price;
         this.rating = rating;
-        this.storename = storename;
+        //this.storename = storename;
         //this.store=store;
         //amount=0;
     }
@@ -32,16 +33,15 @@ public class Product extends Object implements IProduct {
         name = p.getName();
         category = new LinkedList<>(p.getCategory());
         keyWords = new LinkedList<>(p.getKeyWords());
-        storename = p.getStoreName();
+        //storename = p.getStoreName();
         price = p.getPrice();
         rating = p.getRating();
         for (int i = 0; i < p.getAmount(); i++)
             Amount.add(new concreate_Product());
         //amount = p.getAmount();
         //store = System.getInstance().getStoreDetails(p.getStoreName());
-        storename = p.getStoreName();
+        //storename = p.getStoreName();
     }
-
 
 
     public String getName() {
@@ -64,13 +64,10 @@ public class Product extends Object implements IProduct {
         return rating;
     }
 
-    public String getStore() {
-        return storename;
-    }
-//
-//    public boolean compare(Product p) {
-//        return this.name.compareTo(p.name) == 0 && this.category == p.category && this.storename.compareTo(p.storename) == 0 && this.price == p.price && this.rating == p.rating;
+//    public String getStore() {
+//        return storename;
 //    }
+
 
     public void edit(Product p) {
         this.price = p.price;
@@ -113,8 +110,40 @@ public class Product extends Object implements IProduct {
         output += "rating:" + rating + "\n";
         output += "amount:" + Amount.size() + "\n";
         output += "price:" + price + "\n";
-        output += "stroe:" + storename + "\n";
+
+        //output += "stroe:" + storename + "\n";
         return output;
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this)
+            return true;
+        if (!(other instanceof Product))
+            return false;
+
+        Product p = (Product) other;
+        if (!(this.name == p.name &
+                this.price == p.price &
+                this.rating == p.rating &
+                this.category.size() == p.category.size() &
+                this.keyWords.size() == p.keyWords.size()))
+            return false;
+
+        for (String cat : category) {
+            if (!p.category.contains(cat))
+                return false;
+        }
+        for (String Key : keyWords) {
+            if (!p.keyWords.contains(Key))
+                return false;
+        }
+
+        //will change to be single
+        //TODO add check amount
+      //  Stack<concreate_Product> Amount = new Stack<>();
+        return true;
 
     }
 

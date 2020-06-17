@@ -192,11 +192,11 @@ public class System implements ISystem {
     }
 
 
-    public boolean fillStore(List<Product> Products) {
+    public boolean fillStore(List<MyPair<Product,String>> Products) {
         boolean output = true;
         EventLogger.GetInstance().Add_Log(this.toString() + "- returning product to store");
-        for (Product product : Products) {
-            output = output & getStoreDetails(product.getStore()).addProduct(product);
+        for (MyPair<Product,String> MP : Products) {
+            output = output & getStoreDetails(MP.getValue()).addProduct(MP.getKey());
         }
         return output;
     }

@@ -30,7 +30,7 @@ public interface IStore {
 
 	public double getPrice(List<ProductDetails> item);
 
-	public Product TakeItem(String name, int amout);
+	public MyPair<Product,String> TakeItem(String name, int amout);
 
 	public String getDiscounts(String name);
 

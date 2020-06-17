@@ -51,6 +51,9 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
 
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);
+        System.out.println(TruePurchases);
+        System.out.println(purchases);
+
         assertEqualsLists(TruePurchases, purchases);
     }
 }
