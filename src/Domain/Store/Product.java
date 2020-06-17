@@ -7,24 +7,24 @@ import java.util.List;
 import java.util.Stack;
 
 public class Product extends Object implements IProduct {
-    private int id;
     private String name;
     private List<String> category;
     private List<String> keyWords;
     private double price;
     private int rating;
-    private Stack<concreate_Product> Amount = new Stack<>();
-    private String storename;
+    //will change to be single
+    private Product_boundle Amount = new Product_boundle();
+    // private String storename;
     //private int amount;
 
-    public Product(String name, List<String> category, List<String> keyWords, double price, int rating, String storename) {
+    public Product(String name, List<String> category, List<String> keyWords, double price, int rating) {
         this.name = name;
         this.category = new LinkedList<String>();
         this.category.addAll(category);
         this.keyWords = keyWords;
         this.price = price;
         this.rating = rating;
-        this.storename = storename;
+        //this.storename = storename;
         //this.store=store;
         //amount=0;
     }
@@ -33,47 +33,11 @@ public class Product extends Object implements IProduct {
         name = p.getName();
         category = new LinkedList<>(p.getCategory());
         keyWords = new LinkedList<>(p.getKeyWords());
-        storename = p.getStoreName();
         price = p.getPrice();
         rating = p.getRating();
-        for (int i = 0; i < p.getAmount(); i++)
-            Amount.add(new concreate_Product());
-        //amount = p.getAmount();
-        //store = System.getInstance().getStoreDetails(p.getStoreName());
-        storename = p.getStoreName();
+        Amount.add(p.getAmount());
     }
 
-    public String getStorename() {
-        return storename;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAmount(Stack<concreate_Product> amount) {
-        Amount = amount;
-    }
-
-    public void setCategory(List<String> category) {
-        this.category = category;
-    }
-
-    public void setKeyWords(List<String> keyWords) {
-        this.keyWords = keyWords;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public void setStorename(String storename) {
-        this.storename = storename;
-    }
 
     public String getName() {
         return name;
@@ -95,13 +59,10 @@ public class Product extends Object implements IProduct {
         return rating;
     }
 
-    public String getStore() {
-        return storename;
-    }
-//
-//    public boolean compare(Product p) {
-//        return this.name.compareTo(p.name) == 0 && this.category == p.category && this.storename.compareTo(p.storename) == 0 && this.price == p.price && this.rating == p.rating;
+//    public String getStore() {
+//        return storename;
 //    }
+
 
     public void edit(Product p) {
         this.price = p.price;
@@ -113,9 +74,7 @@ public class Product extends Object implements IProduct {
 
     public void addToAmount(int add) {
 
-        for (int i = 0; i < add; i++)
-            Amount.add(new concreate_Product());
-        // amount+=add;
+        Amount.add(add);
     }
 
     public int getAmount() {
@@ -126,11 +85,10 @@ public class Product extends Object implements IProduct {
     public int removeAmount(int amount) {
         if (Amount.size() < amount) {
             int temp = Amount.size();
-            Amount = new Stack<>();
+            Amount.remove(temp);
             return temp;
         } else {
-            for (int i = 0; i < amount; i++)
-                Amount.pop();
+            Amount.remove(amount);
             // this.amount = this.amount - amount;
             return amount;
         }
@@ -144,16 +102,41 @@ public class Product extends Object implements IProduct {
         output += "rating:" + rating + "\n";
         output += "amount:" + Amount.size() + "\n";
         output += "price:" + price + "\n";
-        output += "stroe:" + storename + "\n";
+
+        //output += "stroe:" + storename + "\n";
         return output;
 
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public boolean equals(Object other) {
+        if (other == this)
+            return true;
+        if (!(other instanceof Product))
+            return false;
+
+        Product p = (Product) other;
+        if (!(this.name == p.name &
+                this.price == p.price &
+                this.rating == p.rating &
+                this.category.size() == p.category.size() &
+                this.keyWords.size() == p.keyWords.size()))
+            return false;
+
+        for (String cat : category) {
+            if (!p.category.contains(cat))
+                return false;
+        }
+        for (String Key : keyWords) {
+            if (!p.keyWords.contains(Key))
+                return false;
+        }
+
+        //will change to be single
+        //TODO add check amount
+      //  Stack<concreate_Product> Amount = new Stack<>();
+        return true;
+
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }

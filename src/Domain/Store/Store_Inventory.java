@@ -72,9 +72,10 @@ public class Store_Inventory implements inventory {
         return true &&checkConstrains_hase1Ofitem();
     }
 
-    public ProductDetails findProductDetailsByName(String name) {
+    public ProductDetails findProductDetailsByName(String name,String storeName) {
+        //TODO change this
         if (items.containsKey(name))
-            return new ProductDetails(items.get(name), items.get(name).getAmount());
+            return new ProductDetails(items.get(name), items.get(name).getAmount(),storeName);
         return null;
     }
 

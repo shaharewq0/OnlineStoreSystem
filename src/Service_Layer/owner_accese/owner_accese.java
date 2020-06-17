@@ -6,6 +6,7 @@ import Domain.Store.StorePurchase;
 import Domain.info.Question;
 import Domain.store_System.System;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -152,6 +153,18 @@ public class owner_accese {
         if (me == null)
             return null;
         return me.ViewAquistionHistory(storename);
+    }
+
+
+    public static boolean accecpt_Pending_Appointment(String myusername, String myPassword, String storeName,
+                                                      String appointe) {
+        return false;
+//TODO implament
+    }
+
+    public static Collection<String> get_Pending_Appointment(String myusername, String myPassword, String storeName) {
+        return null;
+//TODO implament
     }
 
 }

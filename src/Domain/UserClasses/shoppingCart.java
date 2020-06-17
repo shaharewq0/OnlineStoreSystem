@@ -1,6 +1,7 @@
 package Domain.UserClasses;
 
 
+import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
@@ -58,10 +59,10 @@ public class shoppingCart implements IshoppingCart {
     }
 
     @Override
-    public List<Product> getItems() {
-        List<Product> takeout = new LinkedList<Product>();
+    public List<MyPair<Product,String>> getItems() {
+        List<MyPair<Product,String>> takeout = new LinkedList<MyPair<Product,String>>();
         for (shoppingBasket basket : baskets.values()) {
-            takeout.addAll(basket.getItems());
+            takeout.addAll( basket.getItems());
         }
         return takeout;
     }

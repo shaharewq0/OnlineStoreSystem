@@ -2,17 +2,14 @@ package Domain.UserClasses;
 
 import java.util.*;
 
-import Domain.Store.Discount;
-import Domain.Store.Product;
-import Domain.Store.StoreImp;
-import Domain.Store.StorePurchase;
+import Domain.Store.*;
 import Domain.info.ProductDetails;
 
 public class shoppingBasket implements IshoppingBasket {
 
 
     //      productName - amount
-    private Map<String, Integer> Item_holder;
+    private Map<Product, Integer> Item_holder;
     private StoreImp store;
 
     public shoppingBasket(StoreImp store) {
@@ -25,21 +22,21 @@ public class shoppingBasket implements IshoppingBasket {
             return false;
         if (store.findProductByName(name) != null)
             if (Item_holder.containsKey(name)) {
-                Item_holder.replace(name, Item_holder.get(name) + amount);
+                Item_holder.replace(store.findProductByName(name), Item_holder.get(name) + amount);
             } else {
-                Item_holder.put(name, amount);
+                Item_holder.put(store.findProductByName(name), amount);
             }
         return true;
     }
 
     public int removeProduct(String name, int num) {
-        if (Item_holder.containsKey(name)) {
-            int current = Item_holder.get(name);
+        if (Item_holder.containsKey(store.findProductByName(name))) {
+            int current = Item_holder.get(store.findProductByName(name));
             if (current > num) {
-                Item_holder.replace(name, current - num);
+                Item_holder.replace(store.findProductByName(name), current - num);
                 return num;
             } else {
-                Item_holder.remove(name);
+                Item_holder.remove(store.findProductByName(name));
                 return current;
             }
         }
@@ -53,8 +50,8 @@ public class shoppingBasket implements IshoppingBasket {
 
     public List<ProductDetails> getProducts() {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
-        for (String name : Item_holder.keySet()) {
-            output.add(new ProductDetails(store.findProductByName(name), Item_holder.get(name)));
+        for (Product product : Item_holder.keySet()) {
+            output.add(new ProductDetails(product, Item_holder.get(product),store.getName()));
         }
         return output;
     }
@@ -64,10 +61,10 @@ public class shoppingBasket implements IshoppingBasket {
         return store.getPrice(products);
     }
 
-    public List<Product> getItems() {
-        List<Product> output = new LinkedList<Product>();
-        for (String item : Item_holder.keySet()) {
-            output.add(store.TakeItem(item, Item_holder.get(item)));
+    public List<MyPair<Product,String>> getItems() {
+        List<MyPair<Product,String>> output = new LinkedList<MyPair<Product,String>>();
+        for (Product item : Item_holder.keySet()) {
+            output.add(store.TakeItem(item.getName(), Item_holder.get(item)));
         }
         return output;
     }

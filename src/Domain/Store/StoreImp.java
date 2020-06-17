@@ -73,7 +73,7 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> getProductsDetails() {
-        return ProductDetails.adapteProdactList(inventory.items.values());
+        return ProductDetails.adapteProdactList(inventory.items.values(), name);
     }
 
     public String getAddress() {
@@ -104,10 +104,11 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    public boolean fireManager(String user) {
+    public boolean fireWorker(String user) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
         if (Managers.containsKey(user) && Owners.containsKey(user))
             ErrorLogger.GetInstance().Add_Log(this.toString() + "- fatel error worker is owner and manager");
+
         if (Managers.containsKey(user)) {
             if (Managers.get(user).getfire())
                 return Managers.remove(user) != null && CheckTegrati_HaveOwners();
@@ -193,15 +194,14 @@ public class StoreImp implements IStore {
     }
 
     public Product findProductByName(String name) {
+        //TODO this needs to return ProdcutDetails
         return inventory.getItem(name);
 
     }
 
     public ProductDetails findProductDetailsByName(String name) {
-        return inventory.findProductDetailsByName(name);
-//		if (inventory.items.containsKey(name))
-//			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
-//		return null;
+        //TODO change this
+        return inventory.findProductDetailsByName(name, this.name);
     }
 
     public List<Product> findProductByCategory(String category) {
@@ -210,7 +210,8 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByCategory(String category) {
-        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
+        //TODO change this
+        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category), name);
 
     }
 
@@ -220,7 +221,7 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
-        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword));
+        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword), name);
 
     }
 
@@ -249,8 +250,8 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    synchronized public Product TakeItem(String name, int amount) {
-        Product takeout = null;
+    synchronized public MyPair<Product, String> TakeItem(String name, int amount) {
+        MyPair<Product, String> takeout = null;
         Product temp = findProductByName(name);
         if (temp == null) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
@@ -258,12 +259,15 @@ public class StoreImp implements IStore {
         }
         if (temp.getAmount() > amount) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products full amount");
-            takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount, this.name);
+            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount),
+                    this.name);
             temp.removeAmount(amount);
         } else {
+            //TODO maybe cancell buy
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products not full amount");
-            takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount(),
+            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount()),
                     this.name);
+
             temp.removeAmount(temp.getAmount());
         }
         return takeout;
@@ -275,7 +279,7 @@ public class StoreImp implements IStore {
     }
 
     public String getDiscounts(String name) {
-       return discounts.toString();
+        return discounts.toString();
 
     }
 
@@ -302,6 +306,7 @@ public class StoreImp implements IStore {
     }
 
     boolean CheckTegrati_HaveOwners() {
+        //  return true;
         return creator != null || Owners.values().size() > 0;
     }
 
