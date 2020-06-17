@@ -1,0 +1,544 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]" date="1592315231275" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 16/06/2020, 16:46 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/UserTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/UserTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/UserTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/RegisterMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/RegisterMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/RegisterMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/StorDetailsResponseMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/StorDetailsResponseMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StorDetailsResponseMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/Product.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/Product.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Product.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/CreditCards.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/CreditCards.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/SaveProductInShoppingBasketTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/SaveProductInShoppingBasketTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/SaveProductInShoppingBasketTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/Discount.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/Discount.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Discount.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/shoppingBasketTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/shoppingBasketTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/shoppingBasketTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="client/public/logo512.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/logo512.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/WatchAndEditShoppingCartTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/WatchAndEditShoppingCartTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/WatchAndEditShoppingCartTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/CreditCard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/CreditCard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/PurchaseMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/PurchaseMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/IStore.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/IStore.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/IStore.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/AllUnitTests.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/AllUnitTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/AllUnitTests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/info/StoreInfo.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/info/StoreInfo.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreInfo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Main.class" />
+    <option name="AFTER_PATH" value="target/classes/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/GetStoreDetailsTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/GetStoreDetailsTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/GetStoreDetailsTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/MemberedBuyer/ReviewPurchaseHistoryTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/MemberedBuyer/ReviewPurchaseHistoryTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ReviewPurchaseHistoryTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/Response2QuestionMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Response2QuestionMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Reactor/Reactor.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Reactor/Reactor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Reactor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/EncoderDecoder/MessageEncoder.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/EncoderDecoder/MessageEncoder.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MessageEncoder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/StorePurchase.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/StorePurchase.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StorePurchase.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/PassProtocol_ImpTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/PassProtocol_ImpTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/PassProtocol_ImpTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/ViewMemberQustionsMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ViewMemberQustionsMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/RemoveProductMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/RemoveProductMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/api_impl/SubInstructions.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/SubInstructions.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/Products.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/Products.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Products.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/OpenStoreMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/OpenStoreMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/OpenStoreMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/EncoderDecoder/MessageDecoder.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/EncoderDecoder/MessageDecoder.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MessageDecoder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Service_Layer/guest_accese/guest_accese.class" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/guest_accese/guest_accese.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/guest_accese.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/Echo/Basic/EchoServer.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/Echo/Basic/EchoServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EchoServer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Server$2.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Server$2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Server$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/store_System/Roles/System_Manager.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/store_System/Roles/System_Manager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/System_Manager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Reactor/ActorThreadPool.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Reactor/ActorThreadPool.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ActorThreadPool.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/ViewOwnedStoresMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ViewOwnedStoresMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/UserPurchaseListResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/UserPurchaseListResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/Purchase.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/Purchase.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Purchase.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="client/public/favicon.ico" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/favicon.ico" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Reactor/NonBlockingConnectionHandler.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Reactor/NonBlockingConnectionHandler.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/NonBlockingConnectionHandler.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/workers/Store_role.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/workers/Store_role.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Store_role.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Server.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Server.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Server.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/concreate_Product.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/concreate_Product.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/FireMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/FireMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Logs/EventLogger.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Logs/EventLogger.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EventLogger.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/EventLoggerTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/EventLoggerTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EventLoggerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/ProductDetailsListResponse.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/ProductDetailsListResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ProductDetailsListResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/RemoveProductFromCartMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/RemoveProductFromCartMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/RemoveProductFromCartMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/workers/StoreManager_Imp.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/workers/StoreManager_Imp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreManager_Imp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Service_Layer/owner_accese/owner_accese.class" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/owner_accese/owner_accese.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/owner_accese.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/StorePurchaseListResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StorePurchaseListResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Service_Layer/sys_manager_accese/sys_mangaer_accese.class" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/sys_manager_accese/sys_mangaer_accese.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/sys_mangaer_accese.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/StoreTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/StoreTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/stub/UserStub.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/stub/UserStub.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/UserStub.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/ErrorLoggerTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/ErrorLoggerTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ErrorLoggerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/Echo/EchoProtocol.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/Echo/EchoProtocol.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EchoProtocol.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/Payment_Tests.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/Payment_Tests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Payment_Tests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/Echo/EchoClientMain.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/Echo/EchoClientMain.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EchoClientMain.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Service_Layer/manager_accese/manager_accese.class" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/manager_accese/manager_accese.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/manager_accese.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/PurchaseDetails.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/PurchaseDetails.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/PurchaseDetails.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/ViewAquisitionMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ViewAquisitionMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/SystemManager/ViewPurchasesHistoryTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/SystemManager/ViewPurchasesHistoryTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ViewPurchasesHistoryTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Server$1.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Server$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Server$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/StoreOwner/EditStoreManagerPermissionsTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/StoreOwner/EditStoreManagerPermissionsTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EditStoreManagerPermissionsTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/payment/MyPaymentSystem.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/MyPaymentSystem.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MyPaymentSystem.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/store_System/Roles/Member.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/store_System/Roles/Member.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Member.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/SystemTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/SystemTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/SystemTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/test_supply.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/test_supply.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/test_supply.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/info/ProductDetails.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/info/ProductDetails.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ProductDetails.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/supply/WallMart.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/supply/WallMart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/WallMart.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/RunServer/MallServer.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/RunServer/MallServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MallServer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Logs/ErrorLogger.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Logs/ErrorLogger.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/ErrorLogger.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/store_System/Roles/Registered.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/store_System/Roles/Registered.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Registered.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/UnitTests/StoreOwner_ImpTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/StoreOwner_ImpTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreOwner_ImpTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="client/public/logo192.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/logo192.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/Store_Inventory.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/Store_Inventory.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Store_Inventory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/PurchaseTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/PurchaseTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/PurchaseTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/userAddress.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/userAddress.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/Add2ProductMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Add2ProductMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/store_System/System.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/store_System/System.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/System.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/QustionListResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/QustionListResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/Echo/secure/EchoServer.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/Echo/secure/EchoServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EchoServer1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/info/MangaerPermesions.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/info/MangaerPermesions.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MangaerPermesions.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/StoreOwner/StoreOwnerTests.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/StoreOwner/StoreOwnerTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreOwnerTests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/server2client/StoreListResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreListResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/workers/StoreOwner_Imp.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/workers/StoreOwner_Imp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreOwner_Imp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/payment/MyPaymentSystem_Driver.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/MyPaymentSystem_Driver.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MyPaymentSystem_Driver.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/Echo/encodedecode/EchoServer.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/Echo/encodedecode/EchoServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/EchoServer2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/BaseGuestTest.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/GuestBuyer/BaseGuestTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/BaseGuestTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/api_impl/MallProtocol.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/api_impl/MallProtocol.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/MallProtocol.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/DemoMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/DemoMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/DemoMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Blocking/BlockingConnectionHandler.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Blocking/BlockingConnectionHandler.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/BlockingConnectionHandler.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Macros/Opcodes.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Macros/Opcodes.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Opcodes.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/CreateProductMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/CreateProductMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/tests/UnitTests/InventoryTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/InventoryTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/payment/PaymentMethed.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/PaymentMethed.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/PaymentMethed.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Macros/Delimiters.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Macros/Delimiters.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Delimiters.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/AddProduct2BasketMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/AddProduct2BasketMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/AddProduct2BasketMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/IProduct.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/IProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/IProduct.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Domain/Store/StoreImp.class" />
+    <option name="AFTER_PATH" value="target/classes/Domain/Store/StoreImp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreImp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/TestRunner.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/TestRunner.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/TestRunner.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/socket/server/Blocking/BaseServer.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/socket/server/Blocking/BaseServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/BaseServer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/AppointMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/AppointMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Service_Layer/member_accese/member_accese.class" />
+    <option name="AFTER_PATH" value="target/classes/Service_Layer/member_accese/member_accese.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/member_accese.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/SystemAdapter.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/SystemAdapter.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/SystemAdapter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/StoreDetails.class" />
+    <option name="AFTER_PATH" value="target/classes/tests/AcceptanceTests/auxiliary/StoreDetails.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/StoreDetails.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/payment/Pay_pal.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/Pay_pal.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Pay_pal.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/LoginMessage.class" />
+    <option name="AFTER_PATH" value="target/classes/Communication/websocket/App/messages/Objects/client2server/LoginMessage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/LoginMessage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/extornal/payment/Isracard.class" />
+    <option name="AFTER_PATH" value="target/classes/extornal/payment/Isracard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_06_2020,_16_46_[Default_Changelist]/Isracard.class" />
+  </binary>
+</changelist>
