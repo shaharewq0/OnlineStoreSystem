@@ -25,7 +25,8 @@
         </property>
 
         <!-- List of XML mapping files -->
-        <mapping resource = "user.hbm.xml"/>
-
+        <mapping resource = "password.hbm.xml"/>
+        <mapping resource="product.hbm.xml"/>
+        <mapping resource="question.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

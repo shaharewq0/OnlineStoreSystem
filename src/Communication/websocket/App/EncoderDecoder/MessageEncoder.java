@@ -288,7 +288,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             if(!first)
                 offerListDelimiter(lst);
 
-            offerList(lst, cur.getAnsewers(), Delimiters.LIST_DELIMITER_L2);
+            offerList(lst, cur.getAnswers(), Delimiters.LIST_DELIMITER_L2);
 
             first = false;
         }

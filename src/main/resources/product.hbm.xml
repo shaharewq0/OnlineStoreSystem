@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Store.Product" table = "PRODUCT_TABLE">
+
+        <meta attribute = "class-description">
+            This class contains describe a product of some store.
+        </meta>
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+
+
+        <property name = "name" column = "name" type = "string"/>
+
+        <list name="category" table="CATEGORY_TABLE">
+            <key column="pid"></key>
+            <index column="ct"></index>
+            <element column="category" type="string"></element>
+        </list>
+
+        <list name="keyWords" table="KEYWORDS_TABLE">
+            <key column="pid"></key>
+            <index column="kw"></index>
+            <element column="keyword" type="string"></element>
+        </list>
+
+        <property name = "price" column = "price" type = "double"/>
+
+        <property name="rating"  column="rating" type = "int"/>
+
+        <set name = "Amount" cascade="all">
+            <key column = "pid"/>
+            <one-to-many class="Domain.Store.concreate_Product"/>
+        </set>
+
+        <property name="storename" column="storename" type="string"/>
+
+    </class>
+
+    <class name="Domain.Store.concreate_Product" table="CONCRETE_PRODUCT_TABLE">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+
+        <property name="lable" type="string" column="label"/>
+
+    </class>
+</hibernate-mapping>

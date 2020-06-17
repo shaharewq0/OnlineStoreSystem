@@ -296,7 +296,7 @@ public class StoreImp implements IStore {
     }
 
     public boolean respondToQuestion(String ansewer, int qustionID) {
-        questions.get(qustionID).addAnsewers(ansewer);
+        questions.get(qustionID).addAnswers(ansewer);
         return true;
 
     }
