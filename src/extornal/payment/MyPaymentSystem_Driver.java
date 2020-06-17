@@ -19,7 +19,7 @@ public class MyPaymentSystem_Driver implements MyPaymentSystem {
 		current_supplyer = list.get(Pay_pal.name);
 	}
 	
-	public boolean pay(bankAccount card_num, int amount) {
+	public boolean pay(CreditCard card_num, int amount) {
 		if (card_num == null || amount < 0)
 			return false;
 		current_supplyer.pay(card_num, amount);

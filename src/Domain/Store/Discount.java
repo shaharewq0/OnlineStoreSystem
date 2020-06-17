@@ -1,6 +1,7 @@
 package Domain.Store;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Discount {
@@ -17,8 +18,15 @@ public class Discount {
 
 	
 	public static Collection<Discount> Copy(List<Discount> discounts) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Discount> lst = new LinkedList<>();
+
+		for (Discount d: discounts) {
+			lst.add(Copy(d));
+		}
+
+		return lst;
 	}
+
+
 	
 }

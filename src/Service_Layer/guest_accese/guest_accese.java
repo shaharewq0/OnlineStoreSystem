@@ -1,11 +1,12 @@
 package Service_Layer.guest_accese;
 
-import Domain.RedClasses.User;
+import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
-import extornal.payment.bankAccount;
+import Service_Layer.userAddress;
+import extornal.payment.CreditCard;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -20,14 +21,15 @@ public class guest_accese {
 		return System.getInstance().ImNew();
 	}
 
-//	//TODO old need to delete
-//	public boolean usecase2_3_login(String username, String password) {
-//		//TODO old need to delete
-//		return System.getInstance().login(username, password) != null;
-//	}
-	
+	static public ProductDetails searchProductByName(String name, String store) {
+		return User.searchProductByName(name, store);
+	}
+
 	public static boolean usecase2_3_login(int guestId, String username, String password) {
-		return System.getInstance().getGuest(guestId).login(username, password);
+		User user = System.getInstance().getGuest(guestId);
+		if(user == null)
+			return false;
+		return user.login(username, password);
 	}
 
 	public static boolean usecase2_2_guest_register(String username, String password) {
@@ -76,22 +78,45 @@ public class guest_accese {
 	// need guest ID
 	public static boolean usecase2_6_saveProductToBasket(int guestID, String storename, String prodactname, int amount) {
 
-		return System.getInstance().getGuest(guestID).saveProductInBasket(prodactname, storename,amount);
+		User user = System.getInstance().getGuest(guestID);
+		if(user == null)
+			return false;
+
+		StoreDetails store = guest_accese.usecase2_4A_getStoreDetails(storename);
+		ProductDetails product = guest_accese.searchProductByName(prodactname, storename);
+
+		if(store == null)
+			return false;
+
+		if(product == null)
+			return false;
+
+		if(product.getAmount() < amount)
+			return false;
+
+		return user.saveProductInBasket(prodactname, storename,amount);
 	}
 
 	
 	public static List<ProductDetails> usecase2_7A_WatchProdactsInCart(int guestID) {
-		return System.getInstance().getGuest(guestID).getProductsInCart();
+		User user = System.getInstance().getGuest(guestID);
+		if(user == null)
+			return null;
+		return user.getProductsInCart();
 	}
 
 	public static int usecase2_7b_RemoveProdactsInCart(int guestID, String storename, String prodactname, int amount) {
-		return System.getInstance().getGuest(guestID).deleteProductInBasket(prodactname, storename, amount);
+		User user = System.getInstance().getGuest(guestID);
+		if(user == null)
+			return -1;
+		return user.deleteProductInBasket(prodactname, storename, amount);
 	}
 
 	//2.8
-	public boolean usecase2_8_Purchase_products(int guestID, bankAccount bank, inventory whereToSend) {
+	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, inventory whereToSend) {
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
+
 		List<Product> items = usecase2_8_5_Update_inventory(guestID);
 		double price = usecase2_8_2_Calculate_price(guestID);
 		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
@@ -111,25 +136,39 @@ public class guest_accese {
 		return true;
 	}
 
+	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, String clientAdress) {
+		return usecase2_8_Purchase_products(guestID, bank,new userAddress(clientAdress));
+	}
+
 	public static boolean usecase2_8_1_Check_available_products(int guestID) {
-		return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
+		User user = System.getInstance().getGuest(guestID);
+		if(user == null)
+			return false;
+		//TODO this is wrong
+		return user.CheckItemAvailableA()&& user.CheckAcquisitions();
+		//User.CheckAvilibleItems();
+		//return System.getInstance().CheckItemAvailableA(System.getInstance().getGuest(guestID).getProductsInCart());
 	}
 
 	public static double usecase2_8_2_Calculate_price(int guestID) {
-		return System.getInstance().getGuest(guestID).getCart().CalcPrice();
+		User user = System.getInstance().getGuest(guestID);
+		return user.getCart().CalcPrice();
 	}
 
 	public static boolean usecase2_8_3_ReturnProdoctsToStore(List<Product> products) {
 		return System.getInstance().fillStore(products);
 	}
 
-	public static boolean usecase2_8_4_Guest_Refund(bankAccount cardnumber, double amount) {
-		System.getInstance().navigatePayment().pay(cardnumber, amount);
-		return false;
+	public static boolean usecase2_8_4_Guest_Refund(CreditCard cardnumber, double amount) {
+		return System.getInstance().navigatePayment().pay(cardnumber, amount);
+		//return false;
 	}
 
-	public List<Product> usecase2_8_5_Update_inventory(int guestID) {
-		return System.getInstance().getGuest(guestID).getCart().getItems();
+	public static List<Product> usecase2_8_5_Update_inventory(int guestID) {
+		User user = System.getInstance().getGuest(guestID);
+		if(user == null)
+			return null;
+		return user.getCart().getItems();
 	}
 
 }

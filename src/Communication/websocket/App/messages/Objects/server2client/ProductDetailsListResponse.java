@@ -45,7 +45,7 @@ public class ProductDetailsListResponse extends Server2ClientMessage {
     @Override
     public String toString() {
         return "ProductDetailsListResponse{" +
-                "products=" + products +
+                "products=" + products.toString() +
                 '}';
     }
 }

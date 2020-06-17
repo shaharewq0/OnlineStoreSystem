@@ -1,10 +1,10 @@
 package tests.UnitTests;
 
+import Domain.info.ProductDetails;
+import org.junit.Before;
 import org.junit.Test;
 
-import Domain.RedClasses.shoppingBasket;
-import Domain.Store.MyPair;
-import Domain.Store.Product;
+import Domain.UserClasses.shoppingBasket;
 import Domain.Store.StoreImp;
 import Domain.store_System.System;
 
@@ -13,59 +13,58 @@ import java.util.LinkedList;
 import static org.junit.Assert.*;
 
 public class shoppingBasketTest {
-/*
-    @Test
-    public void addProduct(){
-        StoreImp s = System.getInstance().openStore("r","tel aviv",3);
-        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
-        s.addProduct(p);
-        shoppingBasket basket = new shoppingBasket(s);
-        basket.addProduct(p);
-        MyPair<Product,Integer> productInBasket=null;
-        for(MyPair<Product,Integer> current :basket.getProducts()){
-            if(current.getKey()==p){
-                productInBasket = current;
-            }
-        }
-        assertTrue(productInBasket!= null);
-        assertTrue(productInBasket.getValue()==1);
+
+
+    StoreImp store;
+    ProductDetails PD1;
+    ProductDetails PD2;
+
+    @Before
+    public void setup() {
+        store = System.getInstance().openStore("Mystore", "tel aviv", 3);
+        PD1 = new ProductDetails("item 1", new LinkedList<>(), "Mystore", 5, 23);
+        PD2 = new ProductDetails("item 2", new LinkedList<>(), "Mystore", 2, 65);
+        //Product p = new Product( "item 1", new LinkedList<>(), new LinkedList<>(),  12,  5,  store);
+        store.addProduct(PD1);
+        store.addProduct(PD2);
+
     }
 
     @Test
-    public void addProductTwice(){
-        StoreImp s = System.getInstance().openStore("p","tel aviv",3);
-        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
-        s.addProduct(p);
-        shoppingBasket basket = new shoppingBasket(s);
-        basket.addProduct(p);
-        basket.addProduct(p);
-        MyPair<Product,Integer> productInBasket=null;
-        for(MyPair<Product,Integer> current :basket.getProducts()){
-            if(current.getKey()==p){
-                productInBasket = current;
-            }
-        }
-        assertTrue(productInBasket!= null);
-        assertTrue(productInBasket.getValue()==2);
-        assertTrue(basket.getProducts().size()==1);
+    public void addProduct() {
+        // setup();
+        shoppingBasket basket = new shoppingBasket(store);
+        basket.addProduct(PD1.getName(), 1);
+        assertTrue(basket.getProducts() != null);
+        assertEquals(1, basket.getProducts().size());
+        assertTrue(basket.getProducts().contains(PD1));
+
     }
 
     @Test
-    public void removeProduct(){
-        StoreImp s = System.getInstance().openStore("jj","tel aviv",3);
-        Product p = new Product("qqq","fun",new LinkedList<>(),5.5,3,s);
-        s.addProduct(p);
-        shoppingBasket basket = new shoppingBasket(s);
-        basket.addProduct(p);
-        assertTrue(basket.removeProduct(p,1)==1);
-        MyPair<Product,Integer> productInBasket=null;
-        for(MyPair<Product,Integer> current :basket.getProducts()){
-            if(current.getKey()==p){
-                productInBasket = current;
-            }
-        }
-        assertTrue(productInBasket == null);
-        assertTrue(basket.getProducts().size()==0);
+    public void addProductTwice() {
+        shoppingBasket basket = new shoppingBasket(store);
+        basket.addProduct(PD1.getName(), 1);
+        basket.addProduct(PD2.getName(), 4);
+        assertTrue(basket.getProducts() != null);
+        assertEquals(2, basket.getProducts().size());
+        assertTrue(basket.getProducts().contains(PD1));
+        assertTrue(basket.getProducts().contains(PD2));
+        assertEquals(5,basket.getProducts().get(0).getAmount()+basket.getProducts().get(1).getAmount());
     }
-*/
+
+    //
+    @Test
+    public void removeProduct() {
+        shoppingBasket basket = new shoppingBasket(store);
+        basket.addProduct(PD1.getName(), 1);
+        basket.addProduct(PD2.getName(), 5);
+        int removed = basket.removeProduct(PD1.getName(), 2);
+
+        assertTrue(basket.getProducts() != null);
+        assertEquals(1, basket.getProducts().size());
+        assertTrue(basket.getProducts().contains(PD2));
+        assertEquals(1,removed);
+    }
+
 }

@@ -1,6 +1,6 @@
 package Domain.store_System.Roles;
 
-import Domain.RedClasses.User;
+import Domain.UserClasses.User;
 import Domain.Store.StoreImp;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;

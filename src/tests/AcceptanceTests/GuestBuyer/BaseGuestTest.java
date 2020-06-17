@@ -3,10 +3,10 @@ package tests.AcceptanceTests.GuestBuyer;
 import tests.AcceptanceTests.BaseAccTest;
 
 // this class is for guest use cases that require guest id
-class BaseGuestTest extends BaseAccTest {
-    static int guestID;
+public class BaseGuestTest extends BaseAccTest {
+    public static int guestID;
 
-    static void setUpClass() {
+    public static void setUpClass() {
         GetStoreDetailsTest.setUpClass();
         guestID = system.newGuest();
     }

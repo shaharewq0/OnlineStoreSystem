@@ -27,7 +27,7 @@ public class SaveProductInShoppingBasketTest extends BaseGuestTest {
 
     @Test
     public void addToBasketMoreThenAmount() {
-        assertFalse(system.addToBasket(guestID, STORE.getName(), PRODUCT1.getName(), 10));
+        assertFalse(system.addToBasket(guestID, STORE.getName(), PRODUCT1.getName(), 100));
     }
 
     @Test

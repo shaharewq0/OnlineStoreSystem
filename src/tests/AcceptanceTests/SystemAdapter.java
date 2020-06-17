@@ -1,12 +1,15 @@
 package tests.AcceptanceTests;
 
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
+import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.*;
 
 import java.util.LinkedList;
@@ -39,6 +42,14 @@ public class SystemAdapter {
 		return guest_accese.usecase2_3_login(guest_accese.ImNew(), username, password);
 	}
 
+	public int login_code(String username, String password) {
+		int id = guest_accese.ImNew();
+		if(guest_accese.usecase2_3_login(guest_accese.ImNew(), username, password))
+			return id;
+		return -1;
+	}
+
+
 	// 2.3
 	public boolean login(int guestID, String username, String password) {
 		return guest_accese.usecase2_3_login(guestID, username, password);
@@ -54,7 +65,7 @@ public class SystemAdapter {
 		StoreInfo s = guest_accese.usecase2_4B_getStoreProdacts(storeName);
 		if(s == null)
 			return null;
-		return s.getProducts();
+		return s.products;
 	}
 
 	// 2.5A
@@ -108,8 +119,8 @@ public class SystemAdapter {
 	}
 
 	// 2.8
-	public void purchase() {
-		// TODO
+	public boolean purchase(int guestID, String card, String edate, String css, String cardOwner, String shipAdress) {
+		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner), shipAdress);
 	}
 
 	// 3.1
@@ -123,10 +134,8 @@ public class SystemAdapter {
 	}
 
 	// 3.7
-	public List<PurchaseDetails> getPurchaseHistory(String username, String password) {
-// TODO
-		//		return member_accese.usecase3_7_ReviewPurchasesHistory(username, password);
-		return null;
+	public List<UserPurchase> getPurchaseHistory(String username, String password) {
+				return member_accese.usecase3_7_ReviewPurchasesHistory(username, password);
 	}
 
 	// 4.1.1
@@ -167,10 +176,8 @@ public class SystemAdapter {
     }
 
 	// 4.10
-	public List<PurchaseDetails> getStoreSellingHistory(String username, String password, String storeName) {
-	// TODO
-		//		return owner_accese.usecase4_10_ViewAcquisitionHistory(username, password, storeName);
-		return null;
+	public List<StorePurchase> getStoreSellingHistory(String username, String password, String storeName) {
+		return owner_accese.usecase4_10_ViewAcquisitionHistory(username, password, storeName);
 	}
 
 	// 4.9

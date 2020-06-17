@@ -4,8 +4,14 @@ import Communication.websocket.App.EncoderDecoder.MessageDecoder;
 import Communication.websocket.App.EncoderDecoder.MessageEncoder;
 import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Communication.websocket.api.MessagingProtocol;
+import Domain.Store.Product;
+import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
+import Service_Layer.member_accese.member_accese;
+import Service_Layer.owner_accese.owner_accese;
 import org.glassfish.tyrus.server.Server;
+import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -35,8 +41,9 @@ public class MallServer {
     }
 
     public static void run() throws DeploymentException {
-        protocols = new ConcurrentHashMap<>();
+        initSysyem();
 
+        protocols = new ConcurrentHashMap<>();
         Server server = new Server("localhost", 8080, "", MallServer.class);
 
         server.start();
@@ -44,10 +51,27 @@ public class MallServer {
         server.stop();
     }
 
+    private static void initSysyem(){
+
+    }
+
 
 
     /** a map of message protocols by the session */
-    private static Map<Session, MallProtocol> protocols;
+    private static Map<Session, MessagingProtocol<Message>> protocols;
+
+    public void send(MessagingProtocol<Message> protocol, String msg){
+        protocols.forEach(((session, messageMessagingProtocol) -> {
+            if(messageMessagingProtocol == protocol){
+                try {
+                    System.out.println("sending special message : " + msg);
+                    session.getBasicRemote().sendText(MessageEncoder.string2jason(msg));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }));
+    }
 
 
 
@@ -57,7 +81,7 @@ public class MallServer {
     public void onOpen(Session session){
         System.out.printf("[" + LocalDateTime.now() + "]: " + "Opened session. id: %s\n", session.getId());
 
-        protocols.put(session, new MallProtocol(guest_accese.ImNew()));
+        protocols.put(session, new MallProtocol(this));
     }
 
 
@@ -65,7 +89,7 @@ public class MallServer {
     public void onMessage(Session session, Message msg){
         System.out.printf("[" + LocalDateTime.now() + "]: " + "message received. session id: %s.  Message : %s\n", session.getId(), msg.toString());
 
-        MallProtocol protocol = Objects.requireNonNull(protocols.get(session));
+        MessagingProtocol<Message> protocol = Objects.requireNonNull(protocols.get(session));
         Message response = protocol.process(msg);
 
         // sand back if there is a response

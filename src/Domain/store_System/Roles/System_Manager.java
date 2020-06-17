@@ -2,7 +2,7 @@ package Domain.store_System.Roles;
 
 import java.util.List;
 
-import Domain.RedClasses.UserPurchase;
+import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.store_System.System;
 
@@ -19,6 +19,6 @@ public class System_Manager {// extends Member {
 	}
 
 	public List<UserPurchase> getPurchaseHistoryofUser(String username) {
-		return System.getInstance().getUser(username).getPurchesHistory();
+		return System.getInstance().getUserProfile(username).getPurchesHistory();
 	}
 }
