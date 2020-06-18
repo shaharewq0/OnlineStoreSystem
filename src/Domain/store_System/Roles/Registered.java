@@ -16,17 +16,14 @@ import Domain.store_System.System;
 
 public class Registered implements MSGObservable {
     private String id;
-
-
     private List<ClintObserver> clints = new LinkedList();
-    // clint A.notfi --- Clint C.notfi
     private List<String> MSG_box = new LinkedList<>();
-
-
-
     private User_Purchase_History history = new User_Purchase_History();
-    //private List<Purchase> myPurcase = new LinkedList<Purchase>();
     public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
+
+    // clint A.notfi --- Clint C.notfi
+    //private List<Purchase> myPurcase = new LinkedList<Purchase>();
+
 
     public Registered(String id) {
         this.id = id;
@@ -39,8 +36,8 @@ public class Registered implements MSGObservable {
         return id;
     }
 
-    public void LogLogin(User user) {
-        //nofile all
+    public void LogLogin(ClintObserver CO) {
+        clints.add(CO);
     }
 
     public void LogLogout(User user) {

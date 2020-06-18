@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class StoreOwner_Imp implements Store_role {
     protected Registered user;
-    protected Appoint_Owner myJob = new Appoint_Owner();
+    public Appoint_Owner myJob = new Appoint_Owner();
     //	protected StoreImp store;
 //	private Store_role boss;
     protected String workername = "";
@@ -40,7 +40,9 @@ public class StoreOwner_Imp implements Store_role {
         myJob.store = creator.getStore();
         OwnerAppointeis = new HashMap<>();
         ManagerAppointeis = new HashMap<>();
+        myJob.grantee = this;
         EventLogger.GetInstance().Add_Log(this.toString() + "- Created Owner");
+
     }
 
     @Override
@@ -124,7 +126,7 @@ public class StoreOwner_Imp implements Store_role {
     public boolean appointManager(Registered user) {
         StoreManager_Imp newRole = new StoreManager_Imp(this, user);
         if (user.appointAsManager(newRole)) {
-            myJob.store.appointManager(newRole);
+            myJob.store.appointManager(newRole.MyJob);
             ManagerAppointeis.put(user.getId(), newRole);
             EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Manager");
             return true;
