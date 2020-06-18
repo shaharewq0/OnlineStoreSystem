@@ -79,6 +79,7 @@ public class Product_DA{
         }
     }
 
+
     public Integer add(Product product){
         Session session = factory.openSession();
         Transaction tx = null;

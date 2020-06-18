@@ -3,7 +3,7 @@ package DAL;
 import Domain.Store.Product;
 import org.junit.Before;
 import org.junit.Test;
-import Domain.Store.concreate_Product;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,16 +16,16 @@ public class Product_DATest {
     Product product;
     LinkedList<String> category;
     LinkedList<String> keyWords;
-    concreate_Product concreate_product;
+
     @Before
     public void setUp() throws Exception {
     da=new Product_DA();
     category=new LinkedList<>();
     keyWords=new LinkedList<>();
-    concreate_product=new concreate_Product();
+
     category.add("milk");
     keyWords.add("key");
-    Product product=new Product("shahar",category,keyWords,2.3,4,"ok");
+    Product product=new Product("shahar",category,keyWords,4.5,2);
     }
 
     @Test

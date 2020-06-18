@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class Product extends Object implements IProduct {
+    private int id;
     private String name;
     private List<String> category;
     private List<String> keyWords;
@@ -38,6 +39,37 @@ public class Product extends Object implements IProduct {
         Amount.add(p.getAmount());
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setKeyWords(List<String> keyWords) {
+        this.keyWords = keyWords;
+    }
+
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAmount(Product_boundle amount) {
+        Amount = amount;
+    }
 
     public String getName() {
         return name;
