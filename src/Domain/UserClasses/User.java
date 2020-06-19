@@ -10,6 +10,7 @@ import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
+import Domain.store_System.ClintObserver;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
@@ -42,7 +43,7 @@ public class User implements IUser {
     }
 
     // ------------------------------ user
-    public boolean login(String id, String password) {
+    public boolean login(String id, String password, ClintObserver CO) {
         if (profile != null)
             return false;
 
@@ -50,14 +51,22 @@ public class User implements IUser {
         profile = System.getInstance().login(id, password, this);
         logInstanse = System.getInstance().getLogInstase(id, password);
         sysMangaer = System.getInstance().ImManeger(id, password);
+        profile.LogLogin(this, CO);
 
         return profile != null;
 
     }
 
-//	public List<StoreImp> watchAllStores() {
-//		return System.getInstance().getAllStores();
-//	}
+    public boolean login(String id, String password) {
+        if (profile != null)
+            return false;
+        profile = System.getInstance().login(id, password, this);
+        logInstanse = System.getInstance().getLogInstase(id, password);
+        sysMangaer = System.getInstance().ImManeger(id, password);
+
+        return profile != null;
+
+    }
 
     // TODO rewrite this fucntion
     // adding a product to a basket. if the product exists add 1 to the amount of

@@ -44,8 +44,8 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
     public void reviewUserPurchaseHistory() {
         UserPurchase p = new UserPurchase();
         List<ProductDetails> prodects = new LinkedList<>();
-        prodects.add(new ProductDetails(PRODUCT1.getName(),new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
-        prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
+        prodects.add(new ProductDetails(PRODUCT2.getName(),PRODUCT2.getCategory(), STORE.getName(), 5, PRODUCT2.getPrice(),PRODUCT2.getRating()));
+        prodects.add(new ProductDetails(PRODUCT1.getName(),PRODUCT1.getCategory(), STORE.getName(), 1, PRODUCT1.getPrice(),PRODUCT1.getRating()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
         p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
         p.TotalePrice = price;
@@ -62,8 +62,8 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
     public void reviewStoreSellingHistory() {
 
         List<ProductDetails> prodects = new LinkedList<>();
-        prodects.add(new ProductDetails(PRODUCT1.getName(),new LinkedList<>(), STORE.getName(), 1, PRODUCT1.getPrice()));
-        prodects.add(new ProductDetails(PRODUCT2.getName(),new LinkedList<>(), STORE.getName(), 5, PRODUCT2.getPrice()));
+         prodects.add(new ProductDetails(PRODUCT2.getName(),PRODUCT2.getCategory(), STORE.getName(), 5, PRODUCT2.getPrice(),PRODUCT2.getRating()));
+        prodects.add(new ProductDetails(PRODUCT1.getName(), PRODUCT1.getCategory(), STORE.getName(), 1, PRODUCT1.getPrice(),PRODUCT1.getRating()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
 
         List<StorePurchase> TruePurchases = Collections.singletonList(new StorePurchase(prodects, STORE.getName(), price));

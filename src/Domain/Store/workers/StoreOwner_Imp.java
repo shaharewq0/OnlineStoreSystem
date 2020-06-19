@@ -233,7 +233,6 @@ public class StoreOwner_Imp implements Store_role {
 
     public boolean CheckTegrati_ImMangaer() {
         return user != null;
-
     }
 
     public void needconfirmstion(Pending_appoint_Owner pending_appoint_owner) {
@@ -243,8 +242,9 @@ public class StoreOwner_Imp implements Store_role {
                 + "- required your confirmation - " + pending_appoint_owner.grantee.getId());
     }
 
-    public boolean confirmOwner(String newOnwerName)
-    {
-       return newOwners.get(newOnwerName).Accept(this);
-    }
+    //TODO
+//    public boolean confirmOwner(String newOnwerName)
+//    {
+//       return newOwners.get(newOnwerName).Accept(this);
+//    }
 }
