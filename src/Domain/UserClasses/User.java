@@ -2,6 +2,8 @@ package Domain.UserClasses;
 
 import Domain.Logs.EventLogger;
 import Domain.Notifier.Notifier;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -258,7 +260,7 @@ public class User implements IUser {
         return store_roles.remove(store) != null;
     }
 
-    public boolean addDiscount(String discount, String store) {
+    public boolean addDiscount(Discount discount, String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(store) == null)
             return false;
@@ -272,7 +274,7 @@ public class User implements IUser {
         return store_roles.get(store).removeDiscount(discountID);
     }
 
-    public boolean addacquisition(String acquisition, String storeName) {
+    public boolean addacquisition(Acquisition acquisition, String storeName) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(storeName) == null)
             return false;

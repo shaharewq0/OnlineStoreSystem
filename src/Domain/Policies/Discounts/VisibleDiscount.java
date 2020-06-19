@@ -1,5 +1,6 @@
 package Domain.Policies.Discounts;
 
+import Domain.Store.Product;
 import Domain.info.ProductDetails;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ class VisibleDiscount implements Discount {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     protected String productName;
+    protected Product product;
     LocalDate expirationDate;
     private int percentage;
 
@@ -25,7 +27,7 @@ class VisibleDiscount implements Discount {
      */
     ProductDetails getDiscountProduct(List<ProductDetails> products) {
         for (ProductDetails p : products) {
-            if (p.getName().equals(productName))
+            if (p.getName().equals(productName))        // TODO: product equals
                 return p;
         }
         return null;

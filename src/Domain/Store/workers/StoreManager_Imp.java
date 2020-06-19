@@ -2,6 +2,8 @@ package Domain.Store.workers;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
@@ -237,7 +239,7 @@ public class StoreManager_Imp implements Store_role {
 
     //------------------------------------------------------------
     @Override
-    public boolean addDiscount(String discount) {
+    public boolean addDiscount(Discount discount) {
         if (!permission.contains("addDiscount"))
             return false;
         return getStore().addDiscount(discount);
@@ -252,7 +254,7 @@ public class StoreManager_Imp implements Store_role {
 
 
     @Override
-    public boolean addacquisition(String acquisition) {
+    public boolean addacquisition(Acquisition acquisition) {
         if (!permission.contains("addacquisition"))
             return false;
         return getStore().addacquisition(acquisition);

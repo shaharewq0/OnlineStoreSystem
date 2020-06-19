@@ -9,7 +9,7 @@ public interface Acquisition {
 
 
     /**
-     * returns true if this discount can be applied on some or all of those products
+     * returns true if this Acquisition can be done
      * otherwise, return false.
      */
     boolean canPurchase(List<ProductDetails> products);

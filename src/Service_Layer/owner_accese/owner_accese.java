@@ -1,8 +1,10 @@
 package Service_Layer.owner_accese;
 
-import Domain.UserClasses.User;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
+import Domain.UserClasses.User;
 import Domain.info.Question;
 import Domain.store_System.System;
 
@@ -43,7 +45,7 @@ public class owner_accese {
         return me.editProduct(storeName, prodactname, newdetail);
     }
 
-    public static boolean usecase4_2_AddDiscount(String myusername, String myPassword, String storeName, String discount) {
+    public static boolean usecase4_2_AddDiscount(String myusername, String myPassword, String storeName, Discount discount) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;
@@ -57,7 +59,7 @@ public class owner_accese {
         return me.removeDiscount(discountID, storeName);
     }
 
-    public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, String acquisition) {
+    public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;

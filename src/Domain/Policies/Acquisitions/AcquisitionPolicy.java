@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 /*
+//      TODO: Acquisition: refactor out
     this class get string in the following format that represent Acquisition
     and parse it in order to create Acquisition objects.
     Note: the formats are without spaces
@@ -41,6 +42,7 @@ public class AcquisitionPolicy extends BasePolicy {
         this.acquisitions = new LinkedList<>();
     }
 
+    //      TODO: Acquisition: refactor out
     private Acquisition acquisitionFactory(Stack<String> params) throws Exception {
         int type = Integer.parseInt(params.pop());
         switch (type) {
@@ -64,6 +66,7 @@ public class AcquisitionPolicy extends BasePolicy {
         }
     }
 
+    //      TODO: Acquisition: refactor out
     private List<Acquisition> parseAcquisitionList(Stack<String> params) throws Exception {
         List<Acquisition> acquisitionList = new LinkedList<>();
         int n = Integer.parseInt(params.pop());
@@ -73,15 +76,16 @@ public class AcquisitionPolicy extends BasePolicy {
         return acquisitionList;
     }
 
-    public boolean addAcquisitionPolicy(String discount) {
-        Acquisition d;
-        try {
-            d = acquisitionFactory(stringSplitToStack(discount, REGEX));
-        } catch (Exception e) {
-            // error log "wrong format"
-            return false;
-        }
-        acquisitions.add(d);
+    public boolean addAcquisitionPolicy(Acquisition acquisition) {
+//      TODO: Acquisition: refactor out
+//        Acquisition d;
+//        try {
+//            d = acquisitionFactory(stringSplitToStack(acquisition, REGEX));
+//        } catch (Exception e) {
+//            // error log "wrong format"
+//            return false;
+//        }
+        acquisitions.add(acquisition);
         return true;
     }
 

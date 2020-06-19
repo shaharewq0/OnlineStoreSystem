@@ -1,9 +1,12 @@
 package Domain.UserClasses;
 
-import java.util.*;
-
-import Domain.Store.*;
+import Domain.Store.MyPair;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
+
+import java.util.*;
 
 public class shoppingBasket implements IshoppingBasket {
 
@@ -21,8 +24,8 @@ public class shoppingBasket implements IshoppingBasket {
         if(store.findProductByName(name)== null)
             return false;
         if (store.findProductByName(name) != null)
-            if (Item_holder.containsKey(name)) {
-                Item_holder.replace(store.findProductByName(name), Item_holder.get(name) + amount);
+            if (Item_holder.containsKey(store.findProductByName(name))) {
+                Item_holder.replace(store.findProductByName(name), Item_holder.get(store.findProductByName(name)) + amount);
             } else {
                 Item_holder.put(store.findProductByName(name), amount);
             }

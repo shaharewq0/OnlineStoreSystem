@@ -1,5 +1,6 @@
 package Domain.Policies.Acquisitions;
 
+import Domain.Store.Product;
 import Domain.info.ProductDetails;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 abstract class AcqAmountCondition implements Acquisition {
     // productName can be 'ALL' to represent store condition
     protected String productName;
+    protected Product product;
     protected int amount;
 
     AcqAmountCondition(String productName, int amount) {
@@ -16,7 +18,7 @@ abstract class AcqAmountCondition implements Acquisition {
 
     ProductDetails findProduct(List<ProductDetails> products) {
         for (ProductDetails p : products) {
-            if (p.getName().equals(productName))
+            if (p.getName().equals(productName))        //TODO: product equals
                 return p;
         }
         return null;

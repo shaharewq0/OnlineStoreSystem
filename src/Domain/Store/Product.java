@@ -4,7 +4,6 @@ import Domain.info.ProductDetails;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class Product extends Object implements IProduct {
     private String name;
@@ -116,7 +115,7 @@ public class Product extends Object implements IProduct {
             return false;
 
         Product p = (Product) other;
-        if (!(this.name == p.name &
+        if (!(this.name.equals(p.name) &
                 this.price == p.price &
                 this.rating == p.rating &
                 this.category.size() == p.category.size() &

@@ -1,10 +1,10 @@
 package Domain.Store;
 
-import java.util.*;
-
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
+import Domain.Policies.Acquisitions.Acquisition;
 import Domain.Policies.Acquisitions.AcquisitionPolicy;
+import Domain.Policies.Discounts.Discount;
 import Domain.Policies.Discounts.DiscountPolicy;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
@@ -15,6 +15,8 @@ import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
 import extornal.supply.Packet_Of_Prodacts;
+
+import java.util.*;
 
 public class StoreImp implements IStore {
     private String name;
@@ -295,7 +297,7 @@ public class StoreImp implements IStore {
     }
 
     // ----------------------------------------------------discount
-    public boolean addDiscount(String discount) {
+    public boolean addDiscount(Discount discount) {
         return discounts.addDiscount(discount);
     }
 
@@ -322,7 +324,7 @@ public class StoreImp implements IStore {
     }
 
 
-    public boolean addacquisition(String acquisition) {
+    public boolean addacquisition(Acquisition acquisition) {
         return acquisitions.addAcquisitionPolicy(acquisition);
     }
 

@@ -4,7 +4,7 @@ import Domain.info.ProductDetails;
 
 import java.util.List;
 
-interface Discount {
+public interface Discount {
     // at all discounts, productName can be 'ALL' to represent store discount
 
     /**
