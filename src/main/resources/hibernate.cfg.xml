@@ -3,7 +3,7 @@
     <session-factory>
 
         <property name = "hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.MySQL5Dialect
         </property>
 
         <property name = "hibernate.connection.driver_class">
@@ -22,8 +22,14 @@
             120199
         </property>
 
-        <!-- List of XML mapping files -->
+        <property name="hibernate.hbm2ddl.auto">
+            create
+        </property>
 
+        <!-- List of XML mapping files -->
+        <mapping resource="password.hbm.xml"/>
         <mapping resource="question.hbm.xml"/>
+        <mapping resource="product.hbm.xml"/>
+
     </session-factory>
 </hibernate-configuration>

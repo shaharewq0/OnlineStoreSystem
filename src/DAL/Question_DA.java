@@ -1,6 +1,5 @@
 package DAL;
 
-import Domain.Store.Product;
 import Domain.info.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -52,7 +51,7 @@ public class Question_DA {
 
         try {
             tx = session.beginTransaction();
-            session.update(question);
+            session.merge(question);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -84,7 +83,7 @@ public class Question_DA {
 
         try {
             tx = session.beginTransaction();
-            queID = (Integer) session.save(question);
+            queID = (Integer)session.save(question);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();

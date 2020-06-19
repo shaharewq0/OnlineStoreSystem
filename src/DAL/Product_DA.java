@@ -54,7 +54,7 @@ public class Product_DA{
 
         try {
             tx = session.beginTransaction();
-            session.update(product);
+            session.merge(product);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
