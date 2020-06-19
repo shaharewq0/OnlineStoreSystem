@@ -1,8 +1,9 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.BinaryOperator;
 
 abstract class CompositeDiscount implements Discount {
@@ -20,14 +21,14 @@ abstract class CompositeDiscount implements Discount {
     }
 
     @Override
-    public boolean hasDiscount(List<ProductDetails> products) {
+    public boolean hasDiscount(Map<Product, Integer> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(hasDiscountIdentity, hasDiscountOperator);
     }
 
     @Override
-    public double applyDiscount(List<ProductDetails> products) {
+    public double applyDiscount(Map<Product, Integer> products) {
         return discounts.stream()
                 .filter(d -> d.hasDiscount(products))
                 .map(d -> d.applyDiscount(products))

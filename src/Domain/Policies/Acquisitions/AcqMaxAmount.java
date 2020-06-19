@@ -1,8 +1,8 @@
 package Domain.Policies.Acquisitions;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
-import java.util.List;
+import java.util.Map;
 
 class AcqMaxAmount extends AcqAmountCondition {
 
@@ -11,11 +11,10 @@ class AcqMaxAmount extends AcqAmountCondition {
     }
 
     @Override
-    public boolean canPurchase(List<ProductDetails> products) {
+    public boolean canPurchase(Map<Product, Integer> products) {
         if (productName.equals("ALL"))
             return getTotalAmount(products) <= amount;
-        ProductDetails p = findProduct(products);
-        return p != null && p.getAmount() <= amount;
+        return products.containsKey(product) && products.get(product) <= amount;
     }
 
     @Override

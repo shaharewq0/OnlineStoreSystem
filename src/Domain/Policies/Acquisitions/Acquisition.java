@@ -1,8 +1,8 @@
 package Domain.Policies.Acquisitions;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
-import java.util.List;
+import java.util.Map;
 
 public interface Acquisition {
     // at all acquisitions, productName can be 'ALL' to represent store condition
@@ -12,6 +12,6 @@ public interface Acquisition {
      * returns true if this Acquisition can be done
      * otherwise, return false.
      */
-    boolean canPurchase(List<ProductDetails> products);
+    boolean canPurchase(Map<Product, Integer> products);
 
 }

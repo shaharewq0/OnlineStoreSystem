@@ -60,8 +60,7 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public double CalcPrice() {
-        List<ProductDetails> products = getProducts();
-        return store.getPrice(products);
+        return store.getPrice(Item_holder);
     }
 
     public List<MyPair<Product,String>> getItems() {
@@ -91,9 +90,7 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public boolean CheckAcquisitions() {
-        if (!store.CheckAcquisitions(getProducts()))
-            return false;
-        return true;
+        return store.CheckAcquisitions(Item_holder);
 
     }
 

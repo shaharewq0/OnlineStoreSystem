@@ -1,12 +1,13 @@
 package Domain.Policies.Discounts;
 
 import Domain.Policies.BasePolicy;
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -105,14 +106,17 @@ public class DiscountPolicy extends BasePolicy {
         return true;
     }
 
-    public boolean hasDiscounts(List<ProductDetails> products) {
+    public boolean hasDiscounts(Map<Product, Integer> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(false, Boolean::logicalOr);
     }
 
-    public double applyDiscounts(List<ProductDetails> products) {
-        double totalPrice = products.stream().map(ProductDetails::getTotalPrice).reduce(0.0, Double::sum);
+    public double applyDiscounts(Map<Product, Integer> products) {
+        double totalPrice =
+                products.entrySet().stream()
+                        .map((entry) -> entry.getKey().getPrice() * entry.getValue())   //price * amount
+                        .reduce(0.0, Double::sum);
         return totalPrice -
                 discounts.stream()
                         .filter(d -> d.hasDiscount(products))

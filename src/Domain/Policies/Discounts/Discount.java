@@ -1,8 +1,8 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
-import java.util.List;
+import java.util.Map;
 
 public interface Discount {
     // at all discounts, productName can be 'ALL' to represent store discount
@@ -11,7 +11,7 @@ public interface Discount {
      * returns true if this discount can be applied on some or all of those products
      * otherwise, return false.
      */
-    boolean hasDiscount(List<ProductDetails> products);
+    boolean hasDiscount(Map<Product, Integer> products);
 
     /**
      * apply this discount on the products.
@@ -21,5 +21,5 @@ public interface Discount {
      * * hasDiscount is true
      * * products doesn't contain two products with same name
      */
-    double applyDiscount(List<ProductDetails> products);
+    double applyDiscount(Map<Product, Integer> products);
 }

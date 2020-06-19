@@ -1,9 +1,8 @@
 package Domain.Policies.Acquisitions;
 
 import Domain.Store.Product;
-import Domain.info.ProductDetails;
 
-import java.util.List;
+import java.util.Map;
 
 abstract class AcqAmountCondition implements Acquisition {
     // productName can be 'ALL' to represent store condition
@@ -16,16 +15,8 @@ abstract class AcqAmountCondition implements Acquisition {
         this.amount = amount;
     }
 
-    ProductDetails findProduct(List<ProductDetails> products) {
-        for (ProductDetails p : products) {
-            if (p.getName().equals(productName))        //TODO: product equals
-                return p;
-        }
-        return null;
-    }
-
-    int getTotalAmount(List<ProductDetails> products) {
-        return products.stream().map(ProductDetails::getAmount).reduce(0, Integer::sum);
+    int getTotalAmount(Map<Product, Integer> products) {
+        return products.values().stream().reduce(0, Integer::sum);
     }
 
     @Override

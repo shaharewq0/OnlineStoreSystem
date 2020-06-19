@@ -1,10 +1,11 @@
 package Domain.Policies.Acquisitions;
 
 import Domain.Policies.BasePolicy;
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -89,7 +90,7 @@ public class AcquisitionPolicy extends BasePolicy {
         return true;
     }
 
-    public boolean canPurchase(List<ProductDetails> products) {
+    public boolean canPurchase(Map<Product, Integer> products) {
         return acquisitions.stream()
                 .map(acquisition -> acquisition.canPurchase(products))
                 .reduce(true, Boolean::logicalAnd);

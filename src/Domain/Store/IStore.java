@@ -1,13 +1,12 @@
 package Domain.Store;
 
-import java.util.Collection;
-import java.util.List;
-
-import Domain.Store.workers.StoreManager_Imp;
-import Domain.Store.workers.StoreOwner_Imp;
 import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.Store.workers.appoints.Appoint_manager;
 import Domain.info.ProductDetails;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public interface IStore {
 	public String getName();
@@ -30,7 +29,7 @@ public interface IStore {
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 
-	public double getPrice(List<ProductDetails> item);
+    public double getPrice(Map<Product, Integer> item);
 
 	public MyPair<Product,String> TakeItem(String name, int amout);
 

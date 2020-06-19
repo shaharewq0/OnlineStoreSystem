@@ -1,8 +1,9 @@
 package Domain.Policies.Acquisitions;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.BinaryOperator;
 
 abstract class CompositeAcq implements Acquisition {
@@ -17,7 +18,7 @@ abstract class CompositeAcq implements Acquisition {
     }
 
     @Override
-    public boolean canPurchase(List<ProductDetails> products) {
+    public boolean canPurchase(Map<Product, Integer> products) {
         return acquisitions.stream()
                 .map(acquisition -> acquisition.canPurchase(products))
                 .reduce(canPurchaseIdentity, canPurchaseOperator);
