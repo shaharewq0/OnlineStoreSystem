@@ -3,10 +3,13 @@ package Communication.websocket.App.messages.Macros;
 public class Opcodes {
 
     //For testing
-    public static final byte Demo = 1;
+    public static final byte Demo = 0x1;
 
     //Not in te usecases, but needed for implementation
     public static final byte viewOwnedStores = 0x7;
+    public static final byte memberType = 0x70;
+
+
 
     // ack nack
     public static final byte Ack = 0x2;
@@ -54,6 +57,15 @@ public class Opcodes {
     public static final byte HistoryOfUser = 0x64;
     public static final byte HistoryOfStore =  0x6b;
 
+
+
+    // opcode for userTypeResponseMessage
+    public class UserType{
+        public static final byte systemManager = 0x71;
+        public static final byte stroreOwner = 0x72;
+        public static final byte storeManager = 0x73;
+        public static final byte regular = 0x74;
+    }
 
 
 }

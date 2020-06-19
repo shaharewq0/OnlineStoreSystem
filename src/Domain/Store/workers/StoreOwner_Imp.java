@@ -242,6 +242,11 @@ public class StoreOwner_Imp implements Store_role {
                 + "- required your confirmation - " + pending_appoint_owner.grantee.getId());
     }
 
+    @Override
+    public String getType(){
+        return "owner";
+    }
+
     //TODO
 //    public boolean confirmOwner(String newOnwerName)
 //    {

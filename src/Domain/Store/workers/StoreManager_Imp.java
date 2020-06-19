@@ -277,4 +277,9 @@ public class StoreManager_Imp implements Store_role {
 
     }
 
+    @Override
+    public String getType(){
+        return "manager";
+    }
+
 }

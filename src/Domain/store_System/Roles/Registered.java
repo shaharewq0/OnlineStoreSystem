@@ -79,6 +79,19 @@ public class Registered implements MSGObservable {
         return stores;
     }
 
+    public List<String> roles() {
+        List<String> types = new LinkedList<>();
+
+        store_roles.forEach((store, role) -> {
+            String type = role.getType();
+            if (!types.contains(type)) {
+                types.add(type);
+            }
+        });
+
+        return types;
+    }
+
 
     //TODO
     public boolean appointAsCreator(Creator role) {

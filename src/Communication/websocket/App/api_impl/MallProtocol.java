@@ -1,18 +1,20 @@
 package Communication.websocket.App.api_impl;
 
-import Communication.websocket.App.RunServer.MallServer;
+import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
+import Communication.websocket.api.BaseServer;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
-import Domain.Notifier.Notifier;
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
+import Domain.store_System.ClintObserver;
+import Domain.store_System.MSGObservable;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.manager_accese.manager_accese;
 import Service_Layer.member_accese.member_accese;
@@ -22,8 +24,6 @@ import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 class SubInstructions {
 
@@ -33,20 +33,19 @@ class SubInstructions {
 
 
 
-public class MallProtocol implements MessagingProtocol<Message>, Observer {
+public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     private int gustID;
 
     private String username;
     private String paasword;
-    private MallServer server;
+    private BaseServer<Message>  server;
 
-    public MallProtocol(MallServer server) {
+    public MallProtocol(BaseServer<Message> server) {
         this.server = server;
         this.gustID = guest_accese.ImNew();
         username = "";
         paasword = "";
-        Notifier.getInstance().addObserver(this); // register to the notifier
     }
 
 
@@ -60,23 +59,20 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
     @Override
     public void end() {
         if(!username.equals("")){
-            accept(new LogoutMessage(-88)); // make sure to logout user
+            accept(new LogoutMessage(-55)); // make sure to logout user
         }
+        gustID = -88;
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        //Notifier notifier = (Notifier) o;
-        String[] ar = ((String)arg).split("!@!");
-        String user = ar[0];
-        String msg = ar[1];
+    public void Notifi_me(MSGObservable observable) {
+        List<String> msgs = observable.getMessges();
 
-        if(user.equals(username)){
-            server.send(this, msg);
+        for (String msg: msgs) {
+            server.send(this, new StringResponse(msg));
         }
+
     }
-
-
 
 
 
@@ -99,15 +95,14 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
     }
 
     public Message accept(LoginMessage msg){
-        if(guest_accese.usecase2_3_login(gustID, msg.getUsername(), msg.getPassword())){
+        if(guest_accese.usecase2_3_login(gustID, msg.getUsername(), msg.getPassword(), this)){
             username = msg.getUsername();
             paasword = msg.getPassword();
 
             return new AckMessage(msg.getId());
         }
-        else {
-            return new NackMessage(msg.getId());
-        }
+
+        return new NackMessage(msg.getId());
     }
 
     public Message accept(LogoutMessage msg) {
@@ -348,5 +343,35 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
         }
 
         return new NackMessage(msg.getId());
+    }
+
+    public Message accept(memberTypeMessage msg) {
+        List<String> roles = member_accese.getRoles(gustID);
+        String manager = "manager", owner = "owner", systemManager = "systemManager";
+        String highestRole = "regular";
+
+        if(roles == null){
+            return new NackMessage(msg.getId());
+        }
+
+        if(roles.contains(manager)){
+            highestRole = manager;
+        }
+
+        if(roles.contains(owner) || roles.contains("creator")){
+            highestRole = owner;
+        }
+
+        if(roles.contains(systemManager)){
+            highestRole = systemManager;
+        }
+
+        switch (highestRole){
+            case "regular"          : return new memberTypeResponse(Opcodes.UserType.regular        , msg.getId());
+            case "manager"          : return new memberTypeResponse(Opcodes.UserType.storeManager   , msg.getId());
+            case "owner"            : return new memberTypeResponse(Opcodes.UserType.stroreOwner    , msg.getId());
+            case "systemManager"    : return new memberTypeResponse(Opcodes.UserType.systemManager  , msg.getId());
+            default                 : return new NackMessage(msg.getId());
+        }
     }
 }

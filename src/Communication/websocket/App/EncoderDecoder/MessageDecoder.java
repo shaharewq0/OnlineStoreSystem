@@ -81,6 +81,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
             //extras
             case Opcodes.viewOwnedStores : return viewOwnedStores(parameters);
+            case Opcodes.memberType : return memberType(parameters);
 
             //Gust
             case Opcodes.Register : return Register(parameters);
@@ -721,5 +722,19 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         }
 
         return new EditPermitionsMessage((byte)-1, store,manager, permotions);
+    }
+
+    private Message memberType(Deque<Deque<Byte>> parameters) {
+        Byte op = popOpcode(parameters);
+
+        if(parameters.size() > 0){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+
+        if(op != Opcodes.memberType){
+            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
+        }
+
+        return new memberTypeMessage((byte)-1);
     }
 }

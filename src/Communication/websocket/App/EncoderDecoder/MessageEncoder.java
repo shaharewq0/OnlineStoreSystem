@@ -314,6 +314,18 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
 
     public String accept(AckMessage msg){
+        return  opcode_encode(msg);
+    }
+
+    public String accept(NackMessage msg){
+        return  opcode_encode(msg);
+    }
+
+    public String accept(memberTypeResponse msg) {
+        return  opcode_encode(msg);
+    }
+
+    private String opcode_encode(Server2ClientMessage msg){
         json = new JSONObject();
         json.put("cmd_id", msg.getReplayForID());
         json.put("result", msg.getOpcode());
@@ -321,13 +333,8 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         return  json.toString();
     }
 
-    public String accept(NackMessage msg){
-        json = new JSONObject();
-        json.put("cmd_id", msg.getReplayForID());
-        json.put("result", msg.getOpcode());
-
-        return  json.toString();
-
+    public String accept(StringResponse msg) {
+        return string2jason(msg.getMsg());
     }
 
 

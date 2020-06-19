@@ -49,6 +49,11 @@ public class System implements ISystem {
     }
 
     // ----------------------------------init
+
+    public String getManager(){
+        return manager == null ? null : manager.name;
+    }
+
     public System_Manager ImManeger(String id, String password) {
 
         if (manager != null && (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password))) {
