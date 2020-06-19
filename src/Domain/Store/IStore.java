@@ -5,6 +5,8 @@ import java.util.List;
 
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
+import Domain.Store.workers.appoints.Appoint_Owner;
+import Domain.Store.workers.appoints.Appoint_manager;
 import Domain.info.ProductDetails;
 
 public interface IStore {
@@ -38,9 +40,9 @@ public interface IStore {
 
 	boolean editProduct(String OLD_p, Product NEW_p);
 
-	boolean appointManager(StoreManager_Imp user);
+	boolean appointManager(Appoint_manager user);
 
-	boolean appointOwner(StoreOwner_Imp user);
+	boolean appointOwner(Appoint_Owner user);
 
 
 

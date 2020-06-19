@@ -45,7 +45,7 @@ public class Pending_appoint_Owner {
     private void finalise_appoint() {
         StoreOwner_Imp newRole = new StoreOwner_Imp(grantor, grantee);
         if (grantee.appointAsOwner(newRole)) {
-            store.appointOwner(newRole);
+            store.appointOwner(newRole.myJob);
             grantor.finalise_appoint(this);
             EventLogger.GetInstance().Add_Log(this.toString() + "pending appoint new Owner");
         } else
