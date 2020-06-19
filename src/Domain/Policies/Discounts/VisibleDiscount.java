@@ -1,9 +1,12 @@
 package Domain.Policies.Discounts;
 
+import Domain.Logs.ErrorLogger;
 import Domain.Store.Product;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 class VisibleDiscount implements Discount {
@@ -38,6 +41,18 @@ class VisibleDiscount implements Discount {
             return price * percentage;
         }
         return products.containsKey(product) ? 0 : products.get(product) * product.getPrice() * percentage;
+    }
+
+    @Override
+    public List<String> getProductsNames() {
+        return Collections.singletonList(productName);
+    }
+
+    @Override
+    public void replaceProducts(List<Product> products) {
+        if (products.size() != 1)
+            ErrorLogger.GetInstance().Add_Log("IN Discount : replace product error");
+        product = products.get(0);
     }
 
     @Override

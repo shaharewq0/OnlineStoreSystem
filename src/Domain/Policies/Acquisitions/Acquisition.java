@@ -2,6 +2,7 @@ package Domain.Policies.Acquisitions;
 
 import Domain.Store.Product;
 
+import java.util.List;
 import java.util.Map;
 
 public interface Acquisition {
@@ -14,4 +15,13 @@ public interface Acquisition {
      */
     boolean canPurchase(Map<Product, Integer> products);
 
+    /**
+     * return all product names (include sub discounts)
+     */
+    List<String> getProductsNames();
+
+    /**
+     * add to each discount the appropriate product according to product name (include sub discounts)
+     */
+    void replaceProducts(List<Product> products);
 }
