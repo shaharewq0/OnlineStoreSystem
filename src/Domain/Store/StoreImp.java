@@ -9,6 +9,8 @@ import Domain.Policies.Discounts.DiscountPolicy;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
 import Domain.Store.workers.StoreOwner_Imp;
+import Domain.Store.workers.appoints.Appoint_Owner;
+import Domain.Store.workers.appoints.Appoint_manager;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
@@ -18,8 +20,8 @@ public class StoreImp implements IStore {
     private String name;
     private Creator creator;
     private Store_Inventory inventory = new Store_Inventory();
-    private Map<String, StoreOwner_Imp> Owners = new HashMap<String, StoreOwner_Imp>();
-    private Map<String, StoreManager_Imp> Managers = new HashMap<String, StoreManager_Imp>();
+    private Map<String, Appoint_Owner> Owners = new HashMap<String, Appoint_Owner>();
+    private Map<String, Appoint_manager> Managers = new HashMap<String, Appoint_manager>();
     private String address;
     private int rating;
     private DiscountPolicy discounts = new DiscountPolicy();
@@ -73,7 +75,7 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> getProductsDetails() {
-        return ProductDetails.adapteProdactList(inventory.items.values());
+        return ProductDetails.adapteProdactList(inventory.items.values(), name);
     }
 
     public String getAddress() {
@@ -89,12 +91,21 @@ public class StoreImp implements IStore {
     }
 
     // ---------------------------------------------------------------------------------workers
-    public Collection<StoreOwner_Imp> getOwners() {
-        return Owners.values();
+    public Collection<StoreOwner_Imp> getOwners()
+    {
+        Collection<StoreOwner_Imp> MyOwners = new LinkedHashSet<>();
+        for (Appoint_Owner AO: Owners.values()) {
+            MyOwners.add(AO.grantee);
+        }
+        return MyOwners;
     }
 
     public Collection<StoreManager_Imp> getManagers() {
-        return Managers.values();
+        Collection<StoreManager_Imp> MyManagers = new LinkedHashSet<>();
+        for (Appoint_manager AM: Managers.values()) {
+            MyManagers.add(AM.grantee);
+        }
+        return MyManagers;
     }
 
     @Override
@@ -104,17 +115,18 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    public boolean fireManager(String user) {
+    public boolean fireWorker(String user) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- fire manager from store");
         if (Managers.containsKey(user) && Owners.containsKey(user))
             ErrorLogger.GetInstance().Add_Log(this.toString() + "- fatel error worker is owner and manager");
+
         if (Managers.containsKey(user)) {
-            if (Managers.get(user).getfire())
+            if (Managers.get(user).grantee.getfire())
                 return Managers.remove(user) != null && CheckTegrati_HaveOwners();
 
         }
         if (Owners.containsKey(user)) {
-            if (Owners.get(user).getfire())
+            if (Owners.get(user).grantor.getfire())
                 return Owners.remove(user) != null && CheckTegrati_HaveOwners();
         }
 
@@ -128,27 +140,27 @@ public class StoreImp implements IStore {
 //	}
 
     @Override
-    public boolean appointManager(StoreManager_Imp worker) {
-        if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+    public boolean appointManager(Appoint_manager worker) {
+        if (Managers.containsKey(worker.grantee.getName()) || Owners.containsKey(worker.grantee.getName())) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
             return false;
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
-        return Managers.put(worker.getName(), worker) != null && CheckTegrati_HaveOwners();
+        return Managers.put(worker.grantee.getName(), worker) != null && CheckTegrati_HaveOwners();
     }
 
     @Override
-    public boolean appointOwner(StoreOwner_Imp worker) {
-        if (Managers.containsKey(worker.getName()) || Owners.containsKey(worker.getName())) {
+    public boolean appointOwner(Appoint_Owner worker) {
+        if (Managers.containsKey(worker.grantee.getName()) || Owners.containsKey(worker.grantee.getName())) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "cant have 2 workers with same names");
             return false;
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- appoint new manager in store");
-        return Owners.put(worker.getName(), worker) != null && CheckTegrati_HaveOwners();
+        return Owners.put(worker.grantee.getName(), worker) != null && CheckTegrati_HaveOwners();
     }
 
     public boolean editManagerPermesions(String managername, List<String> permesions) {
-        StoreManager_Imp m = Managers.get(managername);
+        StoreManager_Imp m = Managers.get(managername).grantee;
         if (m != null) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- edit manager permesions");
             return m.getNewPermesions(permesions);
@@ -193,15 +205,14 @@ public class StoreImp implements IStore {
     }
 
     public Product findProductByName(String name) {
+        //TODO this needs to return ProdcutDetails
         return inventory.getItem(name);
 
     }
 
     public ProductDetails findProductDetailsByName(String name) {
-        return inventory.findProductDetailsByName(name);
-//		if (inventory.items.containsKey(name))
-//			return new ProductDetails(inventory.items.get(name), inventory.items.get(name).getAmount());
-//		return null;
+        //TODO change this
+        return inventory.findProductDetailsByName(name, this.name);
     }
 
     public List<Product> findProductByCategory(String category) {
@@ -210,7 +221,8 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByCategory(String category) {
-        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category));
+        //TODO change this
+        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category), name);
 
     }
 
@@ -220,7 +232,7 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
-        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword));
+        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword), name);
 
     }
 
@@ -249,8 +261,8 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    synchronized public Product TakeItem(String name, int amount) {
-        Product takeout = null;
+    synchronized public MyPair<Product, String> TakeItem(String name, int amount) {
+        MyPair<Product, String> takeout = null;
         Product temp = findProductByName(name);
         if (temp == null) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
@@ -258,12 +270,15 @@ public class StoreImp implements IStore {
         }
         if (temp.getAmount() > amount) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products full amount");
-            takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount, this.name);
+            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount),
+                    this.name);
             temp.removeAmount(amount);
         } else {
+            //TODO maybe cancell buy
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products not full amount");
-            takeout = new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount(),
+            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount()),
                     this.name);
+
             temp.removeAmount(temp.getAmount());
         }
         return takeout;
@@ -275,7 +290,7 @@ public class StoreImp implements IStore {
     }
 
     public String getDiscounts(String name) {
-       return discounts.toString();
+        return discounts.toString();
 
     }
 
@@ -302,6 +317,7 @@ public class StoreImp implements IStore {
     }
 
     boolean CheckTegrati_HaveOwners() {
+        //  return true;
         return creator != null || Owners.values().size() > 0;
     }
 

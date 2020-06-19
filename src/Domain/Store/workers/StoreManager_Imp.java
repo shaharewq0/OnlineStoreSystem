@@ -31,6 +31,7 @@ public class StoreManager_Imp implements Store_role {
         Owner_Appointees = new HashMap<>();
         Manager_Appointees = new HashMap<>();
         this.permission.addAll(MangaerPermesions.defult_permesions);
+        MyJob.grantee = this;
         EventLogger.GetInstance().Add_Log(this.toString() + "- Created Manager");
     }
 
@@ -126,9 +127,9 @@ public class StoreManager_Imp implements Store_role {
 
     @Override
     public boolean appointOwner(Registered user) {
-        Store_role newRole = new StoreOwner_Imp(this, user);
+        StoreOwner_Imp newRole = new StoreOwner_Imp(this, user);
         if (user.appointAsOwner(newRole)) {
-            MyJob.store.appointOwner((StoreOwner_Imp) newRole);
+            MyJob.store.appointOwner(newRole.myJob);
             Owner_Appointees.put(user.getId(), newRole);
             EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Owner");
             return true;
@@ -152,9 +153,9 @@ public class StoreManager_Imp implements Store_role {
 
     @Override
     public boolean appointManager(Registered user) {
-        Store_role newRole = new StoreManager_Imp(this, user);
+        StoreManager_Imp newRole = new StoreManager_Imp(this, user);
         if (user.appointAsManager(newRole)) {
-            MyJob.store.appointManager((StoreManager_Imp) newRole);
+            MyJob.store.appointManager( newRole.MyJob);
             Manager_Appointees.put(user.getId(), newRole);
             EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Manager");
             return true;
@@ -164,23 +165,48 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
-    public boolean fire(String manager) {
+    public boolean fireOwner(String Owner) {
+        //TODO need testing
+        EventLogger.GetInstance().Add_Log(this.toString() + "Owner fire Owner");
+        if (!Owner_Appointees.containsKey(Owner))
+            return false;
+
+        return MyJob.store.fireWorker(Owner);
+    }
+
+    @Override
+    public boolean fireManager(String manager) {
         if (!permission.contains("fire"))
             return false;
-        return MyJob.store.fireManager(manager);
+        return MyJob.store.fireWorker(manager);
         //return manager.getFired(store.getName());
     }
 
     @Override
     public boolean getfire() {
         MyJob.grantor.IgotFire(worker_name);
+
+        //TODO check no infinity loop
+        for (Store_role Manager : Manager_Appointees.values()) {
+            EventLogger.GetInstance().Add_Log(this.toString() + "i try to fire manager " + Manager.getName());
+            if (!MyJob.store.fireWorker(Manager.getName()))
+                ErrorLogger.GetInstance().Add_Log((this.toString() + "fail to fire manager " + Manager.getName()));
+        }
+
+        for (Store_role Owner : Owner_Appointees.values()) {
+            EventLogger.GetInstance().Add_Log(this.toString() + "i try to fire manager " + Owner.getName());
+            if (!MyJob.store.fireWorker(Owner.getName()))
+                ErrorLogger.GetInstance().Add_Log((this.toString() + "fail to fire manager " + Owner.getName()));
+        }
         return user.getFired(MyJob.store.getName());
+
     }
 
     @Override
     public boolean IgotFire(String worker) {
         if (!permission.contains("appointOwner") || !permission.contains("appointManager"))
             return false;
+
         if (Owner_Appointees.containsKey(worker)) {
             Owner_Appointees.remove(worker);
             return CheckTegrati_ImMangaer() && true;

@@ -23,7 +23,9 @@ public interface Store_role {
 
     boolean appointManager(Registered user);
 
-    boolean fire(String manager);
+    boolean fireOwner(String Owner);
+
+    boolean fireManager(String manager);
 
     boolean editItem(String OLD_item, Product NEW_item);
 

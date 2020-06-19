@@ -2,6 +2,7 @@ package Domain.UserClasses;
 
 import java.util.List;
 
+import Domain.Store.MyPair;
 import Domain.Store.Product;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
@@ -15,6 +16,6 @@ public interface IshoppingBasket {
 
 	 List<ProductDetails> getProducts();
 	 double CalcPrice();
-	 List<Product> getItems();
+	 List<MyPair<Product,String>> getItems();
 
 }

@@ -51,11 +51,11 @@ public class ProductDetails {
         this.rating = rating;
     }
 
-    public ProductDetails(Product pro, int amount) {
+    public ProductDetails(Product pro, int amount,String storeName) {
         this.name = pro.getName();
         this.category = new LinkedList<String>();
         category.addAll(pro.getCategory());
-        this.storeName = pro.getStore();
+        this.storeName = storeName;//pro.getStore();
         this.amount = amount;
         keyWords = new LinkedList<>(pro.getKeyWords());
         this.price = pro.getPrice();
@@ -95,10 +95,10 @@ public class ProductDetails {
         return rating;
     }
 
-    static public List<ProductDetails> adapteProdactList(Collection<Product> list) {
+    static public List<ProductDetails> adapteProdactList(Collection<Product> list,String storeName) {
         LinkedList<ProductDetails> output = new LinkedList<ProductDetails>();
         for (Product product : list) {
-            output.add(new ProductDetails(product, product.getAmount()));
+            output.add(new ProductDetails(product, product.getAmount(),storeName));
         }
         return output;
     }

@@ -100,7 +100,7 @@ public class User implements IUser {
 
     public boolean openStore(String storename, String address, int rating) {
 
-        Notifier.getInstance().update("abc", "abc" +" openning a store! (From server)");
+       // Notifier.getInstance().update("abc", "abc" +" openning a store! (From server)");
 
         StoreImp mystore = logInstanse.OpenStore(new StoreInfo(storename, address, rating));
         if (profile == null) {
@@ -108,7 +108,8 @@ public class User implements IUser {
             return false;
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- opening store");
-        profile.store_roles.put(mystore.getName(), new Creator(mystore));
+        profile.store_roles.put(mystore.getName(), new Creator(mystore,profile));
+
         return mystore != null;
     }
 
@@ -123,7 +124,7 @@ public class User implements IUser {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- opening store");
 
-        profile.store_roles.put(mystore.getName(), new Creator(mystore));
+        profile.store_roles.put(mystore.getName(), new Creator(mystore,profile));
         return mystore != null;
 
     }
@@ -246,7 +247,7 @@ public class User implements IUser {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(storeName) == null)
             return false;
-        return store_roles.get(storeName).fire(username);
+        return store_roles.get(storeName).fireManager(username);
     }
 
     @Override
@@ -361,7 +362,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
 
@@ -373,7 +374,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getRating() <= maxRating && product.getRating() >= minRating)
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
         return output;
@@ -385,7 +386,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             for (Product product : store.getProducts()) {
                 if (product.getCategory().contains(category))
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
             }
         }
         return output;
@@ -397,7 +398,7 @@ public class User implements IUser {
         for (StoreImp store : System.getInstance().getAllStores()) {
             if (store.getRating() > minRating && store.getRating() < maxRating)
                 for (Product product : store.getProducts()) {
-                    output.add(new ProductDetails(product, product.getAmount()));
+                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
                 }
         }
         return output;

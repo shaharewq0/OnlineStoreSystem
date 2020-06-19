@@ -39,7 +39,7 @@ public class AppointAndFireStoreManagerTest extends BaseAccTest {
 
     @Test
     public void D_fireManager(){
-        assertTrue(system.fireManager(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME));
+         assertTrue(system.fireManager(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME));
     }
 
     @Test

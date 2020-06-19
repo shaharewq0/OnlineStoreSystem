@@ -26,12 +26,15 @@ public class System implements ISystem {
 
     private boolean init = false;
     private System_Manager manager = null;
+
     private int TempGuestID = 1;
     private Map<Integer, User> guest = new HashMap<>();
     private Map<String, Registered> membersprofiles = new HashMap<>();
     private Map<String, Member> onlinemember = new HashMap<>();
     private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
+
     private Map<String, StoreImp> stores = new HashMap<String, StoreImp>();
+
     private List<MyPair<String, List<shoppingCart>>> order = new LinkedList<>();
     private MyPaymentSystem paymentdriver = new MyPaymentSystem_Driver();
     private MySupplySystem supplydriver = new MySupplySystem_Driver();
@@ -120,7 +123,9 @@ public class System implements ISystem {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "- register dont exsist fatal error");
             return null;
         }
-        Profile.LogLogin(user);
+
+        //TODO add Observer
+        //Profile.LogLogin(user);
         onlinemember.put(id, new Member(user));
         EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
         if (onlinemember.size() > 1 && !CheckTegrati_oneManager()) {
@@ -192,11 +197,11 @@ public class System implements ISystem {
     }
 
 
-    public boolean fillStore(List<Product> Products) {
+    public boolean fillStore(List<MyPair<Product,String>> Products) {
         boolean output = true;
         EventLogger.GetInstance().Add_Log(this.toString() + "- returning product to store");
-        for (Product product : Products) {
-            output = output & getStoreDetails(product.getStore()).addProduct(product);
+        for (MyPair<Product,String> MP : Products) {
+            output = output & getStoreDetails(MP.getValue()).addProduct(MP.getKey());
         }
         return output;
     }

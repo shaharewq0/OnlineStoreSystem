@@ -27,8 +27,8 @@ public class InventoryTest {
         List<String> Category = new LinkedList<>();
         Category.add("Cats");
         Category.add("dogs");
-        P1 = new Product("item 1", Category,new LinkedList<>(), 34.3, 4,"Mystore");
-        P2 = new Product("item 2", new LinkedList<>(),Keywords, 12.4, 2,"Mystore");
+        P1 = new Product("item 1", Category,new LinkedList<>(), 34.3, 4);
+        P2 = new Product("item 2", new LinkedList<>(),Keywords, 12.4, 2);
         //Product p = new Product( "item 1", new LinkedList<>(), new LinkedList<>(),  12,  5,  store);
 
     }
