@@ -36,7 +36,7 @@ public class BaseServer<T> implements Closeable {
 
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         logger.CloseLogger();
         protocols = null;
         protocolSupplier = null;
@@ -59,17 +59,13 @@ public class BaseServer<T> implements Closeable {
 
         // sand back if there is a response
         if(response != null){
-            try {
-                send(session, response);
-                print(String.format("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n\n", session.getId(), response.toString()));
-            } catch (IOException | EncodeException e) {
-                e.printStackTrace();
-            }
+            send(session, response);
+            print(String.format("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n\n", session.getId(), response.toString()));
         }
     }
 
     public void onError(Session session, Throwable e){
-        e.printStackTrace();
+        print(String.format("ERROR in session (id: %s) : %s", session.getId(), e.getMessage()));
         endSession(session);
     }
 
@@ -86,26 +82,22 @@ public class BaseServer<T> implements Closeable {
     public void send(MessagingProtocol<T> protocol, T msg){
         protocols.forEach(((session, messageMessagingProtocol) -> {
             if(messageMessagingProtocol == protocol){
-                try {
-                    print(String.format("sending special message : %s", msg));
-                    send(session, msg);
-                } catch (IOException | EncodeException e) {
-                    e.printStackTrace();
-                }
+                print(String.format("sending special message : %s", msg));
+                send(session, msg);
             }
         }));
     }
 
 
-
-
-
-
     // ------------------------------------------------ private methods ------------------------------------------------
 
 
-    private void send(Session session, T msg) throws IOException, EncodeException {
-        session.getBasicRemote().sendObject(msg);
+    private void send(Session session, T msg) {
+        try {
+            session.getBasicRemote().sendObject(msg);
+        } catch (IOException | EncodeException e) {
+            e.printStackTrace();
+        }
     }
 
     private void print(String msg){

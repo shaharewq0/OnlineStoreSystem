@@ -14,13 +14,14 @@ import java.io.IOException;
 
 
 @ServerEndpoint(
-        value = "/mall",
-        encoders = { MessageEncoder.class },
-        decoders = { MessageDecoder.class }
+        value       = "/mall"                   ,
+        encoders    = { MessageEncoder.class }  ,
+        decoders    = { MessageDecoder.class }
 )
 public class MallServer implements Closeable {
 
-    private BaseServer<Message> server;
+    /** the server object */
+    private final BaseServer<Message> server;
 
 
     public MallServer() {
@@ -53,6 +54,5 @@ public class MallServer implements Closeable {
     @Override
     public void close() throws IOException {
         server.close();
-        server = null;
     }
 }
