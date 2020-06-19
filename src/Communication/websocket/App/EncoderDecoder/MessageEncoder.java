@@ -134,6 +134,15 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         lst.offer(b);
     }
 
+
+    private void offerInt( LinkedList<Byte> lst, int i){
+        offerString(lst, String.valueOf(i));
+    }
+
+    private void offerDouble( LinkedList<Byte> lst, double d){
+        offerString(lst, String.valueOf(d));
+    }
+
     /**
      * offer a list to a list of bytes
      * @param lst the list
@@ -173,7 +182,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
             offerString(lst, cur.getName());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
-            offerString(lst, String.valueOf(cur.getPrice()));
+            offerDouble(lst, cur.getPrice());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerString(lst, cur.getStoreName());
 
@@ -192,7 +201,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
             offerString(lst, cur.getName());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
-            offerString(lst, String.valueOf(cur.getAmount()));
+            offerDouble(lst, cur.getPrice());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerString(lst, cur.getStoreName());
 
@@ -213,17 +222,17 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             if(!first)
                 offerDelimiter(lst);
 
-            offerStorePurchesList(lst, cur.eachPurchase, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3);
+            offerStorePurchesList(lst, cur.eachPurchase, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3, Delimiters.LIST_DELIMITER_L4);
             first = false;
         }
 
     }
 
     private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> purches){
-        offerStorePurchesList(lst, purches, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3);
+        offerStorePurchesList(lst, purches, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3, Delimiters.LIST_DELIMITER_L4);
     }
 
-    private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> toOffer, byte deleliter1, byte deleliter2, byte deleliter3){
+    private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> toOffer, byte deleliter1, byte deleliter2, byte deleliter3, byte deleliter4){
 
         boolean first = true;
 
@@ -232,17 +241,17 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             if(!first)
                 offerByte(lst, deleliter1);
 
-            OfferStorePurchase(lst, cur, deleliter2, deleliter3);
+            OfferStorePurchase(lst, cur, deleliter2, deleliter3, deleliter4);
             first = false;
         }
     }
 
-    private void OfferStorePurchase(LinkedList<Byte> lst, StorePurchase toOffer, byte deleliter2, byte deleliter3){
+    private void OfferStorePurchase(LinkedList<Byte> lst, StorePurchase toOffer, byte deleliter2, byte deleliter3, byte deleliter4){
         offerString(lst, toOffer.get_Store_Name());
         offerByte(lst, deleliter2);
-        offerProducts(lst, toOffer.getItems(), deleliter3);
+        offerProducts(lst, toOffer.getItems(), deleliter3, deleliter4);
         offerByte(lst, deleliter2);
-        offerString(lst, String.valueOf(toOffer.getPrice()));
+        offerDouble(lst, toOffer.getPrice());
     }
 
     private void offerProductsNames( LinkedList<Byte> lst, List<ProductDetails> toOffer){
@@ -261,19 +270,23 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     }
 
     private void offerProducts( LinkedList<Byte> lst, List<ProductDetails> toOffer, byte deleliter){
+        offerProducts(lst, toOffer, deleliter, Delimiters.LIST_DELIMITER);
+    }
+
+    private void offerProducts( LinkedList<Byte> lst, List<ProductDetails> toOffer, byte deleliter3, byte deleliter4){
 
         boolean first = true;
 
         for (ProductDetails cur: toOffer) {
 
             if(!first)
-                offerListDelimiter(lst);
+                offerByte(lst, deleliter4);
 
             offerString(lst, cur.getName());
-            offerByte(lst, deleliter);
-            offerByte(lst, (byte) cur.getAmount()); // TODO
-            offerByte(lst, deleliter);
-            offerString(lst, String.valueOf(cur.getPrice()));
+            offerByte(lst, deleliter3);
+            offerInt(lst, cur.getAmount());
+            offerByte(lst, deleliter3);
+            offerDouble(lst, cur.getPrice());
 
             first = false;
         }
