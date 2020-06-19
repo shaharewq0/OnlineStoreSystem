@@ -160,6 +160,8 @@ public class StoreImp implements IStore {
     }
 
     public boolean editManagerPermesions(String managername, List<String> permesions) {
+        if(!Managers.containsKey(managername))
+            return false;
         StoreManager_Imp m = Managers.get(managername).grantee;
         if (m != null) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- edit manager permesions");
@@ -317,7 +319,6 @@ public class StoreImp implements IStore {
     }
 
     boolean CheckTegrati_HaveOwners() {
-        //  return true;
         return creator != null || Owners.values().size() > 0;
     }
 

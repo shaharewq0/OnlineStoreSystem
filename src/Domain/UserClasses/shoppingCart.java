@@ -77,10 +77,12 @@ public class shoppingCart implements IshoppingCart {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_CartPerStore() {
-//        for (shoppingBasket b : baskets.values()) {
-//            if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
-//                return false;
-//        }
+        List<String> shops = new LinkedList<>();
+        for (shoppingBasket b : baskets.values()) {
+            if(shops.contains(b.getStore().getName()))
+                return false;
+            shops.add(b.getStore().getName());
+        }
         return true;
     }
 

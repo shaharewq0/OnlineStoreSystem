@@ -125,6 +125,8 @@ public class StoreManager_Imp implements Store_role {
 //		return false;
 //	}
 
+
+    //TODO delte option
     @Override
     public boolean appointOwner(Registered user) {
         StoreOwner_Imp newRole = new StoreOwner_Imp(this, user);

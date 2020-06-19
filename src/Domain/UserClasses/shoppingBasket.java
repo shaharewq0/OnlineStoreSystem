@@ -9,6 +9,7 @@ public class shoppingBasket implements IshoppingBasket {
 
 
     //      productName - amount
+    // Product = the product we are talking about|| Integer how much of it is in the basket
     private Map<Product, Integer> Item_holder;
     private StoreImp store;
 

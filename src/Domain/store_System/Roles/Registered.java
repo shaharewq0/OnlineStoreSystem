@@ -16,8 +16,9 @@ import Domain.store_System.System;
 
 public class Registered implements MSGObservable {
     private String id;
-    private List<ClintObserver> clints = new LinkedList();
+    private Map<User,ClintObserver> clints = new HashMap<>();
     private List<String> MSG_box = new LinkedList<>();
+    private List<String> TempMSG = new LinkedList<>();
     private User_Purchase_History history = new User_Purchase_History();
     public Map<String, Store_role> store_roles = new HashMap<String, Store_role>();
 
@@ -36,15 +37,21 @@ public class Registered implements MSGObservable {
         return id;
     }
 
-    public void LogLogin(ClintObserver CO) {
-        clints.add(CO);
+    public void LogLogin(User user, ClintObserver CO) {
+        clints.put(user,CO);
+        if(!MSG_box.isEmpty()) {
+            TempMSG = MSG_box;
+            MSG_box = new LinkedList<>();
+            CO.Notifi_me(this);
+        }
     }
 
     public void LogLogout(User user) {
-        // TODO Auto-generated method stub
-
+        if(clints.remove(user) == null)
+            ErrorLogger.GetInstance().Add_Log(this.toString() + "- when logout removing absorver that dont exsist");
     }
 
+    //TODO
     public void LogHistory(UserPurchase p) {
         history.history.add(p);
     }
@@ -73,6 +80,7 @@ public class Registered implements MSGObservable {
     }
 
 
+    //TODO
     public boolean appointAsCreator(Creator role) {
         if (store_roles.containsKey(role.getStore().getName())) {
                 ErrorLogger.GetInstance().Add_Log(this.toString() + " fatel error : im trying to beacome creator of exsisting store" );
@@ -121,29 +129,30 @@ public class Registered implements MSGObservable {
         notifyUser();
     }
 
-    public void notifyUser() {
-        //TODO
-    }
-
-    public boolean add_Observer(ClintObserver O) {
-        clints.add(O);
-        return true;
-    }
-
-    public boolean remove_Observer(ClintObserver O) {
-
-        //TODO need testing
-        if (clints.contains(O)) {
-            clints.remove(O);
-            return true;
+    public void notifyUser(){
+        TempMSG = MSG_box;
+        MSG_box = new LinkedList<>();
+        for (ClintObserver CO: clints.values()) {
+            CO.Notifi_me(this);
         }
-        return false;
-
     }
+
+//    public boolean add_Observer(ClintObserver O) {
+//        clints.add(O);
+//        return true;
+//    }
+
+//    public boolean remove_Observer(ClintObserver O) {
+//
+//        if (clints.contains(O)) {
+//            clints.remove(O);
+//            return true;
+//        }
+//        return false;
+//
+//    }
 
     public List<String> getMessges() {
-        List<String> msgs = MSG_box;
-        MSG_box = new LinkedList<>();
-        return msgs;
+        return TempMSG;
     }
 }

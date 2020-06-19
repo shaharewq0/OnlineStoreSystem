@@ -28,6 +28,8 @@ public class guest_accese {
 	}
 
 	public static boolean usecase2_3_login(int guestId, String username, String password) {
+		//TODO maybe allow this
+		//return false; // fucntion no longer optional. need to get observer now
 		User user = System.getInstance().getGuest(guestId);
 		if(user == null)
 			return false;
@@ -38,7 +40,7 @@ public class guest_accese {
 		User user = System.getInstance().getGuest(guestId);
 		if(user == null)
 			return false;
-		return user.login(username, password);
+		return user.login(username, password,Observer);
 	}
 
 

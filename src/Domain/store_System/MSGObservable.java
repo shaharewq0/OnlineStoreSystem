@@ -4,6 +4,6 @@ import java.util.List;
 import java.util.Observer;
 
 public interface MSGObservable {
-    public boolean add_Observer(ClintObserver O);
+//this is dont with loging function    public boolean add_Observer(ClintObserver O);
     public List<String> getMessges();
 }

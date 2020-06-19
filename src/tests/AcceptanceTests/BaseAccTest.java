@@ -10,10 +10,13 @@ public class BaseAccTest {
     protected static SystemAdapter system = new SystemAdapter();
 
     protected  <T> void assertEqualsLists(List<T> expected, List<T> actual) {
+
         assertNotNull(expected);
         assertNotNull(actual);
         assertEquals(expected.size(), actual.size());
-        assertTrue(expected.containsAll(actual));
+        boolean temp1 = expected.containsAll(actual);
+                boolean temp2 = actual.containsAll(expected);
+        assertTrue( expected.containsAll(actual));
         assertTrue(actual.containsAll(expected));
     }
 
