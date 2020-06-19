@@ -30,6 +30,13 @@ public class owner_accese {
         return me.addProduct(storeName, p);
     }
 
+    public static boolean usecase4_1_1_AddingProdacsToStore(int guestId, String storeName, Product p) {
+        User me = System.getInstance().getMember(guestId);
+        if (me == null)
+            return false;
+        return me.addProduct(storeName, p);
+    }
+
     public static boolean usecase4_1_2_RemoveItem(String myusername, String myPassword, String storeName, String prodactname) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
