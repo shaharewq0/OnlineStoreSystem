@@ -96,7 +96,7 @@ public class MallServer {
         if(response != null){
             try {
                 session.getBasicRemote().sendObject(response);
-                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n", session.getId(), response.toString());
+                System.out.printf("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n\n", session.getId(), response.toString());
             } catch (IOException | EncodeException e) {
                 e.printStackTrace();
             }
@@ -111,6 +111,8 @@ public class MallServer {
     @OnClose
     public void onClose(Session session){
         System.out.println(String.format("closeted session. id: %s", session.getId()));
+        MessagingProtocol<Message> protocol = Objects.requireNonNull(protocols.get(session));
+        protocol.end();
         protocols.remove(session);
     }
 

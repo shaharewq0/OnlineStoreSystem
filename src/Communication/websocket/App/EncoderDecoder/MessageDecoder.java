@@ -384,7 +384,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             throw new IllegalArgumentException("to much parameter fo a store products object!");
         }
 
-        return new StorDetailsMessage(-1, name);
+        return new StoreProductsMessage(-1, name);
     }
 
     private Message OpenStore(Deque<Deque<Byte>> parameters) {

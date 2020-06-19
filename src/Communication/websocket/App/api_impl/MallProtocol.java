@@ -58,6 +58,13 @@ public class MallProtocol implements MessagingProtocol<Message>, Observer {
     }
 
     @Override
+    public void end() {
+        if(!username.equals("")){
+            accept(new LogoutMessage(-88)); // make sure to logout user
+        }
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         //Notifier notifier = (Notifier) o;
         String[] ar = ((String)arg).split("!@!");
