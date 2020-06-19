@@ -16,11 +16,9 @@ import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class MessageEncoder implements  Encoder.Text<Message> {
-
-    private JSONObject json;
-
 
     @Override
     public String encode(Message msg) throws EncodeException {
@@ -308,15 +306,23 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     }
 
 
+    private String jasonfy(long id, Object o){
+        JSONObject json;
 
-
-    private String createJsonString(long replayForID, List<Byte> lst)
-    {
         json = new JSONObject();
-        json.put("cmd_id", replayForID);
-        json.put("result", list2jason(lst));
+        json.put("cmd_id", id);
+        json.put("result", o);
 
         return  json.toString();
+    }
+
+
+    private String createJsonString(long replayForID, List<Byte> lst) {
+        return jasonfy(replayForID, list2jason(lst));
+    }
+
+    private String opcode_encode(Server2ClientMessage msg){
+        return jasonfy(msg.getReplayForID(), msg.getOpcode());
     }
 
 
@@ -338,13 +344,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         return  opcode_encode(msg);
     }
 
-    private String opcode_encode(Server2ClientMessage msg){
-        json = new JSONObject();
-        json.put("cmd_id", msg.getReplayForID());
-        json.put("result", msg.getOpcode());
 
-        return  json.toString();
-    }
 
     public String accept(StringResponse msg) {
         return string2jason(msg.getMsg());
@@ -410,6 +410,14 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         LinkedList<Byte> lst = new LinkedList<>();
 
         offerCartList(lst, msg.getProducts());
+
+        return createJsonString(msg.getReplayForID(), lst);
+    }
+
+    public String accept(StringListResponse msg) {
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerList(lst, msg.getLst());
 
         return createJsonString(msg.getReplayForID(), lst);
     }

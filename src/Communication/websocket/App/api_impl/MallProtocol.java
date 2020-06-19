@@ -23,6 +23,8 @@ import Service_Layer.sys_manager_accese.sys_mangaer_accese;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 class SubInstructions {
@@ -369,9 +371,31 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         switch (highestRole){
             case "regular"          : return new memberTypeResponse(Opcodes.UserType.regular        , msg.getId());
             case "manager"          : return new memberTypeResponse(Opcodes.UserType.storeManager   , msg.getId());
-            case "owner"            : return new memberTypeResponse(Opcodes.UserType.stroreOwner    , msg.getId());
+            case "owner"            : return new memberTypeResponse(Opcodes.UserType.storeOwner, msg.getId());
             case "systemManager"    : return new memberTypeResponse(Opcodes.UserType.systemManager  , msg.getId());
             default                 : return new NackMessage(msg.getId());
         }
     }
+
+    public Message accept(AcceptPendingAppointmentMessage msg) {
+
+        if(owner_accese.accecpt_Pending_Appointment(gustID, msg.getStoreName(), msg.getAppointe())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(GetPendingAppointments msg) {
+        Collection<String> appintees = owner_accese.get_Pending_Appointment(gustID, msg.getStorename());
+
+        if(appintees == null){
+            return new NackMessage(msg.getId());
+        }
+
+        List<String> appinteeslst = new LinkedList<>(appintees);
+
+        return new StringListResponse(msg.getId(), appinteeslst);
+    }
+
 }
