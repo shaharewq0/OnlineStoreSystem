@@ -7,6 +7,7 @@ import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.api.BaseServer;
 import Communication.websocket.api.MessagingProtocol;
 import Communication.websocket.App.messages.api.Message;
+import Domain.Policies.Discounts.*;
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
@@ -23,16 +24,15 @@ import Service_Layer.sys_manager_accese.sys_mangaer_accese;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 class SubInstructions {
 
      static final int usecase4_5_appointManager_code = 0x10;
      static final int usecase4_3_appointOwner_code = 0x11;
 }
-
 
 
 public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
@@ -54,7 +54,6 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     @Override
     public Message process(Message msg) {
-        System.out.println("handling :" + msg.toString());
         return ((Client2ServerMessage)msg).visit(this);
     }
 
@@ -71,6 +70,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         List<String> msgs = observable.getMessges();
 
         for (String msg: msgs) {
+            System.out.println("sending special message to :" + username);
             server.send(this, new StringResponse(msg));
         }
 
@@ -276,8 +276,8 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
         ProductDetails details = new ProductDetails(msg.getName(), msg.getCategoories(), msg.getKeywords(), msg.getStoreName(), msg.getAmmount(),msg.getPrice());
         Product prod = new Product(details);
-
-        if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), prod)){
+        //TODO natai add this need checking
+        if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), details)){
             return new AckMessage(msg.getId());
         }
 
@@ -398,4 +398,11 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         return new StringListResponse(msg.getId(), appinteeslst);
     }
 
+    public Message accept(createDiscount msg) {
+       if( owner_accese.usecase4_2_AddDiscount(username, paasword, msg.getStore(), msg.getDiscount())){
+           return new AckMessage(msg.getId());
+       }
+
+        return new NackMessage(msg.getId());
+    }
 }

@@ -10,7 +10,7 @@ public class StringResponse extends Server2ClientMessage {
     private final String msg;
 
     public StringResponse(String msg) {
-        super((byte)-33, -24);
+        super((byte)-33, 0);
         this.msg = msg;
     }
 

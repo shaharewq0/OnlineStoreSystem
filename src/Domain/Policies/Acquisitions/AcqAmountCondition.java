@@ -1,12 +1,17 @@
 package Domain.Policies.Acquisitions;
 
-import Domain.info.ProductDetails;
+import Domain.Logs.ErrorLogger;
+import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 abstract class AcqAmountCondition implements Acquisition {
     // productName can be 'ALL' to represent store condition
     protected String productName;
+    protected Product product;
     protected int amount;
 
     AcqAmountCondition(String productName, int amount) {
@@ -14,16 +19,20 @@ abstract class AcqAmountCondition implements Acquisition {
         this.amount = amount;
     }
 
-    ProductDetails findProduct(List<ProductDetails> products) {
-        for (ProductDetails p : products) {
-            if (p.getName().equals(productName))
-                return p;
-        }
-        return null;
+    int getTotalAmount(List<Product_boundle> products) {
+        return products.stream().map(Product_boundle::size).reduce(0, Integer::sum);
     }
 
-    int getTotalAmount(List<ProductDetails> products) {
-        return products.stream().map(ProductDetails::getAmount).reduce(0, Integer::sum);
+    @Override
+    public List<String> getProductsNames() {
+        return Collections.singletonList(productName);
+    }
+
+    @Override
+    public void replaceProducts(List<Product> products) {
+        if (products.size() != 1)
+            ErrorLogger.GetInstance().Add_Log("IN Acquisition : replace product error");
+        product = products.get(0);
     }
 
     @Override
@@ -31,4 +40,11 @@ abstract class AcqAmountCondition implements Acquisition {
         return "amount of '" + productName + "' is " + amount;
     }
 
+    static Product_boundle findproduct(List<Product_boundle> PB,Product p) {
+        for (Product_boundle pb : PB) {
+            if(pb.item.equals(p))
+                return pb;
+        }
+        return null;
+    }
 }

@@ -43,6 +43,9 @@ public class Opcodes {
     public static final byte ViewMemberQustions     = 0x49;
     public static final byte Response2Qustion       = 0x4f;
     public static final byte viewAquisitionHistory  = 0x4a;
+    public static final byte createDiscount         = 0x66;
+    public static final byte getDiscounts           = 0x67;
+    public static final byte deleteDiscount         = 0x68;
 
     //owner
     public static final byte AddProduct2Store           = 0x41;
@@ -67,6 +70,16 @@ public class Opcodes {
         public static final byte storeOwner     = 0x72;
         public static final byte storeManager   = 0x73;
         public static final byte regular        = 0x74;
+    }
+
+    // opcode for discouts Messages
+    public class Discount{
+        public static final byte and                = 0x10;
+        public static final byte or                 = 0x11;
+        public static final byte xor                = 0x12;
+        public static final byte visible            = 0x13;
+        public static final byte conditionalAmmount = 0x14;
+        public static final byte conditionalPrice   = 0x15;
     }
 
 

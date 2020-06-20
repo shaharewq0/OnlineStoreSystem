@@ -199,6 +199,8 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
             offerString(lst, cur.getName());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
+            offerInt(lst, cur.getAmount());
+            offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerDouble(lst, cur.getPrice());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerString(lst, cur.getStoreName());
@@ -347,7 +349,11 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
 
     public String accept(StringResponse msg) {
-        return string2jason(msg.getMsg());
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerString(lst, msg.getMsg());
+
+        return createJsonString(msg.getReplayForID(), lst);
     }
 
 

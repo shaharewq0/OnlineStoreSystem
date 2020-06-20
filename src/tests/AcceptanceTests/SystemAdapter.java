@@ -1,5 +1,6 @@
 package tests.AcceptanceTests;
 
+import Domain.Store.Product_boundle;
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
@@ -140,7 +141,8 @@ public class SystemAdapter {
 
 	// 4.1.1
 	public boolean addProduct(String username, String password, String storeName, ProductDetails product) {
-		return owner_accese.usecase4_1_1_AddingProdacsToStore(username, password, storeName, new Product(product));
+		return owner_accese.usecase4_1_1_AddingProdacsToStore(username, password, storeName,
+				new Product_boundle(new Product(product),product.getAmount()));
 	}
 
 	// 4.1.2

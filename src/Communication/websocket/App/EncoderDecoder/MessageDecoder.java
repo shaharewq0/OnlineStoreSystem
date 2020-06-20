@@ -5,12 +5,89 @@ import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.Macros.Opcodes;
+import Domain.Policies.Discounts.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+
+class DiscountFactory{
+
+    private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static String REGEX = "\1";
+
+    static Discount discountFactory(String discount) {
+        try {
+            return discountFactory(stringSplitToStack(discount, REGEX));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static Discount discountFactory(Stack<String> params) throws Exception {
+        int         type        = Integer.parseInt(params.pop());
+        String      productName = params.pop();
+        int         percentage  = Integer.parseInt(params.pop());
+        double      min         = Double.parseDouble(params.pop());
+        LocalDate date        = toDate(params.pop());
+
+        switch (type) {
+            case 0: //visible
+                return new VisibleDiscount(productName,percentage, date);
+
+            case 1: //conditional amount
+                return new ConditionalAmountDiscount(productName, percentage, date, (int) min);
+
+            case 2: //conditional price
+                return new ConditionalPriceDiscount(productName, percentage, date, min);
+
+            case 10: //composite and
+                return new AndDiscount(parseDiscountList(params));
+
+            case 11: //composite or
+                return new OrDiscount(parseDiscountList(params));
+
+            case 12: //composite xor
+                return new XorDiscount(parseDiscountList(params));
+
+            default:
+                throw new Exception();
+        }
+    }
+
+    private static LocalDate toDate(String date) {
+        return LocalDate.parse(date, format);
+    }
+
+    private static List<Discount> parseDiscountList(Stack<String> params) throws Exception {
+        List<Discount> discountList = new LinkedList<>();
+        int n = 1;//Integer.parseInt(params.pop());
+        for (int i = 0; i < n; i++) {
+            discountList.add(discountFactory(params));
+        }
+        return discountList;
+    }
+
+    protected static Stack<String> stringSplitToStack(String str, String regex) {
+        List<String> lst = Arrays.asList(str.split(regex));
+        Collections.reverse(lst);
+        Stack<String> stack = new Stack<>();
+        stack.addAll(lst);
+        return stack;
+    }
+
+}
+
+
+
+
+
+
 
 public class MessageDecoder implements Decoder.Text<Message>  {
 
@@ -117,6 +194,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.editMangagerPermesions     : return editMangagerPermesions(parameters);
             case Opcodes.AcceptPendingAppintment    : return AcceptPendingAppintment(parameters);
             case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
+            case Opcodes.createDiscount             : return createDiscount(parameters);
 
 
             // system manager
@@ -129,7 +207,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
-
 
 
     /**
@@ -298,9 +375,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         return ret;
     }
-
-
-    // ijij
 
     private void finalCheck(Iterable<?> parameters){
         if(parameters.iterator().hasNext()){
@@ -583,5 +657,14 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         finalCheck(parameters);
         return new GetPendingAppointments((byte)-1, store);
+    }
+
+    private Message createDiscount(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  discs   = popString(parameters);
+
+        finalCheck(parameters);
+        return new createDiscount((byte)-1, store, DiscountFactory.discountFactory(discs));
     }
 }

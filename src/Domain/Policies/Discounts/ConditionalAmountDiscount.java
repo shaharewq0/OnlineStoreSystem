@@ -2,13 +2,13 @@ package Domain.Policies.Discounts;
 
 import java.time.LocalDate;
 
-class ConditionalAmountDiscount extends ConditionalDiscount {
+public class ConditionalAmountDiscount extends ConditionalDiscount {
     private int minAmount;
 
-    ConditionalAmountDiscount(String productName, int percentage, LocalDate expirationDate, int minAmount) {
+    public ConditionalAmountDiscount(String productName, int percentage, LocalDate expirationDate, int minAmount) {
         super(productName, percentage, expirationDate);
         this.minAmount = minAmount;
-        this.condition = p -> p.getAmount() >= minAmount;
+        this.condition = (p, amount) -> amount >= minAmount;
     }
 
     @Override

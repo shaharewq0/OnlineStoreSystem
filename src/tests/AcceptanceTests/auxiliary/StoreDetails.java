@@ -25,6 +25,12 @@ public class StoreDetails {
         this.adress = "unkwon";
     }
 
+    public StoreDetails(String name, String address) {
+        this.name = name;
+        this.adress = address;
+        this.rating = 0;
+    }
+
     public StoreDetails(StoreImp storeDetails) {
         name = storeDetails.getName();
         rating = storeDetails.getRating();

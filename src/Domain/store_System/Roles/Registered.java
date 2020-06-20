@@ -1,18 +1,20 @@
 package Domain.store_System.Roles;
 
-import java.util.*;
-
 import Domain.Logs.ErrorLogger;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
+import Domain.Store.workers.StoreOwner_Imp;
+import Domain.Store.workers.Store_role;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
-import Domain.Store.workers.StoreOwner_Imp;
-import Domain.Store.workers.Store_role;
 import Domain.store_System.ClintObserver;
 import Domain.store_System.MSGObservable;
-import Domain.store_System.System;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class Registered implements MSGObservable {
     private String id;

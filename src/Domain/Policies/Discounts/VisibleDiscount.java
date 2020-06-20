@@ -1,55 +1,68 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Logs.ErrorLogger;
+import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
-class VisibleDiscount implements Discount {
+public class VisibleDiscount implements Discount {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     protected String productName;
+    protected Product product;
     LocalDate expirationDate;
     private int percentage;
 
-    VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
+    public VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
         this.productName = productName;
         this.percentage = percentage;
         this.expirationDate = expirationDate;
     }
 
-    /**
-     * returns the product 'productName' from 'products'
-     * returns null if doesn't exist
-     */
-    ProductDetails getDiscountProduct(List<ProductDetails> products) {
-        for (ProductDetails p : products) {
-            if (p.getName().equals(productName))
-                return p;
+    static Product_boundle findproduct(List<Product_boundle> PB,Product p) {
+        for (Product_boundle pb : PB) {
+            if(pb.item.equals(p))
+                return pb;
         }
         return null;
     }
 
     @Override
-    public boolean hasDiscount(List<ProductDetails> products) {
+    public boolean hasDiscount(List<Product_boundle> products) {
         if (LocalDate.now().isAfter(expirationDate))
             return false;
         if (productName.equals("ALL"))
             return true;
-        return getDiscountProduct(products) != null;
+        return findproduct(products,product) != null;//products.contains(product);
     }
 
     @Override
-    public double applyDiscount(List<ProductDetails> products) {
+    public double applyDiscount(List<Product_boundle>  products) {
         if (productName.equals("ALL")) {
             double price = 0;
-            for (ProductDetails p : products)
-                price += p.getAmount() * p.getPrice();
+            for (Product_boundle entry : products)
+                price += entry.size() * entry.item.getPrice();
             return price * percentage;
         }
-        ProductDetails p = getDiscountProduct(products);
-        return p == null ? 0 : p.getAmount() * p.getPrice() * percentage;
+
+        return findproduct(products,product) !=null ? 0 : findproduct(products,product).size() * product.getPrice() * percentage;
+    }
+
+    @Override
+    public List<String> getProductsNames() {
+        return Collections.singletonList(productName);
+    }
+
+    @Override
+    public void replaceProducts(List<Product> products) {
+        if (products.size() != 1)
+            ErrorLogger.GetInstance().Add_Log("IN Discount : replace product error");
+        product = products.get(0);
     }
 
     @Override

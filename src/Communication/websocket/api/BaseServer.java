@@ -31,7 +31,7 @@ public class BaseServer<T> implements Closeable {
     public BaseServer(Function<BaseServer<T>, MessagingProtocol<T>> protocolSupplier) {
         protocols = new ConcurrentHashMap<>();
         this.protocolSupplier = protocolSupplier;
-        this.logger = ServerLogger.GetInstance();
+        //this.logger = ServerLogger.GetInstance();
     }
 
 
@@ -45,14 +45,14 @@ public class BaseServer<T> implements Closeable {
     // ------------------------------------------------ server api ------------------------------------------------
 
     public void onOpen(Session session){
-        print(String.format("[" + LocalDateTime.now() + "]: " + "Opened session. id: %s\n", session.getId()));
+        print(String.format( timeString() + "Opened session. id: %s", session.getId()));
 
         protocols.put(session, protocolSupplier.apply(this));
     }
 
 
     public void onMessage(Session session, T msg){
-        print(String.format("[" + LocalDateTime.now() + "]: " + "message received. session id: %s.  Message : %s\n", session.getId(), msg.toString()));
+        print(String.format( timeString() + "message received. session id: %s.  Message : %s", session.getId(), msg.toString()));
 
         MessagingProtocol<T> protocol = Objects.requireNonNull(protocols.get(session));
         T response = protocol.process(msg);
@@ -60,7 +60,7 @@ public class BaseServer<T> implements Closeable {
         // sand back if there is a response
         if(response != null){
             send(session, response);
-            print(String.format("[" + LocalDateTime.now() + "]: " + "sending message. session id: %s.  Message : %s\n\n", session.getId(), response.toString()));
+            print(String.format( timeString() + "sending message. session id: %s.  Message : %s\n", session.getId(), response.toString()));
         }
     }
 
@@ -82,7 +82,7 @@ public class BaseServer<T> implements Closeable {
     public void send(MessagingProtocol<T> protocol, T msg){
         protocols.forEach(((session, messageMessagingProtocol) -> {
             if(messageMessagingProtocol == protocol){
-                print(String.format("sending special message : %s", msg));
+                print(String.format(timeString() + "sending special message : %s session : %s", msg, session.getId()));
                 send(session, msg);
             }
         }));
@@ -102,7 +102,7 @@ public class BaseServer<T> implements Closeable {
 
     private void print(String msg){
         System.out.println(msg);
-        logger.Add_Log(msg);
+       // logger.Add_Log(msg);
     }
 
     private void endSession(Session session){
@@ -116,5 +116,9 @@ public class BaseServer<T> implements Closeable {
 
     private MessagingProtocol<T> getProtocol(Session session){
         return protocols.get(session);
+    }
+
+    private String timeString(){
+        return  "[" + LocalDateTime.now() + "]: ";
     }
 }

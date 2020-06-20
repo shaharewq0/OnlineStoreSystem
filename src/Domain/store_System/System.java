@@ -44,8 +44,21 @@ public class System implements ISystem {
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
+            //instance.init("admin","password");
         }
         return instance;
+    }
+    public static System getInstance(String name,String password) {
+        if (instance == null) {
+            instance = new System();
+            instance.init(name,password);
+        }
+        return instance;
+    }
+
+    public static void init_manager(String name,String password) {
+        getInstance();
+        instance.init(name,password);
     }
 
     // ----------------------------------init
@@ -72,11 +85,11 @@ public class System implements ISystem {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
         init = true;
-        int guestId = ImNew();
-        User guest = getGuest(guestId);
+        //int guestId = ImNew();
+        //User guest = getGuest(guestId);
         User.register(username, password);
         manager = new System_Manager(username);
-        guest.login(username, password);
+        //guest.login(username, password);
 
         return true;
 
@@ -129,8 +142,7 @@ public class System implements ISystem {
             return null;
         }
 
-        //TODO add Observer
-        //Profile.LogLogin(user);
+
         onlinemember.put(id, new Member(user));
         EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
         if (onlinemember.size() > 1 && !CheckTegrati_oneManager()) {
@@ -202,11 +214,11 @@ public class System implements ISystem {
     }
 
 
-    public boolean fillStore(List<MyPair<Product,String>> Products) {
+    public boolean fillStore(List<MyPair<Product_boundle,String>> Products) {
         boolean output = true;
         EventLogger.GetInstance().Add_Log(this.toString() + "- returning product to store");
-        for (MyPair<Product,String> MP : Products) {
-            output = output & getStoreDetails(MP.getValue()).addProduct(MP.getKey());
+        for (MyPair<Product_boundle,String> MP : Products) {
+            output = output & getStoreDetails(MP.getValue()).addProduct_bundle(MP.getKey());
         }
         return output;
     }
@@ -365,8 +377,6 @@ public class System implements ISystem {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
-        //return manager != null && getUserProfile(manager.name) != null;
-        return true;
-
+        return manager != null && getUserProfile(manager.name) != null;
     }
 }
