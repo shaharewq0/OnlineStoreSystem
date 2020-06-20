@@ -347,7 +347,11 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
 
     public String accept(StringResponse msg) {
-        return string2jason(msg.getMsg());
+        LinkedList<Byte> lst = new LinkedList<>();
+
+        offerString(lst, msg.getMsg());
+
+        return createJsonString(msg.getReplayForID(), lst);
     }
 
 

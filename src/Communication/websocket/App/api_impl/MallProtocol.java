@@ -71,6 +71,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         List<String> msgs = observable.getMessges();
 
         for (String msg: msgs) {
+            System.out.println("sending special message to :" + username);
             server.send(this, new StringResponse(msg));
         }
 
