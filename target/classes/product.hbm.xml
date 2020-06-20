@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Store.Product" table = "PRODUCT_TABLE">
+
+        <meta attribute = "class-description">
+            This class contains describe a product of some store.
+        </meta>
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <property name = "name" column = "name" type = "string"/>
+
+        <list name="category" table="CATEGORY_TABLE" lazy="false">
+            <key column="Pid"></key>
+            <index column="id"></index>
+            <element column="category" type="string"></element>
+        </list>
+
+        <list name="keyWords" table="KEYWORDS_TABLE" lazy="false">
+            <key column="Pid"></key>
+            <index column="id"></index>
+            <element column="keyword" type="string"></element>
+        </list>
+
+        <property name = "price" column = "price" type = "double"/>
+
+        <property name="rating"  column="rating" type = "int"/>
+        
+        <many-to-one name="Amount" column="amount_id" unique="true" class="Domain.Store.Product_bundle" not-null="true" lazy="false"/>
+
+
+    </class>
+
+    <class name="Domain.Store.Product_bundle" table="PRODUCT_BUNDLE_TABLE">
+        <id name="id" type="int" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="label" column="label" type="string"/>
+
+        <property name="amount" column="amount_" type="int"/>
+    </class>
+
+</hibernate-mapping>
