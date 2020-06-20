@@ -3,6 +3,7 @@ package Domain.Store.workers;
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_Owner;
@@ -52,9 +53,9 @@ public class StoreOwner_Imp implements Store_role {
 
     // ---------------------------------------------store action
     @Override
-    public boolean addItem(Product item) {
+    public boolean addItem(Product_boundle item) {
         EventLogger.GetInstance().Add_Log(this.toString() + "Owner add item");
-        return myJob.store.addProduct(item);
+        return myJob.store.addProduct_bundle(item);
 
     }
 

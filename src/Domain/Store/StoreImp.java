@@ -30,7 +30,7 @@ public class StoreImp implements IStore {
     private Store_Purchase_History purchaseHistory = new Store_Purchase_History();
     private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
-    public StoreImp(String name, Collection<Product> products, String address, int rating) {
+    public StoreImp(String name, Collection<Product_boundle> products, String address, int rating) {
 
         this.name = name;
         inventory.recive_item(new Packet_Of_Prodacts(products));
@@ -71,7 +71,11 @@ public class StoreImp implements IStore {
     }
 
     public Collection<Product> getProducts() {
-        return inventory.items.values();
+        List<Product> output = new LinkedList();
+        for (Product_boundle PB: inventory.items.values()) {
+            output.add(PB.item);
+        }
+        return output;
     }
 
     public List<ProductDetails> getProductsDetails() {
@@ -188,16 +192,18 @@ public class StoreImp implements IStore {
         return inventory.removeProduct(pName);
     }
 
-    public boolean addProduct(Product p) {
+    public boolean addProduct(Product p,int amount) {
 
-//		if (!p.getStore().getName().equals(name)) {
-//			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
-//
-//			return false;
-//		}
         EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
 
-        return inventory.recive_item(new Packet_Of_Prodacts(p));
+        return inventory.recive_item(new Packet_Of_Prodacts(new Product_boundle(p,amount)));
+    }
+
+    public boolean addProduct_bundle(Product_boundle PB){
+
+        EventLogger.GetInstance().Add_Log(this.toString() + "-add product Bundle");
+
+        return inventory.recive_item(new Packet_Of_Prodacts(PB));
     }
 
     public boolean addProduct(ProductDetails p) {
@@ -209,6 +215,11 @@ public class StoreImp implements IStore {
     public Product findProductByName(String name) {
         //TODO this needs to return ProdcutDetails
         return inventory.getItem(name);
+
+    }
+    public Product_boundle findProduct_bundleByName(String name) {
+        //TODO this needs to return ProdcutDetails
+        return inventory.getBundleItem(name);
 
     }
 
@@ -224,7 +235,7 @@ public class StoreImp implements IStore {
 
     public List<ProductDetails> findProductDetailsByCategory(String category) {
         //TODO change this
-        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category), name);
+        return ProductDetails.adapteProdactList(inventory.findProduct_BundleByCategory(category), name);
 
     }
 
@@ -234,14 +245,14 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
-        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword), name);
+        return ProductDetails.adapteProdactList(inventory.findProduct_BundleByKeyword(keyword), name);
 
     }
 
     public Boolean CheckItemAvailable(ProductDetails item) {
         if (findProductByName(item.getName()) == null)
             return false;
-        if (findProductByName(item.getName()).getAmount() > item.getAmount())
+        if (inventory.items.get(item.getName()).size() > item.getAmount())
             return true;
 
         return false;
@@ -263,25 +274,25 @@ public class StoreImp implements IStore {
     }
 
     @Override
-    synchronized public MyPair<Product, String> TakeItem(String name, int amount) {
-        MyPair<Product, String> takeout = null;
-        Product temp = findProductByName(name);
+    synchronized public MyPair<Product_boundle, String> TakeItem(String name, int amount) {
+        MyPair<Product_boundle, String> takeout = null;
+        Product_boundle temp = inventory.items.get(name);
         if (temp == null) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
             return null;
         }
-        if (temp.getAmount() > amount) {
+        if (temp.size() > amount) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products full amount");
-            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount),
-                    this.name);
-            temp.removeAmount(amount);
+            takeout = new MyPair<>(new Product_boundle( new Product(name, temp.item.getCategory(), temp.item.getKeyWords(), temp.item.getPrice(),temp.item.getRating()), amount
+                    ),this.name);
+            temp.remove(amount);
         } else {
             //TODO maybe cancell buy
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products not full amount");
-            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount()),
+            takeout = new MyPair<>(new Product_boundle(new Product(name, temp.item.getCategory(), temp.item.getKeyWords(), temp.item.getPrice(),temp.item.getRating()), temp.size()),
                     this.name);
 
-            temp.removeAmount(temp.getAmount());
+            temp.remove(temp.size());
         }
         return takeout;
     }

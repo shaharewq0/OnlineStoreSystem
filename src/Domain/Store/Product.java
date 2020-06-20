@@ -13,7 +13,7 @@ public class Product extends Object implements IProduct {
     private double price;
     private int rating;
     //will change to be single
-    private Product_boundle Amount = new Product_boundle();
+    //private Product_boundle Amount = new Product_boundle();
     // private String storename;
     //private int amount;
 
@@ -35,7 +35,7 @@ public class Product extends Object implements IProduct {
         keyWords = new LinkedList<>(p.getKeyWords());
         price = p.getPrice();
         rating = p.getRating();
-        Amount.add(p.getAmount());
+       // Amount.add(p.getAmount());
     }
 
 
@@ -72,27 +72,24 @@ public class Product extends Object implements IProduct {
         this.rating = p.rating;
     }
 
-    public void addToAmount(int add) {
 
-        Amount.add(add);
-    }
 
-    public int getAmount() {
-        return Amount.size();
-        //return amount;
-    }
+//    public int getAmount() {
+//        return Amount.size();
+//        //return amount;
+//    }
 
-    public int removeAmount(int amount) {
-        if (Amount.size() < amount) {
-            int temp = Amount.size();
-            Amount.remove(temp);
-            return temp;
-        } else {
-            Amount.remove(amount);
-            // this.amount = this.amount - amount;
-            return amount;
-        }
-    }
+//    public int removeAmount(int amount) {
+//        if (Amount.size() < amount) {
+//            int temp = Amount.size();
+//            Amount.remove(temp);
+//            return temp;
+//        } else {
+//            Amount.remove(amount);
+//            // this.amount = this.amount - amount;
+//            return amount;
+//        }
+//    }
 
     @Override
     public String toString() {
@@ -100,7 +97,6 @@ public class Product extends Object implements IProduct {
         output += "name:" + name + "\n";
         output += "category:" + category + "\n";
         output += "rating:" + rating + "\n";
-        output += "amount:" + Amount.size() + "\n";
         output += "price:" + price + "\n";
 
         //output += "stroe:" + storename + "\n";

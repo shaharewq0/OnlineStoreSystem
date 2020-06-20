@@ -2,6 +2,7 @@ package Domain.info;
 
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.*;
 
@@ -95,10 +96,10 @@ public class ProductDetails {
         return rating;
     }
 
-    static public List<ProductDetails> adapteProdactList(Collection<Product> list,String storeName) {
+    static public List<ProductDetails> adapteProdactList(Collection<Product_boundle> list, String storeName) {
         LinkedList<ProductDetails> output = new LinkedList<ProductDetails>();
-        for (Product product : list) {
-            output.add(new ProductDetails(product, product.getAmount(),storeName));
+        for (Product_boundle product : list) {
+            output.add(new ProductDetails(product.item, product.size(),storeName));
         }
         return output;
     }

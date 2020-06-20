@@ -3,6 +3,7 @@ package Domain.Store.workers;
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_manager;
@@ -58,11 +59,11 @@ public class StoreManager_Imp implements Store_role {
 
     // ---------------------------------------------store action
     @Override
-    public boolean addItem(Product item) {
+    public boolean addItem(Product_boundle item) {
         if (!permission.contains("addItem"))
             return false;
 
-        return MyJob.store.addProduct(item);
+        return MyJob.store.addProduct_bundle(item);
 
     }
 

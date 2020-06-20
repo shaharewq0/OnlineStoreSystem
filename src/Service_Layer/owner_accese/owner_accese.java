@@ -1,8 +1,10 @@
 package Service_Layer.owner_accese;
 
+import Domain.Store.Product_boundle;
 import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
+import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.System;
 
@@ -21,11 +23,19 @@ public class owner_accese {
 
 
     public static boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
-                                                            Product p) {
+                                                            Product_boundle p) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;
         return me.addProduct(storeName, p);
+    }
+    public static boolean usecase4_1_1_AddingProdacsToStore(String myusername, String myPassword, String storeName,
+                                                            ProductDetails p) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        Product_boundle PB = new Product_boundle(new Product(p),p.getAmount());
+        if (me == null)
+            return false;
+        return me.addProduct(storeName, PB);
     }
 
     public static boolean usecase4_1_2_RemoveItem(String myusername, String myPassword, String storeName, String prodactname) {

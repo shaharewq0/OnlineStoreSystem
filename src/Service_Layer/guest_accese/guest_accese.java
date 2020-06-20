@@ -1,6 +1,7 @@
 package Service_Layer.guest_accese;
 
 import Domain.Store.MyPair;
+import Domain.Store.Product_boundle;
 import Domain.UserClasses.User;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
@@ -130,7 +131,7 @@ public class guest_accese {
 			return false;
 
 
-		List<MyPair<Product,String>> items = usecase2_8_5_Update_inventory(guestID);
+		List<MyPair<Product_boundle,String>> items = usecase2_8_5_Update_inventory(guestID);
 		double price = usecase2_8_2_Calculate_price(guestID);
 		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
 		if (!didPay) {
@@ -168,7 +169,7 @@ public class guest_accese {
 		return user.getCart().CalcPrice();
 	}
 
-	public static boolean usecase2_8_3_ReturnProdoctsToStore(List<MyPair<Product,String>> products) {
+	public static boolean usecase2_8_3_ReturnProdoctsToStore(List<MyPair<Product_boundle,String>> products) {
 		return System.getInstance().fillStore(products);
 	}
 
@@ -177,7 +178,7 @@ public class guest_accese {
 		//return false;
 	}
 
-	public static List<MyPair<Product,String>> usecase2_8_5_Update_inventory(int guestID) {
+	public static List<MyPair<Product_boundle,String>> usecase2_8_5_Update_inventory(int guestID) {
 		User user = System.getInstance().getGuest(guestID);
 		if(user == null)
 			return null;

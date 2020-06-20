@@ -3,6 +3,7 @@ package Domain.UserClasses;
 import Domain.Logs.EventLogger;
 import Domain.Notifier.Notifier;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.Creator;
@@ -165,7 +166,7 @@ public class User implements IUser {
     }
     // --------------------------------------------------------------- store actions
 
-    public boolean addProduct(String storeName, Product p) {
+    public boolean addProduct(String storeName, Product_boundle p) {
 //TODO add fail
         if (profile == null)
             return false;
@@ -369,9 +370,9 @@ public class User implements IUser {
 
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
 
@@ -381,9 +382,9 @@ public class User implements IUser {
     static public List<ProductDetails> filterByRating(int minRating, int maxRating) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getRating() <= maxRating && product.getRating() >= minRating)
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
         return output;
@@ -393,9 +394,9 @@ public class User implements IUser {
     static public List<ProductDetails> filterByCategory(String category) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getCategory().contains(category))
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
         return output;
@@ -406,8 +407,8 @@ public class User implements IUser {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
             if (store.getRating() > minRating && store.getRating() < maxRating)
-                for (Product product : store.getProducts()) {
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                for (ProductDetails product : store.getProductsDetails()) {
+                    output.add(product);
                 }
         }
         return output;
