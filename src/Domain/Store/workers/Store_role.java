@@ -1,8 +1,7 @@
 package Domain.Store.workers;
 
-import java.util.Collection;
-import java.util.List;
-
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
 import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
@@ -10,6 +9,9 @@ import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.Roles.Registered;
+
+import java.util.Collection;
+import java.util.List;
 
 public interface Store_role {
 
@@ -51,13 +53,13 @@ public interface Store_role {
 
     boolean getNewPermesions(List<String> Permesions);
 
-    boolean addDiscount(String discount);
+    boolean addDiscount(Discount discount);
 
     boolean removeDiscount(int discountID);
 
     String getName();
 
-    boolean addacquisition(String acquisition);
+    boolean addacquisition(Acquisition acquisition);
 
     boolean removeacquisition(int acquisitionID);
 }

@@ -1,15 +1,19 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Logs.ErrorLogger;
+import Domain.Store.Product;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 class VisibleDiscount implements Discount {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     protected String productName;
+    protected Product product;
     LocalDate expirationDate;
     private int percentage;
 
@@ -19,37 +23,36 @@ class VisibleDiscount implements Discount {
         this.expirationDate = expirationDate;
     }
 
-    /**
-     * returns the product 'productName' from 'products'
-     * returns null if doesn't exist
-     */
-    ProductDetails getDiscountProduct(List<ProductDetails> products) {
-        for (ProductDetails p : products) {
-            if (p.getName().equals(productName))
-                return p;
-        }
-        return null;
-    }
-
     @Override
-    public boolean hasDiscount(List<ProductDetails> products) {
+    public boolean hasDiscount(Map<Product, Integer> products) {
         if (LocalDate.now().isAfter(expirationDate))
             return false;
         if (productName.equals("ALL"))
             return true;
-        return getDiscountProduct(products) != null;
+        return products.containsKey(product);
     }
 
     @Override
-    public double applyDiscount(List<ProductDetails> products) {
+    public double applyDiscount(Map<Product, Integer> products) {
         if (productName.equals("ALL")) {
             double price = 0;
-            for (ProductDetails p : products)
-                price += p.getAmount() * p.getPrice();
+            for (Map.Entry<Product, Integer> entry : products.entrySet())
+                price += entry.getValue() * entry.getKey().getPrice();
             return price * percentage;
         }
-        ProductDetails p = getDiscountProduct(products);
-        return p == null ? 0 : p.getAmount() * p.getPrice() * percentage;
+        return products.containsKey(product) ? 0 : products.get(product) * product.getPrice() * percentage;
+    }
+
+    @Override
+    public List<String> getProductsNames() {
+        return Collections.singletonList(productName);
+    }
+
+    @Override
+    public void replaceProducts(List<Product> products) {
+        if (products.size() != 1)
+            ErrorLogger.GetInstance().Add_Log("IN Discount : replace product error");
+        product = products.get(0);
     }
 
     @Override

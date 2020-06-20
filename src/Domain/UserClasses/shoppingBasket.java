@@ -1,9 +1,12 @@
 package Domain.UserClasses;
 
-import java.util.*;
-
-import Domain.Store.*;
+import Domain.Store.MyPair;
+import Domain.Store.Product;
+import Domain.Store.StoreImp;
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
+
+import java.util.*;
 
 public class shoppingBasket implements IshoppingBasket {
 
@@ -73,8 +76,7 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public double CalcPrice() {
-        List<ProductDetails> products = getProducts();
-        return store.getPrice(products);
+        return store.getPrice(Item_holder);
     }
 
     public List<MyPair<Product_boundle, String>> getItems() {
@@ -104,9 +106,7 @@ public class shoppingBasket implements IshoppingBasket {
     }
 
     public boolean CheckAcquisitions() {
-        if (!store.CheckAcquisitions(getProducts()))
-            return false;
-        return true;
+        return store.CheckAcquisitions(Item_holder);
 
     }
 

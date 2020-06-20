@@ -2,9 +2,12 @@ package Service_Layer.owner_accese;
 
 import Domain.Store.Product_boundle;
 import Domain.UserClasses.User;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
+import Domain.UserClasses.User;
 import Domain.info.Question;
 import Domain.store_System.System;
 
@@ -38,6 +41,13 @@ public class owner_accese {
         return me.addProduct(storeName, PB);
     }
 
+    public static boolean usecase4_1_1_AddingProdacsToStore(int guestId, String storeName, Product p) {
+        User me = System.getInstance().getMember(guestId);
+        if (me == null)
+            return false;
+        return me.addProduct(storeName, p);
+    }
+
     public static boolean usecase4_1_2_RemoveItem(String myusername, String myPassword, String storeName, String prodactname) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
@@ -53,7 +63,7 @@ public class owner_accese {
         return me.editProduct(storeName, prodactname, newdetail);
     }
 
-    public static boolean usecase4_2_AddDiscount(String myusername, String myPassword, String storeName, String discount) {
+    public static boolean usecase4_2_AddDiscount(String myusername, String myPassword, String storeName, Discount discount) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;
@@ -67,7 +77,7 @@ public class owner_accese {
         return me.removeDiscount(discountID, storeName);
     }
 
-    public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, String acquisition) {
+    public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;

@@ -1,18 +1,19 @@
 package Domain.Policies.Discounts;
 
-import Domain.Logs.ErrorLogger;
 import Domain.Policies.BasePolicy;
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 /*
+    //      TODO: Discounts: refactor out
     this class get string in the following format that represent Discount
     and parse it in order to create discounts objects.
     Note: the formats are without spaces
@@ -48,6 +49,7 @@ public class DiscountPolicy extends BasePolicy {
         this.discounts = new LinkedList<>();
     }
 
+    //      TODO: Discounts: refactor out
     private Discount discountFactory(Stack<String> params) throws Exception {
         int type = Integer.parseInt(params.pop());
         switch (type) {
@@ -76,6 +78,7 @@ public class DiscountPolicy extends BasePolicy {
         }
     }
 
+    //      TODO: Discounts: refactor out
     private List<Discount> parseDiscountList(Stack<String> params) throws Exception {
         List<Discount> discountList = new LinkedList<>();
         int n = Integer.parseInt(params.pop());
@@ -85,30 +88,35 @@ public class DiscountPolicy extends BasePolicy {
         return discountList;
     }
 
+    //      TODO: Discounts:  refactor out
     private LocalDate toDate(String date) {
         return LocalDate.parse(date, format);
     }
 
-    public boolean addDiscount(String discount) {
-        Discount d;
-        try {
-            d = discountFactory(stringSplitToStack(discount, REGEX));
-        } catch (Exception e) {
-            ErrorLogger.GetInstance().Add_Log("IN Discount" + " got wrong discount format");
-            return false;
-        }
-        discounts.add(d);
+    public boolean addDiscount(Discount discount) {
+//      TODO: Discounts:  refactor out
+//        Discount d;
+//        try {
+//            d = discountFactory(stringSplitToStack(discount, REGEX));
+//        } catch (Exception e) {
+//            ErrorLogger.GetInstance().Add_Log("IN Discount" + " got wrong discount format");
+//            return false;
+//        }
+        discounts.add(discount);
         return true;
     }
 
-    public boolean hasDiscounts(List<ProductDetails> products) {
+    public boolean hasDiscounts(Map<Product, Integer> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(false, Boolean::logicalOr);
     }
 
-    public double applyDiscounts(List<ProductDetails> products) {
-        double totalPrice = products.stream().map(ProductDetails::getTotalPrice).reduce(0.0, Double::sum);
+    public double applyDiscounts(Map<Product, Integer> products) {
+        double totalPrice =
+                products.entrySet().stream()
+                        .map((entry) -> entry.getKey().getPrice() * entry.getValue())   //price * amount
+                        .reduce(0.0, Double::sum);
         return totalPrice -
                 discounts.stream()
                         .filter(d -> d.hasDiscount(products))

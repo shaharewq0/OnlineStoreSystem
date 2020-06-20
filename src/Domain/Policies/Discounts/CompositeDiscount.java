@@ -1,8 +1,12 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Logs.ErrorLogger;
+import Domain.Store.Product;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BinaryOperator;
 
 abstract class CompositeDiscount implements Discount {
@@ -20,18 +24,48 @@ abstract class CompositeDiscount implements Discount {
     }
 
     @Override
-    public boolean hasDiscount(List<ProductDetails> products) {
+    public boolean hasDiscount(Map<Product, Integer> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(hasDiscountIdentity, hasDiscountOperator);
     }
 
     @Override
-    public double applyDiscount(List<ProductDetails> products) {
+    public double applyDiscount(Map<Product, Integer> products) {
         return discounts.stream()
                 .filter(d -> d.hasDiscount(products))
                 .map(d -> d.applyDiscount(products))
                 .reduce(0.0, applyDiscountOperator);
+    }
+
+    @Override
+    public List<String> getProductsNames() {
+        List<String> productNames = new LinkedList<>();
+        for (Discount d : getSubDiscounts()) {
+            productNames.addAll(d.getProductsNames());
+        }
+        return productNames;
+    }
+
+    @Override
+    public void replaceProducts(List<Product> products) {
+        List<Discount> sub_dis = getSubDiscounts();
+        if (products.size() != sub_dis.size())
+            ErrorLogger.GetInstance().Add_Log("IN Discount : replace product error");
+        for (int i = 0; i < products.size(); i++) {
+            sub_dis.get(i).replaceProducts(Collections.singletonList(products.get(i)));
+        }
+    }
+
+    private List<Discount> getSubDiscounts() {
+        List<Discount> sub_dis = new LinkedList<>();
+        for (Discount d : discounts) {
+            if (d instanceof CompositeDiscount)
+                sub_dis.addAll(((CompositeDiscount) d).getSubDiscounts());
+            else
+                sub_dis.add(d);
+        }
+        return sub_dis;
     }
 
     @Override

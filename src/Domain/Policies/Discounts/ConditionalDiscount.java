@@ -1,25 +1,24 @@
 package Domain.Policies.Discounts;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.function.Function;
+import java.util.Map;
+import java.util.function.BiFunction;
 
 abstract class ConditionalDiscount extends VisibleDiscount {
-    Function<ProductDetails, Boolean> condition;
+    BiFunction<Product, Integer, Boolean> condition;
 
     ConditionalDiscount(String productName, int percentage, LocalDate expirationDate) {
         super(productName, percentage, expirationDate);
     }
 
     @Override
-    public boolean hasDiscount(List<ProductDetails> products) {
+    public boolean hasDiscount(Map<Product, Integer> products) {
         if (LocalDate.now().isAfter(expirationDate))
             return false;
         if (productName.equals("ALL"))
             return true;
-        ProductDetails p = getDiscountProduct(products);
-        return p != null && condition.apply(p);
+        return products.containsKey(product) && condition.apply(product, products.get(product));
     }
 }
