@@ -11,6 +11,9 @@ public class UserPurchase {
 	public List<StorePurchase> eachPurchase = new LinkedList<StorePurchase>();
 	public double TotalePrice = 0;
 
+
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

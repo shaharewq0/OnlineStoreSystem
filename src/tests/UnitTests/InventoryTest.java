@@ -1,6 +1,7 @@
 package tests.UnitTests;
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.Store_Inventory;
 import extornal.supply.Packet_Of_Prodacts;
 import org.junit.Before;
@@ -15,8 +16,8 @@ import static org.junit.Assert.assertTrue;
 public class InventoryTest {
 
     Store_Inventory myInventory;
-    Product P1;
-    Product P2;
+    Product_boundle P1;
+    Product_boundle P2;
 
     @Before
     public void setup() {
@@ -27,8 +28,8 @@ public class InventoryTest {
         List<String> Category = new LinkedList<>();
         Category.add("Cats");
         Category.add("dogs");
-        P1 = new Product("item 1", Category,new LinkedList<>(), 34.3, 4);
-        P2 = new Product("item 2", new LinkedList<>(),Keywords, 12.4, 2);
+        P1 = new Product_boundle( new Product("item 1", Category,new LinkedList<>(), 34.3, 4),4);
+        P2 = new Product_boundle(new Product("item 2", new LinkedList<>(),Keywords, 12.4, 2),3);
         //Product p = new Product( "item 1", new LinkedList<>(), new LinkedList<>(),  12,  5,  store);
 
     }
@@ -39,7 +40,7 @@ public class InventoryTest {
         myInventory.recive_item(new Packet_Of_Prodacts(P1));
 
         assertEquals(1,myInventory.items.size());
-        assertEquals(P1,myInventory.getItem(P1.getName()));
+        assertEquals(P1,myInventory.getItem(P1.item.getName()));
 
     }
 
@@ -50,8 +51,8 @@ public class InventoryTest {
         myInventory.recive_item(new Packet_Of_Prodacts(P2));
 
         assertEquals(2,myInventory.items.size());
-        assertEquals(P1,myInventory.getItem(P1.getName()));
-        assertEquals(P2,myInventory.getItem(P2.getName()));
+        assertEquals(P1,myInventory.getItem(P1.item.getName()));
+        assertEquals(P2,myInventory.getItem(P2.item.getName()));
 
     }
     @Test
@@ -59,10 +60,10 @@ public class InventoryTest {
         // setup();
         myInventory.recive_item(new Packet_Of_Prodacts(P1));
         myInventory.recive_item(new Packet_Of_Prodacts(P2));
-        myInventory.removeProduct(P1.getName());
+        myInventory.removeProduct(P1.item.getName());
 
         assertEquals(1,myInventory.items.size());
-        assertEquals(P2,myInventory.getItem(P2.getName()));
+        assertEquals(P2,myInventory.getItem(P2.item.getName()));
     }
 
     @Test

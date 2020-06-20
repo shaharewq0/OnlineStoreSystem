@@ -3,6 +3,7 @@ package Domain.UserClasses;
 
 import Domain.Store.MyPair;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.info.ProductDetails;
 import Domain.store_System.System;
@@ -58,9 +59,8 @@ public class shoppingCart implements IshoppingCart {
         return cost;
     }
 
-    @Override
-    public List<MyPair<Product,String>> getItems() {
-        List<MyPair<Product,String>> takeout = new LinkedList<MyPair<Product,String>>();
+    public List<MyPair<Product_boundle,String>> getItems() {
+        List<MyPair<Product_boundle,String>> takeout = new LinkedList<MyPair<Product_boundle,String>>();
         for (shoppingBasket basket : baskets.values()) {
             takeout.addAll( basket.getItems());
         }
@@ -77,10 +77,12 @@ public class shoppingCart implements IshoppingCart {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_CartPerStore() {
-//        for (shoppingBasket b : baskets.values()) {
-//            if (baskets.keySet().contains(b.getStore().getName()) && b.equals(baskets.get(b.getStore().getName())))
-//                return false;
-//        }
+        List<String> shops = new LinkedList<>();
+        for (shoppingBasket b : baskets.values()) {
+            if(shops.contains(b.getStore().getName()))
+                return false;
+            shops.add(b.getStore().getName());
+        }
         return true;
     }
 

@@ -18,6 +18,10 @@ import static tests.AcceptanceTests.auxiliary.Products.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WatchAndEditShoppingCartTest extends BaseGuestTest {
 
+    public static ProductDetails TEMPPRODUCT1 = new ProductDetails("product 1", Arrays.asList("cat1"), "store", 1, 10.0, 3);
+    public static ProductDetails TEMPPRODUCT2 = new ProductDetails("product 2", Arrays.asList("cat2"), "store", 5,20.0,  4);
+
+
     @BeforeClass
     public static void setUpClass() {
         BaseGuestTest.setUpClass();
@@ -27,31 +31,33 @@ public class WatchAndEditShoppingCartTest extends BaseGuestTest {
 
     @Test
     public void A_watchShoppingCart() {
-        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2);  //amounts: 1, 5
+        List<ProductDetails> TrueProducts = Arrays.asList(TEMPPRODUCT1, TEMPPRODUCT2);  //amounts: 1, 5
         List<ProductDetails> products = system.watchShoppingCart(guestID);
         assertEqualsLists(TrueProducts, products);
     }
 
     @Test
     public void B_removeFromShoppingCartSomeAmount() {
+        TEMPPRODUCT2.setAmount(3);
         assertTrue(system.removeProductsFromCart(guestID, STORE.getName(), PRODUCT2.getName(), 2));
     }
 
     @Test
     public void C_watchShoppingCartAfterEdit1() {
-        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT1, PRODUCT2);    //amounts: 1, 3
+        List<ProductDetails> TrueProducts = Arrays.asList(TEMPPRODUCT1, TEMPPRODUCT2);    //amounts: 1, 3
         List<ProductDetails> products = system.watchShoppingCart(guestID);
         assertEqualsLists(TrueProducts, products);
     }
 
     @Test
     public void D_removeFromShoppingCartAllAmount() {
+        TEMPPRODUCT1.setAmount(0);
         assertTrue(system.removeProductsFromCart(guestID, STORE.getName(), PRODUCT1.getName(), 1));
     }
 
     @Test
     public void E_watchShoppingCartAfterEdit2() {
-        List<ProductDetails> TrueProducts = Arrays.asList(PRODUCT2);    //amount: 3
+        List<ProductDetails> TrueProducts = Arrays.asList(TEMPPRODUCT2);    //amount: 3
         List<ProductDetails> products = system.watchShoppingCart(guestID);
         assertEqualsLists(TrueProducts, products);
     }

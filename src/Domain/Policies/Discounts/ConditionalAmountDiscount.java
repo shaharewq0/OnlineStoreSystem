@@ -8,7 +8,7 @@ class ConditionalAmountDiscount extends ConditionalDiscount {
     ConditionalAmountDiscount(String productName, int percentage, LocalDate expirationDate, int minAmount) {
         super(productName, percentage, expirationDate);
         this.minAmount = minAmount;
-        this.condition = p -> p.getAmount() >= minAmount;
+        this.condition = (p, amount) -> amount >= minAmount;
     }
 
     @Override
