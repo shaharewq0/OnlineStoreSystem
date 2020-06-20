@@ -14,7 +14,7 @@ public class Product extends Object implements IProduct {
     private double price;
     private int rating;
     //will change to be single
-    private Product_boundle Amount = new Product_boundle();
+    private Product_bundle Amount;
     // private String storename;
     //private int amount;
 
@@ -25,6 +25,7 @@ public class Product extends Object implements IProduct {
         this.keyWords = keyWords;
         this.price = price;
         this.rating = rating;
+        this.Amount=new Product_bundle();
         //this.storename = storename;
         //this.store=store;
         //amount=0;
@@ -36,6 +37,7 @@ public class Product extends Object implements IProduct {
         keyWords = new LinkedList<>(p.getKeyWords());
         price = p.getPrice();
         rating = p.getRating();
+        this.Amount=new Product_bundle();
         Amount.add(p.getAmount());
     }
 
@@ -67,7 +69,7 @@ public class Product extends Object implements IProduct {
         this.name = name;
     }
 
-    public void setAmount(Product_boundle amount) {
+    public void setAmount(Product_bundle amount) {
         Amount = amount;
     }
 
