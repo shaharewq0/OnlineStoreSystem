@@ -2,7 +2,10 @@ package Domain.Store.workers;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_manager;
@@ -58,11 +61,11 @@ public class StoreManager_Imp implements Store_role {
 
     // ---------------------------------------------store action
     @Override
-    public boolean addItem(Product item) {
+    public boolean addItem(Product_boundle item) {
         if (!permission.contains("addItem"))
             return false;
 
-        return MyJob.store.addProduct(item);
+        return MyJob.store.addProduct_bundle(item);
 
     }
 
@@ -125,6 +128,8 @@ public class StoreManager_Imp implements Store_role {
 //		return false;
 //	}
 
+
+    //TODO delte option
     @Override
     public boolean appointOwner(Registered user) {
         StoreOwner_Imp newRole = new StoreOwner_Imp(this, user);
@@ -237,7 +242,7 @@ public class StoreManager_Imp implements Store_role {
 
     //------------------------------------------------------------
     @Override
-    public boolean addDiscount(String discount) {
+    public boolean addDiscount(Discount discount) {
         if (!permission.contains("addDiscount"))
             return false;
         return getStore().addDiscount(discount);
@@ -252,7 +257,7 @@ public class StoreManager_Imp implements Store_role {
 
 
     @Override
-    public boolean addacquisition(String acquisition) {
+    public boolean addacquisition(Acquisition acquisition) {
         if (!permission.contains("addacquisition"))
             return false;
         return getStore().addacquisition(acquisition);

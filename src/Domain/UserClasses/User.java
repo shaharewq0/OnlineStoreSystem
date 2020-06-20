@@ -2,7 +2,10 @@ package Domain.UserClasses;
 
 import Domain.Logs.EventLogger;
 import Domain.Notifier.Notifier;
+import Domain.Policies.Acquisitions.Acquisition;
+import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.Creator;
@@ -10,6 +13,7 @@ import Domain.Store.workers.Store_role;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
+import Domain.store_System.ClintObserver;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
@@ -42,7 +46,7 @@ public class User implements IUser {
     }
 
     // ------------------------------ user
-    public boolean login(String id, String password) {
+    public boolean login(String id, String password, ClintObserver CO) {
         if (profile != null)
             return false;
 
@@ -50,14 +54,22 @@ public class User implements IUser {
         profile = System.getInstance().login(id, password, this);
         logInstanse = System.getInstance().getLogInstase(id, password);
         sysMangaer = System.getInstance().ImManeger(id, password);
+        profile.LogLogin(this, CO);
 
         return profile != null;
 
     }
 
-//	public List<StoreImp> watchAllStores() {
-//		return System.getInstance().getAllStores();
-//	}
+    public boolean login(String id, String password) {
+        if (profile != null)
+            return false;
+        profile = System.getInstance().login(id, password, this);
+        logInstanse = System.getInstance().getLogInstase(id, password);
+        sysMangaer = System.getInstance().ImManeger(id, password);
+
+        return profile != null;
+
+    }
 
     // TODO rewrite this fucntion
     // adding a product to a basket. if the product exists add 1 to the amount of
@@ -156,7 +168,7 @@ public class User implements IUser {
     }
     // --------------------------------------------------------------- store actions
 
-    public boolean addProduct(String storeName, Product p) {
+    public boolean addProduct(String storeName, Product_boundle p) {
 //TODO add fail
         if (profile == null)
             return false;
@@ -258,7 +270,7 @@ public class User implements IUser {
         return store_roles.remove(store) != null;
     }
 
-    public boolean addDiscount(String discount, String store) {
+    public boolean addDiscount(Discount discount, String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(store) == null)
             return false;
@@ -272,7 +284,7 @@ public class User implements IUser {
         return store_roles.get(store).removeDiscount(discountID);
     }
 
-    public boolean addacquisition(String acquisition, String storeName) {
+    public boolean addacquisition(Acquisition acquisition, String storeName) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(storeName) == null)
             return false;
@@ -360,9 +372,9 @@ public class User implements IUser {
 
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
 
@@ -372,9 +384,9 @@ public class User implements IUser {
     static public List<ProductDetails> filterByRating(int minRating, int maxRating) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getRating() <= maxRating && product.getRating() >= minRating)
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
         return output;
@@ -384,9 +396,9 @@ public class User implements IUser {
     static public List<ProductDetails> filterByCategory(String category) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
-            for (Product product : store.getProducts()) {
+            for (ProductDetails product : store.getProductsDetails()) {
                 if (product.getCategory().contains(category))
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                    output.add(product);
             }
         }
         return output;
@@ -397,8 +409,8 @@ public class User implements IUser {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
             if (store.getRating() > minRating && store.getRating() < maxRating)
-                for (Product product : store.getProducts()) {
-                    output.add(new ProductDetails(product, product.getAmount(),store.getName()));
+                for (ProductDetails product : store.getProductsDetails()) {
+                    output.add(product);
                 }
         }
         return output;

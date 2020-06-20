@@ -4,17 +4,15 @@ import Domain.info.ProductDetails;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class Product extends Object implements IProduct {
-    private int id;
     private String name;
     private List<String> category;
     private List<String> keyWords;
     private double price;
     private int rating;
     //will change to be single
-    private Product_bundle Amount;
+    //private Product_boundle Amount = new Product_boundle();
     // private String storename;
     //private int amount;
 
@@ -25,7 +23,6 @@ public class Product extends Object implements IProduct {
         this.keyWords = keyWords;
         this.price = price;
         this.rating = rating;
-        this.Amount=new Product_bundle();
         //this.storename = storename;
         //this.store=store;
         //amount=0;
@@ -37,41 +34,9 @@ public class Product extends Object implements IProduct {
         keyWords = new LinkedList<>(p.getKeyWords());
         price = p.getPrice();
         rating = p.getRating();
-        this.Amount=new Product_bundle();
-        Amount.add(p.getAmount());
+       // Amount.add(p.getAmount());
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public void setKeyWords(List<String> keyWords) {
-        this.keyWords = keyWords;
-    }
-
-    public void setCategory(List<String> category) {
-        this.category = category;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAmount(Product_bundle amount) {
-        Amount = amount;
-    }
 
     public String getName() {
         return name;
@@ -106,27 +71,24 @@ public class Product extends Object implements IProduct {
         this.rating = p.rating;
     }
 
-    public void addToAmount(int add) {
 
-        Amount.add(add);
-    }
 
-    public int getAmount() {
-        return Amount.size();
-        //return amount;
-    }
+//    public int getAmount() {
+//        return Amount.size();
+//        //return amount;
+//    }
 
-    public int removeAmount(int amount) {
-        if (Amount.size() < amount) {
-            int temp = Amount.size();
-            Amount.remove(temp);
-            return temp;
-        } else {
-            Amount.remove(amount);
-            // this.amount = this.amount - amount;
-            return amount;
-        }
-    }
+//    public int removeAmount(int amount) {
+//        if (Amount.size() < amount) {
+//            int temp = Amount.size();
+//            Amount.remove(temp);
+//            return temp;
+//        } else {
+//            Amount.remove(amount);
+//            // this.amount = this.amount - amount;
+//            return amount;
+//        }
+//    }
 
     @Override
     public String toString() {
@@ -134,7 +96,6 @@ public class Product extends Object implements IProduct {
         output += "name:" + name + "\n";
         output += "category:" + category + "\n";
         output += "rating:" + rating + "\n";
-        output += "amount:" + Amount.size() + "\n";
         output += "price:" + price + "\n";
 
         //output += "stroe:" + storename + "\n";
@@ -150,7 +111,7 @@ public class Product extends Object implements IProduct {
             return false;
 
         Product p = (Product) other;
-        if (!(this.name == p.name &
+        if (!(this.name.equals(p.name) &
                 this.price == p.price &
                 this.rating == p.rating &
                 this.category.size() == p.category.size() &

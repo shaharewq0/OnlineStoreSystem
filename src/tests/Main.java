@@ -24,7 +24,7 @@ public class Main {
         }
 
 
-        if(owner_accese.usecase4_1_1_AddingProdacsToStore("k", "", "ebay", new Product(new ProductDetails("banana", lst, "ebay", 300, 20.15)))){
+        if(owner_accese.usecase4_1_1_AddingProdacsToStore("k", "", "ebay", (new ProductDetails("banana", lst, "ebay", 300, 20.15)))){
             System.out.println("good");
         }
         else {

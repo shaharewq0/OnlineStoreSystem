@@ -1,6 +1,7 @@
 package extornal.supply;
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 public class WallMart implements Supplyer {
 
@@ -13,7 +14,7 @@ public class WallMart implements Supplyer {
 		System.out.println("we will only supply half your items");
 		boolean coin = false;
 		Packet_Of_Prodacts order = new Packet_Of_Prodacts();
-		for (Product item : items.items) {
+		for (Product_boundle item : items.items) {
 			if (coin) {
 				coin = false;
 				order.items.add(item);
