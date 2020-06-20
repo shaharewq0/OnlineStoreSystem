@@ -10,10 +10,10 @@
             <generator class="increment"/>
         </id>
 
-        <map name="items" table="SI_MAP_TABLE" cascade="all">
-            <key column="Store_inv_id"/>
+        <map name="items" table="SI_MAP_TABLE" cascade="all" lazy="false">
+            <key column="Store_inventory_id"/>
             <index column="Product_name" type="string"/>
-            <element column="Product_bundle_id" type="string"/>
+            <one-to-many class="Domain.Store.Product_boundle"/>
         </map>
 
 

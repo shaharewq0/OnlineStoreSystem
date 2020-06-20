@@ -14,7 +14,7 @@
 
         <property name = "amount" column = "amount" type = "int"/>
 
-        <many-to-one name="item" cascade="all" class="Domain.Store.Product" lazy="false"/>
+        <many-to-one name="item" column="Product_id" cascade="all" class="Domain.Store.Product" lazy="false"/>
     </class>
 
 
