@@ -47,9 +47,11 @@ public class StorePurchase {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+
 		StorePurchase that = (StorePurchase) o;
 		return Double.compare(that.getPrice(), getPrice()) == 0 &&
-				Objects.equals(getItems(), that.getItems()) &&
+				getItems().containsAll(that.getItems()) &&
+				that.getItems().containsAll(getItems()) &&
 				Objects.equals(store, that.store);
 	}
 

@@ -114,9 +114,9 @@ public class ProductDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDetails details = (ProductDetails) o;
-        return //getAmount() == details.getAmount() &&
+        return getAmount() == details.getAmount() &&
                 //getRating() == details.getRating() &&
-                //Double.compare(details.getPrice(), getPrice()) == 0 &&
+                Double.compare(details.getPrice(), getPrice()) == 0 &&
                 //Objects.equals(getKeyWords(), details.getKeyWords()) &&
                 Objects.equals(getName(), details.getName()) &&
                 //Objects.equals(getCategory(), details.getCategory()) &&

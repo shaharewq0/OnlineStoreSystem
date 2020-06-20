@@ -24,10 +24,10 @@ public class Product_boundle {
     public int remove(int ToRemove) {
         if (size() < ToRemove) {
             int temp = size();
-            remove(temp);
+            amount -= temp;
             return temp;
         }
-            remove(ToRemove);
+            amount -= ToRemove;
             return ToRemove;
 
     }

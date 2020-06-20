@@ -38,7 +38,10 @@ public class shoppingBasket implements IshoppingBasket {
 
         for (Product_boundle PB : Item_holder) {
             if (PB.item.getName().equals(name)) {
-                return  PB.remove(num);
+                int removed = PB.remove(num);
+                if(PB.size() == 0)
+                    Item_holder.remove(PB);
+                return  removed;
             }
         }
         return 0;
