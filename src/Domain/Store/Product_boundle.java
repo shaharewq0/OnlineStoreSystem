@@ -1,19 +1,54 @@
 package Domain.Store;
 
 public class Product_boundle {
-    final String lable ="this is a product";
-    private int amount = 0;
-    //TODO add item
+    private int id;
+    private String label;
+    private int amount;
     public Product item;
 
     public Product_boundle(Product p,int amount){
         item = p;
         this.amount = amount;
+        label="hello";
+    }
+
+    public Product_boundle(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Product getItem() {
+        return item;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setItem(Product item) {
+        this.item = item;
     }
 
     @Override
     public String toString(){
-        return lable;
+        return label;
     }
 
     public void add(int ToAdd) {

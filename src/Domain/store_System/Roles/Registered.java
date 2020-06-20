@@ -35,6 +35,7 @@ public class Registered implements MSGObservable {
     }
 
 
+
     public String getId() {
         return id;
     }

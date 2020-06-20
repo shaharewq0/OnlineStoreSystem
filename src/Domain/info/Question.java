@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Question {
 
-	private String question = "";
-	private int id = -1;
+	private String question;
+	private int id;
 	private List<String> Answers = new LinkedList<String>();
+
+	public Question(){}
 
 	public Question(String q) {
 		question = (q);

@@ -1,22 +1,20 @@
 package DAL;
 
 import Domain.Store.Product;
-import extornal.Security.Password;
+import Domain.Store.Store_Inventory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.Query;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
-public class Product_DA{
+public class Store_Inventory_DA {
     private static SessionFactory factory;
-    public Product_DA(){
+    public Store_Inventory_DA(){
         try {
             factory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex){
@@ -25,17 +23,17 @@ public class Product_DA{
         }
     }
 
-    public List<Product> getAll(){
+    public List<Store_Inventory> getAll(){
         Session session = factory.openSession();
         Transaction tx = null;
-        List<Product> toReturn=new LinkedList<>();
+        List<Store_Inventory> toReturn=new LinkedList<>();
 
         try {
             tx = session.beginTransaction();
-            List products = session.createQuery("FROM Product").list();
-            for (Iterator iterator = products.iterator(); iterator.hasNext();){
-                Product prod = (Product) iterator.next();
-                toReturn.add(prod);
+            List store_inventories = session.createQuery("FROM Store_Inventory").list();
+            for (Iterator iterator = store_inventories.iterator(); iterator.hasNext();){
+                Store_Inventory si = (Store_Inventory) iterator.next();
+                toReturn.add(si);
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -47,13 +45,13 @@ public class Product_DA{
         return toReturn;
     }
 
-    public void update(Product product){
+    public void update(Store_Inventory si){
         Session session = factory.openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            session.merge(product);
+            session.merge(si);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -63,12 +61,12 @@ public class Product_DA{
         }
     }
 
-    public void delete(Product product){
+    public void delete(Store_Inventory si){
         Session session = factory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(product);
+            session.delete(si);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -79,14 +77,14 @@ public class Product_DA{
     }
 
 
-    public Integer add(Product product){
+    public Integer add(Store_Inventory si){
         Session session = factory.openSession();
         Transaction tx = null;
-        Integer prodID = null;
+        Integer siID = null;
 
         try {
             tx = session.beginTransaction();
-            prodID = (Integer) session.save(product);
+            siID = (Integer) session.save(si);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -94,9 +92,9 @@ public class Product_DA{
         } finally {
             session.close();
         }
-        if(prodID != null){
-            product.setId(prodID);
+        if(siID != null){
+            si.setId(siID);
         }
-        return prodID;
+        return siID;
     }
 }

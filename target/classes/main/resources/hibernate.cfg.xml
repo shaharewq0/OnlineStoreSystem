@@ -30,6 +30,6 @@
         <mapping resource="password.hbm.xml"/>
         <mapping resource="question.hbm.xml"/>
         <mapping resource="product.hbm.xml"/>
-
+        <mapping resource="product_bundle.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

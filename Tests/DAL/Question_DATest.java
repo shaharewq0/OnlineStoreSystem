@@ -51,6 +51,8 @@ public class Question_DATest {
 
     @Test
     public void add() {
+        question.addAnswers("ok");
+        question.addAnswers("answer");
         da.add(question);
         Question que=da.getAll().get(0);
         assertEquals(que.getId(),question.getId());

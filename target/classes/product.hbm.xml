@@ -31,19 +31,9 @@
         <property name = "price" column = "price" type = "double"/>
 
         <property name="rating"  column="rating" type = "int"/>
-        
-        <many-to-one name="Amount" column="amount_id" unique="true" class="Domain.Store.Product_bundle" not-null="true" lazy="false"/>
 
 
     </class>
 
-    <class name="Domain.Store.Product_bundle" table="PRODUCT_BUNDLE_TABLE">
-        <id name="id" type="int" column="id">
-            <generator class="native"></generator>
-        </id>
-        <property name="label" column="label" type="string"/>
-
-        <property name="amount" column="amount_" type="int"/>
-    </class>
 
 </hibernate-mapping>

@@ -1,7 +1,6 @@
 package DAL;
 
 import Domain.Store.Product;
-import Domain.Store.Product_bundle;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,13 +22,9 @@ public class Product_DATest {
     da=new Product_DA();
     category=new LinkedList<>();
     keyWords=new LinkedList<>();
-    Product_bundle b=new Product_bundle();
-    b.setAmount(5);
-    b.setLabel("label");
     category.add("milk");
     keyWords.add("key");
     product=new Product("shahar",category,keyWords,4.5,2);
-    product.setAmount(b);
     }
 
     @Test
@@ -43,13 +38,6 @@ public class Product_DATest {
     @Test
     public void update() {
         da.add(product);
-        //updating product bundle
-        Product_bundle bundle=new Product_bundle();
-        bundle.setAmount(10);
-        product.setAmount(bundle);
-        da.update(product);
-        assertEquals(da.getAll().get(0).getAmount(),10);
-
         //updating product categories
         List<String> categories=new LinkedList<>();
         categories.add("dary");
