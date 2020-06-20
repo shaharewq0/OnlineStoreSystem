@@ -1,6 +1,7 @@
 package Domain.Policies.Discounts;
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public interface Discount {
      * returns true if this discount can be applied on some or all of those products
      * otherwise, return false.
      */
-    boolean hasDiscount(Map<Product, Integer> products);
+    boolean hasDiscount(List<Product_boundle> products);
 
     /**
      * apply this discount on the products.
@@ -22,7 +23,7 @@ public interface Discount {
      * * hasDiscount is true
      * * products doesn't contain two products with same name
      */
-    double applyDiscount(Map<Product, Integer> products);
+    double applyDiscount(List<Product_boundle> products);
 
     /**
      * return all product names (include sub discounts)

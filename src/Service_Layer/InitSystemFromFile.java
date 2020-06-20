@@ -1,6 +1,7 @@
 package Service_Layer;
 
 import Domain.Store.Product;
+import Domain.info.ProductDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ class InitSystemFromFile {
         int i = 0;
         switch (command[i++]) {
             case "MakeAdmin":
-                //TODO
+                Domain.store_System.System.getInstance(command[i++],command[i]);
                 break;
             case "Register":
                 usecase2_2_guest_register(command[i++], command[i]);
@@ -52,7 +53,7 @@ class InitSystemFromFile {
 
     }
 
-    private static Product parseProduct(String[] command, int i) {
+    private static ProductDetails parseProduct(String[] command, int i) {
         return null;    //TODO
     }
 

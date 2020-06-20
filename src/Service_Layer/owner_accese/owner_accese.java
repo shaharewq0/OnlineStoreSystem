@@ -41,11 +41,12 @@ public class owner_accese {
         return me.addProduct(storeName, PB);
     }
 
-    public static boolean usecase4_1_1_AddingProdacsToStore(int guestId, String storeName, Product p) {
+    public static boolean usecase4_1_1_AddingProdacsToStore(int guestId, String storeName, ProductDetails p) {
         User me = System.getInstance().getMember(guestId);
+        Product_boundle PB = new Product_boundle(new Product(p),p.getAmount());
         if (me == null)
             return false;
-        return me.addProduct(storeName, p);
+        return me.addProduct(storeName, PB);
     }
 
     public static boolean usecase4_1_2_RemoveItem(String myusername, String myPassword, String storeName, String prodactname) {

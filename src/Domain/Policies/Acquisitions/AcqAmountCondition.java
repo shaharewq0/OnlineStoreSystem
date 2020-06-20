@@ -2,6 +2,7 @@ package Domain.Policies.Acquisitions;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,8 +19,8 @@ abstract class AcqAmountCondition implements Acquisition {
         this.amount = amount;
     }
 
-    int getTotalAmount(Map<Product, Integer> products) {
-        return products.values().stream().reduce(0, Integer::sum);
+    int getTotalAmount(List<Product_boundle> products) {
+        return products.stream().map(Product_boundle::size).reduce(0, Integer::sum);
     }
 
     @Override
@@ -39,4 +40,11 @@ abstract class AcqAmountCondition implements Acquisition {
         return "amount of '" + productName + "' is " + amount;
     }
 
+    static Product_boundle findproduct(List<Product_boundle> PB,Product p) {
+        for (Product_boundle pb : PB) {
+            if(pb.item.equals(p))
+                return pb;
+        }
+        return null;
+    }
 }

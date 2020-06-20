@@ -1,6 +1,7 @@
 package Domain.Policies.Acquisitions;
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ public interface Acquisition {
      * returns true if this Acquisition can be done
      * otherwise, return false.
      */
-    boolean canPurchase(Map<Product, Integer> products);
+    boolean canPurchase(List<Product_boundle> products);
 
     /**
      * return all product names (include sub discounts)

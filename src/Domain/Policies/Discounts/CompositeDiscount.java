@@ -2,6 +2,7 @@ package Domain.Policies.Discounts;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -24,14 +25,14 @@ abstract class CompositeDiscount implements Discount {
     }
 
     @Override
-    public boolean hasDiscount(Map<Product, Integer> products) {
+    public boolean hasDiscount(List<Product_boundle> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(hasDiscountIdentity, hasDiscountOperator);
     }
 
     @Override
-    public double applyDiscount(Map<Product, Integer> products) {
+    public double applyDiscount(List<Product_boundle> products) {
         return discounts.stream()
                 .filter(d -> d.hasDiscount(products))
                 .map(d -> d.applyDiscount(products))

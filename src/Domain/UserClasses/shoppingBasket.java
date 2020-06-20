@@ -1,9 +1,6 @@
 package Domain.UserClasses;
 
-import Domain.Store.MyPair;
-import Domain.Store.Product;
-import Domain.Store.StoreImp;
-import Domain.Store.StorePurchase;
+import Domain.Store.*;
 import Domain.info.ProductDetails;
 
 import java.util.*;

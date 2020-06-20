@@ -2,6 +2,7 @@ package Domain.Policies.Discounts;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,24 +24,33 @@ class VisibleDiscount implements Discount {
         this.expirationDate = expirationDate;
     }
 
+    static Product_boundle findproduct(List<Product_boundle> PB,Product p) {
+        for (Product_boundle pb : PB) {
+            if(pb.item.equals(p))
+                return pb;
+        }
+        return null;
+    }
+
     @Override
-    public boolean hasDiscount(Map<Product, Integer> products) {
+    public boolean hasDiscount(List<Product_boundle> products) {
         if (LocalDate.now().isAfter(expirationDate))
             return false;
         if (productName.equals("ALL"))
             return true;
-        return products.containsKey(product);
+        return findproduct(products,product) != null;//products.contains(product);
     }
 
     @Override
-    public double applyDiscount(Map<Product, Integer> products) {
+    public double applyDiscount(List<Product_boundle>  products) {
         if (productName.equals("ALL")) {
             double price = 0;
-            for (Map.Entry<Product, Integer> entry : products.entrySet())
-                price += entry.getValue() * entry.getKey().getPrice();
+            for (Product_boundle entry : products)
+                price += entry.size() * entry.item.getPrice();
             return price * percentage;
         }
-        return products.containsKey(product) ? 0 : products.get(product) * product.getPrice() * percentage;
+
+        return findproduct(products,product) !=null ? 0 : findproduct(products,product).size() * product.getPrice() * percentage;
     }
 
     @Override

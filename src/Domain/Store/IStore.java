@@ -29,7 +29,7 @@ public interface IStore {
 
 	public Boolean CheckItemAvailable(ProductDetails items);
 
-    public double getPrice(Map<Product, Integer> item);
+    public double getPrice(List<Product_boundle> item);
 
 	public MyPair<Product_boundle,String> TakeItem(String name, int amout);
 

@@ -2,6 +2,7 @@ package Domain.Policies.Discounts;
 
 import Domain.Policies.BasePolicy;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -106,16 +107,16 @@ public class DiscountPolicy extends BasePolicy {
         return true;
     }
 
-    public boolean hasDiscounts(Map<Product, Integer> products) {
+    public boolean hasDiscounts(List<Product_boundle> products) {
         return discounts.stream()
                 .map(d -> d.hasDiscount(products))
                 .reduce(false, Boolean::logicalOr);
     }
 
-    public double applyDiscounts(Map<Product, Integer> products) {
+    public double applyDiscounts(List<Product_boundle> products) {
         double totalPrice =
-                products.entrySet().stream()
-                        .map((entry) -> entry.getKey().getPrice() * entry.getValue())   //price * amount
+                products.stream()
+                        .map((entry) -> entry.item.getPrice() * entry.size())   //price * amount
                         .reduce(0.0, Double::sum);
         return totalPrice -
                 discounts.stream()

@@ -2,6 +2,7 @@ package Domain.Policies.Acquisitions;
 
 import Domain.Logs.ErrorLogger;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ abstract class CompositeAcq implements Acquisition {
     }
 
     @Override
-    public boolean canPurchase(Map<Product, Integer> products) {
+    public boolean canPurchase(List<Product_boundle> products) {
         return acquisitions.stream()
                 .map(acquisition -> acquisition.canPurchase(products))
                 .reduce(canPurchaseIdentity, canPurchaseOperator);

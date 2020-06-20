@@ -44,6 +44,14 @@ public class System implements ISystem {
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
+            instance.init("admin","password");
+        }
+        return instance;
+    }
+    public static System getInstance(String name,String password) {
+        if (instance == null) {
+            instance = new System();
+            instance.init(name,password);
         }
         return instance;
     }
@@ -124,8 +132,7 @@ public class System implements ISystem {
             return null;
         }
 
-        //TODO add Observer
-        //Profile.LogLogin(user);
+
         onlinemember.put(id, new Member(user));
         EventLogger.GetInstance().Add_Log(this.toString() + "- user login");
         if (onlinemember.size() > 1 && !CheckTegrati_oneManager()) {

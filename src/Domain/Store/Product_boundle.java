@@ -32,6 +32,8 @@ public class Product_boundle {
 
     }
 
+
+
     public int size() {
         return amount;
     }
@@ -49,4 +51,6 @@ public class Product_boundle {
         return false;
 
     }
+
+
 }

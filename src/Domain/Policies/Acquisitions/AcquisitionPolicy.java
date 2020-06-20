@@ -2,6 +2,7 @@ package Domain.Policies.Acquisitions;
 
 import Domain.Policies.BasePolicy;
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -90,7 +91,7 @@ public class AcquisitionPolicy extends BasePolicy {
         return true;
     }
 
-    public boolean canPurchase(Map<Product, Integer> products) {
+    public boolean canPurchase(List<Product_boundle> products) {
         return acquisitions.stream()
                 .map(acquisition -> acquisition.canPurchase(products))
                 .reduce(true, Boolean::logicalAnd);
