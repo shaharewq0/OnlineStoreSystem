@@ -4,17 +4,18 @@ import Communication.websocket.App.api_impl.MallProtocol;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
+import Domain.Policies.Discounts.Discount;
 
 import java.util.Objects;
 
 public class createDiscount extends Client2ServerMessage {
     private final String store;
-    private final String discountString;
+    private final Discount discount;
 
-    public createDiscount(long id, String store, String discountString) {
+    public createDiscount(long id, String store, Discount discount) {
         super(Opcodes.createDiscount, id);
         this.store = store;
-        this.discountString = discountString;
+        this.discount= discount;
     }
 
     @Override
@@ -26,15 +27,15 @@ public class createDiscount extends Client2ServerMessage {
         return store;
     }
 
-    public String getDiscountString() {
-        return discountString;
+    public Discount getDiscount() {
+        return discount;
     }
 
     @Override
     public String toString() {
         return "createDiscount{" +
                 "store='" + store + '\'' +
-                ", discountString='" + discountString + '\'' +
+                ", discountString='" + discount + '\'' +
                 '}';
     }
 
@@ -44,11 +45,11 @@ public class createDiscount extends Client2ServerMessage {
         if (o == null || getClass() != o.getClass()) return false;
         createDiscount that = (createDiscount) o;
         return getStore().equals(that.getStore()) &&
-                getDiscountString().equals(that.getDiscountString());
+                getDiscount().equals(that.getDiscount());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStore(), getDiscountString());
+        return Objects.hash(getStore(), getDiscount());
     }
 }

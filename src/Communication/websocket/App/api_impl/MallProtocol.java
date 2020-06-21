@@ -34,74 +34,6 @@ class SubInstructions {
      static final int usecase4_3_appointOwner_code = 0x11;
 }
 
-class DiscountFactory{
-
-    private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static String REGEX = "\1";
-
-    static Discount discountFactory(String discount) {
-        try {
-            return discountFactory(stringSplitToStack(discount, REGEX));
-        } catch (Exception e) {
-           return null;
-        }
-    }
-
-    private static Discount discountFactory(Stack<String> params) throws Exception {
-        int         type        = Integer.parseInt(params.pop());
-        String      productName = params.pop();
-        int         percentage  = Integer.parseInt(params.pop());
-        double      min         = Double.parseDouble(params.pop());
-        LocalDate   date        = toDate(params.pop());
-
-        switch (type) {
-            case 0: //visible
-                return new VisibleDiscount(productName,percentage, date);
-
-            case 1: //conditional amount
-                return new ConditionalAmountDiscount(productName, percentage, date, (int) min);
-
-            case 2: //conditional price
-                return new ConditionalPriceDiscount(productName, percentage, date, min);
-
-            case 10: //composite and
-                return new AndDiscount(parseDiscountList(params));
-
-            case 11: //composite or
-                return new OrDiscount(parseDiscountList(params));
-
-            case 12: //composite xor
-                return new XorDiscount(parseDiscountList(params));
-
-            default:
-                throw new Exception();
-        }
-    }
-
-    private static LocalDate toDate(String date) {
-        return LocalDate.parse(date, format);
-    }
-
-    private static List<Discount> parseDiscountList(Stack<String> params) throws Exception {
-        List<Discount> discountList = new LinkedList<>();
-        int n = 1;//Integer.parseInt(params.pop());
-        for (int i = 0; i < n; i++) {
-            discountList.add(discountFactory(params));
-        }
-        return discountList;
-    }
-
-    protected static Stack<String> stringSplitToStack(String str, String regex) {
-        List<String> lst = Arrays.asList(str.split(regex));
-        Collections.reverse(lst);
-        Stack<String> stack = new Stack<>();
-        stack.addAll(lst);
-        return stack;
-    }
-
-}
-
-
 
 public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
@@ -467,7 +399,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(createDiscount msg) {
-       if( owner_accese.usecase4_2_AddDiscount(username, paasword, msg.getStore(), DiscountFactory.discountFactory(msg.getDiscountString()))){
+       if( owner_accese.usecase4_2_AddDiscount(username, paasword, msg.getStore(), msg.getDiscount())){
            return new AckMessage(msg.getId());
        }
 
