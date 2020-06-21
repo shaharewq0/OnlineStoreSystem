@@ -2,6 +2,7 @@ package Domain.info;
 
 
 import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.*;
 
@@ -95,10 +96,10 @@ public class ProductDetails {
         return rating;
     }
 
-    static public List<ProductDetails> adapteProdactList(Collection<Product> list,String storeName) {
+    static public List<ProductDetails> adapteProdactList(Collection<Product_boundle> list, String storeName) {
         LinkedList<ProductDetails> output = new LinkedList<ProductDetails>();
-        for (Product product : list) {
-            output.add(new ProductDetails(product, product.getAmount(),storeName));
+        for (Product_boundle product : list) {
+            output.add(new ProductDetails(product.item, product.size(),storeName));
         }
         return output;
     }
@@ -113,9 +114,9 @@ public class ProductDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDetails details = (ProductDetails) o;
-        return //getAmount() == details.getAmount() &&
+        return getAmount() == details.getAmount() &&
                 //getRating() == details.getRating() &&
-                //Double.compare(details.getPrice(), getPrice()) == 0 &&
+                Double.compare(details.getPrice(), getPrice()) == 0 &&
                 //Objects.equals(getKeyWords(), details.getKeyWords()) &&
                 Objects.equals(getName(), details.getName()) &&
                 //Objects.equals(getCategory(), details.getCategory()) &&

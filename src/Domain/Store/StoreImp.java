@@ -1,10 +1,10 @@
 package Domain.Store;
 
-import java.util.*;
-
 import Domain.Logs.ErrorLogger;
 import Domain.Logs.EventLogger;
+import Domain.Policies.Acquisitions.Acquisition;
 import Domain.Policies.Acquisitions.AcquisitionPolicy;
+import Domain.Policies.Discounts.Discount;
 import Domain.Policies.Discounts.DiscountPolicy;
 import Domain.Store.workers.Creator;
 import Domain.Store.workers.StoreManager_Imp;
@@ -15,6 +15,8 @@ import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.info.StoreInfo;
 import extornal.supply.Packet_Of_Prodacts;
+
+import java.util.*;
 
 public class StoreImp implements IStore {
     private String name;
@@ -30,7 +32,7 @@ public class StoreImp implements IStore {
     private Store_Purchase_History purchaseHistory = new Store_Purchase_History();
     private Map<Integer, Question> questions = new HashMap<Integer, Question>();
 
-    public StoreImp(String name, Collection<Product> products, String address, int rating) {
+    public StoreImp(String name, Collection<Product_boundle> products, String address, int rating) {
 
         this.name = name;
         inventory.recive_item(new Packet_Of_Prodacts(products));
@@ -71,7 +73,11 @@ public class StoreImp implements IStore {
     }
 
     public Collection<Product> getProducts() {
-        return inventory.items.values();
+        List<Product> output = new LinkedList();
+        for (Product_boundle PB : inventory.items.values()) {
+            output.add(PB.item);
+        }
+        return output;
     }
 
     public List<ProductDetails> getProductsDetails() {
@@ -91,10 +97,9 @@ public class StoreImp implements IStore {
     }
 
     // ---------------------------------------------------------------------------------workers
-    public Collection<StoreOwner_Imp> getOwners()
-    {
+    public Collection<StoreOwner_Imp> getOwners() {
         Collection<StoreOwner_Imp> MyOwners = new LinkedHashSet<>();
-        for (Appoint_Owner AO: Owners.values()) {
+        for (Appoint_Owner AO : Owners.values()) {
             MyOwners.add(AO.grantee);
         }
         return MyOwners;
@@ -102,7 +107,7 @@ public class StoreImp implements IStore {
 
     public Collection<StoreManager_Imp> getManagers() {
         Collection<StoreManager_Imp> MyManagers = new LinkedHashSet<>();
-        for (Appoint_manager AM: Managers.values()) {
+        for (Appoint_manager AM : Managers.values()) {
             MyManagers.add(AM.grantee);
         }
         return MyManagers;
@@ -160,7 +165,7 @@ public class StoreImp implements IStore {
     }
 
     public boolean editManagerPermesions(String managername, List<String> permesions) {
-        if(!Managers.containsKey(managername))
+        if (!Managers.containsKey(managername))
             return false;
         StoreManager_Imp m = Managers.get(managername).grantee;
         if (m != null) {
@@ -188,16 +193,18 @@ public class StoreImp implements IStore {
         return inventory.removeProduct(pName);
     }
 
-    public boolean addProduct(Product p) {
+    public boolean addProduct(Product p, int amount) {
 
-//		if (!p.getStore().getName().equals(name)) {
-//			ErrorLogger.GetInstance().Add_Log(this.toString() + "add product - product store not currect");
-//
-//			return false;
-//		}
         EventLogger.GetInstance().Add_Log(this.toString() + "-add product");
 
-        return inventory.recive_item(new Packet_Of_Prodacts(p));
+        return inventory.recive_item(new Packet_Of_Prodacts(new Product_boundle(p, amount)));
+    }
+
+    public boolean addProduct_bundle(Product_boundle PB) {
+
+        EventLogger.GetInstance().Add_Log(this.toString() + "-add product Bundle");
+
+        return inventory.recive_item(new Packet_Of_Prodacts(PB));
     }
 
     public boolean addProduct(ProductDetails p) {
@@ -209,6 +216,12 @@ public class StoreImp implements IStore {
     public Product findProductByName(String name) {
         //TODO this needs to return ProdcutDetails
         return inventory.getItem(name);
+
+    }
+
+    public Product_boundle findProduct_bundleByName(String name) {
+        //TODO this needs to return ProdcutDetails
+        return inventory.getBundleItem(name);
 
     }
 
@@ -224,7 +237,7 @@ public class StoreImp implements IStore {
 
     public List<ProductDetails> findProductDetailsByCategory(String category) {
         //TODO change this
-        return ProductDetails.adapteProdactList(inventory.findProductByCategory(category), name);
+        return ProductDetails.adapteProdactList(inventory.findProduct_BundleByCategory(category), name);
 
     }
 
@@ -234,54 +247,50 @@ public class StoreImp implements IStore {
     }
 
     public List<ProductDetails> findProductDetailsByKeyword(String keyword) {
-        return ProductDetails.adapteProdactList(inventory.findProductByKeyword(keyword), name);
+        return ProductDetails.adapteProdactList(inventory.findProduct_BundleByKeyword(keyword), name);
 
     }
 
     public Boolean CheckItemAvailable(ProductDetails item) {
         if (findProductByName(item.getName()) == null)
             return false;
-        if (findProductByName(item.getName()).getAmount() > item.getAmount())
+        if (inventory.items.get(item.getName()).size() > item.getAmount())
             return true;
 
         return false;
     }
 
-    public boolean CheckAcquisitions(List<ProductDetails> products) {
+
+    public boolean CheckAcquisitions(List<Product_boundle> products) {
         return acquisitions.canPurchase(products);
     }
 
 // ----------------------------------------------------buying
 
-    public double getPrice(List<ProductDetails> items) {
-
-        for (ProductDetails PD : items) {
-            if (PD.getStoreName() != this.name)
-                ErrorLogger.GetInstance().Add_Log(this.toString() + "- calculating price for product in wrong store");
-        }
+    public double getPrice(List<Product_boundle> items) {
         return discounts.applyDiscounts(items);
     }
 
     @Override
-    synchronized public MyPair<Product, String> TakeItem(String name, int amount) {
-        MyPair<Product, String> takeout = null;
-        Product temp = findProductByName(name);
+    synchronized public MyPair<Product_boundle, String> TakeItem(String name, int amount) {
+        MyPair<Product_boundle, String> takeout = null;
+        Product_boundle temp = inventory.items.get(name);
         if (temp == null) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "-takeitem cant find proudct");
             return null;
         }
-        if (temp.getAmount() > amount) {
+        if (temp.size() > amount) {
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products full amount");
-            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), amount),
-                    this.name);
-            temp.removeAmount(amount);
+            takeout = new MyPair<>(new Product_boundle(new Product(name, temp.item.getCategory(), temp.item.getKeyWords(), temp.item.getPrice(), temp.item.getRating()), amount
+            ), this.name);
+            temp.remove(amount);
         } else {
             //TODO maybe cancell buy
             EventLogger.GetInstance().Add_Log(this.toString() + "- taking out products not full amount");
-            takeout = new MyPair<>(new Product(name, temp.getCategory(), temp.getKeyWords(), temp.getPrice(), temp.getAmount()),
+            takeout = new MyPair<>(new Product_boundle(new Product(name, temp.item.getCategory(), temp.item.getKeyWords(), temp.item.getPrice(), temp.item.getRating()), temp.size()),
                     this.name);
 
-            temp.removeAmount(temp.getAmount());
+            temp.remove(temp.size());
         }
         return takeout;
     }
@@ -297,7 +306,17 @@ public class StoreImp implements IStore {
     }
 
     // ----------------------------------------------------discount
-    public boolean addDiscount(String discount) {
+    public boolean addDiscount(Discount discount) {
+        List<String> ls = discount.getProductsNames();
+        List<Product> items = new LinkedList<>();
+        for (String name : ls) {
+            Product p = inventory.getItem(name);
+            if (p != null)
+                items.add(0,p);
+            if(name.equals("ALL"))
+                items.add(0,null);
+        }
+        discount.replaceProducts(items);
         return discounts.addDiscount(discount);
     }
 
@@ -323,7 +342,19 @@ public class StoreImp implements IStore {
     }
 
 
-    public boolean addacquisition(String acquisition) {
+
+    public boolean addacquisition(Acquisition acquisition) {
+
+        List<String> ls = acquisition.getProductsNames();
+        List<Product> items = new LinkedList<>();
+        for (String name : ls) {
+            Product p = inventory.getItem(name);
+            if (p != null)
+                items.add(0,p);
+            if(name.equals("ALL"))
+                items.add(0,null);
+        }
+        acquisition.replaceProducts(items);
         return acquisitions.addAcquisitionPolicy(acquisition);
     }
 

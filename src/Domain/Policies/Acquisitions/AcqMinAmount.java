@@ -1,8 +1,10 @@
 package Domain.Policies.Acquisitions;
 
-import Domain.info.ProductDetails;
+import Domain.Store.Product;
+import Domain.Store.Product_boundle;
 
 import java.util.List;
+import java.util.Map;
 
 class AcqMinAmount extends AcqAmountCondition {
 
@@ -11,11 +13,11 @@ class AcqMinAmount extends AcqAmountCondition {
     }
 
     @Override
-    public boolean canPurchase(List<ProductDetails> products) {
+    public boolean canPurchase(List<Product_boundle> products) {
         if (productName.equals("ALL"))
             return getTotalAmount(products) >= amount;
-        ProductDetails p = findProduct(products);
-        return p != null && p.getAmount() >= amount;
+        Product_boundle pb = findproduct(products,product);
+        return pb != null && pb.size() >= amount;
     }
 
     @Override

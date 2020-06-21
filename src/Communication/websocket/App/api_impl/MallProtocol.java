@@ -276,8 +276,8 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
         ProductDetails details = new ProductDetails(msg.getName(), msg.getCategoories(), msg.getKeywords(), msg.getStoreName(), msg.getAmmount(),msg.getPrice());
         Product prod = new Product(details);
-
-        if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), prod)){
+        //TODO natai add this need checking
+        if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), details)){
             return new AckMessage(msg.getId());
         }
 
