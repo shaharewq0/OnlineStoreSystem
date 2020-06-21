@@ -32,5 +32,6 @@
         <mapping resource="product.hbm.xml"/>
         <mapping resource="product_bundle.hbm.xml"/>
         <mapping resource="Store_Inventory.hbm.xml"/>
+        <mapping resource="Product_Details.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
