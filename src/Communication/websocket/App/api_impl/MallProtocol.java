@@ -54,7 +54,6 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     @Override
     public Message process(Message msg) {
-        System.out.println("handling :" + msg.toString());
         return ((Client2ServerMessage)msg).visit(this);
     }
 

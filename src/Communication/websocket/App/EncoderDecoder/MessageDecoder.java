@@ -1,6 +1,7 @@
 package Communication.websocket.App.EncoderDecoder;
 
 import Communication.websocket.App.messages.Macros.Delimiters;
+import Communication.websocket.App.messages.Objects.DataObjects.Discount;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
@@ -298,9 +299,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         return ret;
     }
-
-
-    // ijij
 
     private void finalCheck(Iterable<?> parameters){
         if(parameters.iterator().hasNext()){
