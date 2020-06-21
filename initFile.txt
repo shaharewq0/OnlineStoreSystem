@@ -1,0 +1,13 @@
+MakeAdmin,u1,u1
+Register,u2,u2
+Register,u3,u3
+Register,u4,u4
+Register,u5,u5
+Register,u6,u6
+Login,u2,u2
+OpenStore,s1,s1 address
+AppointOwner,s1,u5
+Logout
+Login,u5,u5
+AppointManager,s1,u6
+Logout

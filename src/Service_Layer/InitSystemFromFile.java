@@ -14,14 +14,14 @@ import static Service_Layer.member_accese.member_accese.usecase3_1_Logout;
 import static Service_Layer.member_accese.member_accese.usecase3_2_OpenStore;
 import static Service_Layer.owner_accese.owner_accese.*;
 
-class InitSystemFromFile {
+public class InitSystemFromFile {
     private static int guest_id;
 
     private static void parseCommand(String[] command) throws Exception {
         int i = 0;
         switch (command[i++]) {
             case "MakeAdmin":
-                Domain.store_System.System.getInstance(command[i++],command[i]);
+                Domain.store_System.System.init_manager(command[i++],command[i]);
                 break;
             case "Register":
                 usecase2_2_guest_register(command[i++], command[i]);

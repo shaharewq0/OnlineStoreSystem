@@ -1,7 +1,6 @@
 package Communication.websocket.App.EncoderDecoder;
 
 import Communication.websocket.App.messages.Macros.Delimiters;
-import Communication.websocket.App.messages.Objects.DataObjects.Discount;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
@@ -118,6 +117,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.editMangagerPermesions     : return editMangagerPermesions(parameters);
             case Opcodes.AcceptPendingAppintment    : return AcceptPendingAppintment(parameters);
             case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
+            case Opcodes.createDiscount             : return createDiscount(parameters);
 
 
             // system manager
@@ -130,7 +130,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
-
 
 
     /**
@@ -581,5 +580,14 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         finalCheck(parameters);
         return new GetPendingAppointments((byte)-1, store);
+    }
+
+    private Message createDiscount(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  discs   = popString(parameters);
+
+        finalCheck(parameters);
+        return new createDiscount((byte)-1, store, discs);
     }
 }

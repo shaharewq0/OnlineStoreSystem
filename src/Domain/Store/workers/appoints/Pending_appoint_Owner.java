@@ -39,7 +39,7 @@ public class Pending_appoint_Owner {
             finalise_appoint();
             return true;
         }
-        return confirm;
+        return !confirm;
     }
 
     private void finalise_appoint() {

@@ -2,9 +2,9 @@ package Domain.Policies.Discounts;
 
 import java.util.List;
 
-class OrDiscount extends CompositeDiscount {
+public class OrDiscount extends CompositeDiscount {
 
-    OrDiscount(List<Discount> discounts) {
+    public OrDiscount(List<Discount> discounts) {
         super(discounts, Boolean::logicalOr, false, Double::sum);
     }
 

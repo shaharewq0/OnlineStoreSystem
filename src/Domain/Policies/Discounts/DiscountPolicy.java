@@ -51,7 +51,7 @@ public class DiscountPolicy extends BasePolicy {
     }
 
     //      TODO: Discounts: refactor out
-    private Discount discountFactory(Stack<String> params) throws Exception {
+    public Discount discountFactory(Stack<String> params) throws Exception {
         int type = Integer.parseInt(params.pop());
         switch (type) {
             case 0: //visible

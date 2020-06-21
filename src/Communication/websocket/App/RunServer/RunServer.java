@@ -1,6 +1,7 @@
 package Communication.websocket.App.RunServer;
 
 import Communication.websocket.App.api_impl.MallServer;
+import Service_Layer.InitSystemFromFile;
 import org.glassfish.tyrus.server.Server;
 
 import javax.websocket.DeploymentException;
@@ -32,7 +33,7 @@ public class RunServer {
     }
 
     private static void initSystem(){
-
+        InitSystemFromFile.init("initFile.txt");
     }
 
 }

@@ -43,9 +43,9 @@ public class Opcodes {
     public static final byte ViewMemberQustions     = 0x49;
     public static final byte Response2Qustion       = 0x4f;
     public static final byte viewAquisitionHistory  = 0x4a;
-    public static final byte createDiscount         = 0x4a;
-    public static final byte getDiscounts           = 0x4a;
-    public static final byte deleteDiscount         = 0x4a;
+    public static final byte createDiscount         = 0x66;
+    public static final byte getDiscounts           = 0x67;
+    public static final byte deleteDiscount         = 0x68;
 
     //owner
     public static final byte AddProduct2Store           = 0x41;

@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-class VisibleDiscount implements Discount {
+public class VisibleDiscount implements Discount {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     protected String productName;
@@ -18,7 +18,7 @@ class VisibleDiscount implements Discount {
     LocalDate expirationDate;
     private int percentage;
 
-    VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
+    public VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
         this.productName = productName;
         this.percentage = percentage;
         this.expirationDate = expirationDate;
