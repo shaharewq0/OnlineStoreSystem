@@ -567,15 +567,23 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
     private Message Purches(Deque<Deque<Byte>> parameters) {
         Byte    op      = popOpcode(parameters);
+
+        // billing info
         String  card    = popString(parameters);
         String  edate   = popString(parameters);
         String  css     = popString(parameters);
         String  owner   = popString(parameters);
+        String  id      = popString(parameters);
+
+        // shipping info
         String  adress  = popString(parameters);
+        String  city    = popString(parameters);
+        String  country = popString(parameters);
+        String  zip     = popString(parameters);
 
 
         finalCheck(parameters);
-        return new PurchaseMessage(-1,card, edate, css, owner, adress);
+        return new PurchaseMessage(-1, card, edate, css, owner, id, adress, city, country, zip);
     }
 
     private Message AddProduct2Store(Deque<Deque<Byte>> parameters) {
