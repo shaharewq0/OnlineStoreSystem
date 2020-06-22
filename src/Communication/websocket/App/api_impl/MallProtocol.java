@@ -37,11 +37,15 @@ class SubInstructions {
 
 public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
+    private BaseServer<Message>  server;
+
     private int gustID;
 
     private String username;
     private String paasword;
-    private BaseServer<Message>  server;
+
+
+
 
     public MallProtocol(BaseServer<Message> server) {
         this.server = server;
@@ -275,8 +279,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     public Message accept(CreateProductMessage msg) {
 
         ProductDetails details = new ProductDetails(msg.getName(), msg.getCategoories(), msg.getKeywords(), msg.getStoreName(), msg.getAmmount(),msg.getPrice());
-        Product prod = new Product(details);
-        //TODO natai add this need checking
+
         if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), details)){
             return new AckMessage(msg.getId());
         }
@@ -371,7 +374,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         switch (highestRole){
             case "regular"          : return new memberTypeResponse(Opcodes.UserType.regular        , msg.getId());
             case "manager"          : return new memberTypeResponse(Opcodes.UserType.storeManager   , msg.getId());
-            case "owner"            : return new memberTypeResponse(Opcodes.UserType.storeOwner, msg.getId());
+            case "owner"            : return new memberTypeResponse(Opcodes.UserType.storeOwner     , msg.getId());
             case "systemManager"    : return new memberTypeResponse(Opcodes.UserType.systemManager  , msg.getId());
             default                 : return new NackMessage(msg.getId());
         }

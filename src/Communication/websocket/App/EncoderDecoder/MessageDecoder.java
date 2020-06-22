@@ -30,11 +30,19 @@ class DiscountFactory{
     }
 
     private static Discount discountFactory(Stack<String> params) throws Exception {
-        int         type        = Integer.parseInt(params.pop());
-        String      productName = params.pop();
-        int         percentage  = Integer.parseInt(params.pop());
-        double      min         = Double.parseDouble(params.pop());
-        LocalDate date        = toDate(params.pop());
+
+        int type = Integer.parseInt(params.pop());
+        String productName = null;
+        int percentage = 0;
+        double min = 0;
+        LocalDate date = null;
+
+        if(type < 5) {
+            productName = params.pop();
+            percentage = Integer.parseInt(params.pop());
+            min = Double.parseDouble(params.pop());
+            date = toDate(params.pop());
+        }
 
         switch (type) {
             case 0: //visible
@@ -73,7 +81,7 @@ class DiscountFactory{
         return discountList;
     }
 
-    protected static Stack<String> stringSplitToStack(String str, String regex) {
+    private static Stack<String> stringSplitToStack(String str, String regex) {
         List<String> lst = Arrays.asList(str.split(regex));
         Collections.reverse(lst);
         Stack<String> stack = new Stack<>();

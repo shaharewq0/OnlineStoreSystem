@@ -7,13 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class ServerLogger implements Log {
-    private static ServerLogger INSTANCE;
+public class ServerErrorLog implements Log {
+    private static ServerErrorLog INSTANCE;
 
     private static FileWriter fileWriter;
-    private static final String fileName = "ServerLogger.txt";
+    private static final String fileName = "ServerErrorLogger.txt";
 
-    private ServerLogger(){
+    private ServerErrorLog(){
         try {
             new File(fileName).createNewFile();
             fileWriter = new FileWriter(fileName);
@@ -39,13 +39,13 @@ public class ServerLogger implements Log {
         try {
             fileWriter.close();
         } catch (IOException e) {
-                System.out.println("error in closing the server logr");
+            System.out.println("error in closing the server logr");
         }
     }
 
-    public static ServerLogger GetInstance() {
+    public static ServerErrorLog GetInstance() {
         if(INSTANCE == null){
-            INSTANCE = new ServerLogger();
+            INSTANCE = new ServerErrorLog();
         }
 
         return  INSTANCE;
