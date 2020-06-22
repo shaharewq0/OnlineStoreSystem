@@ -93,6 +93,10 @@ public class User implements IUser {
         return cart.allProductsInCart();
     }
 
+    public double getCartPrice() {
+        return cart.CalcPrice();
+    }
+
     public boolean logout() {
         if (profile == null || logInstanse == null)
             return false;

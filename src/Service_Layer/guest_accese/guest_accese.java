@@ -3,7 +3,6 @@ package Service_Layer.guest_accese;
 import Domain.Store.MyPair;
 import Domain.Store.Product_boundle;
 import Domain.UserClasses.User;
-import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import Domain.info.StoreInfo;
 import Domain.store_System.ClintObserver;
@@ -116,6 +115,13 @@ public class guest_accese {
 		if(user == null)
 			return null;
 		return user.getProductsInCart();
+	}
+
+	public static double getCartPrice(int guestID) {
+		User user = System.getInstance().getGuest(guestID);
+		if (user == null)
+			return -1;
+		return user.getCartPrice();
 	}
 
 	public static int usecase2_7b_RemoveProdactsInCart(int guestID, String storename, String prodactname, int amount) {
