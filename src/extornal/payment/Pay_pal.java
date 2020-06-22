@@ -20,13 +20,13 @@ public class Pay_pal implements PaymentMethed {
 	@Override
 	public boolean pay(CreditCard card_num, double amount) {
 		//card_num.getMoney(amount);
-		System.out.println("thank you for using " + name);
+		//System.out.println("thank you for using " + name);
 		if( validCards.contains(card_num)){
-			System.out.println("we will charge " + String.valueOf(card_num) + String.valueOf(amount) + "dollars");
+			//System.out.println("we will charge " + String.valueOf(card_num) + String.valueOf(amount) + "dollars");
 			return  true;
 		}
 
-		System.out.println("the card " + String.valueOf(card_num) + " is no a valid card!");
+		//System.out.println("the card " + String.valueOf(card_num) + " is no a valid card!");
 		return false;
 	}
 

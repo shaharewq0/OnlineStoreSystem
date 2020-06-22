@@ -10,8 +10,8 @@ public class WallMart implements Supplyer {
 	@Override
 	public boolean order(Packet_Of_Prodacts items, inventory destantion) {
 		// TODO add log
-		System.out.println("thank you for ordering from " + name);
-		System.out.println("we will only supply half your items");
+		//System.out.println("thank you for ordering from " + name);
+		//System.out.println("we will only supply half your items");
 		boolean coin = false;
 		Packet_Of_Prodacts order = new Packet_Of_Prodacts();
 		for (Product_boundle item : items.items) {
