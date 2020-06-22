@@ -5,6 +5,7 @@ import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.Macros.Opcodes;
+import Communication.websocket.Logger.ServerLogger;
 import Domain.Policies.Discounts.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,7 +19,7 @@ import java.util.*;
 
 class DiscountFactory{
 
-    private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static String REGEX = "\1";
 
     static Discount discountFactory(String discount) {
@@ -31,13 +32,40 @@ class DiscountFactory{
 
     private static Discount discountFactory(Stack<String> params) throws Exception {
 
-        int type = Integer.parseInt(params.pop());
+        Discount curr = popDiscount(params);
+
+        while (!params.empty()){
+
+            String poped = params.pop();
+            int next = poped.charAt(0);
+            params.push("" + poped.charAt(1));
+
+            switch (next) {
+
+                case 0x10: //composite and
+                    curr = new AndDiscount(Arrays.asList(curr, popDiscount(params))); break;
+
+                case 0x11: //composite or
+                    curr = new OrDiscount(Arrays.asList(curr, popDiscount(params))); break;
+
+                case 0x12: //composite xor
+                    curr = new XorDiscount(Arrays.asList(curr, popDiscount(params))); break;
+
+            }
+        }
+
+       return curr;
+    }
+
+    private static Discount popDiscount(Stack<String> params) throws Exception {
+
+        int type = params.pop().charAt(0);
         String productName = null;
         int percentage = 0;
         double min = 0;
         LocalDate date = null;
 
-        if(type < 5) {
+        if(type > 0x12) {
             productName = params.pop();
             percentage = Integer.parseInt(params.pop());
             min = Double.parseDouble(params.pop());
@@ -45,23 +73,14 @@ class DiscountFactory{
         }
 
         switch (type) {
-            case 0: //visible
+            case 0x13: //visible
                 return new VisibleDiscount(productName,percentage, date);
 
-            case 1: //conditional amount
+            case 0x14: //conditional amount
                 return new ConditionalAmountDiscount(productName, percentage, date, (int) min);
 
-            case 2: //conditional price
+            case 0x15: //conditional price
                 return new ConditionalPriceDiscount(productName, percentage, date, min);
-
-            case 10: //composite and
-                return new AndDiscount(parseDiscountList(params));
-
-            case 11: //composite or
-                return new OrDiscount(parseDiscountList(params));
-
-            case 12: //composite xor
-                return new XorDiscount(parseDiscountList(params));
 
             default:
                 throw new Exception();
@@ -70,15 +89,6 @@ class DiscountFactory{
 
     private static LocalDate toDate(String date) {
         return LocalDate.parse(date, format);
-    }
-
-    private static List<Discount> parseDiscountList(Stack<String> params) throws Exception {
-        List<Discount> discountList = new LinkedList<>();
-        int n = 1;//Integer.parseInt(params.pop());
-        for (int i = 0; i < n; i++) {
-            discountList.add(discountFactory(params));
-        }
-        return discountList;
     }
 
     private static Stack<String> stringSplitToStack(String str, String regex) {
@@ -103,6 +113,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     public Message decode(String msg) {
 
         System.out.println("row message: " + msg);
+        ServerLogger.GetInstance().Add_Log("row message: " + msg);
 
         try{
             JSONParser parser = new JSONParser();
@@ -203,6 +214,8 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.AcceptPendingAppintment    : return AcceptPendingAppintment(parameters);
             case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
             case Opcodes.createDiscount             : return createDiscount(parameters);
+            case Opcodes.getDiscounts               : return getDiscounts(parameters);
+            case  Opcodes.deleteDiscount            : return deleteDiscount(parameters);
 
 
             // system manager
@@ -674,5 +687,22 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         finalCheck(parameters);
         return new createDiscount((byte)-1, store, DiscountFactory.discountFactory(discs));
+    }
+
+    private Message getDiscounts(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+
+        finalCheck(parameters);
+        return new GetDiscountMessage((byte)-1, store);
+    }
+
+    private Message deleteDiscount(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        int     id      = popInt(parameters);
+
+        finalCheck(parameters);
+        return new RemoveDiscountMessage((byte)-1, store, id);
     }
 }

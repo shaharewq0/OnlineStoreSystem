@@ -11,6 +11,7 @@ import Domain.UserClasses.User;
 import Domain.info.Question;
 import Domain.store_System.System;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -76,6 +77,13 @@ public class owner_accese {
         if (me == null)
             return false;
         return me.removeDiscount(discountID, storeName);
+    }
+
+    public static String usecase4_2_GetDiscount(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getDiscount(storeName);
     }
 
     public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
@@ -183,7 +191,7 @@ public class owner_accese {
     }
 
     public static Collection<String> get_Pending_Appointment(int gustID, String storeName) {
-        return null;
+        return Arrays.asList("user1", "user2", "user3");
         //TODO implament
     }
 

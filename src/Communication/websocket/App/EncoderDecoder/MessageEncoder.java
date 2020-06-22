@@ -5,6 +5,7 @@ import Communication.websocket.App.messages.Macros.Delimiters;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.api.Server2ClientMessage;
+import Communication.websocket.Logger.ServerLogger;
 import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
@@ -25,6 +26,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
         String response = ((Server2ClientMessage)msg).visit(this);
         System.out.println("row response :" + response);
+        ServerLogger.GetInstance().Add_Log("row response :" + response);
 
         return  response;
     }
@@ -201,7 +203,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerInt(lst, cur.getAmount());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
-            offerDouble(lst, cur.getPrice());
+            offerDouble(lst, cur.getTotalPrice());
             offerByte(lst, Delimiters.LIST_DELIMITER_L2);
             offerString(lst, cur.getStoreName());
 

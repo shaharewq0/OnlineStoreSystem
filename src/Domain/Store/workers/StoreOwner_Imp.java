@@ -214,6 +214,11 @@ public class StoreOwner_Imp implements Store_role {
     }
 
     @Override
+    public String getDiscounts() {
+        return getStore().getDiscounts();
+    }
+
+    @Override
     public boolean removeDiscount(int discountID) {
         return getStore().removeDiscount(discountID);
     }

@@ -249,6 +249,13 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
+    public String getDiscounts() {
+        if (!permission.contains("getDiscounts"))
+            return "";
+        return getStore().getDiscounts();
+    }
+
+    @Override
     public boolean removeDiscount(int discountID) {
         if (!permission.contains("removeDiscount"))
             return false;

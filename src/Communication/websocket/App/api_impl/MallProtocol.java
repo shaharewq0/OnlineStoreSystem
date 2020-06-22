@@ -408,4 +408,22 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
         return new NackMessage(msg.getId());
     }
+
+    public Message accept(GetDiscountMessage msg) {
+        String answer = owner_accese.usecase4_2_GetDiscount(username, paasword, msg.getStoreName());
+
+        if(answer == null || answer.equals("")){
+            return new NackMessage(msg.getId());
+        }
+
+        return new StringResponse((byte)-1, msg.getId(), answer);
+    }
+
+    public Message accept(RemoveDiscountMessage msg) {
+        if(owner_accese.usecase4_2_RemoveDiscount(username, paasword, msg.getStoreName(), msg.getDiscountID())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
 }

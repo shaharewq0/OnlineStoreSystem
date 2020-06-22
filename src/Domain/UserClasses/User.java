@@ -274,6 +274,13 @@ public class User implements IUser {
         return store_roles.get(store).addDiscount(discount);
     }
 
+    public String getDiscount(String store) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(store) == null)
+            return "";
+        return store_roles.get(store).getDiscounts();
+    }
+
     public boolean removeDiscount(int discountID, String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(store) == null)
@@ -445,6 +452,7 @@ public class User implements IUser {
     public boolean CheckAcquisitions() {
         return cart.CheckAcquisitions();
     }
+
 
 
 }

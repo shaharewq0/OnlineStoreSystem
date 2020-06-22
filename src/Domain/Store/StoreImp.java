@@ -300,7 +300,7 @@ public class StoreImp implements IStore {
         return true;
     }
 
-    public String getDiscounts(String name) {
+    public String getDiscounts() {
         return discounts.toString();
 
     }
