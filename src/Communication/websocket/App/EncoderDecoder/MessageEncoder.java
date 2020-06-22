@@ -417,6 +417,8 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(PrductsInCartResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
+        offerDouble(lst, msg.getPrice());
+        offerDelimiter(lst);
         offerCartList(lst, msg.getProducts());
 
         return createJsonString(msg.getReplayForID(), lst);

@@ -10,13 +10,14 @@ import java.util.Objects;
 public class PrductsInCartResponse extends Server2ClientMessage {
 
     private List<ProductDetails> products;
+    private final double price;
 
 
-
-    public PrductsInCartResponse(long replayForID,List<ProductDetails> products) {
+    public PrductsInCartResponse(long replayForID,List<ProductDetails> products, double price) {
         super((byte)-1, replayForID);
 
         this.products = products;
+        this.price = price;
     }
 
     @Override
@@ -29,23 +30,29 @@ public class PrductsInCartResponse extends Server2ClientMessage {
         return products;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PrductsInCartResponse that = (PrductsInCartResponse) o;
-        return getProducts().equals(that.getProducts());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getProducts());
+    public double getPrice() {
+        return price;
     }
 
     @Override
     public String toString() {
         return "PrductsInCartResponse{" +
-                "products=" + products.toString() +
+                "products=" + products +
+                ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PrductsInCartResponse that = (PrductsInCartResponse) o;
+        return Double.compare(that.getPrice(), getPrice()) == 0 &&
+                Objects.equals(getProducts(), that.getProducts());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProducts(), getPrice());
     }
 }

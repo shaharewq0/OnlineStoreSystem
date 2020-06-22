@@ -118,11 +118,15 @@ public class DiscountPolicy extends BasePolicy {
                 products.stream()
                         .map((entry) -> entry.item.getPrice() * entry.size())   //price * amount
                         .reduce(0.0, Double::sum);
-        return totalPrice -
+
+        double discount =
                 discounts.stream()
                         .filter(d -> d.hasDiscount(products))
                         .map(d -> d.applyDiscount(products))
                         .reduce(0.0, Double::sum);
+
+        return totalPrice - discount;
+
     }
 
     public boolean removeDiscount(int disNum) {

@@ -184,9 +184,10 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     public Message accept(ViewCartMessage msg) {
         List<ProductDetails> products = guest_accese.usecase2_7A_WatchProdactsInCart(gustID);
+        double price = guest_accese.getCartPrice(gustID);
 
         if(products != null) {
-            return new PrductsInCartResponse(msg.getId(), products);
+            return new PrductsInCartResponse(msg.getId(), products, price);
         }
 
         return new NackMessage(msg.getId());

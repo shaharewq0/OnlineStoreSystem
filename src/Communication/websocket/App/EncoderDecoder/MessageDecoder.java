@@ -472,10 +472,10 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     }
 
     private Message RemoveFromCart(Deque<Deque<Byte>> parameters) {
-        Byte    op   = popOpcode(parameters);
-        String  store = popString(parameters);
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
         String  product = popString(parameters);
-        Byte    amount = popByte(parameters);
+        int     amount  = popInt(parameters);
 
 
         finalCheck(parameters);
