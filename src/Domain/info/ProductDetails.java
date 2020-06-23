@@ -18,6 +18,7 @@ public class ProductDetails {
     private int rating;
     private double price;
 
+
     public ProductDetails(){}
 
     public ProductDetails(String name, List<String> category, String storeName, int amount, double price) {
@@ -63,6 +64,8 @@ public class ProductDetails {
         this.price = pro.getPrice();
         this.rating = pro.getRating();
     }
+
+
 
     public void setId(int id) {
         this.id = id;

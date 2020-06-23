@@ -24,4 +24,8 @@ public interface Acquisition {
      * add to each discount the appropriate product according to product name (include sub discounts)
      */
     void replaceProducts(List<Product> products);
+
+    public int getId();
+
+    public void setId(int id);
 }

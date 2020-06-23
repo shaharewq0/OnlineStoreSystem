@@ -10,9 +10,9 @@
             <generator class="native"/>
         </id>
         
-        <list name="acquisitions" table="ACQ_TABLE">
+        <list name="acquisitions" table="ACQ_TABLE" cascade="all">
             <key column="acq_policy_id"></key>
-            <index column="type"></index>
+            <index column="id"></index>
             <one-to-many class="Domain.Policies.Acquisitions.Acquisition"/>
         </list>
         
@@ -24,7 +24,9 @@
             <generator class="native"></generator>
         </id>
 
-        <subclass abstract="true" name="Domain.Policies.Acquisitions.AcqAmountCondition" discriminator-value="abstractAcqAmountCond">
+        <discriminator column="discriminator" type="string"></discriminator>
+
+        <subclass abstract="true" name="Domain.Policies.Acquisitions.AcqAmountCondition"  discriminator-value="abstractAcqAmountCond">
             <property name="productName" type="string" column="product_name"></property>
             <many-to-one name="product" column="Product_id" cascade="all" class="Domain.Store.Product" lazy="false"></many-to-one>
             <property name="amount" column="amount" type="int"></property>
@@ -38,13 +40,11 @@
         </subclass>
 
         <subclass abstract="true" name="Domain.Policies.Acquisitions.CompositeAcq" discriminator-value="abstractAcqComposite">
-            <list name="acquisitions" table="ACQ2_TABLE">
-                <key column="acq_id"></key>
-                <index column="type" type="string"></index>
+            <list name="acquisitions" table="ACQ2_TABLE" cascade="all">
+                <key column="Composite_father_id" foreign-key="id"></key>
+                <index column="id" type="int"></index>
                 <one-to-many class="Domain.Policies.Acquisitions.Acquisition"></one-to-many>
             </list>
-
-            <property name="canPurchaseIdentity" type="Boolean"></property>
 
             <subclass name="Domain.Policies.Acquisitions.AndAcq" discriminator-value="AndAcq">
             </subclass>
