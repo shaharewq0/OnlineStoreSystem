@@ -13,10 +13,45 @@ abstract class AcqAmountCondition implements Acquisition {
     protected String productName;
     protected Product product;
     protected int amount;
+    private int id;
+
+    public AcqAmountCondition(){}
 
     AcqAmountCondition(String productName, int amount) {
         this.productName = productName;
         this.amount = amount;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     int getTotalAmount(List<Product_boundle> products) {

@@ -34,7 +34,7 @@ public final class PassProtocol_Imp implements PasswordProtocol{
         String hash=new String(messageDigest.digest());
         Password pass = new Password(userID,hash);
         table.add(pass);
-        da.addPassword(pass);
+        da.add(pass);
         return true;
     }
 
@@ -57,7 +57,7 @@ public final class PassProtocol_Imp implements PasswordProtocol{
         for(Password pass: table){
             if(pass.getUserID().equals(userID) && pass.getPasswordHash().equals(hash)) {
                 table.remove(pass);
-                da.deletePassword(pass);
+                da.delete(pass);
                 return true;
             }
         }

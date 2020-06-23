@@ -1,31 +1,27 @@
 package DAL;
 
+import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+public class StorePurchase_DA extends DA<StorePurchase> {
 
-public class Product_Details_DA extends DA<ProductDetails>{
-
-    public Product_Details_DA(){
-       super();
-       className="ProductDetails";
+    public StorePurchase_DA(){
+        super();
+        className="StorePurchase";
     }
 
-    public Integer add(ProductDetails product){
+    @Override
+    public Integer add(StorePurchase A) {
         Session session = factory.openSession();
         Transaction tx = null;
-        Integer prodID = null;
+        Integer ID = null;
 
         try {
             tx = session.beginTransaction();
-            prodID = (Integer) session.save(product);
+            ID = (Integer) session.save(A);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -33,9 +29,9 @@ public class Product_Details_DA extends DA<ProductDetails>{
         } finally {
             session.close();
         }
-        if(prodID != null){
-            product.setId(prodID);
+        if(ID != null){
+            A.setId(ID);
         }
-        return prodID;
+        return ID;
     }
 }

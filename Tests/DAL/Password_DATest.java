@@ -22,19 +22,19 @@ public class Password_DATest {
 
     @Test
     public void updatePassword() {
-        da.addPassword(pass);
+        da.add(pass);
         pass.setPasswordHash("hash2");
-        da.updatePassword(pass);
-        List<Password> temp = da.getAllPassword();
+        da.update(pass);
+        List<Password> temp = da.getAll();
         assertTrue(temp.get(temp.size()-1).getPasswordHash().equals(pass.getPasswordHash()));
     }
 
     @Test
     public void deletePassword() {
-        da.addPassword(pass);
-        int oldsize= da.getAllPassword().size();
-        da.deletePassword(pass);
-        assertEquals(da.getAllPassword().size(),oldsize-1);
+        da.add(pass);
+        int oldsize= da.getAll().size();
+        da.delete(pass);
+        assertEquals(da.getAll().size(),oldsize-1);
     }
 
 }

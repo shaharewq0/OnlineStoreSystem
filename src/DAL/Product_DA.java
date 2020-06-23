@@ -14,70 +14,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class Product_DA{
-    private static SessionFactory factory;
+public class Product_DA extends DA<Product>{
     public Product_DA(){
-        try {
-            factory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex){
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
+        super();
+        className="Product";
     }
-
-    public List<Product> getAll(){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        List<Product> toReturn=new LinkedList<>();
-
-        try {
-            tx = session.beginTransaction();
-            List products = session.createQuery("FROM Product").list();
-            for (Iterator iterator = products.iterator(); iterator.hasNext();){
-                Product prod = (Product) iterator.next();
-                toReturn.add(prod);
-            }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return toReturn;
-    }
-
-    public void update(Product product){
-        Session session = factory.openSession();
-        Transaction tx = null;
-
-        try {
-            tx = session.beginTransaction();
-            session.merge(product);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    public void delete(Product product){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.delete(product);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
 
     public Integer add(Product product){
         Session session = factory.openSession();

@@ -30,10 +30,10 @@ public class Product_Details_DATest {
         assertTrue(da.getAll().size()==1);
         assertTrue(da.getAll().get(0).getAmount()==1);
 
-        pd.setName("dor");
+        pd.setName("SSSSSS");
         da.update(pd);
         assertTrue(da.getAll().size()==1);
-        assertTrue(da.getAll().get(0).getName().equals("dor"));
+        assertTrue(da.getAll().get(0).getName().equals("SSSSSS"));
 
         pd.setPrice(100);
         da.update(pd);

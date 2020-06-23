@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Policies.Acquisitions.AcquisitionPolicy" table = "ACQ_POLICY_TABLE">
+        
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+        
+        <list name="acquisitions" table="ACQ_TABLE">
+            <key column="acq_policy_id"></key>
+            <index column="type"></index>
+            <one-to-many class="Domain.Policies.Acquisitions.Acquisition"/>
+        </list>
+        
+    </class>
+
+    <class name="Domain.Policies.Acquisitions.Acquisition" table="ACQ2_TABLE" discriminator-value="interfaceAcq">
+
+        <id name="id" type="int" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <subclass abstract="true" name="Domain.Policies.Acquisitions.AcqAmountCondition" discriminator-value="abstractAcqAmountCond">
+            <property name="productName" type="string" column="product_name"></property>
+            <many-to-one name="product" column="Product_id" cascade="all" class="Domain.Store.Product" lazy="false"></many-to-one>
+            <property name="amount" column="amount" type="int"></property>
+
+            <subclass name="Domain.Policies.Acquisitions.AcqMaxAmount" discriminator-value="AcqMaxAmount">
+            </subclass>
+
+            <subclass name="Domain.Policies.Acquisitions.AcqMinAmount" discriminator-value="AcqMinAmount">
+            </subclass>
+
+        </subclass>
+
+        <subclass abstract="true" name="Domain.Policies.Acquisitions.CompositeAcq" discriminator-value="abstractAcqComposite">
+            <list name="acquisitions" table="ACQ2_TABLE">
+                <key column="acq_id"></key>
+                <index column="type" type="string"></index>
+                <one-to-many class="Domain.Policies.Acquisitions.Acquisition"></one-to-many>
+            </list>
+
+            <property name="canPurchaseIdentity" type="Boolean"></property>
+
+            <subclass name="Domain.Policies.Acquisitions.AndAcq" discriminator-value="AndAcq">
+            </subclass>
+
+            <subclass name="Domain.Policies.Acquisitions.OrAcq" discriminator-value="OrAcq">
+            </subclass>
+
+            <subclass name="Domain.Policies.Acquisitions.XorAcq" discriminator-value="XorAcq">
+            </subclass>
+
+        </subclass>
+
+    </class>
+
+
+</hibernate-mapping>

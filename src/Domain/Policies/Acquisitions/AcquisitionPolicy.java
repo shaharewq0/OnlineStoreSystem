@@ -38,10 +38,27 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 public class AcquisitionPolicy extends BasePolicy {
+    private int id;
     private List<Acquisition> acquisitions;
 
     public AcquisitionPolicy() {
         this.acquisitions = new LinkedList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Acquisition> getAcquisitions() {
+        return acquisitions;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAcquisitions(List<Acquisition> acquisitions) {
+        this.acquisitions = acquisitions;
     }
 
     //      TODO: Acquisition: refactor out

@@ -8,11 +8,11 @@ import Domain.info.ProductDetails;
 import extornal.payment.PaymentMethed;
 
 public class StorePurchase {
-
+	private int id;
 	private double price;
 	private List<ProductDetails> items;
-
 	private String store;
+
 
 	public StorePurchase(List<ProductDetails> items, String store,double price) {
 		this.items = items;
@@ -20,7 +20,31 @@ public class StorePurchase {
 		this.price = price;
 	}
 
+	public StorePurchase(){}
 
+	public int getId() {
+		return id;
+	}
+
+	public String getStore() {
+		return store;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setItems(List<ProductDetails> items) {
+		this.items = items;
+	}
+
+	public void setStore(String store) {
+		this.store = store;
+	}
 
 	public double getPrice() {
 		return price;
