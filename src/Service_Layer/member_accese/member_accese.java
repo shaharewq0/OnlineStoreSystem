@@ -55,4 +55,22 @@ public class member_accese {
 		return me.getPurchaseHistory();
 
 	}
+
+	public static List<String> getRoles(int guestID) {
+		List<String> roles;
+		User me = System.getInstance().getMember(guestID);
+		String sys_manager = System.getInstance().getManager();
+
+		if (me == null) {
+			return null;
+		}
+
+		roles =  me.roles();
+
+		if(me.getName().equals(sys_manager)){
+			roles.add("systemManager");
+		}
+
+		return roles;
+	}
 }

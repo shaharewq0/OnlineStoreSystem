@@ -44,7 +44,7 @@ public class System implements ISystem {
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
-            instance.init("admin","password");
+            //instance.init("admin","password");
         }
         return instance;
     }
@@ -56,7 +56,17 @@ public class System implements ISystem {
         return instance;
     }
 
+    public static void init_manager(String name,String password) {
+        getInstance();
+        instance.init(name,password);
+    }
+
     // ----------------------------------init
+
+    public String getManager(){
+        return manager == null ? null : manager.name;
+    }
+
     public System_Manager ImManeger(String id, String password) {
 
         if (manager != null && (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password))) {
@@ -75,11 +85,11 @@ public class System implements ISystem {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
         init = true;
-        int guestId = ImNew();
-        User guest = getGuest(guestId);
+        //int guestId = ImNew();
+        //User guest = getGuest(guestId);
         User.register(username, password);
         manager = new System_Manager(username);
-        guest.login(username, password);
+        //guest.login(username, password);
 
         return true;
 
@@ -368,6 +378,5 @@ public class System implements ISystem {
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
         return manager != null && getUserProfile(manager.name) != null;
-
     }
 }

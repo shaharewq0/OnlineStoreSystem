@@ -177,15 +177,14 @@ public class owner_accese {
     }
 
 
-    public static boolean accecpt_Pending_Appointment(String myusername, String myPassword, String storeName,
-                                                      String appointe) {
+    public static boolean accecpt_Pending_Appointment(int gustID, String storeName, String appointe) {
         return false;
-//TODO implament
+        //TODO implament
     }
 
-    public static Collection<String> get_Pending_Appointment(String myusername, String myPassword, String storeName) {
+    public static Collection<String> get_Pending_Appointment(int gustID, String storeName) {
         return null;
-//TODO implament
+        //TODO implament
     }
 
 }

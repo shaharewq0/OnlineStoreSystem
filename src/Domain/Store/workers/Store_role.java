@@ -62,4 +62,6 @@ public interface Store_role {
     boolean addacquisition(Acquisition acquisition);
 
     boolean removeacquisition(int acquisitionID);
+
+    String getType();
 }

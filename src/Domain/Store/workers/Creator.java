@@ -37,4 +37,9 @@ public class Creator extends StoreOwner_Imp {
 		return false;
 	}
 
+	@Override
+	public String getType(){
+		return "creator";
+	}
+
 }

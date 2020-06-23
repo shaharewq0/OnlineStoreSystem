@@ -5,12 +5,89 @@ import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.Macros.Opcodes;
+import Domain.Policies.Discounts.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+
+class DiscountFactory{
+
+    private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static String REGEX = "\1";
+
+    static Discount discountFactory(String discount) {
+        try {
+            return discountFactory(stringSplitToStack(discount, REGEX));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static Discount discountFactory(Stack<String> params) throws Exception {
+        int         type        = Integer.parseInt(params.pop());
+        String      productName = params.pop();
+        int         percentage  = Integer.parseInt(params.pop());
+        double      min         = Double.parseDouble(params.pop());
+        LocalDate date        = toDate(params.pop());
+
+        switch (type) {
+            case 0: //visible
+                return new VisibleDiscount(productName,percentage, date);
+
+            case 1: //conditional amount
+                return new ConditionalAmountDiscount(productName, percentage, date, (int) min);
+
+            case 2: //conditional price
+                return new ConditionalPriceDiscount(productName, percentage, date, min);
+
+            case 10: //composite and
+                return new AndDiscount(parseDiscountList(params));
+
+            case 11: //composite or
+                return new OrDiscount(parseDiscountList(params));
+
+            case 12: //composite xor
+                return new XorDiscount(parseDiscountList(params));
+
+            default:
+                throw new Exception();
+        }
+    }
+
+    private static LocalDate toDate(String date) {
+        return LocalDate.parse(date, format);
+    }
+
+    private static List<Discount> parseDiscountList(Stack<String> params) throws Exception {
+        List<Discount> discountList = new LinkedList<>();
+        int n = 1;//Integer.parseInt(params.pop());
+        for (int i = 0; i < n; i++) {
+            discountList.add(discountFactory(params));
+        }
+        return discountList;
+    }
+
+    protected static Stack<String> stringSplitToStack(String str, String regex) {
+        List<String> lst = Arrays.asList(str.split(regex));
+        Collections.reverse(lst);
+        Stack<String> stack = new Stack<>();
+        stack.addAll(lst);
+        return stack;
+    }
+
+}
+
+
+
+
+
+
 
 public class MessageDecoder implements Decoder.Text<Message>  {
 
@@ -77,49 +154,57 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         byte op = opcode(parameters);
         switch (op){
+
+            // test command
             case Opcodes.Demo : return Demo(parameters);
 
             //extras
-            case Opcodes.viewOwnedStores : return viewOwnedStores(parameters);
+            case Opcodes.viewOwnedStores            : return viewOwnedStores(parameters);
+            case Opcodes.memberType                 : return memberType(parameters);
 
             //Gust
-            case Opcodes.Register : return Register(parameters);
-            case Opcodes.Login : return Login(parameters);
-            case Opcodes.StoreDetails : return StoreDetails(parameters);
-            case Opcodes.StoreProducts : return StoreProducts(parameters);
-            case Opcodes.SearchProductByName : return productByName(parameters);
-            case Opcodes.SearchProductBycategory : return productByCategory(parameters);
-            case Opcodes.SearchProductByKeyword : return productByKeyword(parameters);
-            case Opcodes.Save2Basket : return save2Basket(parameters);
-            case Opcodes.ProductsInCarts : return ProductsInCarts(parameters);
-            case Opcodes.RemoveFromCart : return RemoveFromCart(parameters);
-            case Opcodes.Purches : return Purches(parameters);
+            case Opcodes.Register                   : return Register(parameters);
+            case Opcodes.Login                      : return Login(parameters);
+            case Opcodes.StoreDetails               : return StoreDetails(parameters);
+            case Opcodes.StoreProducts              : return StoreProducts(parameters);
+            case Opcodes.SearchProductByName        : return productByName(parameters);
+            case Opcodes.SearchProductBycategory    : return productByCategory(parameters);
+            case Opcodes.SearchProductByKeyword     : return productByKeyword(parameters);
+            case Opcodes.Save2Basket                : return save2Basket(parameters);
+            case Opcodes.ProductsInCarts            : return ProductsInCarts(parameters);
+            case Opcodes.RemoveFromCart             : return RemoveFromCart(parameters);
+            case Opcodes.Purches                    : return Purches(parameters);
 
             //member
-            case Opcodes.Logout : return Logout(parameters);
-            case Opcodes.OpenStore : return OpenStore(parameters);
-            case Opcodes.PurchasesHistory : return PurchasesHistory(parameters);
+            case Opcodes.Logout                     : return Logout(parameters);
+            case Opcodes.OpenStore                  : return OpenStore(parameters);
+            case Opcodes.PurchasesHistory           : return PurchasesHistory(parameters);
 
             // manager
-            case  Opcodes.ViewMemberQustions : return ViewMemberQustions(parameters);
-            case  Opcodes.Response2Qustion : return Response2Qustion(parameters);
-            case  Opcodes.viewAquisitionHistory : return viewAquisitionHistory(parameters);
+            case  Opcodes.ViewMemberQustions        : return ViewMemberQustions(parameters);
+            case  Opcodes.Response2Qustion          : return Response2Qustion(parameters);
+            case  Opcodes.viewAquisitionHistory     : return viewAquisitionHistory(parameters);
 
             // owner
-            case Opcodes.AddProduct2Store :  return AddProduct2Store(parameters);
-            case Opcodes.RemoveItem : return RemoveItem(parameters);
-            case Opcodes.Add2Product : return Add2Product(parameters);
-            case Opcodes.Appoint : return Appoint(parameters);
-            case Opcodes.FireManager : return FireManager(parameters);
-            case  Opcodes.editMangagerPermesions : return editMangagerPermesions(parameters);
+            case Opcodes.AddProduct2Store           : return AddProduct2Store(parameters);
+            case Opcodes.RemoveItem                 : return RemoveItem(parameters);
+            case Opcodes.Add2Product                : return Add2Product(parameters);
+            case Opcodes.Appoint                    : return Appoint(parameters);
+            case Opcodes.FireManager                : return FireManager(parameters);
+            case Opcodes.editMangagerPermesions     : return editMangagerPermesions(parameters);
+            case Opcodes.AcceptPendingAppintment    : return AcceptPendingAppintment(parameters);
+            case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
+            case Opcodes.createDiscount             : return createDiscount(parameters);
 
 
             // system manager
-            case Opcodes.HistoryOfUser : return HistoryOfUser(parameters);
-            case Opcodes.HistoryOfStore : return HistoryOfStore(parameters);
+            case Opcodes.HistoryOfUser              : return HistoryOfUser(parameters);
+            case Opcodes.HistoryOfStore             : return HistoryOfStore(parameters);
 
 
-            default:  throw new IllegalArgumentException("unknown opcode : " + op );
+
+            // error - unown opcode
+            default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
 
@@ -291,6 +376,11 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         return ret;
     }
 
+    private void finalCheck(Iterable<?> parameters){
+        if(parameters.iterator().hasNext()){
+            throw new IllegalArgumentException("to much parameter!");
+        }
+    }
 
 
     // ------------------------------------------------------------- messages builders -------------------------------------------------------------
@@ -299,26 +389,19 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  content = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a demo object!");
-        }
-
+        finalCheck(parameters);
         return new DemoMessage(op, content);
     }
+
+
+
 
     private Message Register( Deque<Deque<Byte>> parameters){
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
         String  pass = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
-        if(op != Opcodes.Register){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
+        finalCheck(parameters);
         return new RegisterMessage(-1, name, pass);
     }
 
@@ -327,14 +410,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  name = popString(parameters);
         String  pass = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
-        if(op != Opcodes.Login){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
+        finalCheck(parameters);
         return new LoginMessage(-1, name, pass);
     }
 
@@ -343,48 +419,25 @@ public class MessageDecoder implements Decoder.Text<Message>  {
     private Message Logout(Deque<Deque<Byte>> parameters) {
         Byte    op   = popOpcode(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
-        if(op != Opcodes.Logout){
-            throw new IllegalArgumentException("to much parameter fo a register object!");
-        }
-
+        finalCheck(parameters);
         return new LogoutMessage(-1);
     }
 
 
     private Message StoreDetails(Deque<Deque<Byte>> parameters) {
-
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a store details object!");
-        }
-
-        if(op != Opcodes.StoreDetails){
-            throw new IllegalArgumentException("to much parameter fo a store details object!");
-        }
-
+        finalCheck(parameters);
         return new StorDetailsMessage(-1, name);
     }
 
     private Message StoreProducts(Deque<Deque<Byte>> parameters) {
-
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter fo a store products object!");
-        }
-
-        if(op != Opcodes.StoreProducts){
-            throw new IllegalArgumentException("to much parameter fo a store products object!");
-        }
-
-        return new StorDetailsMessage(-1, name);
+        finalCheck(parameters);
+        return new StoreProductsMessage(-1, name);
     }
 
     private Message OpenStore(Deque<Deque<Byte>> parameters) {
@@ -392,14 +445,8 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  name = popString(parameters);
         String  adress = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
 
-        if(op != Opcodes.OpenStore){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new OpenStoreMessage(-1, name, adress);
     }
 
@@ -409,27 +456,15 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  product = popString(parameters);
         Byte    amount = popByte(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
 
-        if(op != Opcodes.RemoveFromCart){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new RemoveProductFromCartMessage(-1,store, product, amount);
     }
 
     private Message ProductsInCarts(Deque<Deque<Byte>> parameters) {
         Byte    op   = popOpcode(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.ProductsInCarts){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ViewCartMessage(-1);
     }
 
@@ -439,13 +474,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  product = popString(parameters);
         int  amount = popInt(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.Save2Basket){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new AddProduct2BasketMessage(-1, store, product,amount);
     }
 
@@ -453,13 +482,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  keyword = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.SearchProductByKeyword){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ProductsByKeywordMessage(-1,keyword);
     }
 
@@ -467,13 +490,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  cat = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.SearchProductBycategory){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ProductsByCategoryMessage(-1,cat);
     }
 
@@ -481,26 +498,14 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.SearchProductByName){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ProductsByNameMessage(-1,name);
     }
 
     private Message PurchasesHistory(Deque<Deque<Byte>> parameters) {
         Byte    op   = popOpcode(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.PurchasesHistory){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ViewPerchesHistory(-1);
     }
 
@@ -509,13 +514,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.HistoryOfStore){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new HistoryOfStoreMessage(-1,name);
     }
 
@@ -523,13 +522,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.HistoryOfUser){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new HistoryOfUserMessage(-1,name);
     }
 
@@ -537,31 +530,17 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op   = popOpcode(parameters);
         String  name = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.ViewMemberQustions){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
+        finalCheck(parameters);
         return new ViewMemberQustionsMessage(-1,name);
     }
 
 
     private Message Response2Qustion(Deque<Deque<Byte>> parameters) {
-        Byte    op   = popOpcode(parameters);
-        String  name = popString(parameters);
-        byte    qid = popByte(parameters);
+        Byte    op      = popOpcode(parameters);
+        String  name    = popString(parameters);
+        byte    qid     = popByte(parameters);
 
-
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.Response2Qustion){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new Response2QuestionMessage(-1,name, qid);
     }
 
@@ -574,14 +553,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  adress  = popString(parameters);
 
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.PurchasesHistory){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new PurchaseMessage(-1,card, edate, css, owner, adress);
     }
 
@@ -594,15 +566,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  storename   = popString(parameters);
         int ammount         = popInt(parameters);
 
-
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.AddProduct2Store){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new CreateProductMessage(-1,name,price, cats, keyws, storename, ammount);
     }
 
@@ -613,14 +577,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         byte    role        = popByte(parameters);
 
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.Appoint){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new AppointMessage(-1,username, storename,role);
     }
 
@@ -630,14 +587,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  store       = popString(parameters);
 
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.FireManager){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new FireMessage(-1,username, store);
     }
 
@@ -646,15 +596,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  store   = popString(parameters);
         String  product = popString(parameters);
 
-
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.RemoveItem){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new RemoveProductMessage(-1,store, product);
     }
 
@@ -662,32 +604,16 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op      = popOpcode(parameters);
         String  product = popString(parameters);
         String  store   = popString(parameters);
-        byte    ammount = popByte(parameters); // TODO
+        int     ammount = popInt(parameters);
 
-
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.Add2Product){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new Add2ProductMessage(-1,product, store, ammount);
     }
 
     private Message viewOwnedStores(Deque<Deque<Byte>> parameters) {
         Byte op = popOpcode(parameters);
 
-
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.viewOwnedStores){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new ViewOwnedStoresMessage((byte)-1);
     }
 
@@ -695,14 +621,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte    op      = popOpcode(parameters);
         String  store   = popString(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.viewAquisitionHistory){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new ViewAquisitionMessage((byte)-1, store);
     }
 
@@ -712,14 +631,40 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String          manager     = popString(parameters);
         List<String>    permotions  = popStringListL1(parameters);
 
-        if(parameters.size() > 0){
-            throw new IllegalArgumentException("to much parameter!");
-        }
-
-        if(op != Opcodes.editMangagerPermesions){
-            throw new IllegalArgumentException("wrong opcode (SERVER ERROR)!");
-        }
-
+        finalCheck(parameters);
         return new EditPermitionsMessage((byte)-1, store,manager, permotions);
+    }
+
+    private Message memberType(Deque<Deque<Byte>> parameters) {
+        Byte op = popOpcode(parameters);
+
+        finalCheck(parameters);
+        return new memberTypeMessage((byte)-1);
+    }
+
+    private Message AcceptPendingAppintment(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  apointe = popString(parameters);
+
+        finalCheck(parameters);
+        return  new AcceptPendingAppointmentMessage((byte)-1, store, apointe);
+    }
+
+    private Message PendingAppountments(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+
+        finalCheck(parameters);
+        return new GetPendingAppointments((byte)-1, store);
+    }
+
+    private Message createDiscount(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  discs   = popString(parameters);
+
+        finalCheck(parameters);
+        return new createDiscount((byte)-1, store, DiscountFactory.discountFactory(discs));
     }
 }
