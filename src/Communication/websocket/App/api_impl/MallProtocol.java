@@ -453,4 +453,29 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
         return new NackMessage(msg.getId());
     }
+
+    public Message accept(FilterMessage msg) {
+        List<ProductDetails> prods = null;
+
+        switch (msg.getType()){
+            case byPrice: {
+                prods = guest_accese.usecase2_5D_1_FilterbyPrice(msg.getMin(), msg.getMax(), msg.getProducts());
+                break;
+            }
+            case byRating: {
+                prods = guest_accese.usecase2_5D_2_FilterbyRating((int)msg.getMin(), (int)msg.getMax(), msg.getProducts());
+                break;
+            }
+            case byStoreRating: {
+                prods = guest_accese.usecase2_5D_4_FilterbyStoreRating((int)msg.getMin(), (int)msg.getMax(), msg.getProducts());
+                break;
+            }
+        }
+
+        if(prods == null){
+            return new NackMessage(msg.getId());
+        }
+
+        return new ProductDetailsListResponse(msg.getId(), prods);
+    }
 }

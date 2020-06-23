@@ -84,6 +84,18 @@ public class StoreImp implements IStore {
         return ProductDetails.adapteProdactList(inventory.items.values(), name);
     }
 
+    public ProductDetails getProductDetails(String productName) {
+        List<ProductDetails> all = getProductsDetails();
+
+        for (ProductDetails prod: all) {
+            if(prod.getName().equals(productName)){
+                return prod;
+            }
+        }
+
+        return null;
+    }
+
     public String getAddress() {
         return address;
     }

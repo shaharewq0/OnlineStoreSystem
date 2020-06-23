@@ -83,6 +83,27 @@ public class guest_accese {
 
 	}
 
+	public static ProductDetails getProductDetails(String store, String productName) {
+		return System.getInstance().getStoreDetails(store).getProductDetails(productName);
+	}
+
+	public static List<ProductDetails> usecase2_5D_4_FilterbyStoreRating(int minRating, int maxRating, List<ProductDetails> prods) {
+		return User.filterByStoreRating(minRating, maxRating, prods);
+	}
+
+	public static List<ProductDetails> usecase2_5D_1_FilterbyPrice(double minPrice, double maxPrice, List<ProductDetails> prods) {
+		return User.filterByPrice(minPrice, maxPrice, prods);
+	}
+
+	public static List<ProductDetails> usecase2_5D_2_FilterbyRating(int minRating, int maxRating, List<ProductDetails> prods) {
+		return User.filterByRating(minRating, maxRating, prods);
+	}
+
+	public static List<ProductDetails> usecase2_5D_3_FilterbyCategory(String category, List<ProductDetails> prods) {
+		return User.filterByCategory(category, prods);
+
+	}
+
 	public static List<ProductDetails> usecase2_5D_4_FilterbyStoreRating(int minRating, int maxRating) {
 		return User.filterByStoreRating(minRating, maxRating);
 	}

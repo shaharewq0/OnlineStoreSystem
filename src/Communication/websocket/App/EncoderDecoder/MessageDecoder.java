@@ -8,6 +8,8 @@ import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.Logger.ServerLogger;
 import Domain.Policies.Acquisitions.*;
 import Domain.Policies.Discounts.*;
+import Domain.info.ProductDetails;
+import Service_Layer.guest_accese.guest_accese;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -258,6 +260,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.viewOwnedStores            : return viewOwnedStores(parameters);
             case Opcodes.memberType                 : return memberType(parameters);
 
+
             //Gust
             case Opcodes.Register                   : return Register(parameters);
             case Opcodes.Login                      : return Login(parameters);
@@ -270,16 +273,22 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.ProductsInCarts            : return ProductsInCarts(parameters);
             case Opcodes.RemoveFromCart             : return RemoveFromCart(parameters);
             case Opcodes.Purches                    : return Purches(parameters);
+            case Opcodes.FilterByPrice              : return FilterByPrice(parameters);
+            case Opcodes.FilterByRating             : return FilterByRating(parameters);
+            case Opcodes.FilterByStoreRating        : return FilterByStoreRating(parameters);
+
 
             //member
             case Opcodes.Logout                     : return Logout(parameters);
             case Opcodes.OpenStore                  : return OpenStore(parameters);
             case Opcodes.PurchasesHistory           : return PurchasesHistory(parameters);
 
+
             // manager
             case  Opcodes.ViewMemberQustions        : return ViewMemberQustions(parameters);
             case  Opcodes.Response2Qustion          : return Response2Qustion(parameters);
             case  Opcodes.viewAquisitionHistory     : return viewAquisitionHistory(parameters);
+
 
             // owner
             case Opcodes.AddProduct2Store           : return AddProduct2Store(parameters);
@@ -308,7 +317,6 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
-
 
 
     /**
@@ -476,6 +484,28 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         }
 
         return ret;
+    }
+
+    private List<ProductDetails> popProductDetailsList(Deque<Deque<Byte>> parameters) {
+        Deque<Byte> param = parameters.poll();
+        LinkedList<ProductDetails> ret = new LinkedList<>();
+
+        if (param == null)
+            throw new IllegalArgumentException("could not decode message.");
+
+        Deque<Deque<Byte>> lst = parameterizeNoOp(param, Delimiters.LIST_DELIMITER);
+
+        while (lst.size() > 0) {
+            String curr = popString(lst);
+            String[] prdDetails = curr.split("" + Delimiters.LIST_DELIMITER_L2);
+            String prod = prdDetails[0];
+            String store = prdDetails[1];
+
+            ret.offer(guest_accese.getProductDetails(store, prod));
+        }
+
+        return ret;
+
     }
 
     private void finalCheck(Iterable<?> parameters){
@@ -819,5 +849,28 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         finalCheck(parameters);
         return new AddAcquisitionMessage((byte)-1, store, AcquisitionFactory.acquisitionFactory(aqcs));
+    }
+
+    private Message Filter(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        double  min     = popDouble(parameters);
+        double  max     = popDouble(parameters);
+        List<ProductDetails> prods = popProductDetailsList(parameters);
+
+        finalCheck(parameters);
+        return new FilterMessage((byte)-1, prods, min, max, FilterMessage.FiltrtType.get(op));
+
+    }
+
+    private Message FilterByPrice(Deque<Deque<Byte>> parameters) {
+        return Filter(parameters);
+    }
+
+    private Message FilterByRating(Deque<Deque<Byte>> parameters) {
+        return Filter(parameters);
+    }
+
+    private Message FilterByStoreRating(Deque<Deque<Byte>> parameters) {
+        return Filter(parameters);
     }
 }
