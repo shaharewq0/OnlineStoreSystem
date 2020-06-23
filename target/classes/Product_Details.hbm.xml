@@ -12,13 +12,13 @@
 
         <property name = "name" column = "name" type = "string"/>
 
-        <list name="category" table="PD_CATEGORY_TABLE" lazy="false">
+        <list name="category" table="PD_CATEGORY_TABLE" lazy="false" cascade="all">
             <key column="PDid"></key>
             <index column="id"></index>
             <element column="category" type="string"></element>
         </list>
 
-        <list name="keyWords" table="PD_KEYWORDS_TABLE" lazy="false">
+        <list name="keyWords" table="PD_KEYWORDS_TABLE" lazy="false" cascade="all">
             <key column="PDid"></key>
             <index column="id"></index>
             <element column="keyword" type="string"></element>
@@ -31,7 +31,6 @@
         <property name = "price" column = "price" type = "double"/>
 
         <property name="rating"  column="rating" type = "int"/>
-
 
     </class>
 

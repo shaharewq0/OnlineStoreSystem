@@ -67,10 +67,10 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
 
         List<StorePurchase> TruePurchases = Collections.singletonList(new StorePurchase(prodects, STORE.getName(), price));
-
         List<StorePurchase> purchases = system.getStoreSellingHistory(USERNAME, PASSWORD, STORE.getName());
 
         assertEqualsLists(TruePurchases, purchases);
+
     }
 
 }

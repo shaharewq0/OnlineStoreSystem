@@ -3,6 +3,7 @@ package Domain.info;
 
 import Domain.Store.Product;
 import Domain.Store.Product_boundle;
+import Domain.Store.StorePurchase;
 
 import java.util.*;
 

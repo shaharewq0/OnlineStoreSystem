@@ -90,6 +90,7 @@ public class shoppingBasket implements IshoppingBasket {
         StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice());
         store.addPurchase(SP);
         return SP;
+
     }
 
     public boolean CheckItemAvailable() {

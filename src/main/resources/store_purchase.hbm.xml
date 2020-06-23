@@ -13,9 +13,9 @@
         <property name="price" column="price" type="double"/>
 
         <list name="items" cascade="all">
-            <key column="StorePurchase_id"></key>
-            <list-index column="idx"></list-index>
-            <many-to-many class="Domain.info.ProductDetails" />
+            <key column="SP_ID"/>
+            <index column="id"></index>
+            <one-to-many class="Domain.info.ProductDetails"></one-to-many>
         </list>
 
         <property name="store" type="string" column="store_name"/>
