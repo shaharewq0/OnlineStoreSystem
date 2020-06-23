@@ -18,9 +18,9 @@ public class Isracard implements PaymentMethed {
 	}
 
 	@Override
-	public boolean pay(CreditCard card_num, double amount) {
+	public int pay(CreditCard card_num, double amount) {
 
 		EventLogger.GetInstance().Add_Log(logmsg + amount + "," + card_num.getCardOwner());
-		return validCards.contains(card_num);
+		return validCards.contains(card_num)? 1 :-1;
 	}
 }
