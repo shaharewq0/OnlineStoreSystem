@@ -38,7 +38,7 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         guestID = BaseGuestTest.guestID;
 
         system.login(guestID, USERNAME, PASSWORD);   // do login with guest id
-        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, new userAddress("england", "london", "Beckenham Place", "123456789")));         // valid card, should work
+        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, new userAddress("england", "london", "Beckenham Place", "123456789", "Queen Elizabeth ")));         // valid card, should work
     }
 
     @Test

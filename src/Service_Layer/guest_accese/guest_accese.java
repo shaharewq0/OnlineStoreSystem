@@ -8,14 +8,20 @@ import Domain.info.StoreInfo;
 import Domain.store_System.ClintObserver;
 import Domain.store_System.System;
 import Service_Layer.userAddress;
+import extornal.EternalProxy;
 import extornal.payment.CreditCard;
 import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class guest_accese {
+
+
+	public static Queue<Integer> failedPyments = new ConcurrentLinkedQueue<>();
 
 	// when a guesset is online for the first time he needs to call this function to
 	// get his guest token
@@ -153,24 +159,33 @@ public class guest_accese {
 	}
 
 	//2.8
-	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, inventory whereToSend) {
+	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard card, userAddress whereToSend) {
+
+		if(!EternalProxy.getInstance().handshake()){
+			return false; // no external systems!
+		}
+
+		if(!RefundAll()){
+			return false; // there are stil unrefunded castomer, until external system return, no new purchases can be made!
+		}
+
 		if (!usecase2_8_1_Check_available_products(guestID))
 			return false;
 
 
 		List<MyPair<Product_boundle,String>> items = usecase2_8_5_Update_inventory(guestID);
 		double price = usecase2_8_2_Calculate_price(guestID);
-		boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
-		if (!didPay) {
+		int paymant = EternalProxy.getInstance().pay(card.getCardNumber(), card.getExpirationDate(), card.getCardOwner(), card.getCSS(), card.getOwnerID()); //boolean didPay = System.getInstance().navigatePayment().pay(bank, -price);
+		if (paymant < 0) {
 			usecase2_8_3_ReturnProdoctsToStore(items);
 			return false;
 		}
 		Packet_Of_Prodacts pack = new Packet_Of_Prodacts();
 		pack.add_items(items);
-		boolean didSupplay = System.getInstance().navigateSupply().order(pack, whereToSend);
-		if (!didSupplay) {
+		int suply =  EternalProxy.getInstance().supply(whereToSend.getCountry(), whereToSend.getCity(), whereToSend.getAddress(), whereToSend.getZipcode(), whereToSend.getReciver()); //boolean didSupplay = System.getInstance().navigateSupply().order(pack, whereToSend);
+		if (suply < 0) {
 			usecase2_8_3_ReturnProdoctsToStore(items);
-			usecase2_8_4_Guest_Refund(bank, price);
+			usecase2_8_4_Guest_Refund(card, price, paymant);
 			return false;
 		}
 		System.getInstance().getGuest(guestID).Complet_Purchase(price);
@@ -196,9 +211,37 @@ public class guest_accese {
 		return System.getInstance().fillStore(products);
 	}
 
-	public static boolean usecase2_8_4_Guest_Refund(CreditCard cardnumber, double amount) {
-		return System.getInstance().navigatePayment().pay(cardnumber, amount);
-		//return false;
+	public static boolean usecase2_8_4_Guest_Refund(CreditCard cardnumber, double amount, int transactionID) {
+		return usecase2_8_4_Guest_Refund(transactionID);
+	}
+
+	public static boolean usecase2_8_4_Guest_Refund(int transactionID) {
+		boolean success = EternalProxy.getInstance().cancel_pay(transactionID);
+
+		if(!success){
+			if(!failedPyments.contains(transactionID)) {
+				failedPyments.add(transactionID);
+			}
+		}
+
+		return success;
+	}
+
+	public static boolean RefundAll() {
+
+		if(failedPyments.isEmpty()){
+			return true;
+		}
+
+		while (!failedPyments.isEmpty()){
+			int transactionID = failedPyments.poll();
+			if(!usecase2_8_4_Guest_Refund(transactionID)){
+				failedPyments.add(transactionID);
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public static List<MyPair<Product_boundle,String>> usecase2_8_5_Update_inventory(int guestID) {

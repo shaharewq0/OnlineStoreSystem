@@ -45,6 +45,9 @@ public class InitSystemFromFile {
             case "AppointManager":
                 usecase4_5_appointManager(guest_id, command[i++], command[i]);
                 break;
+             case "refund":
+                 usecase2_8_4_Guest_Refund(Integer.parseInt(command[i++]));
+                break;
             case "ChangeManagerPermissions":
                 //TODO
                 break;

@@ -11,6 +11,7 @@ import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
+import Service_Layer.guest_accese.guest_accese;
 import extornal.Security.PassProtocol_Imp;
 import extornal.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
@@ -40,6 +41,7 @@ public class System implements ISystem {
     private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
     private static System instance = null;
+    private  Thread refunDemon;
 
     public static System getInstance() {
         if (instance == null) {
@@ -59,6 +61,23 @@ public class System implements ISystem {
     public static void init_manager(String name,String password) {
         getInstance();
         instance.init(name,password);
+    }
+
+    private System() {
+
+        Runnable demon = () -> {
+            while (!Thread.currentThread().isInterrupted()){
+                guest_accese.RefundAll();
+                try {
+                    Thread.sleep(60000); // wak up once evry minutes, and try to refund all the unrefunded castomers
+                } catch (InterruptedException e) {
+                   break; // system abbout to be close
+                }
+            }
+        };
+
+        refunDemon =  new Thread(demon); // this demon responsability is to try and refund customers that was not refunded (due to external system failure)
+        refunDemon.start();
     }
 
     // ----------------------------------init
@@ -97,6 +116,7 @@ public class System implements ISystem {
 
     public void resetSystem() {
         myProtocol.reset();
+        refunDemon.interrupt();
         instance = null;    //	TODO: temp
     }
 

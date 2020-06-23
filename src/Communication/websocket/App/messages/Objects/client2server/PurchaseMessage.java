@@ -53,6 +53,9 @@ public class PurchaseMessage extends Client2ServerMessage {
     public String getOwner() {
         return owner;
     }
+    public String getShipReciver() {
+        return getOwner();
+    }
 
     public String getShipAdress() {
         return shipAdress;

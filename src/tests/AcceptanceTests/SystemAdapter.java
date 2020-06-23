@@ -122,7 +122,7 @@ public class SystemAdapter {
 
 	// 2.8
 	public boolean purchase(int guestID, String card, String edate, String css, String cardOwner, String shipAdress) {
-		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner, "1234"), new userAddress("United States", "Washington, D.C.", "1600 Pennsylvania Avenue NW", "20500"));
+		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner, "1234"), new userAddress("United States", "Washington, D.C.", "1600 Pennsylvania Avenue NW", "20500", "Donald Trump"));
 	}
 
 	// 3.1

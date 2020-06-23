@@ -270,7 +270,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     public Message accept(PurchaseMessage msg) {
         CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner(), msg.getOwnerID());
-        userAddress adress = new userAddress(msg.getCountry(), msg.getCity(), msg.getShipAdress(), msg.getZip());
+        userAddress adress = new userAddress(msg.getCountry(), msg.getCity(), msg.getShipAdress(), msg.getZip(), msg.getShipReciver());
 
         if(guest_accese.usecase2_8_Purchase_products(gustID, card, adress)){
             return new AckMessage(msg.getId());
