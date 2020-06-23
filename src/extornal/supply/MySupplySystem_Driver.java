@@ -1,5 +1,7 @@
 package extornal.supply;
 
+import extornal.supply.Eternal.EternalSupply;
+
 import java.util.HashMap;
 
 public class MySupplySystem_Driver implements MySupplySystem {
@@ -10,6 +12,7 @@ public class MySupplySystem_Driver implements MySupplySystem {
 	static HashMap<String, Supplyer> list = null;
 	static {
 		list = new HashMap<String, Supplyer>();
+		list.put(EternalSupply.name, new EternalSupply());
 		list.put(Rami_Lavy.name, new Rami_Lavy());
 		list.put(WallMart.name, new WallMart());
 		current_supplyer = list.get(Rami_Lavy.name);

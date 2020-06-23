@@ -64,7 +64,7 @@ public class System implements ISystem {
     }
 
     private System() {
-
+// tal what is this?
         Runnable demon = () -> {
             while (!Thread.currentThread().isInterrupted()){
                 if(!guest_accese.RefundAll()){
