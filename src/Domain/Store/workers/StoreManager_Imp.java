@@ -277,6 +277,14 @@ public class StoreManager_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+
+    @Override
+    public String getAcquisition() {
+        if (!permission.contains("getacquisition"))
+            return null;
+        return getStore().getAcquisitions();
+    }
+
     @Override
     public boolean canPromoteToOwner() {
         return CheckTegrati_ImMangaer() && true;

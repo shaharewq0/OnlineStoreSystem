@@ -8,11 +8,11 @@ import Domain.Policies.Discounts.Discount;
 
 import java.util.Objects;
 
-public class createDiscount extends Client2ServerMessage {
+public class CreateDiscountMessage extends Client2ServerMessage {
     private final String store;
     private final Discount discount;
 
-    public createDiscount(long id, String store, Discount discount) {
+    public CreateDiscountMessage(long id, String store, Discount discount) {
         super(Opcodes.createDiscount, id);
         this.store = store;
         this.discount= discount;
@@ -43,7 +43,7 @@ public class createDiscount extends Client2ServerMessage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        createDiscount that = (createDiscount) o;
+        CreateDiscountMessage that = (CreateDiscountMessage) o;
         return getStore().equals(that.getStore()) &&
                 getDiscount().equals(that.getDiscount());
     }

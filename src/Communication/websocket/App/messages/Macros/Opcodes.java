@@ -57,6 +57,10 @@ public class Opcodes {
     public static final byte FireManager                = 0x47;
     public static final byte AcceptPendingAppintment    = 0x4c;
     public static final byte PendingAppountments        = 0x4d;
+    public static final byte getAcquisitions            = 0x40;
+    public static final byte removeAcquisition          = 0x45;
+    public static final byte addAcquisitions            = 0x48;
+
 
     //System manager
     public static final byte HistoryOfUser  = 0x64;

@@ -239,6 +239,11 @@ public class StoreOwner_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+    @Override
+    public String getAcquisition() {
+        return getStore().getAcquisitions();
+    }
+
     public boolean CheckTegrati_ImMangaer() {
         return user != null;
     }

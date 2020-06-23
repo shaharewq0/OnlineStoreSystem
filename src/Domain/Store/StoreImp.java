@@ -305,6 +305,10 @@ public class StoreImp implements IStore {
 
     }
 
+    public String getAcquisitions() {
+        return acquisitions.toString();
+    }
+
     // ----------------------------------------------------discount
     public boolean addDiscount(Discount discount) {
         List<String> ls = discount.getProductsNames();

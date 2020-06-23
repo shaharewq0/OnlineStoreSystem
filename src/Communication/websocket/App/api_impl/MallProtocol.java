@@ -402,7 +402,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         return new StringListResponse(msg.getId(), appinteeslst);
     }
 
-    public Message accept(createDiscount msg) {
+    public Message accept(CreateDiscountMessage msg) {
        if( owner_accese.usecase4_2_AddDiscount(username, paasword, msg.getStore(), msg.getDiscount())){
            return new AckMessage(msg.getId());
        }
@@ -422,6 +422,32 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     public Message accept(RemoveDiscountMessage msg) {
         if(owner_accese.usecase4_2_RemoveDiscount(username, paasword, msg.getStoreName(), msg.getDiscountID())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(GetAcquisitionsMessage msg) {
+        String answer = owner_accese.usecase4_2_GetAcquisition(username, paasword, msg.getStoreName());
+
+        if(answer == null || answer.equals("")){
+            return new NackMessage(msg.getId());
+        }
+
+        return new StringResponse((byte)-1, msg.getId(), answer);
+    }
+
+    public Message accept(RemoveAcquisitionMessage msg) {
+        if(owner_accese.usecase4_2_RemoveAcquisition(username, paasword, msg.getStoreName(), msg.getAcquisitionID())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(AddAcquisitionMessage msg) {
+        if( owner_accese.usecase4_2_AddAcquisition(username, paasword, msg.getStoreName(), msg.getAcquisition())){
             return new AckMessage(msg.getId());
         }
 

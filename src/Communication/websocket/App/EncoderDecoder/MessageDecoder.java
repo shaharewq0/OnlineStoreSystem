@@ -6,6 +6,7 @@ import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
 import Communication.websocket.App.messages.Macros.Opcodes;
 import Communication.websocket.Logger.ServerLogger;
+import Domain.Policies.Acquisitions.*;
 import Domain.Policies.Discounts.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,9 +18,27 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
-class DiscountFactory{
-
+class DiscountAcquisitionDecoder{
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    static final byte AND = 0x10;
+    static final byte OR = 0x11;
+    static final byte XOR = 0x12;
+
+    protected static LocalDate toDate(String date) {
+        return LocalDate.parse(date, format);
+    }
+
+    protected static Stack<String> stringSplitToStack(String str, String regex) {
+        List<String> lst = Arrays.asList(str.split(regex));
+        Collections.reverse(lst);
+        Stack<String> stack = new Stack<>();
+        stack.addAll(lst);
+        return stack;
+    }
+}
+
+
+class DiscountFactory extends DiscountAcquisitionDecoder{
     private static String REGEX = "\1";
 
     static Discount discountFactory(String discount) {
@@ -42,13 +61,13 @@ class DiscountFactory{
 
             switch (next) {
 
-                case 0x10: //composite and
+                case AND: //composite and
                     curr = new AndDiscount(Arrays.asList(curr, popDiscount(params))); break;
 
-                case 0x11: //composite or
+                case OR: //composite or
                     curr = new OrDiscount(Arrays.asList(curr, popDiscount(params))); break;
 
-                case 0x12: //composite xor
+                case XOR: //composite xor
                     curr = new XorDiscount(Arrays.asList(curr, popDiscount(params))); break;
 
             }
@@ -86,20 +105,78 @@ class DiscountFactory{
                 throw new Exception();
         }
     }
-
-    private static LocalDate toDate(String date) {
-        return LocalDate.parse(date, format);
-    }
-
-    private static Stack<String> stringSplitToStack(String str, String regex) {
-        List<String> lst = Arrays.asList(str.split(regex));
-        Collections.reverse(lst);
-        Stack<String> stack = new Stack<>();
-        stack.addAll(lst);
-        return stack;
-    }
-
 }
+
+
+
+
+
+class AcquisitionFactory extends DiscountAcquisitionDecoder{
+    private static String REGEX = "\1";
+
+    static Acquisition acquisitionFactory(String discount) {
+        try {
+            return acquisitionFactory(stringSplitToStack(discount, REGEX));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static Acquisition acquisitionFactory(Stack<String> params) throws Exception {
+
+        Acquisition curr = popAcquisition(params);
+
+        while (!params.empty()){
+
+            String poped = params.pop();
+            int next = poped.charAt(0);
+            params.push("" + poped.charAt(1));
+
+            switch (next) {
+
+                case AND: //composite and
+                    curr = new AndAcq(Arrays.asList(curr, popAcquisition(params))); break;
+
+                case OR: //composite or
+                    curr = new OrAcq(Arrays.asList(curr, popAcquisition(params))); break;
+
+                case XOR: //composite xor
+                    curr = new XorAcq(Arrays.asList(curr, popAcquisition(params))); break;
+
+            }
+        }
+
+        return curr;
+    }
+
+    private static Acquisition popAcquisition(Stack<String> params) throws Exception {
+
+        int     type        = params.pop().charAt(0);
+        String  productName = params.pop();
+        int     amount      = Integer.parseInt(params.pop());
+        int     condition   = Integer.parseInt(params.pop());
+
+        switch (type) {
+            case 0x10: //min amount
+                return new AcqMinAmount(productName, amount);
+
+            case 0x11: //max amount
+                return new AcqMaxAmount(productName, amount);
+
+            default:
+                throw new Exception();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -215,7 +292,10 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
             case Opcodes.createDiscount             : return createDiscount(parameters);
             case Opcodes.getDiscounts               : return getDiscounts(parameters);
-            case  Opcodes.deleteDiscount            : return deleteDiscount(parameters);
+            case Opcodes.deleteDiscount             : return deleteDiscount(parameters);
+            case Opcodes.getAcquisitions            : return getAcquisitions(parameters);
+            case Opcodes.removeAcquisition          : return removeAcquisition(parameters);
+            case Opcodes.addAcquisitions            : return addAcquisitions(parameters);
 
 
             // system manager
@@ -228,6 +308,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
+
 
 
     /**
@@ -694,7 +775,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         String  discs   = popString(parameters);
 
         finalCheck(parameters);
-        return new createDiscount((byte)-1, store, DiscountFactory.discountFactory(discs));
+        return new CreateDiscountMessage((byte)-1, store, DiscountFactory.discountFactory(discs));
     }
 
     private Message getDiscounts(Deque<Deque<Byte>> parameters) {
@@ -712,5 +793,31 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         finalCheck(parameters);
         return new RemoveDiscountMessage((byte)-1, store, id);
+    }
+
+    private Message getAcquisitions(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+
+        finalCheck(parameters);
+        return new GetAcquisitionsMessage((byte)-1, store);
+    }
+
+    private Message removeAcquisition(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        int     id      = popInt(parameters);
+
+        finalCheck(parameters);
+        return new RemoveAcquisitionMessage((byte)-1, store, id);
+    }
+
+    private Message addAcquisitions(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+        String  store   = popString(parameters);
+        String  aqcs    = popString(parameters);
+
+        finalCheck(parameters);
+        return new AddAcquisitionMessage((byte)-1, store, AcquisitionFactory.acquisitionFactory(aqcs));
     }
 }

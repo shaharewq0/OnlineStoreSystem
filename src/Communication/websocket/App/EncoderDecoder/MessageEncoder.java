@@ -230,8 +230,45 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
     }
 
+    private void offerUserPurchesList_string( LinkedList<Byte> lst, List<UserPurchase> purches){
+        offerString(lst, offerUserPurchesList_string(purches));
+    }
+
+    private String offerUserPurchesList_string(List<UserPurchase> purches) {
+        StringBuilder sb = new StringBuilder();
+
+        for (UserPurchase pur: purches) {
+            sb.append(offerStorePurchesList_string(pur.eachPurchase)).append("\n");
+            sb.append("\t\tTotal Price : ").append(pur.TotalePrice).append("\n");
+        }
+
+        return sb.toString();
+    }
+
     private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> purches){
         offerStorePurchesList(lst, purches, Delimiters.LIST_DELIMITER, Delimiters.LIST_DELIMITER_L2, Delimiters.LIST_DELIMITER_L3, Delimiters.LIST_DELIMITER_L4);
+    }
+
+    private void offerStorePurchesList_string(LinkedList<Byte> lst, List<StorePurchase> purches){
+        offerString(lst, offerStorePurchesList_string(purches));
+    }
+
+    private String offerStorePurchesList_string(List<StorePurchase> purches){
+        StringBuilder sb = new StringBuilder();
+
+        for (StorePurchase pur: purches) {
+            sb.append("Store : ").append(pur.get_Store_Name()).append("\n");
+
+            for (ProductDetails item:pur.getItems()) {
+                sb.append("\tItem Name : ").append(item.getName()).append("\n");
+                sb.append("\t\tAmount : ").append(item.getAmount()).append("\n");
+                sb.append("\t\tPrice : ").append(item.getPrice()).append("\n");
+            }
+
+            sb.append("Total price : ").append(pur.getPrice()).append("\n\n");
+        }
+
+        return sb.toString();
     }
 
     private void offerStorePurchesList( LinkedList<Byte> lst, List<StorePurchase> toOffer, byte deleliter1, byte deleliter2, byte deleliter3, byte deleliter4){
@@ -385,7 +422,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(UserPurchaseListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerUserPurchesList(lst, msg.getPurchase());
+        offerUserPurchesList_string(lst, msg.getPurchase());
 
         return createJsonString(msg.getReplayForID(), lst);
     }
@@ -401,7 +438,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(StorePurchaseListResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerStorePurchesList(lst, msg.getPurchases());
+        offerStorePurchesList_string(lst, msg.getPurchases());
 
         return createJsonString(msg.getReplayForID(), lst);
     }

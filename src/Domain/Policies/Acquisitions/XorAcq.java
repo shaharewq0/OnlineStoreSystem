@@ -2,8 +2,8 @@ package Domain.Policies.Acquisitions;
 
 import java.util.List;
 
-class XorAcq extends CompositeAcq {
-    XorAcq(List<Acquisition> acquisitions) {
+public class XorAcq extends CompositeAcq {
+    public XorAcq(List<Acquisition> acquisitions) {
         super(acquisitions, Boolean::logicalXor, false);
     }
 

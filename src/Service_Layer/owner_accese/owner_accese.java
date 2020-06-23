@@ -86,6 +86,10 @@ public class owner_accese {
         return me.getDiscount(storeName);
     }
 
+
+
+
+
     public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
@@ -99,6 +103,15 @@ public class owner_accese {
             return false;
         return me.removeacquisition(acquisitionID, storeName);
     }
+
+    public static String usecase4_2_GetAcquisition(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getAcquisition(storeName);
+    }
+
+
 
 
     public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,
