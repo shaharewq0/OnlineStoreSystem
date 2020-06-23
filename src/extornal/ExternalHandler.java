@@ -51,6 +51,10 @@ public class ExternalHandler {
         http.setRequestMethod("POST");
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+        // set time out
+        http.setConnectTimeout(10000);
+        http.setReadTimeout(10000);
     }
 
     private String send(byte[] out) throws IOException  {
@@ -59,6 +63,9 @@ public class ExternalHandler {
 
         try(OutputStream os = http.getOutputStream()) {
             os.write(out);
+        }
+        catch (Exception e){
+            return null;
         }
 
         if(!http.getResponseMessage().equals("OK")){

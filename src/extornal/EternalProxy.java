@@ -24,7 +24,7 @@ public class EternalProxy {
         boolean response = "OK".equals(handler.handshake());
 
         if(!response){
-            ExternalLog.GetInstance().Add_Log("failed to connecto to external system!");
+            ExternalLog.GetInstance().Add_Log("handshake: no external systems!");
         }
 
         return  response;
@@ -78,12 +78,6 @@ public class EternalProxy {
     }
 
     public boolean cancel_supply(int tranactionID) {
-        boolean response =  "1".equals(handler.cancel_supply(tranactionID));
-
-        if(!response){
-            ExternalLog.GetInstance().Add_Log("tranaction #" + tranactionID + "attempted to be canceled, but failed!");
-        }
-
-        return  response;
+        return "1".equals(handler.cancel_supply(tranactionID));
     }
 }

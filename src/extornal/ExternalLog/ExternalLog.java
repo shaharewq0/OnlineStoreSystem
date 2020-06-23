@@ -32,6 +32,7 @@ public class ExternalLog implements Log {
         try {
             //fileWriter.write(timeString() + msg + "\n");
             //fileWriter.flush();
+
             Files.write(Paths.get(fileName), (timeString() + msg + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             System.out.println("error in printing to the server log file");
