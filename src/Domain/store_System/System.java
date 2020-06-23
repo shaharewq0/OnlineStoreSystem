@@ -67,7 +67,10 @@ public class System implements ISystem {
 
         Runnable demon = () -> {
             while (!Thread.currentThread().isInterrupted()){
-                guest_accese.RefundAll();
+                if(!guest_accese.RefundAll()){
+                    java.lang.System.out.println("STILL CANT REFUND!");
+                }
+
                 try {
                     Thread.sleep(60000); // wak up once evry minutes, and try to refund all the unrefunded castomers
                 } catch (InterruptedException e) {
