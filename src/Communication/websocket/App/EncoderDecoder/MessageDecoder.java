@@ -155,15 +155,14 @@ class AcquisitionFactory extends DiscountAcquisitionDecoder{
 
         int     type        = params.pop().charAt(0);
         String  productName = params.pop();
-        int     amount      = Integer.parseInt(params.pop());
-        int     condition   = Integer.parseInt(params.pop());
+        int     condition   = Integer.parseInt(params.pop()) - 0x10;
 
         switch (type) {
             case 0x10: //min amount
-                return new AcqMinAmount(productName, amount);
+                return new AcqMinAmount(productName, condition);
 
             case 0x11: //max amount
-                return new AcqMaxAmount(productName, amount);
+                return new AcqMaxAmount(productName, condition);
 
             default:
                 throw new Exception();

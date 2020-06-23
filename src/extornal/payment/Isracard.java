@@ -14,7 +14,7 @@ public class Isracard implements PaymentMethed {
 
 	public Isracard(){
 		validCards = new LinkedList<>();
-		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil"));
+		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil", "1234"));
 	}
 
 	@Override

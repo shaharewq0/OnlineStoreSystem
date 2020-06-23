@@ -13,7 +13,7 @@ public class Pay_pal implements PaymentMethed {
 
 	public Pay_pal(){
 		validCards = new LinkedList<>();
-		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil"));
+		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil", "1234"));
 	}
 
 

@@ -177,10 +177,6 @@ public class guest_accese {
 		return true;
 	}
 
-	public static boolean usecase2_8_Purchase_products(int guestID, CreditCard bank, String clientAdress) {
-		return usecase2_8_Purchase_products(guestID, bank,new userAddress(clientAdress));
-	}
-
 	public static boolean usecase2_8_1_Check_available_products(int guestID) {
 		User user = System.getInstance().getGuest(guestID);
 		if(user == null)

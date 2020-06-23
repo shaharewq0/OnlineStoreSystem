@@ -13,8 +13,8 @@ import extornal.payment.CreditCard;
 
 public class Payment_Tests {
 
-	private CreditCard bank1 = new CreditCard("123", "02/23", "311", "yosi yosi");
-	private CreditCard bank2 =new CreditCard("321", "01/24", "476", "pil pilon");
+	private CreditCard bank1 = new CreditCard("123", "02/23", "311", "yosi yosi", "1234");
+	private CreditCard bank2 =new CreditCard("321", "01/24", "476", "pil pilon", "3214");
 	MyPaymentSystem mss = null;
 	@Before
 	public void setUp() throws Exception {

@@ -21,6 +21,7 @@ import Service_Layer.manager_accese.manager_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
 import Service_Layer.sys_manager_accese.sys_mangaer_accese;
+import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
@@ -268,9 +269,10 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(PurchaseMessage msg) {
-        CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner());
+        CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner(), msg.getOwnerID());
+        userAddress adress = new userAddress(msg.getCountry(), msg.getCity(), msg.getShipAdress(), msg.getZip());
 
-        if(guest_accese.usecase2_8_Purchase_products(gustID, card, msg.getShipAdress())){
+        if(guest_accese.usecase2_8_Purchase_products(gustID, card, adress)){
             return new AckMessage(msg.getId());
         }
 
