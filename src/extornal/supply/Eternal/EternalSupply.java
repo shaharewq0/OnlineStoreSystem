@@ -8,7 +8,7 @@ import extornal.supply.Supplyer;
 import extornal.supply.inventory;
 
 public class EternalSupply implements Supplyer {
-
+    //test
     public static final String name = "EternalSupply";
 
     private ExternalHandler handler = ExternalHandler.getInstance();;
