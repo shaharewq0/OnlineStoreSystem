@@ -28,7 +28,7 @@ public class System implements ISystem {
     private boolean init = false;
     private System_Manager manager = null;
 
-    private int TempGuestID = 1;
+    private int TempGuestID = 0;
     private Map<Integer, User> guest = new HashMap<>();
     private Map<String, Registered> membersprofiles = new HashMap<>();
     private Map<String, Member> onlinemember = new HashMap<>();
@@ -43,6 +43,14 @@ public class System implements ISystem {
     private static System instance = null;
     private  Thread refunDemon;
 
+
+    // count
+    public static int OwnerLogin = 0;
+    public static int MemberLogin = 0;
+    public static int GuestLogin = 0;// TempGuestID
+    public static int ManagerLogin = 0;
+    public static int SYS_ManagerLogin = 1;
+    //
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
@@ -115,6 +123,7 @@ public class System implements ISystem {
 
     private void setManager(String username, String password){
         User.register(username, password);
+        SYS_ManagerLogin++;
         manager = new System_Manager(username);
     }
 
@@ -132,6 +141,7 @@ public class System implements ISystem {
     }
 
     public int ImNew() {
+        GuestLogin++;
         EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
         TempGuestID++;
         guest.put(TempGuestID, new User());

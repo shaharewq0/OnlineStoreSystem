@@ -70,4 +70,7 @@ public interface Store_role {
     String getAcquisition();
 
     String getType();
+
+     boolean confirmOwner(String newOnwerName);
+     Collection<String> getWaitingAccep();
 }

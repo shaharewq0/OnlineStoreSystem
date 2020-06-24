@@ -305,4 +305,14 @@ public class StoreManager_Imp implements Store_role {
         return "manager";
     }
 
+    @Override
+    public boolean confirmOwner(String newOnwerName) {
+        return false;
+    }
+
+    @Override
+    public Collection<String> getWaitingAccep() {
+        return null;
+    }
+
 }

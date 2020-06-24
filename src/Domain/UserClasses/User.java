@@ -215,6 +215,22 @@ public class User implements IUser {
         return profile.store_roles.get(storeName).appointOwner(appointee);
     }
 
+    public boolean acceptOwner(String storeName, String hisusername) {
+        if (profile == null)
+            return false;
+
+        return profile.store_roles.get(storeName).confirmOwner(hisusername);
+    }
+
+    public Collection<String>  getWaitingAccept(String storeName)
+    {
+        if (profile == null)
+            return new LinkedList<>();
+
+        return profile.store_roles.get(storeName).getWaitingAccep();
+
+    }
+
     @Override
     public boolean appointAsOwner(Store_role role) {
         if (profile == null || profile.store_roles.containsKey(role.getStore().getName())

@@ -206,14 +206,35 @@ public class owner_accese {
     }
 
 
+    public static boolean accecpt_Pending_Appointment(String myusername, String myPassword, String storeName, String appointe) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return false;
+        return me.acceptOwner(storeName,appointe);
+
+    }
+
+    public static Collection<String> get_Pending_Appointment(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return null;
+        return me.getWaitingAccept(storeName);
+
+    }
+
+
     public static boolean accecpt_Pending_Appointment(int gustID, String storeName, String appointe) {
-        return false;
-        //TODO implament
+        User me = System.getInstance().getMember(gustID);
+        if (me == null)
+            return false;
+        return me.acceptOwner(storeName,appointe);
     }
 
     public static Collection<String> get_Pending_Appointment(int gustID, String storeName) {
-        return Arrays.asList("user1", "user2", "user3");
-        //TODO implament
+        User me = System.getInstance().getMember(gustID);
+        if (me == null)
+            return null;
+        return me.getWaitingAccept(storeName);
     }
 
 }
