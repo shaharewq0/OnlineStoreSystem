@@ -30,5 +30,10 @@ public class Pay_pal implements PaymentMethed {
 		return -1;
 	}
 
+	@Override
+	public boolean cancel_pay(int transactionID) {
+		return false;
+	}
+
 
 }

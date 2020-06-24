@@ -1,6 +1,7 @@
 package Communication.websocket.App.api_impl;
 
 import Communication.websocket.App.messages.Macros.Opcodes;
+import Communication.websocket.App.messages.Macros.Permitions;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
@@ -479,5 +480,24 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         }
 
         return new ProductDetailsListResponse(msg.getId(), prods);
+    }
+
+    public Message accept(getManagerPermitions msg) {
+
+        List<String> perms = owner_accese.usecase4_6_getMangagerPermesions(username, paasword, msg.getStore(), msg.getManager());
+        LinkedList<Byte> opcodedPerms = new LinkedList<>();
+        Permitions permitions = new Permitions();
+
+        if (perms != null) {
+            permitions.permesions.forEach((op, text) ->{
+                if(perms.contains(text)){
+                    opcodedPerms.offer(op);
+                }
+            });
+
+            return new ByteArrayResponse((byte)-1, msg.getId(), opcodedPerms);
+        }
+
+        return new NackMessage(msg.getId());
     }
 }

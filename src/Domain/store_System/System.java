@@ -46,7 +46,7 @@ public class System implements ISystem {
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
-            //instance.init("admin","password");
+            instance.init("admin","password");
         }
         return instance;
     }
@@ -60,11 +60,11 @@ public class System implements ISystem {
 
     public static void init_manager(String name,String password) {
         getInstance();
-        instance.init(name,password);
+        instance.setManager(name, password);;
     }
 
     private System() {
-
+// tal what is this?
         Runnable demon = () -> {
             while (!Thread.currentThread().isInterrupted()){
                 if(!guest_accese.RefundAll()){
@@ -72,7 +72,7 @@ public class System implements ISystem {
                 }
 
                 try {
-                    Thread.sleep(1000); // wake up once evry minute, and try to refund all the unrefunded castomers
+                    Thread.sleep(60000); // wake up once evry minute, and try to refund all the unrefunded castomers
                 } catch (InterruptedException e) {
                    break; // system abbout to be close
                 }
@@ -107,14 +107,15 @@ public class System implements ISystem {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
         init = true;
-        //int guestId = ImNew();
-        //User guest = getGuest(guestId);
-        User.register(username, password);
-        manager = new System_Manager(username);
-        //guest.login(username, password);
+        setManager(username, password);
 
         return true;
 
+    }
+
+    private void setManager(String username, String password){
+        User.register(username, password);
+        manager = new System_Manager(username);
     }
 
     public void resetSystem() {

@@ -470,5 +470,9 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
         return createJsonString(msg.getReplayForID(), lst);
     }
+
+    public String accept(ByteArrayResponse msg) {
+        return createJsonString(msg.getReplayForID(), msg.getBytes());
+    }
 }
 

@@ -10,14 +10,12 @@ import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.Store.workers.appoints.Pending_appoint_Owner;
+import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.Roles.Registered;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StoreOwner_Imp implements Store_role {
     protected Registered user;
@@ -195,6 +193,11 @@ public class StoreOwner_Imp implements Store_role {
     public boolean editManagerPermesions(String managername, List<String> permesions) {
         EventLogger.GetInstance().Add_Log(this.toString() + "-Owner changed other manager permesions");
         return myJob.store.editManagerPermesions(managername, permesions);
+    }
+
+    @Override
+    public List<String> getManagerPermesions() {
+        return Arrays.asList(MangaerPermesions.permesions);
     }
 
     @Override

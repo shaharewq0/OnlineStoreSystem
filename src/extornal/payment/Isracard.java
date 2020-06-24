@@ -23,4 +23,9 @@ public class Isracard implements PaymentMethed {
 		EventLogger.GetInstance().Add_Log(logmsg + amount + "," + card_num.getCardOwner());
 		return validCards.contains(card_num)? 1 :-1;
 	}
+
+	@Override
+	public boolean cancel_pay(int transactionID) {
+		return false;
+	}
 }
