@@ -1,8 +1,11 @@
 package extornal;
 
 import extornal.ExternalLog.ExternalLog;
+import extornal.payment.CreditCard;
+import extornal.payment.MyPaymentSystem;
+import extornal.payment.PaymentMethed;
 
-public class EternalProxy {
+public class EternalProxy implements PaymentMethed {
 
     private static EternalProxy instance;
 
@@ -30,6 +33,14 @@ public class EternalProxy {
         return  response;
     }
 
+
+
+
+    public int pay(CreditCard card, double amount)
+    {
+        int output = pay(card.getCardNumber(), card.getExpirationDate(), card.getCardOwner(), card.getCSS(), card.getOwnerID());
+        return  output;
+    }
 
 
     public int pay(String card, String date, String owner, String cvv, String OwnerID) {
@@ -80,4 +91,6 @@ public class EternalProxy {
     public boolean cancel_supply(int tranactionID) {
         return "1".equals(handler.cancel_supply(tranactionID));
     }
+
+
 }

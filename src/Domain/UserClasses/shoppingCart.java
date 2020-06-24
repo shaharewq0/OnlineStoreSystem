@@ -72,6 +72,7 @@ public class shoppingCart implements IshoppingCart {
         for (shoppingBasket basket : baskets.values()) {
             p.eachPurchase.add(basket.Complet_Purchase());
         }
+        baskets.clear();
         return p;
     }
 

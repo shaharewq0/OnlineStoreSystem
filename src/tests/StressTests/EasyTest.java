@@ -13,12 +13,12 @@ public class EasyTest implements Runnable {
 
         if(!guest_accese.usecase2_3_login(ggustID, user, user)){
             failedTestsCounter.failed();
-            throw new RuntimeException("EasyTest: did not login");
+            System.out.println("EasyTest: did not login");
         }
 
         if(! member_accese.usecase3_1_Logout(ggustID)){
             failedTestsCounter.failed();
-            throw new RuntimeException("EasyTest: did not logout");
+            System.out.println("EasyTest: did not logout");
         }
 
 

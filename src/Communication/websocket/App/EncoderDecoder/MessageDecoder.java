@@ -496,7 +496,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         while (lst.size() > 0) {
             String curr = popString(lst);
-            String[] prdDetails = curr.split("" + Delimiters.LIST_DELIMITER_L2);
+            String[] prdDetails = curr.split("\2");
             String prod = prdDetails[0];
             String store = prdDetails[1];
 

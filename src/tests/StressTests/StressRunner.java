@@ -60,7 +60,7 @@ class testRunner implements Runnable {
 
 class stresstest implements Runnable {
 
-    private static final int USERS = 3;
+    private static final int USERS = 10;
     private static final int THREAD_NUM = Runtime.getRuntime().availableProcessors();
 
 
@@ -72,17 +72,18 @@ class stresstest implements Runnable {
         executor = Executors.newFixedThreadPool(THREAD_NUM);
 
         for(int i = 1; i<= USERS; i++){
-            executor.execute(new testRunner());
+            executor.execute(new testRunner()); //CHANGE HERE <----------------------------------------------------------------------
         }
 
 
         executor.shutdown();
         try {
-            executor.awaitTermination(20, TimeUnit.SECONDS);
+            executor.awaitTermination(2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        executor.shutdownNow();
         System.out.println("\n\n\n\n#Failures : " + failedTestsCounter.getCounter());
 
     }

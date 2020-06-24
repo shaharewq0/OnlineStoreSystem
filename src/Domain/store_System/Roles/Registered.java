@@ -42,8 +42,6 @@ public class Registered implements MSGObservable {
     public void LogLogin(User user, ClintObserver CO) {
         clints.put(user,CO);
         if(!MSG_box.isEmpty()) {
-            TempMSG = MSG_box;
-            MSG_box = new LinkedList<>();
             CO.Notifi_me(this);
         }
     }

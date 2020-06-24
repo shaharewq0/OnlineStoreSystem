@@ -29,11 +29,11 @@ public class Payment_Tests {
 			fail("init error");
 			e.printStackTrace();
 		}
-		assertTrue(mss.pay(bank1, 5555));
+		assertTrue(mss.pay(bank1, 5555)==1);
 
-		assertFalse(mss.pay(null, 5555));
+		assertFalse(mss.pay(null, 5555)!=1);
 
-		assertFalse(mss.pay(bank1, -1));
+		assertFalse(mss.pay(bank1, -1)!=1);
 		
 	}
 	
