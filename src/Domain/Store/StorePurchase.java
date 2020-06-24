@@ -59,4 +59,13 @@ public class StorePurchase {
 	public int hashCode() {
 		return Objects.hash(getPrice(), getItems(), store);
 	}
+
+	@Override
+	public String toString() {
+		return "StorePurchase{" +
+				"price=" + price +
+				", items=" + items +
+				", store='" + store + '\'' +
+				'}';
+	}
 }

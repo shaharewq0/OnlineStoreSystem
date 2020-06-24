@@ -1604,3 +1604,231 @@ row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":11
 [2020-06-24T12:34:47.519743]: sending message. session id: e7e56839-896e-42e3-8cd0-31fbdb339f84.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
 
 row message: {"cmd_id":3,"json_data":{"0":4,"1":49,"2":0,"3":51,"4":0,"5":98,"6":97,"7":108,"8":108,"9":115,"10":49,"11":2,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":1,"19":115,"20":50,"21":0}}
+[2020-06-24T12:42:50.503429]: closeted session. id: e7e56839-896e-42e3-8cd0-31fbdb339f84
+[2020-06-24T12:42:52.079581]: Opened session. id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4
+row message: {"cmd_id":2,"json_data":{"0":24,"1":114,"2":111,"3":117,"4":110,"5":100}}
+[2020-06-24T12:43:08.547228]: message received. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductsByKeywordMessage{keyword='round'}
+row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":2,"19":49,"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"20":46,"21":51},"cmd_id":2}
+[2020-06-24T12:43:08.549902]: sending message. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+row message: {"cmd_id":3,"json_data":{"0":4,"1":49,"2":0,"3":51,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":115,"11":49,"12":1,"13":116,"14":111,"15":109,"16":97,"17":116,"18":111,"19":2,"20":115,"21":50}}
+[2020-06-24T12:43:41.320127]: message received. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : FilterMessage{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}], min=1.0, max=3.0, type=byPrice}
+row response :{"result":{"11":115,"12":50,"0":116,"1":111,"2":109,"3":97,"4":116,"5":111,"6":2,"7":49,"8":46,"9":51,"10":2},"cmd_id":3}
+[2020-06-24T12:43:49.928131]: sending message. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+row message: {"cmd_id":4,"json_data":{"0":24,"1":114,"2":111,"3":117,"4":110,"5":100}}
+[2020-06-24T12:44:16.882946]: message received. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductsByKeywordMessage{keyword='round'}
+row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":2,"19":49,"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"20":46,"21":51},"cmd_id":4}
+[2020-06-24T12:44:16.885558]: sending message. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+row message: {"cmd_id":5,"json_data":{"0":5,"1":48,"2":0,"3":51,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":115,"11":49,"12":1,"13":116,"14":111,"15":109,"16":97,"17":116,"18":111,"19":2,"20":115,"21":50}}
+[2020-06-24T12:44:45.588574]: message received. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : FilterMessage{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}], min=0.0, max=3.0, type=byRating}
+row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":2,"19":49,"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"20":46,"21":51},"cmd_id":5}
+[2020-06-24T12:44:50.404875]: sending message. session id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+[2020-06-24T12:46:30.819702]: closeted session. id: 6a5f7543-c30f-4c59-bd6d-7ea1c84548b4
+[2020-06-24T12:46:31.539555]: Opened session. id: 1184fd25-43ed-419a-9fc6-5e39d094d6cd
+[2020-06-24T12:47:10.700256]: closeted session. id: 1184fd25-43ed-419a-9fc6-5e39d094d6cd
+[2020-06-24T12:47:11.466710]: Opened session. id: 8d68ec83-da50-476d-bd27-18571755c157
+[2020-06-24T12:47:13.259333]: closeted session. id: 8d68ec83-da50-476d-bd27-18571755c157
+[2020-06-24T12:47:13.865072]: Opened session. id: cba8700c-e97d-42db-baf4-74133e502203
+row message: {"cmd_id":2,"json_data":{"0":24,"1":114,"2":111,"3":117,"4":110,"5":100}}
+[2020-06-24T12:47:16.410611]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ProductsByKeywordMessage{keyword='round'}
+row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":2,"19":49,"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"20":46,"21":51},"cmd_id":2}
+[2020-06-24T12:47:16.412920]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+row message: {"cmd_id":3,"json_data":{"0":5,"1":48,"2":0,"3":51,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":115,"11":49,"12":1,"13":116,"14":111,"15":109,"16":97,"17":116,"18":111,"19":2,"20":115,"21":50}}
+[2020-06-24T12:48:32.338772]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : FilterMessage{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}], min=0.0, max=3.0, type=byRating}
+row response :{"result":{"22":2,"23":115,"24":50,"10":49,"11":1,"12":116,"13":111,"14":109,"15":97,"16":116,"17":111,"18":2,"19":49,"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"20":46,"21":51},"cmd_id":3}
+[2020-06-24T12:48:32.340971]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=10, rating=0, price=3.5}, ProductDetails{keyWords=[round, sphere], name='tomato', category=[food, vegeis], storeName='s2', amount=73, rating=0, price=1.3}]}
+
+row message: {"cmd_id":4,"json_data":{"0":38,"1":115,"2":49,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":51}}
+[2020-06-24T12:48:37.484407]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : AddProduct2BasketMessage{store='s1', product='ball', amount=3}
+row response :{"result":2,"cmd_id":4}
+[2020-06-24T12:48:37.487350]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : AckMessage{ replyFor ='4'}
+
+row message: {"cmd_id":5,"json_data":{"0":39}}
+[2020-06-24T12:48:42.870658]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":48,"14":46,"15":53,"16":2,"17":115,"18":49,"0":49,"1":48,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":5}
+[2020-06-24T12:48:42.877366]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=3, rating=0, price=3.5}], price=10.5}
+
+row message: {"cmd_id":6,"json_data":{"0":39}}
+[2020-06-24T12:48:42.878556]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":48,"14":46,"15":53,"16":2,"17":115,"18":49,"0":49,"1":48,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":6}
+[2020-06-24T12:48:42.880131]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=3, rating=0, price=3.5}], price=10.5}
+
+row message: {"cmd_id":7,"json_data":{"0":35,"1":117,"2":50,"3":0,"4":117,"5":50}}
+[2020-06-24T12:49:01.601718]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : LoginMessage{username='u2', password='u2', id ='7'}
+row response :{"result":2,"cmd_id":7}
+[2020-06-24T12:49:01.604376]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : AckMessage{ replyFor ='7'}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-24T12:49:01.626533]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-24T12:49:01.629582]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":112}}
+[2020-06-24T12:49:01.631041]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":9}
+[2020-06-24T12:49:01.632097]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":10,"json_data":{"0":39}}
+[2020-06-24T12:49:03.871043]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":48,"14":46,"15":53,"16":2,"17":115,"18":49,"0":49,"1":48,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":10}
+[2020-06-24T12:49:03.873374]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=3, rating=0, price=3.5}], price=10.5}
+
+row message: {"cmd_id":11,"json_data":{"0":39}}
+[2020-06-24T12:49:03.879952]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":48,"14":46,"15":53,"16":2,"17":115,"18":49,"0":49,"1":48,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":11}
+[2020-06-24T12:49:03.882165]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[ball, round, sphere], name='ball', category=[play, round], storeName='s1', amount=3, rating=0, price=3.5}], price=10.5}
+
+row message: {"cmd_id":12,"json_data":{"0":40,"1":50,"2":51,"3":52,"4":49,"5":45,"6":50,"7":51,"8":52,"9":52,"10":45,"11":50,"12":51,"13":52,"14":50,"15":45,"16":51,"17":52,"18":50,"19":51,"20":0,"21":49,"22":50,"23":47,"24":51,"25":52,"26":0,"27":50,"28":51,"29":52,"30":0,"31":118,"32":105,"33":115,"34":105,"35":116,"36":111,"37":114,"38":0,"39":49,"40":48,"41":48,"42":48,"43":48,"44":48,"45":48,"46":48,"47":48,"48":0,"49":97,"50":97,"51":97,"52":0,"53":113,"54":105,"55":114,"56":105,"57":97,"58":116,"59":32,"60":111,"61":110,"62":111,"63":0,"64":113,"65":113,"66":113,"67":0,"68":50,"69":51,"70":52}}
+[2020-06-24T12:49:22.241352]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PurchaseMessage{creditcardNumber='2341-2344-2342-3423', eDate='12/34', css='234', owner='visitor', shipAdress='aaa', ownerID='100000000', city='qiriat ono', country='qqq', zip='234'}
+row response :{"result":2,"cmd_id":12}
+[2020-06-24T12:49:25.485945]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":39}}
+[2020-06-24T12:49:26.489003]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":13}
+[2020-06-24T12:49:26.490715]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":14,"json_data":{"0":39}}
+[2020-06-24T12:49:26.491901]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":14}
+[2020-06-24T12:49:26.493291]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-24T12:49:27.479503]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-24T12:49:27.480715]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":112}}
+[2020-06-24T12:49:27.481662]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":16}
+[2020-06-24T12:49:27.482682]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":17,"json_data":{"0":55}}
+[2020-06-24T12:49:30.824986]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewPerchesHistory{}
+row response :{"result":{"88":32,"89":49,"110":48,"111":46,"112":53,"113":10,"114":10,"90":48,"91":46,"92":53,"93":10,"94":10,"95":84,"96":111,"97":116,"10":10,"98":97,"11":45,"99":108,"12":45,"13":45,"14":73,"15":116,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":49,"20":97,"21":109,"22":101,"23":32,"24":58,"25":32,"26":98,"27":97,"28":108,"29":108,"30":10,"31":45,"32":45,"33":45,"34":45,"35":45,"36":45,"37":65,"38":109,"39":111,"40":117,"41":110,"42":116,"43":32,"44":58,"45":32,"46":51,"47":10,"48":45,"49":45,"50":45,"51":45,"52":45,"53":45,"54":80,"55":114,"56":105,"57":99,"58":101,"59":32,"60":58,"61":32,"62":51,"63":46,"64":53,"65":10,"66":45,"67":45,"68":45,"69":115,"70":116,"71":111,"72":114,"73":101,"74":32,"75":84,"76":111,"77":116,"78":97,"79":108,"100":32,"101":80,"102":114,"103":105,"104":99,"105":101,"106":32,"80":32,"107":58,"81":112,"108":32,"82":114,"109":49,"83":105,"84":99,"85":101,"86":32,"87":58},"cmd_id":17}
+[2020-06-24T12:49:30.829414]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : UserPerchesListResponse{purchase=[Domain.UserClasses.UserPurchase@aab54366]}
+
+row message: {"cmd_id":18,"json_data":{"0":55}}
+[2020-06-24T12:49:30.830557]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : ViewPerchesHistory{}
+row response :{"result":{"88":32,"89":49,"110":48,"111":46,"112":53,"113":10,"114":10,"90":48,"91":46,"92":53,"93":10,"94":10,"95":84,"96":111,"97":116,"10":10,"98":97,"11":45,"99":108,"12":45,"13":45,"14":73,"15":116,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":49,"20":97,"21":109,"22":101,"23":32,"24":58,"25":32,"26":98,"27":97,"28":108,"29":108,"30":10,"31":45,"32":45,"33":45,"34":45,"35":45,"36":45,"37":65,"38":109,"39":111,"40":117,"41":110,"42":116,"43":32,"44":58,"45":32,"46":51,"47":10,"48":45,"49":45,"50":45,"51":45,"52":45,"53":45,"54":80,"55":114,"56":105,"57":99,"58":101,"59":32,"60":58,"61":32,"62":51,"63":46,"64":53,"65":10,"66":45,"67":45,"68":45,"69":115,"70":116,"71":111,"72":114,"73":101,"74":32,"75":84,"76":111,"77":116,"78":97,"79":108,"100":32,"101":80,"102":114,"103":105,"104":99,"105":101,"106":32,"80":32,"107":58,"81":112,"108":32,"82":114,"109":49,"83":105,"84":99,"85":101,"86":32,"87":58},"cmd_id":18}
+[2020-06-24T12:49:30.832904]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : UserPerchesListResponse{purchase=[Domain.UserClasses.UserPurchase@aab54366]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-24T12:49:32.084738]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-24T12:49:32.086272]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":112}}
+[2020-06-24T12:49:32.087796]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":20}
+[2020-06-24T12:49:32.089325]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":21,"json_data":{"0":49}}
+[2020-06-24T12:49:33.750359]: message received. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : LogoutMessage{, id ='21'}
+row response :{"result":2,"cmd_id":21}
+[2020-06-24T12:49:33.751657]: sending message. session id: cba8700c-e97d-42db-baf4-74133e502203.  Message : AckMessage{ replyFor ='21'}
+
+[2020-06-24T12:50:45.994831]: closeted session. id: cba8700c-e97d-42db-baf4-74133e502203
+[2020-06-24T12:50:46.849231]: Opened session. id: f9868d95-6dd0-4cfa-be89-259ac8af63c9
+[2020-06-24T12:50:48.921988]: closeted session. id: f9868d95-6dd0-4cfa-be89-259ac8af63c9
+[2020-06-24T12:50:49.666005]: Opened session. id: 65c83e81-a18e-4720-be9e-d84681da6f4f
+row message: {"cmd_id":2,"json_data":{"0":35,"1":117,"2":49,"3":0,"4":117,"5":49}}
+[2020-06-24T12:50:53.139834]: message received. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : LoginMessage{username='u1', password='u1', id ='2'}
+row response :{"result":2,"cmd_id":2}
+[2020-06-24T12:50:53.142201]: sending message. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : AckMessage{ replyFor ='2'}
+
+row message: {"cmd_id":3,"json_data":{"0":112}}
+[2020-06-24T12:50:53.168280]: message received. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":3}
+[2020-06-24T12:50:53.169942]: sending message. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-24T12:50:53.171394]: message received. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":4}
+[2020-06-24T12:50:53.172475]: sending message. session id: 65c83e81-a18e-4720-be9e-d84681da6f4f.  Message : memberTypeResponse{op :113}
+
+[2020-06-24T12:51:56.725936]: closeted session. id: 65c83e81-a18e-4720-be9e-d84681da6f4f
+[2020-06-24T12:51:57.299749]: Opened session. id: eb1e4832-83fb-46ba-84f6-2e65e8b47276
+row message: {"cmd_id":2,"json_data":{"0":35,"1":117,"2":49,"3":0,"4":117,"5":49}}
+[2020-06-24T12:52:31.981861]: message received. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : LoginMessage{username='u1', password='u1', id ='2'}
+row response :{"result":2,"cmd_id":2}
+[2020-06-24T12:52:31.983412]: sending message. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : AckMessage{ replyFor ='2'}
+
+row message: {"cmd_id":3,"json_data":{"0":112}}
+[2020-06-24T12:52:32.004824]: message received. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":3}
+[2020-06-24T12:52:32.005979]: sending message. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-24T12:52:32.006863]: message received. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":4}
+[2020-06-24T12:52:32.007689]: sending message. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":5,"json_data":{"0":100,"1":117,"2":50}}
+[2020-06-24T12:52:36.996523]: message received. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : HistoryOfUserMessage{name='u2'}
+row response :{"result":{"88":32,"89":49,"110":48,"111":46,"112":53,"113":10,"114":10,"90":48,"91":46,"92":53,"93":10,"94":10,"95":84,"96":111,"97":116,"10":10,"98":97,"11":45,"99":108,"12":45,"13":45,"14":73,"15":116,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":49,"20":97,"21":109,"22":101,"23":32,"24":58,"25":32,"26":98,"27":97,"28":108,"29":108,"30":10,"31":45,"32":45,"33":45,"34":45,"35":45,"36":45,"37":65,"38":109,"39":111,"40":117,"41":110,"42":116,"43":32,"44":58,"45":32,"46":51,"47":10,"48":45,"49":45,"50":45,"51":45,"52":45,"53":45,"54":80,"55":114,"56":105,"57":99,"58":101,"59":32,"60":58,"61":32,"62":51,"63":46,"64":53,"65":10,"66":45,"67":45,"68":45,"69":115,"70":116,"71":111,"72":114,"73":101,"74":32,"75":84,"76":111,"77":116,"78":97,"79":108,"100":32,"101":80,"102":114,"103":105,"104":99,"105":101,"106":32,"80":32,"107":58,"81":112,"108":32,"82":114,"109":49,"83":105,"84":99,"85":101,"86":32,"87":58},"cmd_id":5}
+[2020-06-24T12:52:37.001311]: sending message. session id: eb1e4832-83fb-46ba-84f6-2e65e8b47276.  Message : UserPerchesListResponse{purchase=[Domain.UserClasses.UserPurchase@aab54366]}
+
+[2020-06-24T12:53:51.850222]: closeted session. id: eb1e4832-83fb-46ba-84f6-2e65e8b47276
+[2020-06-24T12:53:52.870243]: Opened session. id: a0709f11-1c04-4d48-b780-9f0d5e1d4ec9
+[2020-06-24T12:53:54.421606]: closeted session. id: a0709f11-1c04-4d48-b780-9f0d5e1d4ec9
+[2020-06-24T12:53:54.978258]: Opened session. id: 77bf4429-6110-42b4-b225-0eaeb7302963
+row message: {"cmd_id":2,"json_data":{"0":35,"1":117,"2":49,"3":0,"4":117,"5":49}}
+[2020-06-24T12:53:59.180429]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : LoginMessage{username='u1', password='u1', id ='2'}
+row response :{"result":2,"cmd_id":2}
+[2020-06-24T12:53:59.181913]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : AckMessage{ replyFor ='2'}
+
+row message: {"cmd_id":3,"json_data":{"0":112}}
+[2020-06-24T12:53:59.202220]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":3}
+[2020-06-24T12:53:59.203811]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-24T12:53:59.204739]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":4}
+[2020-06-24T12:53:59.205713]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":5,"json_data":{"0":55}}
+[2020-06-24T12:54:01.527743]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : ViewPerchesHistory{}
+row response :{"result":{},"cmd_id":5}
+[2020-06-24T12:54:01.529456]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : UserPerchesListResponse{purchase=[]}
+
+row message: {"cmd_id":6,"json_data":{"0":55}}
+[2020-06-24T12:54:01.530386]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : ViewPerchesHistory{}
+row response :{"result":{},"cmd_id":6}
+[2020-06-24T12:54:01.531331]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : UserPerchesListResponse{purchase=[]}
+
+row message: {"cmd_id":7,"json_data":{"0":112}}
+[2020-06-24T12:54:02.480914]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":7}
+[2020-06-24T12:54:02.482277]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-24T12:54:02.483205]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":8}
+[2020-06-24T12:54:02.484318]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":9,"json_data":{"0":107,"1":115,"2":49}}
+[2020-06-24T12:54:07.637442]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : Communication.websocket.App.messages.Objects.client2server.HistoryOfStoreMessage@e3d
+row response :{"result":{"44":58,"88":32,"45":32,"89":49,"46":51,"47":10,"48":45,"49":45,"90":48,"91":46,"92":53,"93":10,"50":45,"51":45,"52":45,"53":45,"10":10,"54":80,"11":45,"55":114,"12":45,"56":105,"13":45,"57":99,"14":73,"58":101,"15":116,"59":32,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":49,"60":58,"61":32,"62":51,"63":46,"20":97,"64":53,"21":109,"65":10,"22":101,"66":45,"23":32,"67":45,"24":58,"68":45,"25":32,"69":115,"26":98,"27":97,"28":108,"29":108,"70":116,"71":111,"72":114,"73":101,"30":10,"74":32,"31":45,"75":84,"32":45,"76":111,"33":45,"77":116,"34":45,"78":97,"35":45,"79":108,"36":45,"37":65,"38":109,"39":111,"80":32,"81":112,"82":114,"83":105,"40":117,"84":99,"41":110,"85":101,"42":116,"86":32,"43":32,"87":58},"cmd_id":9}
+[2020-06-24T12:54:07.639715]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : StorePurchaseListResponse{purchases=[Domain.Store.StorePurchase@5e46b79c]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-24T12:54:15.987981]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":10}
+[2020-06-24T12:54:15.989141]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":11,"json_data":{"0":112}}
+[2020-06-24T12:54:15.990060]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":11}
+[2020-06-24T12:54:15.990907]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":12,"json_data":{"0":49}}
+[2020-06-24T12:54:19.444593]: message received. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : LogoutMessage{, id ='12'}
+row response :{"result":2,"cmd_id":12}
+[2020-06-24T12:54:19.446218]: sending message. session id: 77bf4429-6110-42b4-b225-0eaeb7302963.  Message : AckMessage{ replyFor ='12'}
+

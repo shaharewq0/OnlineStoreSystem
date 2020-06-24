@@ -72,7 +72,7 @@ public class System implements ISystem {
                 }
 
                 try {
-                    Thread.sleep(60000); // wak up once evry minutes, and try to refund all the unrefunded castomers
+                    Thread.sleep(1000); // wake up once evry minute, and try to refund all the unrefunded castomers
                 } catch (InterruptedException e) {
                    break; // system abbout to be close
                 }

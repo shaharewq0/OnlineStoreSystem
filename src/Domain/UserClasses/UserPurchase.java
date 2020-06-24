@@ -27,4 +27,12 @@ public class UserPurchase {
 	public int hashCode() {
 		return Objects.hash(eachPurchase, TotalePrice);
 	}
+
+	@Override
+	public String toString() {
+		return "UserPurchase{" +
+				"eachPurchase=" + eachPurchase +
+				", TotalePrice=" + TotalePrice +
+				'}';
+	}
 }

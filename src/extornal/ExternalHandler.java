@@ -80,45 +80,17 @@ public class ExternalHandler {
 
 
     private String ssend(byte[] out) {
-        //  String response = null;
+        String response;
+        HttpURLConnection http;
 
-        senderThread sThread = new senderThread(out);
-        sThread.start();
+        try {
+            http = setHTTPSconnection();
+            response = send(out, http);
+            http.disconnect();
 
-        synchronized (sThread) {
-            try {
-                sThread.wait(20000);
-                if(sThread.response == null)
-                    ErrorLogger.GetInstance().Add_Log("------------------!!!Fail to get msg in time from server!!!------------------");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return sThread.response;
-    }
-
-
-    private final class senderThread extends Thread {
-        String response=null;
-        final byte[] out;
-
-        senderThread(byte[] out) {
-            this.out = out;
-        }
-        @Override
-        public void run() {
-                try {
-                    HttpURLConnection http = setHTTPSconnection();
-                    response = send(out, http);
-                    http.disconnect();
-                } catch (IOException e) {
-                    ExternalLog.GetInstance().Add_Log("ERROR : Failed to access external systems! rollback.....");
-                }
-
-            synchronized (this) {
-                notify();
-            }
+            return response;
+        } catch (IOException e) {
+           return null;
         }
     }
 
