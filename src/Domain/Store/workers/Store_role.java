@@ -31,7 +31,7 @@ public interface Store_role {
 
     boolean fireManager(String manager);
 
-    boolean editItem(String OLD_item, Product NEW_item);
+    boolean editItem(String OLD_item, ProductDetails NEW_item);
 
     boolean removeItem(String prodactname);
 

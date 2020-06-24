@@ -35,9 +35,18 @@ public class Store_Inventory implements inventory {
         return true && checkConstrains_hase1Ofitem();
     }
 
-    public boolean editProduct(String old_p, Product new_p) {
+    public boolean editProduct(String old_p, ProductDetails new_p) {
         if (items.containsKey(old_p)) {
-            items.get(old_p).item = new_p;
+            Product_boundle item = items.get(old_p);
+            item.item = new Product(new_p);
+
+            if(item.size() < new_p.getAmount()){
+                item.add(new_p.getAmount() - item.size());
+            }
+            if(item.size() > new_p.getAmount()){
+                item.remove(item.size() - new_p.getAmount());
+            }
+
             // items.replace(old_p, new_p);
             return true && checkConstrains_hase1Ofitem();
         }

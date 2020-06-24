@@ -179,7 +179,7 @@ public class User implements IUser {
         return role.addItem(p);
     }
 
-    public boolean editProduct(String storeName, String prodactname, Product newdetail) {
+    public boolean editProduct(String storeName, String prodactname, ProductDetails newdetail) {
         if (profile == null)
             return false;
         Store_role role = profile.store_roles.get(storeName);

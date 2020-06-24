@@ -143,8 +143,8 @@ public class Registered implements MSGObservable {
     }
 
     public void notifyUser(){
-        TempMSG = MSG_box;
-        MSG_box = new LinkedList<>();
+        TempMSG = new LinkedList<>(MSG_box);
+        //MSG_box = new LinkedList<>();
         for (ClintObserver CO: clints.values()) {
             CO.Notifi_me(this);
         }
@@ -166,6 +166,7 @@ public class Registered implements MSGObservable {
 //    }
 
     public List<String> getMessges() {
+        MSG_box = new LinkedList<>();
         return TempMSG;
     }
 }

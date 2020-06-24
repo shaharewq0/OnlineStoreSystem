@@ -327,9 +327,9 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     public Message accept(Add2ProductMessage msg) {
         ProductDetails details = guest_accese.searchProductByName(msg.getProduct(), msg.getStore());
         details.setAmount(details.getAmount() + msg.getAmmount());
-        Product product = new Product(details);
+        //Product product = new Product(details);
 
-        if(owner_accese.usecase4_1_3_EditProduct(username, paasword, msg.getStore(), msg.getProduct(), product)){
+        if(owner_accese.usecase4_1_3_EditProduct(username, paasword, msg.getStore(), msg.getProduct(), details)){
             return new AckMessage(msg.getId());
         }
 
@@ -484,7 +484,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     public Message accept(getManagerPermitions msg) {
 
-        List<String> perms = owner_accese.usecase4_6_getMangagerPermesions(username, paasword, msg.getStore(), msg.getManager());
+        List<String> perms = owner_accese.usecase4_6_getMangagerPermesions(username, paasword, msg.getStore(), username);
         LinkedList<Byte> opcodedPerms = new LinkedList<>();
         Permitions permitions = new Permitions();
 

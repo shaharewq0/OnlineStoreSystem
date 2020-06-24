@@ -192,7 +192,7 @@ public class StoreImp implements IStore {
 //-------------------------------------------------------------------------- products --	
 
     @Override
-    public boolean editProduct(String OLD_p, Product NEW_p) {
+    public boolean editProduct(String OLD_p, ProductDetails NEW_p) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- edit item");
 
         return inventory.editProduct(OLD_p, NEW_p);

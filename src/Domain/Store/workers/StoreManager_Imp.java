@@ -77,7 +77,7 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
-    public boolean editItem(String OLD_item, Product NEW_item) {
+    public boolean editItem(String OLD_item, ProductDetails NEW_item) {
         if (!permission.contains("editItem"))
             return false;
         return MyJob.store.editProduct(OLD_item, NEW_item);

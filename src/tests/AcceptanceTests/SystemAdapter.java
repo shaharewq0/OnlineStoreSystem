@@ -154,7 +154,7 @@ public class SystemAdapter {
 	// 4.1.3
 	public boolean EditProduct(String username, String password, String storeName, String productName,
 							   ProductDetails newProductDet) {
-		return owner_accese.usecase4_1_3_EditProduct(username, password, storeName, productName, new Product(newProductDet));
+		return owner_accese.usecase4_1_3_EditProduct(username, password, storeName, productName, newProductDet);
 	}
 
 	// 4.3

@@ -37,7 +37,7 @@ public interface IStore {
 
 	boolean removeProduct(String pName);
 
-	boolean editProduct(String OLD_p, Product NEW_p);
+	boolean editProduct(String OLD_p, ProductDetails NEW_p);
 
 	boolean appointManager(Appoint_manager user);
 

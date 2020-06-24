@@ -58,7 +58,7 @@ public class owner_accese {
     }
 
     public static boolean usecase4_1_3_EditProduct(String myusername, String myPassword, String storeName, String prodactname,
-                                                   Product newdetail) {
+                                                   ProductDetails newdetail) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;

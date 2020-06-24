@@ -66,7 +66,7 @@ public class StoreOwner_Imp implements Store_role {
     }
 
     @Override
-    public boolean editItem(String OLD_item, Product NEW_item) {
+    public boolean editItem(String OLD_item, ProductDetails NEW_item) {
         EventLogger.GetInstance().Add_Log(this.toString() + "-Owner edit item");
         return myJob.store.editProduct(OLD_item, NEW_item);
     }

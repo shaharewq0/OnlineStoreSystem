@@ -297,6 +297,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             case Opcodes.Appoint                    : return Appoint(parameters);
             case Opcodes.FireManager                : return FireManager(parameters);
             case Opcodes.editMangagerPermesions     : return editMangagerPermesions(parameters);
+            case Opcodes.getEditMangagerPermesions  : return getMangagerPermesions(parameters);
             case Opcodes.AcceptPendingAppintment    : return AcceptPendingAppintment(parameters);
             case Opcodes.PendingAppountments        : return PendingAppountments(parameters);
             case Opcodes.createDiscount             : return createDiscount(parameters);
@@ -879,5 +880,14 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
     private Message FilterByStoreRating(Deque<Deque<Byte>> parameters) {
         return Filter(parameters);
+    }
+
+    private Message getMangagerPermesions(Deque<Deque<Byte>> parameters) {
+        Byte            op          = popOpcode(parameters);
+        String          store       = popString(parameters);
+        String          manager     = "";
+
+        finalCheck(parameters);
+        return new getManagerPermitions((byte)-1, store,manager);
     }
 }
