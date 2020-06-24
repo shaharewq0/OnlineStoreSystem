@@ -1,6 +1,7 @@
 package DAL;
 
 import Domain.Policies.Acquisitions.*;
+import Domain.Store.Product;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +23,7 @@ public class AcquisitionPolicy_DATest {
         ap=new AcquisitionPolicy();
 
         a=new AcqMaxAmount("shahar",12);
+        a.replaceProducts(Arrays.asList(new Product("shahar",new LinkedList<>(),new LinkedList<>(),1,1)));
         b=new AcqMinAmount("shahar",100);
         c=new AcqMaxAmount("shahar",12);
         d=new AcqMinAmount("shahar",100);

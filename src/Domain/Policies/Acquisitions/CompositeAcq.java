@@ -22,6 +22,9 @@ abstract class CompositeAcq implements Acquisition {
         this.canPurchaseIdentity = canPurchaseIdentity;
     }
 
+    public CompositeAcq(){
+    }
+
     @Override
     public int getId() {
         return id;

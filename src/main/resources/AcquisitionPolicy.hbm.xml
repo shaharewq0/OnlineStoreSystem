@@ -10,7 +10,7 @@
             <generator class="native"/>
         </id>
         
-        <list name="acquisitions" table="ACQ_TABLE" cascade="all">
+        <list name="acquisitions" cascade="all">
             <key column="acq_policy_id"></key>
             <index column="id"></index>
             <one-to-many class="Domain.Policies.Acquisitions.Acquisition"/>
@@ -18,7 +18,7 @@
         
     </class>
 
-    <class name="Domain.Policies.Acquisitions.Acquisition" table="ACQ2_TABLE" discriminator-value="interfaceAcq">
+    <class name="Domain.Policies.Acquisitions.Acquisition" table="ACQ_TABLE" discriminator-value="interfaceAcq">
 
         <id name="id" type="int" column="id">
             <generator class="native"></generator>
@@ -40,9 +40,11 @@
         </subclass>
 
         <subclass abstract="true" name="Domain.Policies.Acquisitions.CompositeAcq" discriminator-value="abstractAcqComposite">
-            <list name="acquisitions" table="ACQ2_TABLE" cascade="all">
-                <key column="Composite_father_id" foreign-key="id"></key>
-                <index column="id" type="int"></index>
+
+
+            <list name="acquisitions" cascade="all" table="shahar">
+                <key column="Composite_father_id" ></key>
+                <list-index column="id"></list-index>
                 <one-to-many class="Domain.Policies.Acquisitions.Acquisition"></one-to-many>
             </list>
 
