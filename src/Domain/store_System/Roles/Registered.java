@@ -10,6 +10,7 @@ import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
 import Domain.store_System.ClintObserver;
 import Domain.store_System.MSGObservable;
+import Domain.store_System.System;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,6 +41,21 @@ public class Registered implements MSGObservable {
     }
 
     public void LogLogin(User user, ClintObserver CO) {
+        System.MemberLogin++;
+        boolean imManger = false;
+        boolean imOwner = false;
+        for (Store_role SR: store_roles.values()) {
+            if(SR instanceof StoreOwner_Imp)
+                imOwner = true;
+            if(SR instanceof  StoreManager_Imp)
+                imManger = true;
+        }
+        if(imOwner)
+            System.OwnerLogin++;
+        else if (imManger)
+            System.ManagerLogin++;
+
+
         clints.put(user,CO);
         if(!MSG_box.isEmpty()) {
             CO.Notifi_me(this);

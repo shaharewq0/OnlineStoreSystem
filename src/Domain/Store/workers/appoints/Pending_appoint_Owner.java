@@ -30,6 +30,7 @@ public class    Pending_appoint_Owner {
         store.getCreator().needconfirmstion(this);
     }
 
+
     public Boolean Accept(StoreOwner_Imp role) {
         if (!confirmstion_table.containsKey(role))
             return false;
