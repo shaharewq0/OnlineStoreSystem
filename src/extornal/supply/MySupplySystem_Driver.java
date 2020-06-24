@@ -15,7 +15,7 @@ public class MySupplySystem_Driver implements MySupplySystem {
 		list.put(EternalSupply.name, new EternalSupply());
 		list.put(Rami_Lavy.name, new Rami_Lavy());
 		list.put(WallMart.name, new WallMart());
-		current_supplyer = list.get(Rami_Lavy.name);
+		current_supplyer = list.get(EternalSupply.name);
 	}
 
 	public void order(Packet_Of_Prodacts items, inventory destantion) {

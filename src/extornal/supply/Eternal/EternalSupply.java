@@ -27,6 +27,11 @@ public class EternalSupply implements Supplyer {
                 whereToSend.getZipcode(), whereToSend.getReciver());
     }
 
+    @Override
+    public boolean cancel_supply(int tranactionID) {
+        return "1".equals(handler.cancel_supply(tranactionID));
+    }
+
     public int supply(String country, String city, String adress, String zipcoode, String reciver) {
         String response = handler.supply(country, city, adress, zipcoode, reciver);
 

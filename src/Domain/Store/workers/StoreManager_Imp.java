@@ -232,6 +232,11 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
+    public List<String> getManagerPermesions() {
+        return permission;
+    }
+
+    @Override
     public boolean getNewPermesions(List<String> permesions) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- my Permesions have changed");
         this.permission = (new LinkedList<String>());

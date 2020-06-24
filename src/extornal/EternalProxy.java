@@ -90,9 +90,9 @@ public class EternalProxy {
 //    }
 
     //TODO was moved
-    public boolean cancel_supply(int tranactionID) {
+   /* public boolean cancel_supply(int tranactionID) {
         return "1".equals(handler.cancel_supply(tranactionID));
     }
-
+*/
 
 }

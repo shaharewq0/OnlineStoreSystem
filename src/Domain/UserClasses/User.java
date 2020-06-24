@@ -345,6 +345,12 @@ public class User implements IUser {
         return store_roles.get(storename).editManagerPermesions(managername, permesions);
     }
 
+    public List<String> getMangagerPermesions(String storename, String managername) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        EventLogger.GetInstance().Add_Log(this.toString() + "- get managerPermesions");
+        return store_roles.get(storename).getManagerPermesions();
+    }
+
 
     // Static -
     // ------------------------------------------------------------------------------------------------------------------

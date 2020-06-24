@@ -19,7 +19,7 @@ public class EternalPayment implements PaymentMethed {
     }
 
 
-    public int pay(String card, String date, String owner, String cvv, String OwnerID) {
+    private int pay(String card, String date, String owner, String cvv, String OwnerID) {
         String response = handler.pay(card, date, owner, cvv, OwnerID);
 
         if(response == null){
@@ -37,6 +37,7 @@ public class EternalPayment implements PaymentMethed {
         ExternalLog.GetInstance().Add_Log("transaction " + tranactionID + " was payed successful!");
         return tranactionID;
     }
+
 
     public boolean cancel_pay(int tranactionID) {
         boolean response =  "1".equals(handler.cancel_pay(tranactionID));

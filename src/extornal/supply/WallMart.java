@@ -32,4 +32,9 @@ public class WallMart implements Supplyer {
 	public int order(Packet_Of_Prodacts items, userAddress destantion) {
 		return -1;
 	}
+
+	@Override
+	public boolean cancel_supply(int transactionID) {
+		return false;
+	}
 }

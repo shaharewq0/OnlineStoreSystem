@@ -20,8 +20,6 @@ public class ExternalHandler {
     private static ExternalHandler instance;
     private final String WEB_PAGE = "https://cs-bgu-wsep.herokuapp.com/";
 
-    private HttpURLConnection http;
-
     private ExternalHandler() {
     }
 
@@ -34,9 +32,9 @@ public class ExternalHandler {
     }
 
 
-    public static void test() {
+    public static void main(String[] args) {
         System.out.println(ExternalHandler.getInstance().handshake());
-        System.out.println(ExternalHandler.getInstance().pay("2222333344445555", "04/21", "Israel Israelovice", "262", "20444444"));
+        System.out.println(ExternalHandler.getInstance().pay("2222-3333-4444-5555", "04/21", "Israel Israelovice", "262", "20444444"));
         System.out.println(ExternalHandler.getInstance().cancel_pay(20123));
         System.out.println(ExternalHandler.getInstance().supply("Israel", "Beer Sheva", "Rager Blvd 12", "8458527", "Israel Israelovice"));
         System.out.println(ExternalHandler.getInstance().cancel_supply(30525));
@@ -45,20 +43,24 @@ public class ExternalHandler {
 
     // ---------------------------------------------------------------------- init, encode, send, decode ----------------------------------------------------------------------
 
-    private void setHTTPSconnection() throws IOException {
-        URL url = new URL(WEB_PAGE);
-        URLConnection con = url.openConnection();
-        http = (HttpURLConnection) con;
-        http.setRequestMethod("POST");
-        http.setDoOutput(true);
-        http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    private HttpURLConnection setHTTPSconnection() throws IOException {
+            URL url = new URL(WEB_PAGE);
+            URLConnection con = null;
+            con = url.openConnection();
+            HttpURLConnection http = (HttpURLConnection) con;
+            http.setRequestMethod("POST");
+            http.setDoOutput(true);
+            http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-        // set time out
-        http.setConnectTimeout(10000);
-        http.setReadTimeout(10000);
+
+            // set time out
+            http.setConnectTimeout(10000);
+            http.setReadTimeout(10000);
+
+            return http;
     }
 
-    private String send(byte[] out) throws IOException {
+    private String send(byte[] out, HttpURLConnection http) throws IOException {
         http.setFixedLengthStreamingMode(out.length);
         http.connect();
 
@@ -78,44 +80,17 @@ public class ExternalHandler {
 
 
     private String ssend(byte[] out) {
-        //  String response = null;
+        String response;
+        HttpURLConnection http;
 
-        senderThread sThread = new senderThread(out);
-        sThread.start();
+        try {
+            http = setHTTPSconnection();
+            response = send(out, http);
+            http.disconnect();
 
-        synchronized (sThread) {
-            try {
-                sThread.wait(20000);
-                if(sThread.response == null)
-                    ErrorLogger.GetInstance().Add_Log("------------------!!!Fail to get msg in time from server!!!------------------");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return sThread.response;
-    }
-
-
-    private class senderThread extends Thread {
-        String response=null;
-        byte[] out;
-        senderThread(byte[] out) {
-            this.out = out;
-        }
-        @Override
-        public void run() {
-                try {
-                    setHTTPSconnection();
-                    response = send(out);
-                    http.disconnect();
-                } catch (IOException e) {
-                    ExternalLog.GetInstance().Add_Log("ERROR : Failed to access external systems! rollback.....");
-                }
-
-            synchronized (this) {
-                notify();
-            }
+            return response;
+        } catch (IOException e) {
+           return null;
         }
     }
 

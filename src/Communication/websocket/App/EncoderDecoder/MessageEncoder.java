@@ -239,7 +239,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
         for (UserPurchase pur: purches) {
             sb.append(offerStorePurchesList_string(pur.eachPurchase)).append("\n");
-            sb.append("\t\tTotal Price : ").append(pur.TotalePrice).append("\n");
+            sb.append("Total Price : ").append(pur.TotalePrice).append("\n\n");
         }
 
         return sb.toString();
@@ -260,12 +260,12 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             sb.append("Store : ").append(pur.get_Store_Name()).append("\n");
 
             for (ProductDetails item:pur.getItems()) {
-                sb.append("\tItem Name : ").append(item.getName()).append("\n");
-                sb.append("\t\tAmount : ").append(item.getAmount()).append("\n");
-                sb.append("\t\tPrice : ").append(item.getPrice()).append("\n");
+                sb.append("---Item Name : ").append(item.getName()).append("\n");
+                sb.append("------Amount : ").append(item.getAmount()).append("\n");
+                sb.append("------Price : ").append(item.getPrice()).append("\n");
             }
 
-            sb.append("Total price : ").append(pur.getPrice()).append("\n\n");
+            sb.append("---store Total price : ").append(pur.getPrice()).append("\n");
         }
 
         return sb.toString();
@@ -454,8 +454,10 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     public String accept(PrductsInCartResponse msg) {
         LinkedList<Byte> lst = new LinkedList<>();
 
-        offerDouble(lst, msg.getPrice());
-        offerDelimiter(lst);
+        if(!msg.getProducts().isEmpty()) {
+            offerDouble(lst, msg.getPrice());
+            offerDelimiter(lst);
+        }
         offerCartList(lst, msg.getProducts());
 
         return createJsonString(msg.getReplayForID(), lst);
@@ -467,6 +469,10 @@ public class MessageEncoder implements  Encoder.Text<Message> {
         offerList(lst, msg.getLst());
 
         return createJsonString(msg.getReplayForID(), lst);
+    }
+
+    public String accept(ByteArrayResponse msg) {
+        return createJsonString(msg.getReplayForID(), msg.getBytes());
     }
 }
 

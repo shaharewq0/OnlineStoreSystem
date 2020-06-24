@@ -39,6 +39,8 @@ public interface Store_role {
 
     boolean editManagerPermesions(String managername, List<String> permesions);
 
+    List<String> getManagerPermesions();
+
     Collection<Question> viewQuestions();
 
     boolean giveRespond(String ansewr, int qustionID);

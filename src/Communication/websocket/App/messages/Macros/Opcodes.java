@@ -53,6 +53,7 @@ public class Opcodes {
     public static final byte Add2Product                = 0x44;
     public static final byte Appoint                    = 0x43;
     public static final byte editMangagerPermesions     = 0x46;
+    public static final byte getEditMangagerPermesions  = 0x7a;
     public static final byte FireManager                = 0x47;
     public static final byte AcceptPendingAppintment    = 0x4c;
     public static final byte PendingAppountments        = 0x4d;

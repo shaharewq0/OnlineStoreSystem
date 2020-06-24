@@ -167,6 +167,14 @@ public class owner_accese {
 
     }
 
+    public static List<String> usecase4_6_getMangagerPermesions(String myusername, String myPassword, String storename, String managername) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return null;
+        return me.getMangagerPermesions(storename, managername);
+
+    }
+
     public static boolean usecase4_7_FireManager(String myusername, String myPassword, String storeName, String username) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)

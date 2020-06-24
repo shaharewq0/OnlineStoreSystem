@@ -20,7 +20,7 @@ public class MyPaymentSystem_Driver implements MyPaymentSystem {
     }
 
     public MyPaymentSystem_Driver() {
-        current_supplyer = list.get(Pay_pal.name);
+        current_supplyer = list.get(EternalPayment.name);
     }
 
     public int pay(CreditCard card_num, int amount) {

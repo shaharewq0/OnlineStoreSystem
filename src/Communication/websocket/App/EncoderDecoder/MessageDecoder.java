@@ -1,6 +1,7 @@
 package Communication.websocket.App.EncoderDecoder;
 
 import Communication.websocket.App.messages.Macros.Delimiters;
+import Communication.websocket.App.messages.Macros.Permitions;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
 import Communication.websocket.App.messages.api.Message;
@@ -155,7 +156,7 @@ class AcquisitionFactory extends DiscountAcquisitionDecoder{
 
         int     type        = params.pop().charAt(0);
         String  productName = params.pop();
-        int     condition   = Integer.parseInt(params.pop()) - 0x10;
+        int     condition   = Integer.parseInt(params.pop());
 
         switch (type) {
             case 0x10: //min amount
@@ -496,7 +497,7 @@ public class MessageDecoder implements Decoder.Text<Message>  {
 
         while (lst.size() > 0) {
             String curr = popString(lst);
-            String[] prdDetails = curr.split("" + Delimiters.LIST_DELIMITER_L2);
+            String[] prdDetails = curr.split("\2");
             String prod = prdDetails[0];
             String store = prdDetails[1];
 
@@ -768,7 +769,14 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         Byte            op          = popOpcode(parameters);
         String          store       = popString(parameters);
         String          manager     = popString(parameters);
-        List<String>    permotions  = popStringListL1(parameters);
+        List<String>    permotions  = new LinkedList<>();
+        Deque<Byte> permss = parameters.poll();
+
+        Permitions pers = new Permitions();
+
+        while (!permss.isEmpty()){
+            permotions.add(pers.permesions.get(permss.poll()));
+        }
 
         finalCheck(parameters);
         return new EditPermitionsMessage((byte)-1, store,manager, permotions);

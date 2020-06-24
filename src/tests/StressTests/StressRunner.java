@@ -16,17 +16,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-class failedTestsCounter{
-    private static final AtomicInteger counter = new AtomicInteger(0);
-
-    public static int getCounter() {
-        return counter.get();
-    }
-
-    public static void failed() {
-        counter.getAndIncrement();
-    }
-}
 
 class alloc_pid{
     private static final AtomicInteger pid = new AtomicInteger(0);
@@ -71,7 +60,7 @@ class testRunner implements Runnable {
 
 class stresstest implements Runnable {
 
-    private static final int USERS = 2;
+    private static final int USERS = 10;
     private static final int THREAD_NUM = Runtime.getRuntime().availableProcessors();
 
 
@@ -83,17 +72,18 @@ class stresstest implements Runnable {
         executor = Executors.newFixedThreadPool(THREAD_NUM);
 
         for(int i = 1; i<= USERS; i++){
-            executor.execute(new testRunner());
+            executor.execute(new testRunner()); //CHANGE HERE <----------------------------------------------------------------------
         }
 
 
         executor.shutdown();
         try {
-            executor.awaitTermination(20, TimeUnit.SECONDS);
+            executor.awaitTermination(2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        executor.shutdownNow();
         System.out.println("\n\n\n\n#Failures : " + failedTestsCounter.getCounter());
 
     }
