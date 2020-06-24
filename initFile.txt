@@ -6,6 +6,7 @@ Register,u5,u5
 Register,u6,u6
 Login,u2,u2
 OpenStore,s1,s1 address
+AddProductToStore,ball,play:round,ball:round:sphere,s1,10,3.5
 AppointOwner,s1,u5
 Logout
 Login,u5,u5

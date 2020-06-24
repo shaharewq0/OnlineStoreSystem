@@ -1,6 +1,18 @@
-[2020-06-23T13:02:34.707950]: transaction #97883was payed successful!
-[2020-06-23T13:02:36.212843]: transaction #24268was payed successful!
-[2020-06-23T13:02:37.811132]: transaction #53668was payed successful!
-[2020-06-23T13:03:26.497511]: transaction 70359 was payed successful!
-[2020-06-23T13:03:27.980601]: transaction 15752 was payed successful!
-[2020-06-23T13:03:30.493547]: transaction 39266 was payed successful!
+[2020-06-23T13:34:52.687302]: transaction 70201 was payed successful!
+[2020-06-23T13:34:53.681630]: handshake: no external systems!
+[2020-06-23T13:34:54.673281]: transaction 30313 was payed successful!
+[2020-06-23T13:36:02.414323]: transaction 35735 was payed successful!
+[2020-06-23T13:36:03.964945]: transaction 30962 was payed successful!
+[2020-06-23T13:36:05.486327]: transaction 57833 was payed successful!
+[2020-06-23T13:36:17.071316]: transaction 86338 was payed successful!
+[2020-06-23T13:36:18.625214]: transaction 70972 was payed successful!
+[2020-06-23T13:36:20.098662]: transaction 23722 was payed successful!
+[2020-06-23T13:36:33.763298]: transaction 50838 was payed successful!
+[2020-06-23T13:36:35.336978]: transaction 42159 was payed successful!
+[2020-06-23T13:36:36.895987]: transaction 57566 was payed successful!
+[2020-06-23T13:36:57.912666]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:36:57.915107]: handshake: no external systems!
+[2020-06-23T13:37:07.932603]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:37:07.933067]: handshake: no external systems!
+[2020-06-23T13:37:17.953963]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:37:17.954455]: handshake: no external systems!
