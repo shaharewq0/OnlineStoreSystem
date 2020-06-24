@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-class VisibleDiscount implements Discount {
+public class VisibleDiscount implements Discount {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     protected String productName;
@@ -18,7 +18,7 @@ class VisibleDiscount implements Discount {
     LocalDate expirationDate;
     private int percentage;
 
-    VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
+    public VisibleDiscount(String productName, int percentage, LocalDate expirationDate) {
         this.productName = productName;
         this.percentage = percentage;
         this.expirationDate = expirationDate;
@@ -47,10 +47,15 @@ class VisibleDiscount implements Discount {
             double price = 0;
             for (Product_boundle entry : products)
                 price += entry.size() * entry.item.getPrice();
-            return price * percentage;
+            return price * percentage / 100;
         }
 
-        return findproduct(products,product) !=null ? 0 : findproduct(products,product).size() * product.getPrice() * percentage;
+        Product_boundle prod = findproduct(products, product);
+
+        if(prod == null) return 0;
+
+        double pre = prod.size() * product.getPrice();
+        return pre * percentage / 100;
     }
 
     @Override

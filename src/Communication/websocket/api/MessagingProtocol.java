@@ -9,4 +9,9 @@ public interface MessagingProtocol<T> {
      * @return the response to send or null if no response is expected by the client
      */
     T process(T msg);
+
+    /**
+     * end trhe connection
+     */
+    void end();
 }

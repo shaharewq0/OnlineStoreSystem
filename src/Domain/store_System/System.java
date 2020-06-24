@@ -11,6 +11,7 @@ import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
+import Service_Layer.guest_accese.guest_accese;
 import extornal.Security.PassProtocol_Imp;
 import extornal.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
@@ -40,11 +41,12 @@ public class System implements ISystem {
     private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
     private static System instance = null;
+    private  Thread refunDemon;
 
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
-            instance.init("admin","password");
+            //instance.init("admin","password");
         }
         return instance;
     }
@@ -56,7 +58,37 @@ public class System implements ISystem {
         return instance;
     }
 
+    public static void init_manager(String name,String password) {
+        getInstance();
+        instance.init(name,password);
+    }
+
+    private System() {
+// tal what is this?
+        Runnable demon = () -> {
+            while (!Thread.currentThread().isInterrupted()){
+                if(!guest_accese.RefundAll()){
+                    java.lang.System.out.println("STILL CANT REFUND!");
+                }
+
+                try {
+                    Thread.sleep(60000); // wak up once evry minutes, and try to refund all the unrefunded castomers
+                } catch (InterruptedException e) {
+                   break; // system abbout to be close
+                }
+            }
+        };
+
+        refunDemon =  new Thread(demon); // this demon responsability is to try and refund customers that was not refunded (due to external system failure)
+        refunDemon.start();
+    }
+
     // ----------------------------------init
+
+    public String getManager(){
+        return manager == null ? null : manager.name;
+    }
+
     public System_Manager ImManeger(String id, String password) {
 
         if (manager != null && (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password))) {
@@ -75,11 +107,11 @@ public class System implements ISystem {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
         init = true;
-        int guestId = ImNew();
-        User guest = getGuest(guestId);
+        //int guestId = ImNew();
+        //User guest = getGuest(guestId);
         User.register(username, password);
         manager = new System_Manager(username);
-        guest.login(username, password);
+        //guest.login(username, password);
 
         return true;
 
@@ -87,6 +119,7 @@ public class System implements ISystem {
 
     public void resetSystem() {
         myProtocol.reset();
+        refunDemon.interrupt();
         instance = null;    //	TODO: temp
     }
 
@@ -368,6 +401,5 @@ public class System implements ISystem {
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
         return manager != null && getUserProfile(manager.name) != null;
-
     }
 }

@@ -55,6 +55,8 @@ public interface Store_role {
 
     boolean addDiscount(Discount discount);
 
+    String getDiscounts();
+
     boolean removeDiscount(int discountID);
 
     String getName();
@@ -62,4 +64,8 @@ public interface Store_role {
     boolean addacquisition(Acquisition acquisition);
 
     boolean removeacquisition(int acquisitionID);
+
+    String getAcquisition();
+
+    String getType();
 }

@@ -214,6 +214,11 @@ public class StoreOwner_Imp implements Store_role {
     }
 
     @Override
+    public String getDiscounts() {
+        return getStore().getDiscounts();
+    }
+
+    @Override
     public boolean removeDiscount(int discountID) {
         return getStore().removeDiscount(discountID);
     }
@@ -234,6 +239,11 @@ public class StoreOwner_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+    @Override
+    public String getAcquisition() {
+        return getStore().getAcquisitions();
+    }
+
     public boolean CheckTegrati_ImMangaer() {
         return user != null;
     }
@@ -243,6 +253,11 @@ public class StoreOwner_Imp implements Store_role {
         newOwners.put(pending_appoint_owner.grantee.getId(),pending_appoint_owner);
         user.add_msg("a new Owner is being appointed for store:" + getStore().getName()
                 + "- required your confirmation - " + pending_appoint_owner.grantee.getId());
+    }
+
+    @Override
+    public String getType(){
+        return "owner";
     }
 
     //TODO

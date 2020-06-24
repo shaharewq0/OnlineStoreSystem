@@ -40,7 +40,7 @@ public class UserPurchaseListResponse extends Server2ClientMessage {
 
     @Override
     public String toString() {
-        return "PerchesListResponse{" +
+        return "UserPerchesListResponse{" +
                 "purchase=" + purchase +
                 '}';
     }

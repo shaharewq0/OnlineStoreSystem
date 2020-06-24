@@ -84,6 +84,18 @@ public class StoreImp implements IStore {
         return ProductDetails.adapteProdactList(inventory.items.values(), name);
     }
 
+    public ProductDetails getProductDetails(String productName) {
+        List<ProductDetails> all = getProductsDetails();
+
+        for (ProductDetails prod: all) {
+            if(prod.getName().equals(productName)){
+                return prod;
+            }
+        }
+
+        return null;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -300,9 +312,13 @@ public class StoreImp implements IStore {
         return true;
     }
 
-    public String getDiscounts(String name) {
+    public String getDiscounts() {
         return discounts.toString();
 
+    }
+
+    public String getAcquisitions() {
+        return acquisitions.toString();
     }
 
     // ----------------------------------------------------discount

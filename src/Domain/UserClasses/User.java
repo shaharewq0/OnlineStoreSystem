@@ -1,7 +1,6 @@
 package Domain.UserClasses;
 
 import Domain.Logs.EventLogger;
-import Domain.Notifier.Notifier;
 import Domain.Policies.Acquisitions.Acquisition;
 import Domain.Policies.Discounts.Discount;
 import Domain.Store.Product;
@@ -94,6 +93,10 @@ public class User implements IUser {
         return cart.allProductsInCart();
     }
 
+    public double getCartPrice() {
+        return cart.CalcPrice();
+    }
+
     public boolean logout() {
         if (profile == null || logInstanse == null)
             return false;
@@ -126,8 +129,6 @@ public class User implements IUser {
     }
 
     public boolean openStore(StoreInfo store) {
-
-        Notifier.getInstance().update("abc", "abc" +" openning a store! (From server)");
 
         StoreImp mystore = logInstanse.OpenStore(store);
         if (profile == null || mystore == null) {
@@ -277,6 +278,20 @@ public class User implements IUser {
         return store_roles.get(store).addDiscount(discount);
     }
 
+    public String getDiscount(String store) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(store) == null)
+            return "";
+        return store_roles.get(store).getDiscounts();
+    }
+
+    public String getAcquisition(String store) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(store) == null)
+            return null;
+        return store_roles.get(store).getAcquisition();
+    }
+
     public boolean removeDiscount(int discountID, String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(store) == null)
@@ -381,6 +396,7 @@ public class User implements IUser {
         return output;
     }
 
+
     static public List<ProductDetails> filterByRating(int minRating, int maxRating) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
@@ -392,6 +408,7 @@ public class User implements IUser {
         return output;
         // return System.getInstance().filterByRating( min, max);
     }
+
 
     static public List<ProductDetails> filterByCategory(String category) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
@@ -417,6 +434,54 @@ public class User implements IUser {
         // return System.getInstance().filterByStoreRating( min, max);
     }
 
+
+
+
+
+    static public List<ProductDetails> filterByStoreRating(int minRating, int maxRating, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            StoreImp store = System.getInstance().getStoreDetails(product.getStoreName());
+            if (store.getRating() >= minRating && store.getRating() <= maxRating){
+                output.add(product);
+            }
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByCategory(String category, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product :prods) {
+            if (product.getCategory().contains(category))
+                output.add(product);
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByRating(int minRating, int maxRating, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            if (product.getRating() <= maxRating && product.getRating() >= minRating)
+                output.add(product);
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByPrice(double minPrice, double maxPrice, List<ProductDetails> prods) {
+
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
+                output.add(product);
+        }
+
+        return output;
+    }
+
+
+
+
+
     @Override
     public String getName() {
         // TODO Auto-generated method stub
@@ -432,6 +497,13 @@ public class User implements IUser {
         return new LinkedList<>();
     }
 
+    public List<String> roles() {
+        if (profile != null)
+            return profile.roles();
+
+        return new LinkedList<>();
+    }
+
 
     public boolean CheckItemAvailableA() {
         return cart.CheckItemAvailable();
@@ -441,6 +513,5 @@ public class User implements IUser {
     public boolean CheckAcquisitions() {
         return cart.CheckAcquisitions();
     }
-
 
 }

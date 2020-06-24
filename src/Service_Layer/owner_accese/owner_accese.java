@@ -11,6 +11,7 @@ import Domain.UserClasses.User;
 import Domain.info.Question;
 import Domain.store_System.System;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,6 +79,17 @@ public class owner_accese {
         return me.removeDiscount(discountID, storeName);
     }
 
+    public static String usecase4_2_GetDiscount(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getDiscount(storeName);
+    }
+
+
+
+
+
     public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
@@ -91,6 +103,15 @@ public class owner_accese {
             return false;
         return me.removeacquisition(acquisitionID, storeName);
     }
+
+    public static String usecase4_2_GetAcquisition(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getAcquisition(storeName);
+    }
+
+
 
 
     public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,
@@ -177,15 +198,14 @@ public class owner_accese {
     }
 
 
-    public static boolean accecpt_Pending_Appointment(String myusername, String myPassword, String storeName,
-                                                      String appointe) {
+    public static boolean accecpt_Pending_Appointment(int gustID, String storeName, String appointe) {
         return false;
-//TODO implament
+        //TODO implament
     }
 
-    public static Collection<String> get_Pending_Appointment(String myusername, String myPassword, String storeName) {
-        return null;
-//TODO implament
+    public static Collection<String> get_Pending_Appointment(int gustID, String storeName) {
+        return Arrays.asList("user1", "user2", "user3");
+        //TODO implament
     }
 
 }

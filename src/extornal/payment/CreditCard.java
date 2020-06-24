@@ -8,6 +8,7 @@ public class CreditCard {
     private String expirationDate;
     private String CSS;
     private String cardOwner;
+    private String ownerID;
 
     public CreditCard(String cardNumber) {
         this.cardNumber = cardNumber;
@@ -16,11 +17,12 @@ public class CreditCard {
         cardOwner = "null";
     }
 
-    public CreditCard(String cardNumber, String expirationDate, String css, String cardOwner) {
+    public CreditCard(String cardNumber, String expirationDate, String css, String cardOwner, String ownerID) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.CSS = css;
         this.cardOwner = cardOwner;
+        this.ownerID = ownerID;
     }
 
     public String getCardNumber() {
@@ -39,29 +41,35 @@ public class CreditCard {
         return cardOwner;
     }
 
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    @Override
+    public String toString() {
+        return "CreditCard{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
+                ", CSS='" + CSS + '\'' +
+                ", cardOwner='" + cardOwner + '\'' +
+                ", ownerID='" + ownerID + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreditCard that = (CreditCard) o;
-        return getCardNumber().equals(that.getCardNumber()) &&
-                getExpirationDate().equals(that.getExpirationDate()) &&
-                getCSS().equals(that.getCSS()) &&
-                getCardOwner().equals(that.getCardOwner());
+        return Objects.equals(getCardNumber(), that.getCardNumber()) &&
+                Objects.equals(getExpirationDate(), that.getExpirationDate()) &&
+                Objects.equals(getCSS(), that.getCSS()) &&
+                Objects.equals(getCardOwner(), that.getCardOwner()) &&
+                Objects.equals(getOwnerID(), that.getOwnerID());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCardNumber(), getExpirationDate(), getCSS(), getCardOwner());
-    }
-
-    @Override
-    public String toString() {
-        return "CredotCard{" +
-                "cardNumber='" + cardNumber + '\'' +
-                ", expirationDate='" + expirationDate + '\'' +
-                ", CSS='" + CSS + '\'' +
-                ", cardOwner='" + cardOwner + '\'' +
-                '}';
+        return Objects.hash(getCardNumber(), getExpirationDate(), getCSS(), getCardOwner(), getOwnerID());
     }
 }

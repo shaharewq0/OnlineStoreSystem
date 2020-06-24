@@ -10,7 +10,7 @@ import Domain.store_System.Roles.Registered;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pending_appoint_Owner {
+public class    Pending_appoint_Owner {
 
 
     public StoreOwner_Imp grantor;
@@ -39,7 +39,7 @@ public class Pending_appoint_Owner {
             finalise_appoint();
             return true;
         }
-        return confirm;
+        return !confirm;
     }
 
     private void finalise_appoint() {

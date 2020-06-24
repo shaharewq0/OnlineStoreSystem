@@ -249,6 +249,13 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
+    public String getDiscounts() {
+        if (!permission.contains("getDiscounts"))
+            return "";
+        return getStore().getDiscounts();
+    }
+
+    @Override
     public boolean removeDiscount(int discountID) {
         if (!permission.contains("removeDiscount"))
             return false;
@@ -270,6 +277,14 @@ public class StoreManager_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+
+    @Override
+    public String getAcquisition() {
+        if (!permission.contains("getacquisition"))
+            return null;
+        return getStore().getAcquisitions();
+    }
+
     @Override
     public boolean canPromoteToOwner() {
         return CheckTegrati_ImMangaer() && true;
@@ -278,6 +293,11 @@ public class StoreManager_Imp implements Store_role {
     public boolean CheckTegrati_ImMangaer() {
         return user != null;
 
+    }
+
+    @Override
+    public String getType(){
+        return "manager";
     }
 
 }

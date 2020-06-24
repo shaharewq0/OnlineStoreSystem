@@ -42,8 +42,6 @@ public class Registered implements MSGObservable {
     public void LogLogin(User user, ClintObserver CO) {
         clints.put(user,CO);
         if(!MSG_box.isEmpty()) {
-            TempMSG = MSG_box;
-            MSG_box = new LinkedList<>();
             CO.Notifi_me(this);
         }
     }
@@ -79,6 +77,19 @@ public class Registered implements MSGObservable {
         });
 
         return stores;
+    }
+
+    public List<String> roles() {
+        List<String> types = new LinkedList<>();
+
+        store_roles.forEach((store, role) -> {
+            String type = role.getType();
+            if (!types.contains(type)) {
+                types.add(type);
+            }
+        });
+
+        return types;
     }
 
 

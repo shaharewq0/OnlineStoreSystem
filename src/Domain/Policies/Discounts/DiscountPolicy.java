@@ -51,7 +51,7 @@ public class DiscountPolicy extends BasePolicy {
     }
 
     //      TODO: Discounts: refactor out
-    private Discount discountFactory(Stack<String> params) throws Exception {
+    public Discount discountFactory(Stack<String> params) throws Exception {
         int type = Integer.parseInt(params.pop());
         switch (type) {
             case 0: //visible
@@ -118,11 +118,15 @@ public class DiscountPolicy extends BasePolicy {
                 products.stream()
                         .map((entry) -> entry.item.getPrice() * entry.size())   //price * amount
                         .reduce(0.0, Double::sum);
-        return totalPrice -
+
+        double discount =
                 discounts.stream()
                         .filter(d -> d.hasDiscount(products))
                         .map(d -> d.applyDiscount(products))
                         .reduce(0.0, Double::sum);
+
+        return totalPrice - discount;
+
     }
 
     public boolean removeDiscount(int disNum) {
