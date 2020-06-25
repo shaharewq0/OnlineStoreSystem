@@ -6838,3 +6838,683 @@ row message: {"cmd_id":36,"json_data":{"0":49}}
 row response :{"result":2,"cmd_id":36}
 [2020-06-25T16:57:56.087]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='36'}
 
+row message: {"cmd_id":37,"json_data":{"0":35,"1":97,"2":49,"3":0,"4":97,"5":49}}
+[2020-06-25T16:59:19.286]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LoginMessage{username='a1', password='a1', id ='37'}
+[2020-06-25T16:59:19.287]: sending special message : StringResponse{msg='welcome to the system'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":37}
+[2020-06-25T16:59:19.289]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='37'}
+
+row message: {"cmd_id":38,"json_data":{"0":112}}
+[2020-06-25T16:59:20.071]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":38}
+[2020-06-25T16:59:20.073]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":39,"json_data":{"0":112}}
+[2020-06-25T16:59:20.074]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":39}
+[2020-06-25T16:59:20.075]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":40,"json_data":{"0":108}}
+[2020-06-25T16:59:22.413]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewSystemStateMessage{}
+row response :{"result":2,"cmd_id":40}
+[2020-06-25T16:59:22.415]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='40'}
+
+[2020-06-25T16:59:22.415]: sending special message : StringResponse{msg='guests     : 3
+members    : 3
+managers   : 0
+owners     : 1
+admins     : 1
+'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"44":10,"45":111,"46":119,"47":110,"48":101,"49":114,"50":115,"51":32,"52":32,"53":32,"10":32,"54":32,"11":58,"55":32,"12":32,"56":58,"13":51,"57":32,"14":10,"58":49,"15":109,"59":10,"16":101,"17":109,"18":98,"19":101,"0":103,"1":117,"2":101,"3":115,"4":116,"5":115,"6":32,"7":32,"8":32,"9":32,"60":97,"61":100,"62":109,"63":105,"20":114,"64":110,"21":115,"65":115,"22":32,"66":32,"23":32,"67":32,"24":32,"68":32,"25":32,"69":32,"26":58,"27":32,"28":51,"29":10,"70":32,"71":58,"72":32,"73":49,"30":109,"74":10,"31":97,"32":110,"33":97,"34":103,"35":101,"36":114,"37":115,"38":32,"39":32,"40":32,"41":58,"42":32,"43":48},"cmd_id":1}
+row message: {"cmd_id":41,"json_data":{"0":109}}
+[2020-06-25T16:59:23.963]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : EndViewSystemStateMessage{}
+row response :{"result":2,"cmd_id":41}
+[2020-06-25T16:59:23.964]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='41'}
+
+row message: {"cmd_id":42,"json_data":{"0":107,"1":115,"2":50}}
+[2020-06-25T16:59:28.970]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : HistoryOfStoreMessage{name='s2'}
+row response :{"result":{},"cmd_id":42}
+[2020-06-25T16:59:28.972]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StorePurchaseListResponse{purchases=[]}
+
+row message: {"cmd_id":43,"json_data":{"0":107,"1":115,"2":50}}
+[2020-06-25T16:59:30.092]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : HistoryOfStoreMessage{name='s2'}
+row response :{"result":{},"cmd_id":43}
+[2020-06-25T16:59:30.093]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StorePurchaseListResponse{purchases=[]}
+
+row message: {"cmd_id":44,"json_data":{"0":112}}
+[2020-06-25T16:59:41.138]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":44}
+[2020-06-25T16:59:41.139]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":45,"json_data":{"0":112}}
+[2020-06-25T16:59:41.140]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":45}
+[2020-06-25T16:59:41.141]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":46,"json_data":{"0":112}}
+[2020-06-25T16:59:45.653]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":46}
+[2020-06-25T16:59:45.654]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":47,"json_data":{"0":112}}
+[2020-06-25T16:59:45.656]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":47}
+[2020-06-25T16:59:45.656]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":48,"json_data":{"0":49}}
+[2020-06-25T16:59:46.525]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LogoutMessage{, id ='48'}
+row response :{"result":2,"cmd_id":48}
+[2020-06-25T16:59:46.526]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='48'}
+
+row message: {"cmd_id":49,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:59:50.472]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LoginMessage{username='u11', password='u11', id ='49'}
+row response :{"result":2,"cmd_id":49}
+[2020-06-25T16:59:50.474]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='49'}
+
+row message: {"cmd_id":50,"json_data":{"0":112}}
+[2020-06-25T16:59:50.494]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":50}
+[2020-06-25T16:59:50.495]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":51,"json_data":{"0":112}}
+[2020-06-25T16:59:50.496]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":51}
+[2020-06-25T16:59:50.497]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":52,"json_data":{"0":7}}
+[2020-06-25T16:59:52.103]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":52}
+[2020-06-25T16:59:52.104]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":53,"json_data":{"0":7}}
+[2020-06-25T16:59:52.104]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":53}
+[2020-06-25T16:59:52.105]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":54,"json_data":{"0":112}}
+[2020-06-25T16:59:52.773]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":54}
+[2020-06-25T16:59:52.774]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":55,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:59:52.775]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":55}
+[2020-06-25T16:59:52.776]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":56,"json_data":{"0":112}}
+[2020-06-25T16:59:52.777]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":56}
+[2020-06-25T16:59:52.778]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":57,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:59:52.779]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":57}
+[2020-06-25T16:59:52.779]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":58,"json_data":{"0":112}}
+[2020-06-25T17:00:03.106]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":58}
+[2020-06-25T17:00:03.107]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":59,"json_data":{"0":122}}
+row message: {"cmd_id":60,"json_data":{"0":112}}
+[2020-06-25T17:00:03.108]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":60}
+[2020-06-25T17:00:03.109]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":61,"json_data":{"0":122}}
+row message: {"cmd_id":62,"json_data":{"0":7}}
+[2020-06-25T17:00:04.055]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":62}
+[2020-06-25T17:00:04.057]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":63,"json_data":{"0":7}}
+[2020-06-25T17:00:04.058]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":63}
+[2020-06-25T17:00:04.059]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":64,"json_data":{"0":112}}
+[2020-06-25T17:00:05.185]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":64}
+[2020-06-25T17:00:05.186]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":65,"json_data":{"0":112}}
+[2020-06-25T17:00:05.187]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":65}
+[2020-06-25T17:00:05.188]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":66,"json_data":{"0":112}}
+[2020-06-25T17:00:13.069]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":66}
+[2020-06-25T17:00:13.070]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":67,"json_data":{"0":112}}
+[2020-06-25T17:00:13.071]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":67}
+[2020-06-25T17:00:13.072]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":68,"json_data":{"0":7}}
+[2020-06-25T17:00:15.531]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":68}
+[2020-06-25T17:00:15.532]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":69,"json_data":{"0":7}}
+[2020-06-25T17:00:15.533]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":69}
+[2020-06-25T17:00:15.536]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":70,"json_data":{"0":112}}
+[2020-06-25T17:00:16.475]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":70}
+[2020-06-25T17:00:16.477]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":71,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:00:16.478]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":71}
+[2020-06-25T17:00:16.479]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":72,"json_data":{"0":112}}
+[2020-06-25T17:00:16.479]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":72}
+[2020-06-25T17:00:16.480]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":73,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:00:16.480]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":73}
+[2020-06-25T17:00:16.481]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":74,"json_data":{"0":65,"1":98,"2":97,"3":108,"4":108,"5":0,"6":53,"7":46,"8":53,"9":0,"10":112,"11":108,"12":97,"13":121,"14":0,"15":98,"16":105,"17":103,"18":0,"19":115,"20":50,"21":0,"22":50,"23":48}}
+[2020-06-25T17:00:26.301]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : CreateProductMessage{name='ball', price=5.5, categoories=[play], keywords=[big], storeName='s2', ammount=20}
+row response :{"result":2,"cmd_id":74}
+[2020-06-25T17:00:26.304]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='74'}
+
+row message: {"cmd_id":75,"json_data":{"0":112}}
+[2020-06-25T17:00:27.120]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":75}
+[2020-06-25T17:00:27.121]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":76,"json_data":{"0":122}}
+row message: {"cmd_id":77,"json_data":{"0":112}}
+[2020-06-25T17:00:27.123]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":77}
+[2020-06-25T17:00:27.124]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":78,"json_data":{"0":122}}
+row message: {"cmd_id":79,"json_data":{"0":7}}
+[2020-06-25T17:00:27.125]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":79}
+[2020-06-25T17:00:27.126]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":80,"json_data":{"0":7}}
+[2020-06-25T17:00:27.127]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":80}
+[2020-06-25T17:00:27.127]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":81,"json_data":{"0":112}}
+[2020-06-25T17:00:27.920]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":81}
+[2020-06-25T17:00:27.921]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":82,"json_data":{"0":112}}
+[2020-06-25T17:00:27.922]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":82}
+[2020-06-25T17:00:27.923]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":83,"json_data":{"0":39}}
+[2020-06-25T17:00:30.966]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":83}
+[2020-06-25T17:00:30.968]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":84,"json_data":{"0":39}}
+[2020-06-25T17:00:30.968]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":84}
+[2020-06-25T17:00:30.969]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":85,"json_data":{"0":112}}
+[2020-06-25T17:00:32.070]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":85}
+[2020-06-25T17:00:32.071]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":86,"json_data":{"0":112}}
+[2020-06-25T17:00:32.072]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":86}
+[2020-06-25T17:00:32.072]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":87,"json_data":{"0":22,"1":98,"2":97,"3":108,"4":108}}
+[2020-06-25T17:00:34.311]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ProductsByNameMessage{name='ball'}
+row response :{"result":{"0":98,"1":97,"2":108,"3":108,"4":2,"5":53,"6":46,"7":53,"8":2,"9":115,"10":50},"cmd_id":87}
+[2020-06-25T17:00:34.313]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=20, rating=0, price=5.5}]}
+
+row message: {"cmd_id":88,"json_data":{"0":38,"1":115,"2":50,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":51}}
+[2020-06-25T17:00:35.896]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AddProduct2BasketMessage{store='s2', product='ball', amount=3}
+row response :{"result":2,"cmd_id":88}
+[2020-06-25T17:00:35.898]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='88'}
+
+row message: {"cmd_id":89,"json_data":{"0":112}}
+[2020-06-25T17:00:36.440]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":89}
+[2020-06-25T17:00:36.441]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":90,"json_data":{"0":112}}
+[2020-06-25T17:00:36.442]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":90}
+[2020-06-25T17:00:36.443]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":91,"json_data":{"0":39}}
+[2020-06-25T17:00:37.712]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":54,"14":46,"15":53,"16":2,"17":115,"18":50,"0":49,"1":54,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":91}
+[2020-06-25T17:00:37.721]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=3, rating=0, price=5.5}], price=16.5}
+
+row message: {"cmd_id":92,"json_data":{"0":39}}
+[2020-06-25T17:00:37.721]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":49,"13":54,"14":46,"15":53,"16":2,"17":115,"18":50,"0":49,"1":54,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":51},"cmd_id":92}
+[2020-06-25T17:00:37.722]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=3, rating=0, price=5.5}], price=16.5}
+
+row message: {"cmd_id":93,"json_data":{"0":38,"1":115,"2":50,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":50}}
+[2020-06-25T17:00:41.245]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AddProduct2BasketMessage{store='s2', product='ball', amount=2}
+row response :{"result":2,"cmd_id":93}
+[2020-06-25T17:00:41.247]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='93'}
+
+row message: {"cmd_id":94,"json_data":{"0":39}}
+[2020-06-25T17:00:41.265]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":50,"13":55,"14":46,"15":53,"16":2,"17":115,"18":50,"0":50,"1":55,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":53},"cmd_id":94}
+[2020-06-25T17:00:41.266]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], price=27.5}
+
+row message: {"cmd_id":95,"json_data":{"0":40,"1":50,"2":51,"3":52,"4":50,"5":45,"6":51,"7":52,"8":50,"9":49,"10":45,"11":51,"12":50,"13":52,"14":50,"15":45,"16":51,"17":52,"18":50,"19":51,"20":0,"21":49,"22":51,"23":47,"24":52,"25":50,"26":0,"27":50,"28":51,"29":52,"30":0,"31":98,"32":97,"33":108,"34":108,"35":0,"36":49,"37":48,"38":48,"39":48,"40":48,"41":48,"42":48,"43":48,"44":48,"45":0,"46":97,"47":97,"48":97,"49":0,"50":113,"51":105,"52":114,"53":105,"54":97,"55":116,"56":32,"57":111,"58":110,"59":111,"60":0,"61":113,"62":113,"63":113,"64":0,"65":51,"66":52,"67":50}}
+[2020-06-25T17:00:57.715]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PurchaseMessage{creditcardNumber='2342-3421-3242-3423', eDate='13/42', css='234', owner='ball', shipAdress='aaa', ownerID='100000000', city='qiriat ono', country='qqq', zip='342'}
+row response :{"result":2,"cmd_id":95}
+[2020-06-25T17:00:59.593]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='95'}
+
+row message: {"cmd_id":96,"json_data":{"0":39}}
+[2020-06-25T17:01:00.691]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":96}
+[2020-06-25T17:01:00.692]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":97,"json_data":{"0":39}}
+[2020-06-25T17:01:00.693]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":97}
+[2020-06-25T17:01:00.693]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":98,"json_data":{"0":112}}
+[2020-06-25T17:01:01.680]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":98}
+[2020-06-25T17:01:01.681]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":99,"json_data":{"0":112}}
+[2020-06-25T17:01:01.682]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":99}
+[2020-06-25T17:01:01.682]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":100,"json_data":{"0":49}}
+[2020-06-25T17:01:02.537]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LogoutMessage{, id ='100'}
+row response :{"result":2,"cmd_id":100}
+[2020-06-25T17:01:02.538]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='100'}
+
+row message: {"cmd_id":101,"json_data":{"0":35,"1":97,"2":49,"3":0,"4":97,"5":49}}
+[2020-06-25T17:01:07.753]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LoginMessage{username='a1', password='a1', id ='101'}
+row response :{"result":2,"cmd_id":101}
+[2020-06-25T17:01:07.754]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='101'}
+
+row message: {"cmd_id":102,"json_data":{"0":112}}
+[2020-06-25T17:01:07.774]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":102}
+[2020-06-25T17:01:07.775]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":103,"json_data":{"0":112}}
+[2020-06-25T17:01:07.776]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":103}
+[2020-06-25T17:01:07.776]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":104,"json_data":{"0":107,"1":115,"2":50}}
+[2020-06-25T17:01:13.400]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : HistoryOfStoreMessage{name='s2'}
+row response :{"result":{"44":58,"88":32,"45":32,"89":50,"46":53,"47":10,"48":45,"49":45,"90":55,"91":46,"92":53,"93":10,"50":45,"51":45,"52":45,"53":45,"10":10,"54":80,"11":45,"55":114,"12":45,"56":105,"13":45,"57":99,"14":73,"58":101,"15":116,"59":32,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":50,"60":58,"61":32,"62":53,"63":46,"20":97,"64":53,"21":109,"65":10,"22":101,"66":45,"23":32,"67":45,"24":58,"68":45,"25":32,"69":115,"26":98,"27":97,"28":108,"29":108,"70":116,"71":111,"72":114,"73":101,"30":10,"74":32,"31":45,"75":84,"32":45,"76":111,"33":45,"77":116,"34":45,"78":97,"35":45,"79":108,"36":45,"37":65,"38":109,"39":111,"80":32,"81":112,"82":114,"83":105,"40":117,"84":99,"41":110,"85":101,"42":116,"86":32,"43":32,"87":58},"cmd_id":104}
+[2020-06-25T17:01:13.402]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StorePurchaseListResponse{purchases=[StorePurchase{price=27.5, items=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], store='s2'}]}
+
+row message: {"cmd_id":105,"json_data":{"0":107,"1":115,"2":49}}
+[2020-06-25T17:01:16.036]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : HistoryOfStoreMessage{name='s1'}
+[2020-06-25T17:01:16.037]: ERROR in session (id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c) : null
+[2020-06-25T17:03:28.576]:  server is now online!
+[2020-06-25T17:03:28.586]: Opened session. id: ab369de9-1acf-4e3f-accd-2eaa0fca2960
+[2020-06-25T17:03:30.112]: closeted session. id: ab369de9-1acf-4e3f-accd-2eaa0fca2960
+[2020-06-25T17:03:30.254]: Opened session. id: c946997c-1125-4db3-a917-0948df051360
+row message: {"cmd_id":3,"json_data":{"0":35,"1":97,"2":49,"3":0,"4":97,"5":49}}
+[2020-06-25T17:03:35.444]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LoginMessage{username='a1', password='a1', id ='3'}
+[2020-06-25T17:03:35.446]: sending special message : StringResponse{msg='welcome to the system'} session : c946997c-1125-4db3-a917-0948df051360
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T17:03:35.450]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T17:03:36.293]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":4}
+[2020-06-25T17:03:36.295]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T17:03:36.296]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":5}
+[2020-06-25T17:03:36.297]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":6,"json_data":{"0":107,"1":115,"2":49}}
+[2020-06-25T17:03:42.307]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfStoreMessage{name='s1'}
+row response :{"result":{},"cmd_id":6}
+[2020-06-25T17:03:42.310]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StorePurchaseListResponse{purchases=[]}
+
+row message: {"cmd_id":7,"json_data":{"0":112}}
+[2020-06-25T17:04:14.220]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":7}
+[2020-06-25T17:04:14.222]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T17:04:14.222]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":8}
+[2020-06-25T17:04:14.223]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":9,"json_data":{"0":49}}
+[2020-06-25T17:04:16.001]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LogoutMessage{, id ='9'}
+row response :{"result":2,"cmd_id":9}
+[2020-06-25T17:04:16.003]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='9'}
+
+row message: {"cmd_id":10,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T17:04:21.659]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LoginMessage{username='u11', password='u11', id ='10'}
+[2020-06-25T17:04:21.660]: sending special message : StringResponse{msg='welcome to the system'} session : c946997c-1125-4db3-a917-0948df051360
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":10}
+[2020-06-25T17:04:21.662]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='10'}
+
+row message: {"cmd_id":11,"json_data":{"0":112}}
+[2020-06-25T17:04:22.554]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":11}
+[2020-06-25T17:04:22.555]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":12,"json_data":{"0":112}}
+[2020-06-25T17:04:22.556]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":12}
+[2020-06-25T17:04:22.557]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":13,"json_data":{"0":7}}
+[2020-06-25T17:04:25.616]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":13}
+[2020-06-25T17:04:25.619]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":14,"json_data":{"0":7}}
+[2020-06-25T17:04:25.619]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":14}
+[2020-06-25T17:04:25.620]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T17:04:26.281]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T17:04:26.282]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:04:26.285]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":16}
+[2020-06-25T17:04:26.288]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":17,"json_data":{"0":112}}
+[2020-06-25T17:04:26.289]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":17}
+[2020-06-25T17:04:26.290]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":18,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:04:26.292]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":18}
+[2020-06-25T17:04:26.293]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":19,"json_data":{"0":65,"1":98,"2":97,"3":108,"4":108,"5":0,"6":53,"7":46,"8":53,"9":0,"10":112,"11":108,"12":97,"13":121,"14":0,"15":98,"16":105,"17":103,"18":0,"19":115,"20":50,"21":0,"22":50,"23":48}}
+[2020-06-25T17:04:41.123]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : CreateProductMessage{name='ball', price=5.5, categoories=[play], keywords=[big], storeName='s2', ammount=20}
+row response :{"result":2,"cmd_id":19}
+[2020-06-25T17:04:41.126]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='19'}
+
+row message: {"cmd_id":20,"json_data":{"0":112}}
+[2020-06-25T17:04:41.897]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":20}
+[2020-06-25T17:04:41.898]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":21,"json_data":{"0":122}}
+row message: {"cmd_id":22,"json_data":{"0":112}}
+[2020-06-25T17:04:41.899]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":22}
+[2020-06-25T17:04:41.900]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":23,"json_data":{"0":122}}
+row message: {"cmd_id":24,"json_data":{"0":7}}
+[2020-06-25T17:04:41.938]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":24}
+[2020-06-25T17:04:41.940]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":25,"json_data":{"0":7}}
+[2020-06-25T17:04:41.940]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":25}
+[2020-06-25T17:04:41.941]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":26,"json_data":{"0":112}}
+[2020-06-25T17:04:42.844]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":26}
+[2020-06-25T17:04:42.845]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":27,"json_data":{"0":112}}
+[2020-06-25T17:04:42.846]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":27}
+[2020-06-25T17:04:42.850]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":28,"json_data":{"0":22,"1":98,"2":97,"3":108,"4":108}}
+[2020-06-25T17:04:47.641]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ProductsByNameMessage{name='ball'}
+row response :{"result":{"0":98,"1":97,"2":108,"3":108,"4":2,"5":53,"6":46,"7":53,"8":2,"9":115,"10":50},"cmd_id":28}
+[2020-06-25T17:04:47.643]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ProductDetailsListResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=20, rating=0, price=5.5}]}
+
+row message: {"cmd_id":29,"json_data":{"0":38,"1":115,"2":50,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":53}}
+[2020-06-25T17:04:50.084]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AddProduct2BasketMessage{store='s2', product='ball', amount=5}
+row response :{"result":2,"cmd_id":29}
+[2020-06-25T17:04:50.086]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='29'}
+
+row message: {"cmd_id":30,"json_data":{"0":112}}
+[2020-06-25T17:04:51.006]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":30}
+[2020-06-25T17:04:51.007]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":31,"json_data":{"0":112}}
+[2020-06-25T17:04:51.008]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":31}
+[2020-06-25T17:04:51.009]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":32,"json_data":{"0":39}}
+[2020-06-25T17:04:52.140]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":50,"13":55,"14":46,"15":53,"16":2,"17":115,"18":50,"0":50,"1":55,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":53},"cmd_id":32}
+[2020-06-25T17:04:52.146]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], price=27.5}
+
+row message: {"cmd_id":33,"json_data":{"0":39}}
+[2020-06-25T17:04:52.147]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewCartMessage{}
+row response :{"result":{"11":2,"12":50,"13":55,"14":46,"15":53,"16":2,"17":115,"18":50,"0":50,"1":55,"2":46,"3":53,"4":0,"5":98,"6":97,"7":108,"8":108,"9":2,"10":53},"cmd_id":33}
+[2020-06-25T17:04:52.148]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : PrductsInCartResponse{products=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], price=27.5}
+
+row message: {"cmd_id":34,"json_data":{"0":40,"1":50,"2":51,"3":52,"4":50,"5":45,"6":51,"7":52,"8":50,"9":51,"10":45,"11":52,"12":50,"13":51,"14":52,"15":45,"16":50,"17":51,"18":52,"19":50,"20":0,"21":49,"22":50,"23":47,"24":51,"25":52,"26":0,"27":50,"28":51,"29":52,"30":0,"31":98,"32":97,"33":108,"34":108,"35":0,"36":49,"37":48,"38":48,"39":48,"40":48,"41":48,"42":48,"43":48,"44":48,"45":0,"46":97,"47":97,"48":97,"49":0,"50":113,"51":105,"52":114,"53":105,"54":97,"55":116,"56":32,"57":111,"58":110,"59":111,"60":0,"61":113,"62":113,"63":113,"64":0,"65":50,"66":51,"67":52}}
+[2020-06-25T17:05:08.717]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : PurchaseMessage{creditcardNumber='2342-3423-4234-2342', eDate='12/34', css='234', owner='ball', shipAdress='aaa', ownerID='100000000', city='qiriat ono', country='qqq', zip='234'}
+row response :{"result":2,"cmd_id":34}
+[2020-06-25T17:05:11.656]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='34'}
+
+row message: {"cmd_id":35,"json_data":{"0":39}}
+[2020-06-25T17:05:12.705]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":35}
+[2020-06-25T17:05:12.706]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":36,"json_data":{"0":39}}
+[2020-06-25T17:05:12.707]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewCartMessage{}
+row response :{"result":{},"cmd_id":36}
+[2020-06-25T17:05:12.708]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : PrductsInCartResponse{products=[], price=0.0}
+
+row message: {"cmd_id":37,"json_data":{"0":112}}
+[2020-06-25T17:05:13.631]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":37}
+[2020-06-25T17:05:13.632]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":38,"json_data":{"0":112}}
+[2020-06-25T17:05:13.633]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":38}
+[2020-06-25T17:05:13.633]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":39,"json_data":{"0":49}}
+[2020-06-25T17:05:14.765]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LogoutMessage{, id ='39'}
+row response :{"result":2,"cmd_id":39}
+[2020-06-25T17:05:14.766]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='39'}
+
+row message: {"cmd_id":40,"json_data":{"0":35,"1":97,"2":49,"3":0,"4":97,"5":49}}
+[2020-06-25T17:05:18.297]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LoginMessage{username='a1', password='a1', id ='40'}
+row response :{"result":2,"cmd_id":40}
+[2020-06-25T17:05:18.298]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='40'}
+
+row message: {"cmd_id":41,"json_data":{"0":112}}
+[2020-06-25T17:05:18.318]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":41}
+[2020-06-25T17:05:18.319]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":42,"json_data":{"0":112}}
+[2020-06-25T17:05:18.320]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":42}
+[2020-06-25T17:05:18.321]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":43,"json_data":{"0":107,"1":115,"2":50}}
+[2020-06-25T17:05:23.807]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfStoreMessage{name='s2'}
+row response :{"result":{"44":58,"88":32,"45":32,"89":50,"46":53,"47":10,"48":45,"49":45,"90":55,"91":46,"92":53,"93":10,"50":45,"51":45,"52":45,"53":45,"10":10,"54":80,"11":45,"55":114,"12":45,"56":105,"13":45,"57":99,"14":73,"58":101,"15":116,"59":32,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":50,"60":58,"61":32,"62":53,"63":46,"20":97,"64":53,"21":109,"65":10,"22":101,"66":45,"23":32,"67":45,"24":58,"68":45,"25":32,"69":115,"26":98,"27":97,"28":108,"29":108,"70":116,"71":111,"72":114,"73":101,"30":10,"74":32,"31":45,"75":84,"32":45,"76":111,"33":45,"77":116,"34":45,"78":97,"35":45,"79":108,"36":45,"37":65,"38":109,"39":111,"80":32,"81":112,"82":114,"83":105,"40":117,"84":99,"41":110,"85":101,"42":116,"86":32,"43":32,"87":58},"cmd_id":43}
+[2020-06-25T17:05:23.810]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StorePurchaseListResponse{purchases=[StorePurchase{price=27.5, items=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], store='s2'}]}
+
+row message: {"cmd_id":44,"json_data":{"0":107,"1":115,"2":49}}
+[2020-06-25T17:05:27.388]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfStoreMessage{name='s1'}
+row response :{"result":{},"cmd_id":44}
+[2020-06-25T17:05:27.389]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StorePurchaseListResponse{purchases=[]}
+
+row message: {"cmd_id":45,"json_data":{"0":107,"1":115,"2":50}}
+[2020-06-25T17:05:34.201]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfStoreMessage{name='s2'}
+row response :{"result":{"44":58,"88":32,"45":32,"89":50,"46":53,"47":10,"48":45,"49":45,"90":55,"91":46,"92":53,"93":10,"50":45,"51":45,"52":45,"53":45,"10":10,"54":80,"11":45,"55":114,"12":45,"56":105,"13":45,"57":99,"14":73,"58":101,"15":116,"59":32,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":50,"60":58,"61":32,"62":53,"63":46,"20":97,"64":53,"21":109,"65":10,"22":101,"66":45,"23":32,"67":45,"24":58,"68":45,"25":32,"69":115,"26":98,"27":97,"28":108,"29":108,"70":116,"71":111,"72":114,"73":101,"30":10,"74":32,"31":45,"75":84,"32":45,"76":111,"33":45,"77":116,"34":45,"78":97,"35":45,"79":108,"36":45,"37":65,"38":109,"39":111,"80":32,"81":112,"82":114,"83":105,"40":117,"84":99,"41":110,"85":101,"42":116,"86":32,"43":32,"87":58},"cmd_id":45}
+[2020-06-25T17:05:34.203]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StorePurchaseListResponse{purchases=[StorePurchase{price=27.5, items=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], store='s2'}]}
+
+row message: {"cmd_id":46,"json_data":{"0":107,"1":115,"2":49}}
+[2020-06-25T17:05:36.179]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfStoreMessage{name='s1'}
+row response :{"result":{},"cmd_id":46}
+[2020-06-25T17:05:36.180]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StorePurchaseListResponse{purchases=[]}
+
+row message: {"cmd_id":47,"json_data":{"0":100,"1":117,"2":49,"3":49}}
+[2020-06-25T17:05:42.131]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfUserMessage{name='u11'}
+row response :{"result":{"88":32,"89":50,"110":55,"111":46,"112":53,"113":10,"114":10,"90":55,"91":46,"92":53,"93":10,"94":10,"95":84,"96":111,"97":116,"10":10,"98":97,"11":45,"99":108,"12":45,"13":45,"14":73,"15":116,"16":101,"17":109,"18":32,"19":78,"0":83,"1":116,"2":111,"3":114,"4":101,"5":32,"6":58,"7":32,"8":115,"9":50,"20":97,"21":109,"22":101,"23":32,"24":58,"25":32,"26":98,"27":97,"28":108,"29":108,"30":10,"31":45,"32":45,"33":45,"34":45,"35":45,"36":45,"37":65,"38":109,"39":111,"40":117,"41":110,"42":116,"43":32,"44":58,"45":32,"46":53,"47":10,"48":45,"49":45,"50":45,"51":45,"52":45,"53":45,"54":80,"55":114,"56":105,"57":99,"58":101,"59":32,"60":58,"61":32,"62":53,"63":46,"64":53,"65":10,"66":45,"67":45,"68":45,"69":115,"70":116,"71":111,"72":114,"73":101,"74":32,"75":84,"76":111,"77":116,"78":97,"79":108,"100":32,"101":80,"102":114,"103":105,"104":99,"105":101,"106":32,"80":32,"107":58,"81":112,"108":32,"82":114,"109":50,"83":105,"84":99,"85":101,"86":32,"87":58},"cmd_id":47}
+[2020-06-25T17:05:42.133]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : UserPerchesListResponse{purchase=[UserPurchase{eachPurchase=[StorePurchase{price=27.5, items=[ProductDetails{keyWords=[big], name='ball', category=[play], storeName='s2', amount=5, rating=0, price=5.5}], store='s2'}], TotalePrice=27.5}]}
+
+row message: {"cmd_id":48,"json_data":{"0":100,"1":117,"2":49}}
+[2020-06-25T17:05:44.264]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : HistoryOfUserMessage{name='u1'}
+row response :{"result":{},"cmd_id":48}
+[2020-06-25T17:05:44.265]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : UserPerchesListResponse{purchase=[]}
+
+row message: {"cmd_id":49,"json_data":{"0":108}}
+[2020-06-25T17:05:47.730]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewSystemStateMessage{}
+row response :{"result":2,"cmd_id":49}
+[2020-06-25T17:05:47.731]: sending special message : StringResponse{msg='guests     : 3
+members    : 3
+managers   : 0
+owners     : 1
+admins     : 1
+'} session : c946997c-1125-4db3-a917-0948df051360
+[2020-06-25T17:05:47.731]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='49'}
+
+row response :{"result":{"44":10,"45":111,"46":119,"47":110,"48":101,"49":114,"50":115,"51":32,"52":32,"53":32,"10":32,"54":32,"11":58,"55":32,"12":32,"56":58,"13":51,"57":32,"14":10,"58":49,"15":109,"59":10,"16":101,"17":109,"18":98,"19":101,"0":103,"1":117,"2":101,"3":115,"4":116,"5":115,"6":32,"7":32,"8":32,"9":32,"60":97,"61":100,"62":109,"63":105,"20":114,"64":110,"21":115,"65":115,"22":32,"66":32,"23":32,"67":32,"24":32,"68":32,"25":32,"69":32,"26":58,"27":32,"28":51,"29":10,"70":32,"71":58,"72":32,"73":49,"30":109,"74":10,"31":97,"32":110,"33":97,"34":103,"35":101,"36":114,"37":115,"38":32,"39":32,"40":32,"41":58,"42":32,"43":48},"cmd_id":1}
+row message: {"cmd_id":50,"json_data":{"0":109}}
+[2020-06-25T17:05:49.928]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : EndViewSystemStateMessage{}
+row response :{"result":2,"cmd_id":50}
+[2020-06-25T17:05:49.930]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='50'}
+
+row message: {"cmd_id":51,"json_data":{"0":112}}
+[2020-06-25T17:05:50.895]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":51}
+[2020-06-25T17:05:50.896]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":52,"json_data":{"0":112}}
+[2020-06-25T17:05:50.897]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":113,"cmd_id":52}
+[2020-06-25T17:05:50.898]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :113}
+
+row message: {"cmd_id":53,"json_data":{"0":49}}
+[2020-06-25T17:06:08.007]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LogoutMessage{, id ='53'}
+row response :{"result":2,"cmd_id":53}
+[2020-06-25T17:06:08.008]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='53'}
+
+row message: {"cmd_id":54,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T17:06:13.949]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : LoginMessage{username='u11', password='u11', id ='54'}
+row response :{"result":2,"cmd_id":54}
+[2020-06-25T17:06:13.950]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='54'}
+
+row message: {"cmd_id":55,"json_data":{"0":112}}
+[2020-06-25T17:06:13.969]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":55}
+[2020-06-25T17:06:13.970]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":56,"json_data":{"0":112}}
+[2020-06-25T17:06:13.970]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":56}
+[2020-06-25T17:06:13.971]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":57,"json_data":{"0":7}}
+[2020-06-25T17:06:16.021]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":57}
+[2020-06-25T17:06:16.022]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":58,"json_data":{"0":7}}
+[2020-06-25T17:06:16.023]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":58}
+[2020-06-25T17:06:16.023]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":59,"json_data":{"0":112}}
+[2020-06-25T17:06:16.872]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":59}
+[2020-06-25T17:06:16.873]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":60,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:06:16.874]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":60}
+[2020-06-25T17:06:16.875]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":61,"json_data":{"0":112}}
+[2020-06-25T17:06:16.875]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":61}
+[2020-06-25T17:06:16.876]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":62,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T17:06:16.877]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":62}
+[2020-06-25T17:06:16.877]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":63,"json_data":{"0":72,"1":115,"2":50,"3":0,"4":16,"5":1,"6":98,"7":97,"8":108,"9":108,"10":1,"11":57}}
+[2020-06-25T17:06:30.323]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AddAcquisitionMessage{storwName='s2', acquisition=Min. amount of 'ball' is 9}
+row response :{"result":2,"cmd_id":63}
+[2020-06-25T17:06:30.324]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : AckMessage{ replyFor ='63'}
+
+row message: {"cmd_id":64,"json_data":{"0":112}}
+[2020-06-25T17:06:31.249]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":64}
+[2020-06-25T17:06:31.250]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":65,"json_data":{"0":122}}
+row message: {"cmd_id":66,"json_data":{"0":112}}
+[2020-06-25T17:06:31.251]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":66}
+[2020-06-25T17:06:31.252]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":67,"json_data":{"0":122}}
+row message: {"cmd_id":68,"json_data":{"0":7}}
+[2020-06-25T17:06:31.253]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":68}
+[2020-06-25T17:06:31.256]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":69,"json_data":{"0":7}}
+[2020-06-25T17:06:31.256]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":69}
+[2020-06-25T17:06:31.257]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":70,"json_data":{"0":112}}
+[2020-06-25T17:06:32.059]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":70}
+[2020-06-25T17:06:32.060]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":71,"json_data":{"0":112}}
+[2020-06-25T17:06:32.061]: message received. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":71}
+[2020-06-25T17:06:32.061]: sending message. session id: c946997c-1125-4db3-a917-0948df051360.  Message : memberTypeResponse{op :114}
+

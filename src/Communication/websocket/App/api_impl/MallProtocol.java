@@ -224,7 +224,12 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(HistoryOfUserMessage msg) {
-        List<UserPurchase> history = sys_mangaer_accese.usecase6_4A_WatchPurchesHistoryofUser(username, paasword, msg.getName());
+        List<UserPurchase> history;
+        try {
+            history = sys_mangaer_accese.usecase6_4A_WatchPurchesHistoryofUser(username, paasword, msg.getName());
+        } catch (Exception e){
+            history = new LinkedList<>();
+        }
 
         if(history != null){
             return new UserPurchaseListResponse((byte)-1,msg.getId(), history);
@@ -234,7 +239,12 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(HistoryOfStoreMessage msg) {
-        List<StorePurchase> history = sys_mangaer_accese.usecase6_4B_WatchPurchesHistoryofStore(username, paasword, msg.getName());
+        List<StorePurchase> history;
+        try {
+            history = sys_mangaer_accese.usecase6_4B_WatchPurchesHistoryofStore(username, paasword, msg.getName());
+        } catch (Exception e){
+            history = new LinkedList<>();
+        }
 
         if(history != null){
              return new StorePurchaseListResponse((byte)-1,msg.getId(), history);
