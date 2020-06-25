@@ -17,6 +17,8 @@ import org.junit.runners.Suite;
         User_DATest.class,
         UserPurchase_DATest.class,
         UserPurchaseHistory_DATest.class,
+        Basket_DATest.class,
+        Cart_DATest.class,
 })
 
 public class AllDALTests {

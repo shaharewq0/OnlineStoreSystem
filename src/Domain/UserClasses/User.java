@@ -335,6 +335,13 @@ public class User implements IUser {
         return store_roles.get(storeName).fireManager(username);
     }
 
+    public boolean fireOwner(String storeName, String username) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(storeName) == null)
+            return false;
+        return store_roles.get(storeName).fireOwner(username);
+    }
+
     @Override
     public boolean getFired(String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
