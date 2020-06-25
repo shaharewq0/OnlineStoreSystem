@@ -14,6 +14,7 @@ import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.*;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -199,5 +200,13 @@ public class SystemAdapter {
 	public void answerQuestion(Question question) {
 		// TODO this is not implemented in version 1
 
+	}
+
+	public Collection<String> getPendingApointments(String username, String password, String storeName) {
+		return owner_accese.get_Pending_Appointment(username, password, storeName);
+	}
+
+	public boolean AcceptPendingApointments(String username, String password, String storeName, String apointee) {
+		return owner_accese.accecpt_Pending_Appointment(username, password, storeName, apointee);
 	}
 }
