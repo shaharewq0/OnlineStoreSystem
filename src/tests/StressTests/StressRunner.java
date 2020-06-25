@@ -72,7 +72,7 @@ class stresstest implements Runnable {
         executor = Executors.newFixedThreadPool(THREAD_NUM);
 
         for(int i = 1; i<= USERS; i++){
-            executor.execute(new testRunner()); //CHANGE HERE <----------------------------------------------------------------------
+            executor.execute(new AllTests()); //CHANGE HERE <----------------------------------------------------------------------
         }
 
 

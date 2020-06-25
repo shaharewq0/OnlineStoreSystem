@@ -27,9 +27,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class System implements ISystem {
 
     private boolean init = false;
-    private System_Manager manager = null;
+    private System_Manager Admin = null;
 
-    private int TempGuestID = 0;
+    public static final AtomicInteger TempGuestID = new AtomicInteger(0);
     private Map<Integer, User> guest = new HashMap<>();
     private Map<String, Registered> membersprofiles = new HashMap<>();
     private Map<String, Member> onlinemember = new HashMap<>();
@@ -95,17 +95,17 @@ public class System implements ISystem {
     // ----------------------------------init
 
     public String getManager(){
-        return manager == null ? null : manager.name;
+        return Admin == null ? null : Admin.name;
     }
 
     public System_Manager ImManeger(String id, String password) {
 
-        if (manager != null && (!(id.compareTo(manager.name) == 0) || !myProtocol.login(id, password))) {
+        if (Admin != null && (!(id.compareTo(Admin.name) == 0) || !myProtocol.login(id, password))) {
             return null;
         }
 
         EventLogger.GetInstance().Add_Log(this.toString() + "-manager login");
-        return manager;
+        return Admin;
     }
 
     public boolean init(String username, String password) {
@@ -126,11 +126,11 @@ public class System implements ISystem {
         User.register(username, password);
         SYS_ManagerLogin.getAndIncrement();
 
-        if(manager != null){
+        if(Admin != null){
             SYS_ManagerLogin.decrementAndGet();
         }
 
-        manager = new System_Manager(username);
+        Admin = new System_Manager(username);
     }
 
     public void resetSystem() {
@@ -149,9 +149,10 @@ public class System implements ISystem {
     public int ImNew() {
         GuestLogin.getAndIncrement();
         EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
-        TempGuestID++;
-        guest.put(TempGuestID, new User());
-        return TempGuestID;
+        int ID =TempGuestID.getAndIncrement();
+
+        guest.put(ID, new User());
+        return ID;
     }
 
     public User getGuest(int id) {
@@ -417,6 +418,6 @@ public class System implements ISystem {
 
     //-------------------------------------------------------Tegrati
     public boolean CheckTegrati_oneManager() {
-        return manager != null && getUserProfile(manager.name) != null;
+        return Admin != null && getUserProfile(Admin.name) != null;
     }
 }

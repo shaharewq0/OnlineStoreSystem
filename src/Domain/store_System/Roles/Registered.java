@@ -42,6 +42,7 @@ public class Registered implements MSGObservable {
         this.id = id;
     }
 
+    //DA setters-----------------------------------------
     public void setClints(Map<User, ClintObserver> clints) {
         this.clints = clints;
     }
@@ -61,6 +62,8 @@ public class Registered implements MSGObservable {
     public void setTempMSG(List<String> tempMSG) {
         TempMSG = tempMSG;
     }
+    //DA setters-----------------------------------------
+
 
     public Map<User, ClintObserver> getClints() {
         return clints;
