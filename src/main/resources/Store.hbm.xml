@@ -4,49 +4,44 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Domain.Store.IStore" abstract="true" table = "STORE_TABLE" lazy="false">
+    <class name = "Domain.Store.StoreImp" abstract="true" table = "STORE_TABLE" lazy="false">
 
         <id name = "id" type = "int" column = "id">
             <generator class="increment"/>
         </id>
 
-        <subclass name="Domain.Store.StoreImp">
+        <property name="name" type="string" column="name"/>
 
-            <property name="name" type="string" column="name"/>
+        <many-to-one name="creator" class="Domain.Store.workers.Creator" cascade="all" lazy="false"/>
 
-            <many-to-one name="creator" class="Domain.Store.workers.Creator" cascade="all" lazy="false"/>
+        <many-to-one name="inventory" class="Domain.Store.Store_Inventory" cascade="all" lazy="false"/>
 
-            <many-to-one name="inventory" class="Domain.Store.Store_Inventory" cascade="all" lazy="false"/>
+        <map name="Owners" cascade="all" lazy="false">
+            <key column="Store_foreignkey"></key>
+            <index column="Owner's_name" type="string"/>
+            <one-to-many class="Domain.Store.workers.appoints.Appoint_manager"/>
+        </map>
 
-            <map name="Owners" cascade="all" lazy="false">
-                <key column="Store_foreignkey"></key>
-                <index column="Owner's_name" type="string"/>
-                <one-to-many class="Domain.Store.workers.appoints.Appoint_manager"/>
-            </map>
+        <map name="Managers" cascade="all" lazy="false">
+            <key column="Store_foreignkey"></key>
+            <index column="Manager's_name" type="string"/>
+            <one-to-many class="Domain.Store.workers.appoints.Appoint_manager"/>
+        </map>
 
-            <map name="Managers" cascade="all" lazy="false">
-                <key column="Store_foreignkey"></key>
-                <index column="Manager's_name" type="string"/>
-                <one-to-many class="Domain.Store.workers.appoints.Appoint_manager"/>
-            </map>
+        <property name="address" type="string"/>
 
-            <property name="address" type="string"/>
+        <property name="rating" type="int"/>
 
-            <property name="rating" type="int"/>
+        <many-to-one name="getDiscountsString" class="Domain.Policies.Discounts.DiscountPolicy" cascade="all" lazy="false"/>
 
-            <many-to-one name="getDiscountsString" class="Domain.Policies.Discounts.DiscountPolicy" cascade="all" lazy="false"/>
+        <many-to-one name="acquisitions" class="Domain.Policies.Acquisitions.AcquisitionPolicy" cascade="all" lazy="false"/>
 
-            <many-to-one name="acquisitions" class="Domain.Policies.Acquisitions.AcquisitionPolicy" cascade="all" lazy="false"/>
+        <many-to-one name="purchaseHistory" class="Domain.Store.Store_Purchase_History" cascade="all" lazy="false"/>
 
-            <many-to-one name="purchaseHistory" class="Domain.Store.Store_Purchase_History" cascade="all" lazy="false"/>
-
-            <map name="questions" cascade="all" lazy="false">
-                <key column="Store_foreignkey"></key>
-                <index column="" type="int"></index>
-                <one-to-many class="Domain.info.Question"/>
-            </map>
-        </subclass>
-
-
+        <map name="questions" cascade="all" lazy="false">
+            <key column="Store_foreignkey"></key>
+            <index column="" type="int"></index>
+            <one-to-many class="Domain.info.Question"/>
+        </map>
     </class>
 </hibernate-mapping>

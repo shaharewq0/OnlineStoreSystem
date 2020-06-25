@@ -23,13 +23,13 @@
 
             <map name="Owner_Appointees" cascade="all" lazy="false">
                 <key column="StoreManager_foreignkey"></key>
-                <index column="Owner's_name"/>
+                <index column="Owner's_name" type="string"/>
                 <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
             </map>
 
             <map name="Manager_Appointees" cascade="all" lazy="false">
                 <key column="StoreManager_foreignkey"></key>
-                <index column="Manager's_name"/>
+                <index column="Manager's_name" type="string"/>
                 <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
             </map>
 
@@ -53,19 +53,19 @@
 
             <map name="OwnerAppointeis" cascade="all" lazy="false">
                 <key column="StoreOwner_foreignkey"></key>
-                <index column="Owner's_name"/>
+                <index column="Owner's_name" type="string"/>
                 <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
             </map>
 
             <map name="ManagerAppointeis" cascade="all" lazy="false">
                 <key column="StoreOwner_foreignkey"></key>
-                <index column="Manager's_name"/>
+                <index column="Manager's_name" type="string"/>
                 <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
             </map>
 
             <map name="OwnerPendingAppointeis" cascade="all" lazy="false">
                 <key column="StoreOwner_foreignkey"></key>
-                <index column="Owner's_name"/>
+                <index column="Owner's_name" type="string"/>
                 <one-to-many class="Domain.Store.workers.appoints.Pending_appoint_Owner"></one-to-many>
             </map>
 
