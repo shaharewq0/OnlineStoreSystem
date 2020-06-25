@@ -218,7 +218,7 @@ public class StoreImp implements IStore {
 
         }
         if (Owners.containsKey(user)) {
-            if (Owners.get(user).grantor.getfire())
+            if (Owners.get(user).grantee.getfire())
                 return Owners.remove(user) != null && CheckTegrati_HaveOwners();
         }
 

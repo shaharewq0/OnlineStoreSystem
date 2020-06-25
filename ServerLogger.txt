@@ -6216,3 +6216,625 @@ row message: {"cmd_id":5,"json_data":{"0":112}}
 row response :{"result":116,"cmd_id":5}
 [2020-06-25T16:28:42.426]: sending message. session id: 0adc8576-e154-4464-a19a-9f14344c3a26.  Message : memberTypeResponse{op :116}
 
+[2020-06-25T16:48:02.005]:  server is now online!
+[2020-06-25T16:48:02.015]: Opened session. id: 73a65b4a-8f2a-49bd-8731-46fbb45babe7
+[2020-06-25T16:48:06.775]: Opened session. id: f45ceb10-59f2-4ec7-9491-9f4c4450a84a
+[2020-06-25T16:48:07.444]: closeted session. id: f45ceb10-59f2-4ec7-9491-9f4c4450a84a
+[2020-06-25T16:48:07.613]: Opened session. id: abf6fdc3-f3d8-4ef9-89dc-03d8854a9398
+[2020-06-25T16:48:08.810]: closeted session. id: 73a65b4a-8f2a-49bd-8731-46fbb45babe7
+[2020-06-25T16:48:08.982]: Opened session. id: a9bc6681-1dc9-4e70-9139-af7a30ce8279
+row message: {"cmd_id":3,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:48:29.463]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : LoginMessage{username='u11', password='u11', id ='3'}
+[2020-06-25T16:48:29.467]: sending special message : StringResponse{msg='welcome to the system'} session : a9bc6681-1dc9-4e70-9139-af7a30ce8279
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T16:48:29.472]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T16:48:30.631]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":4}
+[2020-06-25T16:48:30.634]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T16:48:30.635]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":5}
+[2020-06-25T16:48:30.635]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":6,"json_data":{"0":7}}
+[2020-06-25T16:48:38.778]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":6}
+[2020-06-25T16:48:38.782]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":7,"json_data":{"0":7}}
+[2020-06-25T16:48:38.783]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":7}
+[2020-06-25T16:48:38.784]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T16:48:40.012]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-25T16:48:40.014]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:48:40.015]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":9}
+[2020-06-25T16:48:40.019]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-25T16:48:40.020]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":10}
+[2020-06-25T16:48:40.021]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":11,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:48:40.022]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":11}
+[2020-06-25T16:48:40.023]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":12,"json_data":{"0":67,"1":117,"2":50,"3":0,"4":115,"5":50,"6":0,"7":17}}
+[2020-06-25T16:48:45.089]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : AppointMessage{username='u2', storename='s2', role=17}
+[2020-06-25T16:48:45.091]: sending special message : StringResponse{msg='a new Owner is being appointed for store:s2- required your confirmation - u2'} session : a9bc6681-1dc9-4e70-9139-af7a30ce8279
+row response :{"result":{"44":32,"45":114,"46":101,"47":113,"48":117,"49":105,"50":114,"51":101,"52":100,"53":32,"10":114,"54":121,"11":32,"55":111,"12":105,"56":117,"13":115,"57":114,"14":32,"58":32,"15":98,"59":99,"16":101,"17":105,"18":110,"19":103,"0":97,"1":32,"2":110,"3":101,"4":119,"5":32,"6":79,"7":119,"8":110,"9":101,"60":111,"61":110,"62":102,"63":105,"20":32,"64":114,"21":97,"65":109,"22":112,"66":97,"23":112,"67":116,"24":111,"68":105,"25":105,"69":111,"26":110,"27":116,"28":101,"29":100,"70":110,"71":32,"72":45,"73":32,"30":32,"74":117,"31":102,"75":50,"32":111,"33":114,"34":32,"35":115,"36":116,"37":111,"38":114,"39":101,"40":58,"41":115,"42":50,"43":45},"cmd_id":0}
+row response :{"result":2,"cmd_id":12}
+[2020-06-25T16:48:45.093]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":112}}
+[2020-06-25T16:48:46.603]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":13}
+[2020-06-25T16:48:46.604]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":14,"json_data":{"0":122}}
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T16:48:46.605]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T16:48:46.606]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122}}
+row message: {"cmd_id":17,"json_data":{"0":7}}
+[2020-06-25T16:48:46.611]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":17}
+[2020-06-25T16:48:46.611]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":18,"json_data":{"0":7}}
+[2020-06-25T16:48:46.612]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":18}
+[2020-06-25T16:48:46.613]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-25T16:48:47.762]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-25T16:48:47.764]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:48:47.767]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":20}
+[2020-06-25T16:48:47.768]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":21,"json_data":{"0":112}}
+[2020-06-25T16:48:47.769]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":21}
+[2020-06-25T16:48:47.769]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":22,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:48:47.770]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":22}
+[2020-06-25T16:48:47.771]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":23,"json_data":{"0":71,"1":117,"2":50,"3":0,"4":115,"5":50}}
+[2020-06-25T16:48:50.270]: message received. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : FireMessage{username='u2', storeName='s2'}
+row response :{"result":3,"cmd_id":23}
+[2020-06-25T16:48:50.271]: sending message. session id: a9bc6681-1dc9-4e70-9139-af7a30ce8279.  Message : NackMessage{ replyFor ='23'}
+
+[2020-06-25T16:49:11.984]:  server is now online!
+[2020-06-25T16:49:11.995]: Opened session. id: b68c8ae7-16cc-4519-b80d-d59afadd4404
+[2020-06-25T16:49:12.873]: closeted session. id: b68c8ae7-16cc-4519-b80d-d59afadd4404
+[2020-06-25T16:49:13.054]: Opened session. id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433
+row message: {"cmd_id":3,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:49:18.618]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : LoginMessage{username='u11', password='u11', id ='3'}
+[2020-06-25T16:49:18.621]: sending special message : StringResponse{msg='welcome to the system'} session : 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T16:49:18.624]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T16:49:19.269]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":4}
+[2020-06-25T16:49:19.271]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T16:49:19.272]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":5}
+[2020-06-25T16:49:19.273]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":6,"json_data":{"0":7}}
+[2020-06-25T16:49:22.050]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":6}
+[2020-06-25T16:49:22.053]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":7,"json_data":{"0":7}}
+[2020-06-25T16:49:22.053]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":7}
+[2020-06-25T16:49:22.054]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T16:49:22.667]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-25T16:49:22.668]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:49:22.670]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":9}
+[2020-06-25T16:49:22.673]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-25T16:49:22.674]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":10}
+[2020-06-25T16:49:22.675]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":11,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:49:22.675]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":11}
+[2020-06-25T16:49:22.676]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":12,"json_data":{"0":67,"1":117,"2":50,"3":0,"4":115,"5":50,"6":0,"7":17}}
+[2020-06-25T16:49:27.341]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : AppointMessage{username='u2', storename='s2', role=17}
+[2020-06-25T16:49:27.343]: sending special message : StringResponse{msg='a new Owner is being appointed for store:s2- required your confirmation - u2'} session : 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433
+row response :{"result":{"44":32,"45":114,"46":101,"47":113,"48":117,"49":105,"50":114,"51":101,"52":100,"53":32,"10":114,"54":121,"11":32,"55":111,"12":105,"56":117,"13":115,"57":114,"14":32,"58":32,"15":98,"59":99,"16":101,"17":105,"18":110,"19":103,"0":97,"1":32,"2":110,"3":101,"4":119,"5":32,"6":79,"7":119,"8":110,"9":101,"60":111,"61":110,"62":102,"63":105,"20":32,"64":114,"21":97,"65":109,"22":112,"66":97,"23":112,"67":116,"24":111,"68":105,"25":105,"69":111,"26":110,"27":116,"28":101,"29":100,"70":110,"71":32,"72":45,"73":32,"30":32,"74":117,"31":102,"75":50,"32":111,"33":114,"34":32,"35":115,"36":116,"37":111,"38":114,"39":101,"40":58,"41":115,"42":50,"43":45},"cmd_id":0}
+row response :{"result":2,"cmd_id":12}
+[2020-06-25T16:49:27.345]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":112}}
+[2020-06-25T16:49:28.889]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":13}
+[2020-06-25T16:49:28.890]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":14,"json_data":{"0":122}}
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T16:49:28.892]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T16:49:28.892]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122}}
+row message: {"cmd_id":17,"json_data":{"0":7}}
+[2020-06-25T16:49:28.895]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":17}
+[2020-06-25T16:49:28.896]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":18,"json_data":{"0":7}}
+[2020-06-25T16:49:28.897]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":18}
+[2020-06-25T16:49:28.898]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-25T16:49:29.647]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-25T16:49:29.648]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:49:29.652]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":20}
+[2020-06-25T16:49:29.653]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":21,"json_data":{"0":112}}
+[2020-06-25T16:49:29.654]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":21}
+[2020-06-25T16:49:29.655]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":22,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:49:29.655]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":22}
+[2020-06-25T16:49:29.656]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":23,"json_data":{"0":71,"1":117,"2":50,"3":0,"4":115,"5":50}}
+[2020-06-25T16:49:32.691]: message received. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : FireMessage{username='u2', storeName='s2'}
+row response :{"result":3,"cmd_id":23}
+[2020-06-25T16:54:00.916]: sending message. session id: 3f8f21e1-ecec-4ee9-8f40-d28ddae8b433.  Message : NackMessage{ replyFor ='23'}
+
+[2020-06-25T16:54:14.595]:  server is now online!
+[2020-06-25T16:54:14.609]: Opened session. id: f0109437-aeb2-4044-8ac5-70ba45292102
+[2020-06-25T16:54:16.967]: closeted session. id: f0109437-aeb2-4044-8ac5-70ba45292102
+[2020-06-25T16:54:17.152]: Opened session. id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d
+row message: {"cmd_id":23,"json_data":{"0":55}}
+row message: {"cmd_id":5,"json_data":{"0":24,"1":114,"2":111,"3":117,"4":110,"5":100}}
+row message: {"cmd_id":23,"json_data":{"0":76,"1":115,"2":49,"3":0,"4":117,"5":53}}
+row message: {"cmd_id":29,"json_data":{"0":39}}
+row message: {"cmd_id":33,"json_data":{"0":40,"1":50,"2":51,"3":52,"4":49,"5":45,"6":51,"7":52,"8":49,"9":51,"10":45,"11":52,"12":49,"13":50,"14":51,"15":45,"16":52,"17":49,"18":50,"19":51,"20":0,"21":49,"22":50,"23":47,"24":51,"25":52,"26":0,"27":50,"28":51,"29":52,"30":0,"31":118,"32":105,"33":115,"34":105,"35":116,"36":111,"37":114,"38":0,"39":49,"40":48,"41":48,"42":48,"43":48,"44":48,"45":48,"46":48,"47":48,"48":0,"49":97,"50":97,"51":97,"52":0,"53":113,"54":105,"55":114,"56":105,"57":97,"58":116,"59":32,"60":111,"61":110,"62":111,"63":0,"64":113,"65":113,"66":113,"67":0,"68":50,"69":51,"70":52}}
+row message: {"cmd_id":115,"json_data":{"0"35,"1":97,"2":0,"3":98}}
+row message: {"cmd_id":33,"json_data":{"0"49}}
+row message: {"cmd_id":31,"json_data":{"0":122,"1":115,"2":49}}
+row message: {"cmd_id":26,"json_data":{"0":42,"1":115,"2":49,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":49,"10":49}}
+row message: {"cmd_id":43,"json_data":{"0":7}}
+row message: {"cmd_id":37,"json_data":{"0":68,"1":98,"2":97,"3":108,"4":108,"5":0,"6":115,"7":49,"8":0,"9":57}}
+row message: {"cmd_id":3,"json_data":{"0":38,"1":115,"2":49,"3":0,"4":98,"5":97,"6":108,"7":108,"8":0,"9":52}}
+row message: {"cmd_id":11,"json_data":{"0":67,"1":117,"2":51,"3":0,"4":115,"5":49,"6":0,"7":17}}
+row message: {"cmd_id":44,"json_data":{"0":112}}
+row message: {"cmd_id":115,"json_data":{"0"34,"1":100,"2":0,"3":109}}
+row response :{"result":{"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"10":49},"cmd_id":42}
+row response :{"result":{"0":115,"1":49},"cmd_id":42}
+row response :{"result":2,"cmd_id":42}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":42}
+row response :{"result":{"0":115,"1":49},"cmd_id":42}
+row response :{"result":{"22":97,"44":125,"23":109,"24":111,"25":117,"26":110,"27":116,"28":32,"29":111,"30":102,"31":32,"10":110,"32":39,"11":123,"33":98,"12":10,"34":97,"13":9,"35":108,"14":48,"36":108,"15":46,"37":39,"16":32,"38":32,"17":77,"39":105,"18":105,"19":110,"0":65,"1":99,"2":113,"3":117,"4":105,"5":115,"6":105,"7":116,"8":105,"9":111,"40":115,"41":32,"20":46,"42":53,"21":32,"43":10},"cmd_id":42}
+row response :{"result":3,"cmd_id":42}
+row response :{"result":114,"cmd_id":42}
+row response :{"result":{"0":98,"1":97,"2":108,"3":108,"4":2,"5":51,"6":46,"7":53,"8":2,"9":115,"10":49},"cmd_id":42}
+row response :{"result":{"0":115,"1":49},"cmd_id":42}
+row response :{"result":2,"cmd_id":42}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":42}
+row response :{"result":{"0":115,"1":49},"cmd_id":42}
+row response :{"result":{"22":97,"44":125,"23":109,"24":111,"25":117,"26":110,"27":116,"28":32,"29":111,"30":102,"31":32,"10":110,"32":39,"11":123,"33":98,"12":10,"34":97,"13":9,"35":108,"14":48,"36":108,"15":46,"37":39,"16":32,"38":32,"17":77,"39":105,"18":105,"19":110,"0":65,"1":99,"2":113,"3":117,"4":105,"5":115,"6":105,"7":116,"8":105,"9":111,"40":115,"41":32,"20":46,"42":53,"21":32,"43":10},"cmd_id":42}
+row response :{"result":3,"cmd_id":42}
+row response :{"result":114,"cmd_id":42}
+row message: {"cmd_id":3,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:54:26.348]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : LoginMessage{username='u11', password='u11', id ='3'}
+[2020-06-25T16:54:26.353]: sending special message : StringResponse{msg='welcome to the system'} session : 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T16:54:26.359]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T16:54:27.189]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":4}
+[2020-06-25T16:54:27.191]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T16:54:27.192]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":5}
+[2020-06-25T16:54:27.193]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":6,"json_data":{"0":7}}
+[2020-06-25T16:54:29.026]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":6}
+[2020-06-25T16:54:29.030]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":7,"json_data":{"0":7}}
+[2020-06-25T16:54:29.031]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":7}
+[2020-06-25T16:54:29.032]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T16:54:29.885]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-25T16:54:29.886]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:54:29.888]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":9}
+[2020-06-25T16:54:29.891]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-25T16:54:29.892]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":10}
+[2020-06-25T16:54:29.892]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":11,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:54:29.893]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":11}
+[2020-06-25T16:54:29.894]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":12,"json_data":{"0":67,"1":117,"2":50,"3":0,"4":115,"5":50,"6":0,"7":17}}
+[2020-06-25T16:54:34.231]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : AppointMessage{username='u2', storename='s2', role=17}
+[2020-06-25T16:54:34.232]: sending special message : StringResponse{msg='a new Owner is being appointed for store:s2- required your confirmation - u2'} session : 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d
+row response :{"result":{"44":32,"45":114,"46":101,"47":113,"48":117,"49":105,"50":114,"51":101,"52":100,"53":32,"10":114,"54":121,"11":32,"55":111,"12":105,"56":117,"13":115,"57":114,"14":32,"58":32,"15":98,"59":99,"16":101,"17":105,"18":110,"19":103,"0":97,"1":32,"2":110,"3":101,"4":119,"5":32,"6":79,"7":119,"8":110,"9":101,"60":111,"61":110,"62":102,"63":105,"20":32,"64":114,"21":97,"65":109,"22":112,"66":97,"23":112,"67":116,"24":111,"68":105,"25":105,"69":111,"26":110,"27":116,"28":101,"29":100,"70":110,"71":32,"72":45,"73":32,"30":32,"74":117,"31":102,"75":50,"32":111,"33":114,"34":32,"35":115,"36":116,"37":111,"38":114,"39":101,"40":58,"41":115,"42":50,"43":45},"cmd_id":0}
+row response :{"result":2,"cmd_id":12}
+[2020-06-25T16:54:34.235]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":112}}
+[2020-06-25T16:54:36.377]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":13}
+[2020-06-25T16:54:36.378]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":14,"json_data":{"0":122}}
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T16:54:36.380]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T16:54:36.380]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122}}
+row message: {"cmd_id":17,"json_data":{"0":7}}
+[2020-06-25T16:54:36.386]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":17}
+[2020-06-25T16:54:36.387]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":18,"json_data":{"0":7}}
+[2020-06-25T16:54:36.388]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":18}
+[2020-06-25T16:54:36.388]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-25T16:54:37.209]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-25T16:54:37.210]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:54:37.213]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":20}
+[2020-06-25T16:54:37.214]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":21,"json_data":{"0":112}}
+[2020-06-25T16:54:37.215]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":21}
+[2020-06-25T16:54:37.215]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":22,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:54:37.216]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":22}
+[2020-06-25T16:54:37.217]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":23,"json_data":{"0":71,"1":117,"2":50,"3":0,"4":115,"5":50}}
+[2020-06-25T16:54:40.262]: message received. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : FireMessage{username='u2', storeName='s2'}
+row response :{"result":3,"cmd_id":23}
+[2020-06-25T16:54:40.264]: sending message. session id: 66a6ea6a-c8e9-4445-a587-4dab18d5ef7d.  Message : NackMessage{ replyFor ='23'}
+
+[2020-06-25T16:55:06.002]:  server is now online!
+[2020-06-25T16:55:06.014]: Opened session. id: df298b40-74fa-471b-8dd9-80dd38cfa928
+[2020-06-25T16:55:08.536]: closeted session. id: df298b40-74fa-471b-8dd9-80dd38cfa928
+[2020-06-25T16:55:08.733]: Opened session. id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea
+row message: {"cmd_id":3,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:55:13.996]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : LoginMessage{username='u11', password='u11', id ='3'}
+[2020-06-25T16:55:14]: sending special message : StringResponse{msg='welcome to the system'} session : 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T16:55:14.004]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T16:55:15.157]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":4}
+[2020-06-25T16:55:15.159]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T16:55:15.159]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":5}
+[2020-06-25T16:55:15.162]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":6,"json_data":{"0":7}}
+[2020-06-25T16:55:16.925]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":6}
+[2020-06-25T16:55:16.928]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":7,"json_data":{"0":7}}
+[2020-06-25T16:55:16.929]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":7}
+[2020-06-25T16:55:16.930]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T16:55:17.554]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-25T16:55:17.555]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:55:17.556]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":9}
+[2020-06-25T16:55:17.560]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-25T16:55:17.561]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":10}
+[2020-06-25T16:55:17.561]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":11,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:55:17.562]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":11}
+[2020-06-25T16:55:17.563]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":12,"json_data":{"0":67,"1":117,"2":50,"3":0,"4":115,"5":50,"6":0,"7":17}}
+[2020-06-25T16:55:22.478]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : AppointMessage{username='u2', storename='s2', role=17}
+[2020-06-25T16:55:22.480]: sending special message : StringResponse{msg='a new Owner is being appointed for store:s2- required your confirmation - u2'} session : 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea
+row response :{"result":{"44":32,"45":114,"46":101,"47":113,"48":117,"49":105,"50":114,"51":101,"52":100,"53":32,"10":114,"54":121,"11":32,"55":111,"12":105,"56":117,"13":115,"57":114,"14":32,"58":32,"15":98,"59":99,"16":101,"17":105,"18":110,"19":103,"0":97,"1":32,"2":110,"3":101,"4":119,"5":32,"6":79,"7":119,"8":110,"9":101,"60":111,"61":110,"62":102,"63":105,"20":32,"64":114,"21":97,"65":109,"22":112,"66":97,"23":112,"67":116,"24":111,"68":105,"25":105,"69":111,"26":110,"27":116,"28":101,"29":100,"70":110,"71":32,"72":45,"73":32,"30":32,"74":117,"31":102,"75":50,"32":111,"33":114,"34":32,"35":115,"36":116,"37":111,"38":114,"39":101,"40":58,"41":115,"42":50,"43":45},"cmd_id":0}
+row response :{"result":2,"cmd_id":12}
+[2020-06-25T16:55:22.482]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":112}}
+[2020-06-25T16:55:24.457]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":13}
+[2020-06-25T16:55:24.458]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":14,"json_data":{"0":122}}
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T16:55:24.460]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T16:55:24.460]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122}}
+row message: {"cmd_id":17,"json_data":{"0":7}}
+[2020-06-25T16:55:24.462]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":17}
+[2020-06-25T16:55:24.464]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":18,"json_data":{"0":7}}
+[2020-06-25T16:55:24.465]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":18}
+[2020-06-25T16:55:24.466]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-25T16:55:25.342]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-25T16:55:25.343]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:55:25.347]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":20}
+[2020-06-25T16:55:25.349]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":21,"json_data":{"0":112}}
+[2020-06-25T16:55:25.349]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":21}
+[2020-06-25T16:55:25.350]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":22,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:55:25.350]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":22}
+[2020-06-25T16:55:25.351]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":23,"json_data":{"0":71,"1":117,"2":50,"3":0,"4":115,"5":50}}
+[2020-06-25T16:55:29.130]: message received. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : FireMessage{username='u2', storeName='s2'}
+row response :{"result":3,"cmd_id":23}
+[2020-06-25T16:57:05.967]: sending message. session id: 6108f585-e9e5-46fb-ae32-6fee9bb5b8ea.  Message : NackMessage{ replyFor ='23'}
+
+[2020-06-25T16:57:17.243]:  server is now online!
+[2020-06-25T16:57:17.254]: Opened session. id: aabe1260-4e41-46ac-a035-60802e14317e
+[2020-06-25T16:57:18.703]: closeted session. id: aabe1260-4e41-46ac-a035-60802e14317e
+[2020-06-25T16:57:18.937]: Opened session. id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row message: {"cmd_id":3,"json_data":{"0":35,"1":117,"2":49,"3":49,"4":0,"5":117,"6":49,"7":49}}
+[2020-06-25T16:57:24.243]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LoginMessage{username='u11', password='u11', id ='3'}
+[2020-06-25T16:57:24.246]: sending special message : StringResponse{msg='welcome to the system'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+row response :{"result":2,"cmd_id":3}
+[2020-06-25T16:57:24.249]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='3'}
+
+row message: {"cmd_id":4,"json_data":{"0":112}}
+[2020-06-25T16:57:25.047]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":4}
+[2020-06-25T16:57:25.049]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":5,"json_data":{"0":112}}
+[2020-06-25T16:57:25.049]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":5}
+[2020-06-25T16:57:25.050]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":6,"json_data":{"0":7}}
+[2020-06-25T16:57:26.787]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":6}
+[2020-06-25T16:57:26.790]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":7,"json_data":{"0":7}}
+[2020-06-25T16:57:26.791]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":7}
+[2020-06-25T16:57:26.792]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":8,"json_data":{"0":112}}
+[2020-06-25T16:57:27.408]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":8}
+[2020-06-25T16:57:27.410]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":9,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:57:27.411]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":9}
+[2020-06-25T16:57:27.415]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":10,"json_data":{"0":112}}
+[2020-06-25T16:57:27.416]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":10}
+[2020-06-25T16:57:27.416]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":11,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:57:27.417]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":11}
+[2020-06-25T16:57:27.420]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":12,"json_data":{"0":67,"1":117,"2":50,"3":0,"4":115,"5":50,"6":0,"7":17}}
+[2020-06-25T16:57:31.721]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AppointMessage{username='u2', storename='s2', role=17}
+[2020-06-25T16:57:31.722]: sending special message : StringResponse{msg='a new Owner is being appointed for store:s2- required your confirmation - u2'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"44":32,"45":114,"46":101,"47":113,"48":117,"49":105,"50":114,"51":101,"52":100,"53":32,"10":114,"54":121,"11":32,"55":111,"12":105,"56":117,"13":115,"57":114,"14":32,"58":32,"15":98,"59":99,"16":101,"17":105,"18":110,"19":103,"0":97,"1":32,"2":110,"3":101,"4":119,"5":32,"6":79,"7":119,"8":110,"9":101,"60":111,"61":110,"62":102,"63":105,"20":32,"64":114,"21":97,"65":109,"22":112,"66":97,"23":112,"67":116,"24":111,"68":105,"25":105,"69":111,"26":110,"27":116,"28":101,"29":100,"70":110,"71":32,"72":45,"73":32,"30":32,"74":117,"31":102,"75":50,"32":111,"33":114,"34":32,"35":115,"36":116,"37":111,"38":114,"39":101,"40":58,"41":115,"42":50,"43":45},"cmd_id":0}
+row response :{"result":2,"cmd_id":12}
+[2020-06-25T16:57:31.724]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='12'}
+
+row message: {"cmd_id":13,"json_data":{"0":112}}
+[2020-06-25T16:57:33.196]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":13}
+[2020-06-25T16:57:33.197]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":14,"json_data":{"0":122}}
+row message: {"cmd_id":15,"json_data":{"0":112}}
+[2020-06-25T16:57:33.199]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":15}
+[2020-06-25T16:57:33.200]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":16,"json_data":{"0":122}}
+row message: {"cmd_id":17,"json_data":{"0":7}}
+[2020-06-25T16:57:33.212]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":17}
+[2020-06-25T16:57:33.212]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":18,"json_data":{"0":7}}
+[2020-06-25T16:57:33.213]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":18}
+[2020-06-25T16:57:33.214]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":19,"json_data":{"0":112}}
+[2020-06-25T16:57:33.894]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":19}
+[2020-06-25T16:57:33.895]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":20,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:57:33.898]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":20}
+[2020-06-25T16:57:33.899]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":21,"json_data":{"0":112}}
+[2020-06-25T16:57:33.900]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":21}
+[2020-06-25T16:57:33.901]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":22,"json_data":{"0":122,"1":115,"2":50}}
+[2020-06-25T16:57:33.902]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : getManagerPermitions{store='s2', manager=''}
+row response :{"result":{"0":51,"11":77,"1":52,"2":53,"3":54,"4":56,"5":57,"6":58,"7":59,"8":60,"9":76,"10":61},"cmd_id":22}
+[2020-06-25T16:57:33.903]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ByteArrayResponse{bytes=[51, 52, 53, 54, 56, 57, 58, 59, 60, 76, 61, 77]}
+
+row message: {"cmd_id":23,"json_data":{"0":71,"1":117,"2":50,"3":0,"4":115,"5":50}}
+[2020-06-25T16:57:37.298]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : FireMessage{username='u2', storeName='s2'}
+row response :{"result":2,"cmd_id":23}
+[2020-06-25T16:57:37.300]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='23'}
+
+row message: {"cmd_id":24,"json_data":{"0":112}}
+[2020-06-25T16:57:40.465]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":24}
+[2020-06-25T16:57:40.466]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":25,"json_data":{"0":122}}
+row message: {"cmd_id":26,"json_data":{"0":112}}
+[2020-06-25T16:57:40.467]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":26}
+[2020-06-25T16:57:40.468]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":27,"json_data":{"0":122}}
+row message: {"cmd_id":28,"json_data":{"0":7}}
+[2020-06-25T16:57:40.469]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":28}
+[2020-06-25T16:57:40.470]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":29,"json_data":{"0":7}}
+[2020-06-25T16:57:40.470]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : ViewOwnedStoresMessage{}
+row response :{"result":{"0":115,"1":50},"cmd_id":29}
+[2020-06-25T16:57:40.471]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : StoreListResponse{stores=[s2]}
+
+row message: {"cmd_id":30,"json_data":{"0":112}}
+[2020-06-25T16:57:41.590]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":30}
+[2020-06-25T16:57:41.591]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":31,"json_data":{"0":112}}
+[2020-06-25T16:57:41.592]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":114,"cmd_id":31}
+[2020-06-25T16:57:41.593]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :114}
+
+row message: {"cmd_id":32,"json_data":{"0":49}}
+[2020-06-25T16:57:42.223]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LogoutMessage{, id ='32'}
+row response :{"result":2,"cmd_id":32}
+[2020-06-25T16:57:42.224]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='32'}
+
+row message: {"cmd_id":33,"json_data":{"0":35,"1":117,"2":50,"3":0,"4":117,"5":50}}
+[2020-06-25T16:57:45.924]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LoginMessage{username='u2', password='u2', id ='33'}
+[2020-06-25T16:57:45.924]: sending special message : StringResponse{msg='welcome to the system'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"11":116,"12":104,"13":101,"14":32,"15":115,"16":121,"17":115,"18":116,"19":101,"0":119,"1":101,"2":108,"3":99,"4":111,"5":109,"6":101,"7":32,"8":116,"9":111,"20":109,"10":32},"cmd_id":0}
+[2020-06-25T16:57:45.925]: sending special message : StringResponse{msg='you have been appointed as owner of the store s2'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"22":100,"44":101,"23":32,"45":32,"24":97,"46":115,"25":115,"47":50,"26":32,"27":111,"28":119,"29":110,"30":101,"31":114,"10":101,"32":32,"11":101,"33":111,"12":110,"34":102,"13":32,"35":32,"14":97,"36":116,"15":112,"37":104,"16":112,"38":101,"17":111,"39":32,"18":105,"19":110,"0":121,"1":111,"2":117,"3":32,"4":104,"5":97,"6":118,"7":101,"8":32,"9":98,"40":115,"41":116,"20":116,"42":111,"21":101,"43":114},"cmd_id":0}
+[2020-06-25T16:57:45.927]: sending special message : StringResponse{msg='you where fired from s2'} session : a019c2d4-0eb2-436e-9949-ff3d5efb0e0c
+row response :{"result":{"11":105,"22":50,"12":114,"13":101,"14":100,"15":32,"16":102,"17":114,"18":111,"19":109,"0":121,"1":111,"2":117,"3":32,"4":119,"5":104,"6":101,"7":114,"8":101,"9":32,"20":32,"10":102,"21":115},"cmd_id":0}
+row response :{"result":2,"cmd_id":33}
+[2020-06-25T16:57:45.928]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='33'}
+
+row message: {"cmd_id":34,"json_data":{"0":112}}
+[2020-06-25T16:57:53.585]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":116,"cmd_id":34}
+[2020-06-25T16:57:53.586]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :116}
+
+row message: {"cmd_id":35,"json_data":{"0":112}}
+[2020-06-25T16:57:53.587]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeMessage{}
+row response :{"result":116,"cmd_id":35}
+[2020-06-25T16:57:53.588]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : memberTypeResponse{op :116}
+
+row message: {"cmd_id":36,"json_data":{"0":49}}
+[2020-06-25T16:57:56.086]: message received. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : LogoutMessage{, id ='36'}
+row response :{"result":2,"cmd_id":36}
+[2020-06-25T16:57:56.087]: sending message. session id: a019c2d4-0eb2-436e-9949-ff3d5efb0e0c.  Message : AckMessage{ replyFor ='36'}
+

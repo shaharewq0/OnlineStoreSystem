@@ -181,7 +181,7 @@ public class StoreOwner_Imp implements Store_role {
         StoreOwner_Imp newRole = new StoreOwner_Imp(this, pending.grantee);
         if (OwnerPendingAppointeis.remove(pending.grantee.getId()) == null)
             ErrorLogger.GetInstance().Add_Log(this.toString() + ": Owner appointed without pending ");
-        OwnerAppointeis.put(user.getId(), newRole);
+        OwnerAppointeis.put(newRole.user.getId(), newRole);
     }
 
 
