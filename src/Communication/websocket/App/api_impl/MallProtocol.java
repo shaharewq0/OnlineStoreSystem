@@ -504,14 +504,22 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(ViewSystemStateMessage msg) {
-        if(systemStateViewr == null){
-            System.out.println("already in view state!");
-            return new NackMessage(msg.getId());
-        }
+
+        try {
+            if(systemStateViewr != null){
+                systemStateViewr.interrupt();
+                systemStateViewr = null;
+            }
+        }catch (Exception e){}
+
 
         systemStateViewr = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()){
-                server.send(this, new StringResponse((byte)1, sys_mangaer_accese.usecase4_SystemStateString(username, paasword)));
+                String state = sys_mangaer_accese.usecase4_SystemStateString(username, paasword);
+
+                if(state != null) {
+                    server.send(this, new StringResponse((byte)1, state));
+                }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

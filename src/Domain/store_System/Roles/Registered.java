@@ -129,6 +129,7 @@ public class Registered implements MSGObservable {
             }
         }
 
+        add_msg("you have been appointed as owner of the store " + role.getStore().getName());
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;
@@ -148,6 +149,7 @@ public class Registered implements MSGObservable {
             }
         }
 
+        add_msg("you have been appointed as manager of the store " + role.getStore().getName());
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;

@@ -9,6 +9,8 @@ import java.util.List;
 
 public class sys_mangaer_accese {
 
+    private static String prev_state = "";
+
     public static boolean InitSystem(String myusername, String MyPassword) {
         System.getInstance().init(myusername, MyPassword);
         return true;
@@ -37,6 +39,11 @@ public class sys_mangaer_accese {
                         "owners     : " + usecase4_WatchOwnerCount(myusername, myPassword) + "\n" +
                         "admins     : " + usecase4_WatchSYS_ManagerCount(myusername, myPassword) + "\n";
 
+        if(state.equals(prev_state) ){
+            return null;
+        }
+
+        prev_state = state;
         return state;
     }
 

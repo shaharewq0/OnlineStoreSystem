@@ -125,6 +125,11 @@ public class System implements ISystem {
     private void setManager(String username, String password){
         User.register(username, password);
         SYS_ManagerLogin.getAndIncrement();
+
+        if(manager != null){
+            SYS_ManagerLogin.decrementAndGet();
+        }
+
         manager = new System_Manager(username);
     }
 
