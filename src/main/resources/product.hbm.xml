@@ -17,13 +17,13 @@
         <property name = "name" column = "name" type = "string"/>
 
         <list name="category" table="CATEGORY_TABLE" lazy="false">
-            <key column="Pid"></key>
+            <key column="Product_foreignkey"></key>
             <index column="id"></index>
             <element column="category" type="string"></element>
         </list>
 
         <list name="keyWords" table="KEYWORDS_TABLE" lazy="false">
-            <key column="Pid"></key>
+            <key column="Product_foreignkeyas"></key>
             <index column="id"></index>
             <element column="keyword" type="string"></element>
         </list>

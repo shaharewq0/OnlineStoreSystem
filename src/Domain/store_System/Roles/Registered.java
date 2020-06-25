@@ -34,6 +34,49 @@ public class Registered implements MSGObservable {
 
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setClints(Map<User, ClintObserver> clints) {
+        this.clints = clints;
+    }
+
+    public void setMSG_box(List<String> MSG_box) {
+        this.MSG_box = MSG_box;
+    }
+
+    public void setHistory(User_Purchase_History history) {
+        this.history = history;
+    }
+
+    public void setStore_roles(Map<String, Store_role> store_roles) {
+        this.store_roles = store_roles;
+    }
+
+    public void setTempMSG(List<String> tempMSG) {
+        TempMSG = tempMSG;
+    }
+
+    public Map<User, ClintObserver> getClints() {
+        return clints;
+    }
+
+    public User_Purchase_History getHistory() {
+        return history;
+    }
+
+    public List<String> getMSG_box() {
+        return MSG_box;
+    }
+
+    public List<String> getTempMSG() {
+        return TempMSG;
+    }
+
+    public Map<String, Store_role> getStore_roles() {
+        return store_roles;
+    }
 
 
     public String getId() {

@@ -13,7 +13,7 @@
         <property name="price" column="price" type="double"/>
 
         <list name="items" table="SPurchase_PDetails" cascade="all" lazy="false">
-            <key column="sp_id"/>
+            <key column="StorePurchase_foreignkey"/>
             <list-index column="type"></list-index>
             <one-to-many class="Domain.info.ProductDetails"/>
         </list>

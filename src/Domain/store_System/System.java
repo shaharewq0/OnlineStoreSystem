@@ -246,7 +246,7 @@ public class System implements ISystem {
             List<shoppingCart> carts = pair.getValue();
 
             for (shoppingCart cart : carts) {
-                for (IshoppingBasket basket : cart.getBaskets()) {
+                for (IshoppingBasket basket : cart.getBasketsValues()) {
                     if (basket.getStore() == store) {
                         baskets.add(basket);
                     }

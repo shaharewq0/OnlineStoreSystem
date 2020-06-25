@@ -164,5 +164,15 @@ public class UserStub implements IUser {
 		return null;
 	}
 
+	@Override
+	public int getId() {
+		return 0;
+	}
+
+	@Override
+	public void setId(int id) {
+
+	}
+
 
 }

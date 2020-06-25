@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.store_System.Roles.Registered"  table = "REGISTERED_TABLE">
+
+        <id name = "id" type = "string" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <list name="MSG_box" cascade="all" table="MSG_TABLE" lazy="false">
+            <key column="Registered_foreignkey"></key>
+            <index column="R_type"></index>
+            <element column="message" type="string"></element>
+        </list>
+
+
+        <list name="TempMSG" cascade="all" table="TMP_MSG_TABLE" lazy="false">
+            <key column="Registered_foreignkey"></key>
+            <index column="R_type"></index>
+            <element column="message" type="string"></element>
+        </list>
+
+        <many-to-one name="history" column="UPH_foreignkey" class="Domain.UserClasses.User_Purchase_History">
+        </many-to-one>
+
+        <map name="store_roles" cascade="all" lazy="false">
+            <key column="Registered_foreignkey"></key>
+            <index column="Worker_name" type="string"></index>
+            <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
+        </map>
+
+    </class>
+</hibernate-mapping>

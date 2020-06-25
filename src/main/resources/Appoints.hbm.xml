@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Store.workers.appoints.Appoint_Owner" table = "APPOINT_OWNER_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="grantor" class="Domain.Store.workers.Store_role" cascade="all" lazy="false"/>
+
+        <many-to-one name="grantee" class="Domain.Store.workers.StoreOwner_Imp" cascade="all" lazy="false"/>
+
+        <many-to-one name="store" class="Domain.Store.StoreImp" cascade="all" lazy="false"/>
+    </class>
+
+    <class name="Domain.Store.workers.appoints.Appoint_manager" table="APPOINT_MANAGER_TABLE">
+        <id name="id" type="int" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <many-to-one name="grantor" class="Domain.Store.workers.Store_role" cascade="all" lazy="false"/>
+
+        <many-to-one name="grantee" class="Domain.Store.workers.StoreManager_Imp" cascade="all" lazy="false"/>
+
+        <many-to-one name="store" class="Domain.Store.StoreImp" cascade="all" lazy="false"/>
+    </class>
+
+    <class name="Domain.Store.workers.appoints.Pending_appoint_Owner" table="PENDING_APPOINT_TABLE">
+        <id name="id" type="id">
+            <generator class="native"></generator>
+        </id>
+
+        <many-to-one name="grantor" class="Domain.Store.workers.StoreOwner_Imp" cascade="all" lazy="false"/>
+
+        <many-to-one name="grantee" class="Domain.store_System.Roles.Registered" cascade="all" lazy="false"/>
+
+        <many-to-one name="store" class="Domain.Store.StoreImp" cascade="all" lazy="false"/>
+
+        <map name="confirmstion_table" cascade="all" lazy="false">
+            <key column="PendingAppoint_foreignkey"></key>
+            <map-key-many-to-many column="StoreOwner_PendingAppoint" class="Domain.Store.workers.StoreOwner_Imp"/>
+            <element type="boolean" column="hasConfirmedAppointment"/>
+        </map>
+
+    </class>
+</hibernate-mapping>

@@ -38,5 +38,9 @@ public interface IUser {
 
 	 String getName();
 
+	 int getId();
+
+	 void setId(int id);
+
 //	public boolean appointAsOwner(Store_role creator, String store);
 }

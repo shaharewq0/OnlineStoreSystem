@@ -12,11 +12,13 @@ import java.util.Map;
 
 public class Pending_appoint_Owner {
 
-
+    private int id;
     public StoreOwner_Imp grantor;
     public Registered grantee;
     public StoreImp store;
     public Map<StoreOwner_Imp, Boolean> confirmstion_table = new HashMap<>();
+
+    public Pending_appoint_Owner(){}
 
     public Pending_appoint_Owner(StoreOwner_Imp grantor, Registered grantee, StoreImp store) {
         this.grantor = grantor;
@@ -28,6 +30,46 @@ public class Pending_appoint_Owner {
         }
         confirmstion_table.put(store.getCreator(), false);
         store.getCreator().needconfirmstion(this);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public StoreImp getStore() {
+        return store;
+    }
+
+    public Map<StoreOwner_Imp, Boolean> getConfirmstion_table() {
+        return confirmstion_table;
+    }
+
+    public Registered getGrantee() {
+        return grantee;
+    }
+
+    public StoreOwner_Imp getGrantor() {
+        return grantor;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setGrantee(Registered grantee) {
+        this.grantee = grantee;
+    }
+
+    public void setGrantor(StoreOwner_Imp grantor) {
+        this.grantor = grantor;
+    }
+
+    public void setStore(StoreImp store) {
+        this.store = store;
+    }
+
+    public void setConfirmstion_table(Map<StoreOwner_Imp, Boolean> confirmstion_table) {
+        this.confirmstion_table = confirmstion_table;
     }
 
     public Boolean Accept(StoreOwner_Imp role) {

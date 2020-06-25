@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.UserClasses.IshoppingBasket" abstract="true" table = "SHOPPING_BASKET_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="increment"/>
+        </id>
+        <subclass name="Domain.UserClasses.shoppingBasket">
+
+        <list name="Item_holder" cascade="all" lazy="false">
+            <key column="ShoppingBasket_foreignkey"></key>
+            <list-index column="SB_type"></list-index>
+            <one-to-many class="Domain.Store.Product_boundle"></one-to-many>
+        </list>
+
+        <many-to-one name="store" class="Domain.Store.IStore"></many-to-one>
+
+        </subclass>
+    </class>
+</hibernate-mapping>

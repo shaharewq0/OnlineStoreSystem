@@ -19,4 +19,8 @@ public interface IshoppingBasket {
 	 double CalcPrice();
 	 List<MyPair<Product_boundle,String>> getItems();
 
+	 public int getId();
+
+	 public void setId(int id);
+
 }

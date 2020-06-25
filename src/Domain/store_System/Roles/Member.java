@@ -6,22 +6,30 @@ import Domain.info.StoreInfo;
 import Domain.store_System.System;
 
 public class Member implements System_Role {
-	// private Registered registered;
 	private User user;
-//    public Member(Registered registered) {
-//        this.registered = registered;
-//    }
+	private int id;
 
 	public Member(User user) {
+		this.user = user;
+	}
+
+	public Member(){}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setUser(User user) {
 		this.user = user;
 	}
 
 	public User getUser() {
 		return user;
 	}
-//	public Registered getRegistered() {
-//        return registered;
-//    }
 
 	public StoreImp OpenStore(StoreInfo store) {
 		return System.getInstance().openStore(store);

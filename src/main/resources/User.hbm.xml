@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.UserClasses.IUser" abstract="true" table = "USER_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <discriminator column="discriminator"/>
+
+        <subclass name="Domain.UserClasses.User" discriminator-value="USER">
+            <one-to-one name="cart" class="Domain.UserClasses.shoppingCart" cascade="all">
+            </one-to-one>
+            <one-to-one name="profile" class="Domain.store_System.Roles.Registered" cascade="all">
+            </one-to-one>
+            <one-to-one name="logInstanse" class="Domain.store_System.Roles.Member" cascade="all">
+            </one-to-one>
+            <one-to-one name="sysMangaer" class="Domain.store_System.Roles.System_Manager" cascade="all">
+            </one-to-one>
+        </subclass>
+
+    </class>
+</hibernate-mapping>

@@ -15,7 +15,6 @@ public class AcquisitionPolicy_DA {
     private static SessionFactory factory;
     public AcquisitionPolicy_DA(){
         try {
-            System.out.println("hello");
             factory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex){
             System.err.println("Failed to create sessionFactory object." + ex);
