@@ -123,6 +123,7 @@ public class Registered implements MSGObservable {
     }
 
     public boolean appointAsOwner(Store_role role) {
+
         if (store_roles.containsKey(role.getStore().getName())) {
             if (store_roles.get(role.getStore().getName()) instanceof StoreOwner_Imp) {
                 return false; // already owner

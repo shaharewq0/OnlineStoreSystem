@@ -28,9 +28,15 @@ public class System implements ISystem {
     private boolean init = false;
     private System_Manager manager = null;
 
+    //users = 10
     private int TempGuestID = 0;
+
     private Map<Integer, User> guest = new HashMap<>();
+
+
     private Map<String, Registered> membersprofiles = new HashMap<>();
+
+
     private Map<String, Member> onlinemember = new HashMap<>();
     private PasswordProtocol myProtocol = PassProtocol_Imp.getInstance();
 

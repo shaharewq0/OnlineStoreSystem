@@ -34,6 +34,10 @@ public class AppointStoreOwnerTest extends BaseAccTest {
     public void appoint(){
         assertTrue(system.appointOwner(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME, APPOINTEE_PASSWORD));
     }
+    @Test
+    public void appointnotife(){
+        assertTrue(system.appointOwner(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME, APPOINTEE_PASSWORD));
+    }
 
     @Test
     public void appointTwice(){

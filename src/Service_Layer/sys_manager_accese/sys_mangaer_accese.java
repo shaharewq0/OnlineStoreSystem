@@ -14,7 +14,7 @@ public class sys_mangaer_accese {
         return true;
 
     }
-//update
+
     public static List<UserPurchase> usecase6_4A_WatchPurchesHistoryofUser(String myusername, String myPassword, String username) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
