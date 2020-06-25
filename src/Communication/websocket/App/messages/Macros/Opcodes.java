@@ -65,6 +65,9 @@ public class Opcodes {
     //System manager
     public static final byte HistoryOfUser  = 0x64;
     public static final byte HistoryOfStore =  0x6b;
+    public static final byte viewsSytsemState =  0x6c;
+    public static final byte endViewsSytsemState =  0x6d;
+
 
 
 

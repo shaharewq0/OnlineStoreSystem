@@ -29,24 +29,35 @@ public class sys_mangaer_accese {
         return me.ViewAquistionHistory(storename);
     }
 
-    public static int usecase4_WatchOwnerCount(String myusername, String myPassword, String storename) {
-        return System.OwnerLogin;
+    public static String usecase4_SystemStateString(String myusername, String myPassword) {
+        String state =
+                        "guests     : " + usecase4_WatchGuestCount(myusername, myPassword) + "\n" +
+                        "members    : " + usecase4_WatchMemberCount(myusername, myPassword) + "\n" +
+                        "managers   : " + usecase4_WatchManagerCount(myusername, myPassword) + "\n" +
+                        "owners     : " + usecase4_WatchOwnerCount(myusername, myPassword) + "\n" +
+                        "admins     : " + usecase4_WatchSYS_ManagerCount(myusername, myPassword) + "\n";
+
+        return state;
     }
 
-    public static int usecase4_WatchMemberCount(String myusername, String myPassword, String storename) {
-        return System.MemberLogin;
+    public static int usecase4_WatchOwnerCount(String myusername, String myPassword) {
+        return System.OwnerLogin.get();
     }
 
-    public static int usecase4_WatchGuestCount(String myusername, String myPassword, String storename) {
-        return System.GuestLogin;
+    public static int usecase4_WatchMemberCount(String myusername, String myPassword) {
+        return System.MemberLogin.get();
     }
 
-    public static int usecase4_WatchManagerCount(String myusername, String myPassword, String storename) {
-        return System.ManagerLogin;
+    public static int usecase4_WatchGuestCount(String myusername, String myPassword) {
+        return System.GuestLogin.get();
     }
 
-    public static int usecase4_WatchSYS_ManagerCount(String myusername, String myPassword, String storename) {
-        return System.SYS_ManagerLogin;
+    public static int usecase4_WatchManagerCount(String myusername, String myPassword) {
+        return System.ManagerLogin.get();
+    }
+
+    public static int usecase4_WatchSYS_ManagerCount(String myusername, String myPassword) {
+        return System.SYS_ManagerLogin.get();
     }
 
 

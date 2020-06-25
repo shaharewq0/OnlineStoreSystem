@@ -46,6 +46,8 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     private String username;
     private String paasword;
 
+    private Thread systemStateViewr = null;
+
 
 
 
@@ -499,5 +501,40 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         }
 
         return new NackMessage(msg.getId());
+    }
+
+    public Message accept(ViewSystemStateMessage msg) {
+        if(systemStateViewr == null){
+            System.out.println("already in view state!");
+            return new NackMessage(msg.getId());
+        }
+
+        systemStateViewr = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()){
+                server.send(this, new StringResponse((byte)1, sys_mangaer_accese.usecase4_SystemStateString(username, paasword)));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+
+        systemStateViewr.start();
+
+        return new AckMessage(msg.getId());
+    }
+
+    public Message accept(EndViewSystemStateMessage msg) {
+        try {
+            if(systemStateViewr != null){
+                systemStateViewr.interrupt();
+                systemStateViewr = null;
+                return new AckMessage(msg.getId());
+            }
+            return new NackMessage(msg.getId());
+        } catch (Exception e){
+            return new NackMessage(msg.getId());
+        }
     }
 }

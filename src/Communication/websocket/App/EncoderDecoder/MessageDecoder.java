@@ -311,6 +311,8 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             // system manager
             case Opcodes.HistoryOfUser              : return HistoryOfUser(parameters);
             case Opcodes.HistoryOfStore             : return HistoryOfStore(parameters);
+            case Opcodes.viewsSytsemState           : return viewsSytsemState(parameters);
+            case  Opcodes.endViewsSytsemState       : return endViewsSytsemState(parameters);
 
 
 
@@ -318,6 +320,9 @@ public class MessageDecoder implements Decoder.Text<Message>  {
             default                                 : System.out.println("unknown opcode recived :" + op); throw new IllegalArgumentException("unknown opcode : " + op );
         }
     }
+
+
+
 
 
     /**
@@ -890,4 +895,19 @@ public class MessageDecoder implements Decoder.Text<Message>  {
         finalCheck(parameters);
         return new getManagerPermitions((byte)-1, store,manager);
     }
+
+    private Message viewsSytsemState(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+
+        finalCheck(parameters);
+        return new ViewSystemStateMessage((byte)-1);
+    }
+
+    private Message endViewsSytsemState(Deque<Deque<Byte>> parameters) {
+        Byte    op      = popOpcode(parameters);
+
+        finalCheck(parameters);
+        return new EndViewSystemStateMessage((byte)-1);
+    }
+
 }

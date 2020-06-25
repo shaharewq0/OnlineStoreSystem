@@ -22,6 +22,7 @@ import extornal.supply.MySupplySystem_Driver;
 import extornal.supply.Supplyer;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class System implements ISystem {
 
@@ -45,11 +46,11 @@ public class System implements ISystem {
 
 
     // count
-    public static int OwnerLogin = 0;
-    public static int MemberLogin = 0;
-    public static int GuestLogin = 0;// TempGuestID
-    public static int ManagerLogin = 0;
-    public static int SYS_ManagerLogin = 1;
+    public static final AtomicInteger OwnerLogin = new AtomicInteger(0);
+    public static final AtomicInteger MemberLogin = new AtomicInteger(0);
+    public static final AtomicInteger GuestLogin = new AtomicInteger(0);// TempGuestID
+    public static final AtomicInteger ManagerLogin = new AtomicInteger(0);
+    public static final AtomicInteger SYS_ManagerLogin = new AtomicInteger(0);
     //
     public static System getInstance() {
         if (instance == null) {
@@ -68,7 +69,7 @@ public class System implements ISystem {
 
     public static void init_manager(String name,String password) {
         getInstance();
-        instance.setManager(name, password);;
+        instance.setManager(name, password);
     }
 
     private System() {
@@ -123,7 +124,7 @@ public class System implements ISystem {
 
     private void setManager(String username, String password){
         User.register(username, password);
-        SYS_ManagerLogin++;
+        SYS_ManagerLogin.getAndIncrement();
         manager = new System_Manager(username);
     }
 
@@ -141,7 +142,7 @@ public class System implements ISystem {
     }
 
     public int ImNew() {
-        GuestLogin++;
+        GuestLogin.getAndIncrement();
         EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
         TempGuestID++;
         guest.put(TempGuestID, new User());

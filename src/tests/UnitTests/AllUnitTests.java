@@ -2,7 +2,7 @@ package tests.UnitTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import tests.UnitTests.CommunicationLayer.MessageDecoderTest;
+import tests.UnitTests.CommunicationLayer.AllComunicationTests;
 import tests.UnitTests.CommunicationLayer.MessageEncoderTest;
 import tests.UnitTests.Policies.AcquisitionPolicyTest;
 import tests.UnitTests.Policies.DiscountPolicyTest;
@@ -19,10 +19,10 @@ import tests.UnitTests.Policies.DiscountPolicyTest;
         PassProtocol_ImpTest.class,
         EventLoggerTest.class,
         ErrorLoggerTest.class,
-        MessageDecoderTest.class,
-            MessageEncoderTest.class,
-            DiscountPolicyTest.class,
-            AcquisitionPolicyTest.class,
+        AllComunicationTests.class,
+        MessageEncoderTest.class,
+        DiscountPolicyTest.class,
+        AcquisitionPolicyTest.class,
 })
 
 public class AllUnitTests {

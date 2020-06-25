@@ -41,7 +41,7 @@ public class Registered implements MSGObservable {
     }
 
     public void LogLogin(User user, ClintObserver CO) {
-        System.MemberLogin++;
+        System.MemberLogin.getAndIncrement();
         boolean imManger = false;
         boolean imOwner = false;
         for (Store_role SR: store_roles.values()) {
@@ -51,9 +51,9 @@ public class Registered implements MSGObservable {
                 imManger = true;
         }
         if(imOwner)
-            System.OwnerLogin++;
+            System.OwnerLogin.getAndIncrement();
         else if (imManger)
-            System.ManagerLogin++;
+            System.ManagerLogin.getAndIncrement();
 
 
         clints.put(user,CO);
