@@ -1,15 +1,15 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.StorePurchase_DA;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import org.junit.Before;
 import org.junit.Test;
-import tests.AcceptanceTests.auxiliary.StoreDetails;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class StorePurchase_DATest {
 

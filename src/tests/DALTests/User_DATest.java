@@ -1,14 +1,14 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.User_DA;
 import Domain.UserClasses.User;
 import Domain.UserClasses.shoppingCart;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class User_DATest {
     User_DA da;

@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.Store_Purchase_History_DA;
 import Domain.Store.StorePurchase;
 import Domain.Store.Store_Purchase_History;
 import Domain.info.ProductDetails;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class Store_Purchase_History_DATest {
 

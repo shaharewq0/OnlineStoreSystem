@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.AcquisitionPolicy_DA;
 import Domain.Policies.Acquisitions.*;
 import Domain.Store.Product;
 import org.junit.Before;
@@ -8,7 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class AcquisitionPolicy_DATest {
     AcquisitionPolicy_DA da;
