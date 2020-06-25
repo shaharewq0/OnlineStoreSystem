@@ -188,6 +188,7 @@ public class Registered implements MSGObservable {
         notifyUser();
     }
 //testing
+
     public void notifyUser(){
         TempMSG = MSG_box;
         MSG_box = new LinkedList<>();
