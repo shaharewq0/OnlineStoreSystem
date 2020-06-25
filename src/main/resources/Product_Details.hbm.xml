@@ -13,13 +13,13 @@
         <property name = "name" column = "name" type = "string"/>
 
         <list name="category" table="PD_CATEGORY_TABLE" lazy="false" cascade="all">
-            <key column="PDid"></key>
+            <key column="ProductDetails_foreignkey"></key>
             <index column="id"></index>
             <element column="category" type="string"></element>
         </list>
 
         <list name="keyWords" table="PD_KEYWORDS_TABLE" lazy="false" cascade="all">
-            <key column="PDid"></key>
+            <key column="ProductDetails_foreignkey"></key>
             <index column="id"></index>
             <element column="keyword" type="string"></element>
         </list>

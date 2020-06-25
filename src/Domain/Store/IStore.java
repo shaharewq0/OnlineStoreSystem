@@ -43,8 +43,9 @@ public interface IStore {
 
 	boolean appointOwner(Appoint_Owner user);
 
-
-
 	boolean fireWorker(String user);
 
+	public int getId();
+
+	public void setId(int id);
 }

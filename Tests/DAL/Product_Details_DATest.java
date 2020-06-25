@@ -4,6 +4,7 @@ import Domain.info.ProductDetails;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import static org.junit.Assert.*;
@@ -16,7 +17,7 @@ public class Product_Details_DATest {
     @Before
     public void setUp() throws Exception {
         da=new Product_Details_DA();
-        pd= new ProductDetails("shahar",new LinkedList<>(),new LinkedList<>(),"store",3,1.2);
+        pd= new ProductDetails("shahar", Arrays.asList("pdCategory"),new LinkedList<>(),"store",3,1.2);
     }
 
     @Test

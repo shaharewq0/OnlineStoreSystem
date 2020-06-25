@@ -4,18 +4,17 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Domain.Store.Product_boundle" table = "PRODUCT_BUNDLE_TABLE">
+    <class name = "Domain.Store.Store_Purchase_History" table = "STORE_PURCHASE_HISTORY_TABLE">
 
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
 
-        <property name = "label" column = "label" type = "string"/>
+        <list name="PastPurchase" cascade="all" lazy="false">
+            <key column="StorePurchaseHistory_foreignkey"/>
+            <list-index column="SPHtype"></list-index>
+            <one-to-many class="Domain.Store.StorePurchase"/>
+        </list>
 
-        <property name = "amount" column = "amount" type = "int"/>
-
-        <many-to-one name="item" column="Product_foreignkey" cascade="all" class="Domain.Store.Product" lazy="false"/>
     </class>
-
-
 </hibernate-mapping>

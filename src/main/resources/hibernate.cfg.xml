@@ -35,5 +35,11 @@
         <mapping resource="Product_Details.hbm.xml"/>
         <mapping resource="store_purchase.hbm.xml"/>
         <mapping resource="AcquisitionPolicy.hbm.xml"/>
+        <mapping resource="Store_Purchase_History.hbm.xml"/>
+        <mapping resource="UserPurchase.hbm.xml"/>
+        <mapping resource="UserPurchaseHistory.hbm.xml"/>
+        <mapping resource="User.hbm.xml"/>
+        <mapping resource="shoppingCart.hbm.xml"/>
+        <mapping resource="Registered.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

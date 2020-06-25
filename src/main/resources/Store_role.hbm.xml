@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Store.workers.Store_role" abstract="true" table = "STORE_ROLE_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <discriminator column="discriminator"></discriminator>
+
+        <subclass name="Domain.Store.workers.StoreManager_Imp" lazy="false" discriminator-value="StoreManager">
+            <many-to-one name="user" column="Registerd_foreignkey" class="Domain.store_System.Roles.Registered" cascade="all" lazy="false">
+            </many-to-one>
+
+            <many-to-one name="MyJob" column="AppointManager_foreignkey" class="Domain.Store.workers.appoints.Appoint_manager" cascade="all" lazy="false">
+            </many-to-one>
+
+            <property name="worker_name" column="worker's_name" type="string"></property>
+
+            <map name="Owner_Appointees" cascade="all" lazy="false">
+                <key column="StoreManager_foreignkey"></key>
+                <index column="Owner's_name"/>
+                <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
+            </map>
+
+            <map name="Manager_Appointees" cascade="all" lazy="false">
+                <key column="StoreManager_foreignkey"></key>
+                <index column="Manager's_name"/>
+                <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
+            </map>
+
+            <list name="permission" cascade="all" lazy="false">
+                <key column="StoreManager_foreignkey"></key>
+                <index column="SM_type"></index>
+                <element column="permission" type="string"></element>
+            </list>
+
+        </subclass>
+
+        <subclass name="Domain.Store.workers.StoreOwner_Imp" lazy="false" discriminator-value="StoreOwner">
+
+            <many-to-one name="user" column="Registerd_foreignkey" class="Domain.store_System.Roles.Registered" cascade="all" lazy="false">
+            </many-to-one>
+
+            <many-to-one name="MyJob" column="AppointManager_foreignkey" class="Domain.Store.workers.appoints.Appoint_Owner" cascade="all" lazy="false">
+            </many-to-one>
+
+            <property name="workername" column="worker's_name" type="string"></property>
+
+            <map name="OwnerAppointeis" cascade="all" lazy="false">
+                <key column="StoreOwner_foreignkey"></key>
+                <index column="Owner's_name"/>
+                <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
+            </map>
+
+            <map name="ManagerAppointeis" cascade="all" lazy="false">
+                <key column="StoreOwner_foreignkey"></key>
+                <index column="Manager's_name"/>
+                <one-to-many class="Domain.Store.workers.Store_role"></one-to-many>
+            </map>
+
+            <map name="OwnerPendingAppointeis" cascade="all" lazy="false">
+                <key column="StoreOwner_foreignkey"></key>
+                <index column="Owner's_name"/>
+                <one-to-many class="Domain.Store.workers.appoints.Pending_appoint_Owner"></one-to-many>
+            </map>
+
+            <subclass name="Domain.Store.workers.Creator" lazy="false" discriminator-value="Creator">
+            </subclass>
+        </subclass>
+
+
+
+
+    </class>
+</hibernate-mapping>

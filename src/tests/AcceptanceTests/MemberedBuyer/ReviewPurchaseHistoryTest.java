@@ -48,7 +48,7 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
         double price = 1 * PRODUCT1.getPrice() + 5 * PRODUCT2.getPrice();
         p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
 
-        p.TotalePrice = price;
+        p.TotalPrice = price;
 
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);

@@ -13,7 +13,7 @@
         <property name = "question" column = "question" type = "string"/>
 
         <list name="Answers" table="ANSWERS_TABLE" lazy="false">
-            <key column="Qid"></key>
+            <key column="Question_foriegnkey"></key>
             <index column="id"> </index>
             <element column="answer" type="string"></element>
         </list>

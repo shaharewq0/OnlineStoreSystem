@@ -26,11 +26,13 @@ import java.util.Map;
 
 public class User implements IUser {
 
+    private int id;
     private shoppingCart cart;
     // imps of new classs digram
     private Registered profile = null;
     private Member logInstanse = null;
     private System_Manager sysMangaer = null;
+    private String last_store_looked_at = "";
     // ---- dont need to be here
 
     // TODO move this to register and call it from member system role
@@ -42,6 +44,53 @@ public class User implements IUser {
     //delte this
     public User(String address, int creditCardNum) {
         cart = new shoppingCart();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Member getLogInstanse() {
+        return logInstanse;
+    }
+
+    public Registered getProfile() {
+        return profile;
+    }
+
+    public System_Manager getSysMangaer() {
+        return sysMangaer;
+    }
+
+    public String getLast_store_looked_at() {
+        return last_store_looked_at;
+    }
+    public shoppingCart getCart() {
+        return cart;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCart(shoppingCart cart) {
+        this.cart = cart;
+    }
+
+    public void setLast_store_looked_at(String last_store_looked_at) {
+        this.last_store_looked_at = last_store_looked_at;
+    }
+
+    public void setLogInstanse(Member logInstanse) {
+        this.logInstanse = logInstanse;
+    }
+
+    public void setProfile(Registered profile) {
+        this.profile = profile;
+    }
+
+    public void setSysMangaer(System_Manager sysMangaer) {
+        this.sysMangaer = sysMangaer;
     }
 
     // ------------------------------ user
@@ -147,7 +196,7 @@ public class User implements IUser {
 
     public void Complet_Purchase(double price) {
         UserPurchase purchase = cart.Complet_Purchase();
-        purchase.TotalePrice = price;
+        purchase.TotalPrice = price;
         if (profile != null) {
             profile.getPurchesHistory().add(purchase);
         }
@@ -156,9 +205,7 @@ public class User implements IUser {
 
     // -------------------------------------------------- store info
 
-    public shoppingCart getCart() {
-        return cart;
-    }
+
 
     public Collection<ProductDetails> watchProductsInStore(String name) {
         return System.getInstance().getProductsFromStore(name);
@@ -295,7 +342,7 @@ public class User implements IUser {
         return store_roles.get(storeName).removeacquisition(acquisitionID);
     }
 
-    private String last_store_looked_at = "";
+
 
     public Collection<Question> viewQuestions(String storeName) {
         last_store_looked_at = storeName;

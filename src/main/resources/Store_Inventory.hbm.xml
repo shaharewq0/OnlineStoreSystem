@@ -11,7 +11,7 @@
         </id>
 
         <map name="items" table="SI_MAP_TABLE" cascade="all" lazy="false">
-            <key column="Store_inventory_id"/>
+            <key column="StoreInventory_foreignkey"/>
             <index column="Product_name" type="string"/>
             <one-to-many class="Domain.Store.Product_boundle"/>
         </map>
