@@ -26,8 +26,11 @@ import java.util.Map;
 
 public class User implements IUser {
 
-    private int id;
+    //shold not be saved into DA
     private shoppingCart cart;
+
+    private int id;
+
     // imps of new classs digram
     private Registered profile = null;
     private Member logInstanse = null;
@@ -65,6 +68,7 @@ public class User implements IUser {
     public String getLast_store_looked_at() {
         return last_store_looked_at;
     }
+
     public shoppingCart getCart() {
         return cart;
     }
@@ -95,6 +99,7 @@ public class User implements IUser {
 
     // ------------------------------ user
     public boolean login(String id, String password, ClintObserver CO) {
+
         if (profile != null)
             return false;
 
@@ -103,6 +108,9 @@ public class User implements IUser {
         logInstanse = System.getInstance().getLogInstase(id, password);
         sysMangaer = System.getInstance().ImManeger(id, password);
         profile.LogLogin(this, CO);
+
+        if(profile !=null)
+            cart = profile.getMemeberCart();
 
         return profile != null;
 
@@ -147,6 +155,7 @@ public class User implements IUser {
     }
 
     public boolean logout() {
+        cart = new shoppingCart();
         if (profile == null || logInstanse == null)
             return false;
         profile.LogLogout(this);

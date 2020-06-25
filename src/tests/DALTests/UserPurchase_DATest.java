@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.UserPurchase_DA;
 import Domain.Store.StorePurchase;
 import Domain.UserClasses.UserPurchase;
 import Domain.info.ProductDetails;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class UserPurchase_DATest {
 

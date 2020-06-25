@@ -8,6 +8,7 @@ import Domain.Store.workers.Store_role;
 import Domain.UserClasses.User;
 import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
+import Domain.UserClasses.shoppingCart;
 import Domain.store_System.ClintObserver;
 import Domain.store_System.MSGObservable;
 import Domain.store_System.System;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Registered implements MSGObservable {
+
+    private shoppingCart member_cart= new shoppingCart();
     private String id;
     private Map<User,ClintObserver> clints = new HashMap<>();
     private List<String> MSG_box = new LinkedList<>();
@@ -39,6 +42,7 @@ public class Registered implements MSGObservable {
         this.id = id;
     }
 
+    //DA setters-----------------------------------------
     public void setClints(Map<User, ClintObserver> clints) {
         this.clints = clints;
     }
@@ -58,6 +62,8 @@ public class Registered implements MSGObservable {
     public void setTempMSG(List<String> tempMSG) {
         TempMSG = tempMSG;
     }
+    //DA setters-----------------------------------------
+
 
     public Map<User, ClintObserver> getClints() {
         return clints;
@@ -231,5 +237,9 @@ public class Registered implements MSGObservable {
     public List<String> getMessges() {
         MSG_box = new LinkedList<>();
         return TempMSG;
+    }
+
+    public shoppingCart getMemeberCart() {
+        return member_cart;
     }
 }

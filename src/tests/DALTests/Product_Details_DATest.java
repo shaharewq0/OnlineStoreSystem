@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.Product_Details_DA;
 import Domain.info.ProductDetails;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +8,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class Product_Details_DATest {
 

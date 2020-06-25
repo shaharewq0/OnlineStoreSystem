@@ -1,14 +1,14 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.Product_DA;
 import Domain.Store.Product;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class Product_DATest {
 
