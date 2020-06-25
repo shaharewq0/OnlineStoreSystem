@@ -52,14 +52,14 @@ public class System implements ISystem {
     public static final AtomicInteger ManagerLogin = new AtomicInteger(0);
     public static final AtomicInteger SYS_ManagerLogin = new AtomicInteger(0);
     //
-    public static System getInstance() {
+   synchronized public static System getInstance() {
         if (instance == null) {
             instance = new System();
             instance.init("admin","password");
         }
         return instance;
     }
-    public static System getInstance(String name,String password) {
+    synchronized public static System getInstance(String name,String password) {
         if (instance == null) {
             instance = new System();
             instance.init(name,password);
@@ -171,7 +171,7 @@ public class System implements ISystem {
         return true;
     }
 
-    public Registered login(String id, String password, User user) {
+    synchronized public Registered login(String id, String password, User user) {
         if (!myProtocol.login(id, password)) {
             ErrorLogger.GetInstance().Add_Log(this.toString() + "- failed to login");
             return null;
@@ -201,7 +201,7 @@ public class System implements ISystem {
         return null;
     }
 
-    public boolean logout(User user) {
+    synchronized public boolean logout(User user) {
         EventLogger.GetInstance().Add_Log(this.toString() + "user went offline");
         Member m = onlinemember.remove(user.getName());
         if (m != null && !CheckTegrati_oneManager()) {

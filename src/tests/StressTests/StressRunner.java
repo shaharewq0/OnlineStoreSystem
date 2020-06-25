@@ -5,6 +5,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import tests.AcceptanceTests.AllAcceptanceTests;
+import tests.AcceptanceTests.GuestBuyer.GetStoreDetailsTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,8 @@ class testRunner implements Runnable {
     private int pid;
 
     private static List<Class> TestsToRun = Arrays.asList(
-            AllAcceptanceTests.class
+            Add_product_cartTest.class
+            //AllAcceptanceTests.class
             //AllIntegrationTests.class,
             //AllUnitTests.class
     );
@@ -60,7 +62,7 @@ class testRunner implements Runnable {
 
 class stresstest implements Runnable {
 
-    private static final int USERS = 10;
+    private static final int USERS = 4;
     private static final int THREAD_NUM = Runtime.getRuntime().availableProcessors();
 
 
@@ -71,8 +73,10 @@ class stresstest implements Runnable {
 
         executor = Executors.newFixedThreadPool(THREAD_NUM);
 
+       // System.out.println("temp");
+        GetStoreDetailsTest.setUpClass();
         for(int i = 1; i<= USERS; i++){
-            executor.execute(new AllTests()); //CHANGE HERE <----------------------------------------------------------------------
+            executor.execute(new testRunner()); //CHANGE HERE <----------------------------------------------------------------------
         }
 
 
@@ -101,12 +105,17 @@ public class StressRunner implements Runnable {
 
     @Override
     public void run() {
-        new stresstest().run();
+
     }
 
    @Test
     public void payWithCard() {
-        run();
+       new stresstest().run();
+        assertEquals(0, failedTestsCounter.getCounter());
+    }
+    @Test
+    public void add() {
+       new stresstest().run();
         assertEquals(0, failedTestsCounter.getCounter());
     }
 

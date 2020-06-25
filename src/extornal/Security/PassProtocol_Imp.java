@@ -66,7 +66,7 @@ import java.util.List;
         return false;
     }
 
-    public static PassProtocol_Imp getInstance() {
+     synchronized public static PassProtocol_Imp getInstance() {
         if (Instance == null) {
             Instance = new PassProtocol_Imp();
         }

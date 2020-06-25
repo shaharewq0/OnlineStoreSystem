@@ -17,17 +17,14 @@ public class EasyTest implements Runnable {
 
             failedTestsCounter.failed();
             System.out.println(this.toString() + "-" + ggustID + "EasyTest: did not login");
+            return;
         } else {
             System.out.println(this.toString() + "-" + ggustID + "EasyTest: did login");
         }
 //
-//        if(! member_accese.usecase3_1_Logout(ggustID)){
-//            failedTestsCounter.failed();
-//            System.out.println("EasyTest: did not logout");
-//        }
-
-
+        if(! member_accese.usecase3_1_Logout(ggustID)){
+            failedTestsCounter.failed();
+            System.out.println(this.toString() + "-" + ggustID + "EasyTest: did not logout");
+        }
     }
-
-
 }
