@@ -12,7 +12,7 @@ public class EasyTest implements Runnable {
         guest_accese.usecase2_5A_searchProductByName("random name");
       // System.out.println(guest_accese.usecase2_2_guest_register(user, user));
         guest_accese.usecase2_2_guest_register(user, user);
-//
+//test
         if (!guest_accese.usecase2_3_login(ggustID, user, user)) {
 
             failedTestsCounter.failed();
