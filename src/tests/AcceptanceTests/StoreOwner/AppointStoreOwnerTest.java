@@ -8,8 +8,9 @@ import org.junit.runners.MethodSorters;
 import tests.AcceptanceTests.BaseAccTest;
 import tests.AcceptanceTests.MemberedBuyer.OpenStoreTest;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.Collection;
+
+import static org.junit.Assert.*;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.PASSWORD;
 import static tests.AcceptanceTests.GuestBuyer.LoginTest.USERNAME;
 import static tests.AcceptanceTests.MemberedBuyer.OpenStoreTest.STORE;
@@ -36,8 +37,11 @@ public class AppointStoreOwnerTest extends BaseAccTest {
     }
 
     @Test
-    public void appointTwice(){
-        assertFalse(system.appointOwner(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME, APPOINTEE_PASSWORD));
+    public void appointPending(){
+        Collection<String> apootees = system.getPendingApointments(USERNAME, PASSWORD, STORE.getName());
+        assertEquals(1, apootees.size());
+        assertTrue(apootees.contains(APPOINTEE_USERNAME));
+        assertTrue(system.AcceptPendingApointments(USERNAME, PASSWORD, STORE.getName(), APPOINTEE_USERNAME));
     }
 
     @Test
