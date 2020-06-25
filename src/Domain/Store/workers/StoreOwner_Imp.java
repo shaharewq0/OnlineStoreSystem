@@ -212,7 +212,7 @@ public class StoreOwner_Imp implements Store_role {
     @Override
     public boolean fireManager(String manager) {
         EventLogger.GetInstance().Add_Log(this.toString() + "Owner fire Manager");
-        if (!ManagerAppointeis.containsKey(manager)||!OwnerAppointeis.containsKey(manager))
+        if (!ManagerAppointeis.containsKey(manager)&&!OwnerAppointeis.containsKey(manager))
             return false;
 
         return myJob.store.fireWorker(manager);
