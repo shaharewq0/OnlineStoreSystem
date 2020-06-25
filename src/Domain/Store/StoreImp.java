@@ -84,6 +84,18 @@ public class StoreImp implements IStore {
         return ProductDetails.adapteProdactList(inventory.items.values(), name);
     }
 
+    public ProductDetails getProductDetails(String productName) {
+        List<ProductDetails> all = getProductsDetails();
+
+        for (ProductDetails prod: all) {
+            if(prod.getName().equals(productName)){
+                return prod;
+            }
+        }
+
+        return null;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -180,7 +192,7 @@ public class StoreImp implements IStore {
 //-------------------------------------------------------------------------- products --	
 
     @Override
-    public boolean editProduct(String OLD_p, Product NEW_p) {
+    public boolean editProduct(String OLD_p, ProductDetails NEW_p) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- edit item");
 
         return inventory.editProduct(OLD_p, NEW_p);
@@ -300,9 +312,13 @@ public class StoreImp implements IStore {
         return true;
     }
 
-    public String getDiscounts(String name) {
+    public String getDiscounts() {
         return discounts.toString();
 
+    }
+
+    public String getAcquisitions() {
+        return acquisitions.toString();
     }
 
     // ----------------------------------------------------discount

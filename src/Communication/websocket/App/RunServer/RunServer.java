@@ -17,6 +17,9 @@ public class RunServer {
     // Domain :
     // wss://workshopv2.ddnsking.com/mall
 
+    // final vertion domain :
+    // wss://workshopfinal.ddnsking.com/mall
+
 
     public static void main(String[] args) throws DeploymentException {
         run();

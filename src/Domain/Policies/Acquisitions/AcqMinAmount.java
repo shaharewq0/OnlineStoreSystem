@@ -6,9 +6,9 @@ import Domain.Store.Product_boundle;
 import java.util.List;
 import java.util.Map;
 
-class AcqMinAmount extends AcqAmountCondition {
+public class AcqMinAmount extends AcqAmountCondition {
 
-    AcqMinAmount(String productName, int amount) {
+    public AcqMinAmount(String productName, int amount) {
         super(productName, amount);
     }
 

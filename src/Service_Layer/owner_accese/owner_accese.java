@@ -11,6 +11,7 @@ import Domain.UserClasses.User;
 import Domain.info.Question;
 import Domain.store_System.System;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class owner_accese {
     }
 
     public static boolean usecase4_1_3_EditProduct(String myusername, String myPassword, String storeName, String prodactname,
-                                                   Product newdetail) {
+                                                   ProductDetails newdetail) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
             return false;
@@ -78,6 +79,17 @@ public class owner_accese {
         return me.removeDiscount(discountID, storeName);
     }
 
+    public static String usecase4_2_GetDiscount(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getDiscount(storeName);
+    }
+
+
+
+
+
     public static boolean usecase4_2_AddAcquisition(String myusername, String myPassword, String storeName, Acquisition acquisition) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
@@ -91,6 +103,15 @@ public class owner_accese {
             return false;
         return me.removeacquisition(acquisitionID, storeName);
     }
+
+    public static String usecase4_2_GetAcquisition(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return "";
+        return me.getAcquisition(storeName);
+    }
+
+
 
 
     public static boolean usecase4_3_appointOwner(String myusername, String myPassword, String storeName, String hisusername,
@@ -146,6 +167,14 @@ public class owner_accese {
 
     }
 
+    public static List<String> usecase4_6_getMangagerPermesions(String myusername, String myPassword, String storename, String managername) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return null;
+        return me.getMangagerPermesions(storename, managername);
+
+    }
+
     public static boolean usecase4_7_FireManager(String myusername, String myPassword, String storeName, String username) {
         User me = System.getInstance().getMember(myusername, myPassword);
         if (me == null)
@@ -177,14 +206,35 @@ public class owner_accese {
     }
 
 
+    public static boolean accecpt_Pending_Appointment(String myusername, String myPassword, String storeName, String appointe) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return false;
+        return me.acceptOwner(storeName,appointe);
+
+    }
+
+    public static Collection<String> get_Pending_Appointment(String myusername, String myPassword, String storeName) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return null;
+        return me.getWaitingAccept(storeName);
+
+    }
+
+
     public static boolean accecpt_Pending_Appointment(int gustID, String storeName, String appointe) {
-        return false;
-        //TODO implament
+        User me = System.getInstance().getMember(gustID);
+        if (me == null)
+            return false;
+        return me.acceptOwner(storeName,appointe);
     }
 
     public static Collection<String> get_Pending_Appointment(int gustID, String storeName) {
-        return null;
-        //TODO implament
+        User me = System.getInstance().getMember(gustID);
+        if (me == null)
+            return null;
+        return me.getWaitingAccept(storeName);
     }
 
 }

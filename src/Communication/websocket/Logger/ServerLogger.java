@@ -5,23 +5,22 @@ import Domain.Logs.Log;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 
 public class ServerLogger implements Log {
-    private static ServerLogger INSTANCE=new ServerLogger();
-    private static File log;
-    private static FileWriter fileWriter;
-    private static int OpenWriters;
-    private static  String fileName = "ServerLogger.txt";
+    private static ServerLogger INSTANCE;
 
-    private ServerLogger(){
-        log = new File(fileName);
+    //private static FileWriter fileWriter;
+    private static final String fileName = "ServerLogger.txt";
+
+    private ServerLogger() {
         try {
-            log.createNewFile();
-            fileWriter = new FileWriter(fileName);
-            OpenWriters=0;
-        }
-        catch (IOException e){
+            new File(fileName).createNewFile();
+            //fileWriter = new FileWriter(fileName);
+        } catch (IOException e) {
             System.out.println("error in creating server log file");
         }
     }
@@ -29,8 +28,9 @@ public class ServerLogger implements Log {
     @Override
     public void Add_Log(String msg) {
         try {
-            fileWriter.write(msg);
-            fileWriter.write("\n");
+            //fileWriter.write(msg + "\n");
+            //fileWriter.flush();
+            Files.write(Paths.get(fileName), (msg + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             System.out.println("error in printing to the server log file");
         }
@@ -38,19 +38,19 @@ public class ServerLogger implements Log {
 
 
     @Override
-    public void CloseLogger()  {
-        OpenWriters--;
-        if(OpenWriters==0) {
-            try {
-                fileWriter.close();
-            } catch (IOException e) {
-                System.out.println("error in closing the server logr");
-            }
-        }
+    public void CloseLogger() {
+        /*try {
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("error in closing the server logr");
+        }*/
     }
 
     public static ServerLogger GetInstance() {
-        OpenWriters++;
-        return  INSTANCE;
+        if (INSTANCE == null) {
+            INSTANCE = new ServerLogger();
+        }
+
+        return INSTANCE;
     }
 }

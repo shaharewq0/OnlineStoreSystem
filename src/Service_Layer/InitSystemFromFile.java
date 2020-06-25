@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import static Service_Layer.guest_accese.guest_accese.*;
 import static Service_Layer.member_accese.member_accese.usecase3_1_Logout;
@@ -36,13 +37,16 @@ public class InitSystemFromFile {
                 usecase3_2_OpenStore(guest_id, new StoreDetails(command[i++], command[i]));
                 break;
             case "AddProductToStore":
-                usecase4_1_1_AddingProdacsToStore(guest_id, command[i++], parseProduct(command, i));
+                AddingProdacsToStore(command[i++],command[i++],command[i++],command[i++],command[i++],command[i++]);
                 break;
             case "AppointOwner":
                 usecase4_3_appointOwner(guest_id, command[i++], command[i]);
                 break;
             case "AppointManager":
                 usecase4_5_appointManager(guest_id, command[i++], command[i]);
+                break;
+             case "refund":
+                 usecase2_8_4_Guest_Refund(Integer.parseInt(command[i++]));
                 break;
             case "ChangeManagerPermissions":
                 //TODO
@@ -53,8 +57,18 @@ public class InitSystemFromFile {
 
     }
 
-    private static ProductDetails parseProduct(String[] command, int i) {
-        return null;    //TODO
+
+    private static void AddingProdacsToStore(String name, String category, String kewwords, String storeName, String amount, String price) {
+        usecase4_1_1_AddingProdacsToStore(guest_id,storeName, parseProduct(name, category, kewwords, storeName, amount, price));
+    }
+
+    private static ProductDetails parseProduct(String name, String category, String kewwords, String storeName, String amount, String price) {
+        return new ProductDetails(name, parseList(category), parseList(kewwords), storeName, Integer.parseInt(amount), Double.parseDouble(price));
+    }
+
+    private static List<String> parseList(String command) {
+        String[]  lst = command.split(":");
+        return Arrays.asList(lst);
     }
 
     public static void init(String file) {

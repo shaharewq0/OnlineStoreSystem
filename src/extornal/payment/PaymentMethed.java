@@ -2,5 +2,7 @@ package extornal.payment;
 
 public interface PaymentMethed {
 
-	public boolean pay(CreditCard card_num, double amount);
+	public int pay(CreditCard card_num, double amount);
+
+    boolean cancel_pay(int transactionID);
 }

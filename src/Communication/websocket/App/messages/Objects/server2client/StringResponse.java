@@ -14,6 +14,16 @@ public class StringResponse extends Server2ClientMessage {
         this.msg = msg;
     }
 
+    public StringResponse(byte opcode, long replayRorID, String msg) {
+        super(opcode, replayRorID);
+        this.msg = msg;
+    }
+
+    public StringResponse(long replayRorID, String msg) {
+        super((byte)-37, replayRorID);
+        this.msg = msg;
+    }
+
     @Override
     public String visit(MessageEncoder encoder) {
         return encoder.accept(this);

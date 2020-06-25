@@ -14,13 +14,18 @@ public class Isracard implements PaymentMethed {
 
 	public Isracard(){
 		validCards = new LinkedList<>();
-		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil"));
+		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil", "1234"));
 	}
 
 	@Override
-	public boolean pay(CreditCard card_num, double amount) {
+	public int pay(CreditCard card_num, double amount) {
 
 		EventLogger.GetInstance().Add_Log(logmsg + amount + "," + card_num.getCardOwner());
-		return validCards.contains(card_num);
+		return validCards.contains(card_num)? 1 :-1;
+	}
+
+	@Override
+	public boolean cancel_pay(int transactionID) {
+		return false;
 	}
 }

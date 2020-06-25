@@ -11,6 +11,7 @@ import Domain.info.StoreInfo;
 import Domain.store_System.Roles.Member;
 import Domain.store_System.Roles.Registered;
 import Domain.store_System.Roles.System_Manager;
+import Service_Layer.guest_accese.guest_accese;
 import extornal.Security.PassProtocol_Imp;
 import extornal.Security.PasswordProtocol;
 import extornal.payment.MyPaymentSystem;
@@ -21,13 +22,14 @@ import extornal.supply.MySupplySystem_Driver;
 import extornal.supply.Supplyer;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class System implements ISystem {
 
     private boolean init = false;
     private System_Manager manager = null;
 
-    private int TempGuestID = 1;
+    private int TempGuestID = 0;
     private Map<Integer, User> guest = new HashMap<>();
     private Map<String, Registered> membersprofiles = new HashMap<>();
     private Map<String, Member> onlinemember = new HashMap<>();
@@ -40,11 +42,20 @@ public class System implements ISystem {
     private MySupplySystem supplydriver = new MySupplySystem_Driver();
 
     private static System instance = null;
+    private  Thread refunDemon;
 
+
+    // count
+    public static final AtomicInteger OwnerLogin = new AtomicInteger(0);
+    public static final AtomicInteger MemberLogin = new AtomicInteger(0);
+    public static final AtomicInteger GuestLogin = new AtomicInteger(0);// TempGuestID
+    public static final AtomicInteger ManagerLogin = new AtomicInteger(0);
+    public static final AtomicInteger SYS_ManagerLogin = new AtomicInteger(0);
+    //
     public static System getInstance() {
         if (instance == null) {
             instance = new System();
-            //instance.init("admin","password");
+            instance.init("admin","password");
         }
         return instance;
     }
@@ -58,7 +69,27 @@ public class System implements ISystem {
 
     public static void init_manager(String name,String password) {
         getInstance();
-        instance.init(name,password);
+        instance.setManager(name, password);
+    }
+
+    private System() {
+// tal what is this?
+        Runnable demon = () -> {
+            while (!Thread.currentThread().isInterrupted()){
+                if(!guest_accese.RefundAll()){
+                    java.lang.System.out.println("STILL CANT REFUND!");
+                }
+
+                try {
+                    Thread.sleep(60000); // wake up once evry minute, and try to refund all the unrefunded castomers
+                } catch (InterruptedException e) {
+                   break; // system abbout to be close
+                }
+            }
+        };
+
+        refunDemon =  new Thread(demon); // this demon responsability is to try and refund customers that was not refunded (due to external system failure)
+        refunDemon.start();
     }
 
     // ----------------------------------init
@@ -85,18 +116,26 @@ public class System implements ISystem {
         }
         EventLogger.GetInstance().Add_Log(this.toString() + "- system init");
         init = true;
-        //int guestId = ImNew();
-        //User guest = getGuest(guestId);
-        User.register(username, password);
-        manager = new System_Manager(username);
-        //guest.login(username, password);
+        setManager(username, password);
 
         return true;
 
     }
 
+    private void setManager(String username, String password){
+        User.register(username, password);
+        SYS_ManagerLogin.getAndIncrement();
+
+        if(manager != null){
+            SYS_ManagerLogin.decrementAndGet();
+        }
+
+        manager = new System_Manager(username);
+    }
+
     public void resetSystem() {
         myProtocol.reset();
+        refunDemon.interrupt();
         instance = null;    //	TODO: temp
     }
 
@@ -108,6 +147,7 @@ public class System implements ISystem {
     }
 
     public int ImNew() {
+        GuestLogin.getAndIncrement();
         EventLogger.GetInstance().Add_Log(this.toString() + "- new guest");
         TempGuestID++;
         guest.put(TempGuestID, new User());

@@ -47,10 +47,15 @@ public class VisibleDiscount implements Discount {
             double price = 0;
             for (Product_boundle entry : products)
                 price += entry.size() * entry.item.getPrice();
-            return price * percentage;
+            return price * percentage / 100;
         }
 
-        return findproduct(products,product) !=null ? 0 : findproduct(products,product).size() * product.getPrice() * percentage;
+        Product_boundle prod = findproduct(products, product);
+
+        if(prod == null) return 0;
+
+        double pre = prod.size() * product.getPrice();
+        return pre * percentage / 100;
     }
 
     @Override

@@ -2,8 +2,8 @@ package Domain.Policies.Acquisitions;
 
 import java.util.List;
 
-class AndAcq extends CompositeAcq {
-    AndAcq(List<Acquisition> acquisitions) {
+public class AndAcq extends CompositeAcq {
+    public AndAcq(List<Acquisition> acquisitions) {
         super(acquisitions, Boolean::logicalAnd, true);
     }
 

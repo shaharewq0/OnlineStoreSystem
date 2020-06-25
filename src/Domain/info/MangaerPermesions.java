@@ -7,7 +7,7 @@ import java.util.Set;
 public class MangaerPermesions {
 
 	public static final String[] permesions = { "addItem", "editItem", "removeItem", "getPurchaseHistory", "viewQuestions",
-			"giveRespond", "appointOwner", "appointManager", "fire", "getfire", "editManagerPermesions" ,"addDiscount","removeDiscount","addacquisition","removeacquisition"};
+			"giveRespond", "appointOwner", "appointManager", "fire", "getfire", "editManagerPermesions" ,"addDiscount", "getDiscounts", "removeDiscount","addacquisition","removeacquisition", "getacquisition"};
 
 	public static final Collection<String> defult_permesions =Arrays.asList( "getPurchaseHistory", "viewQuestions", "giveRespond");
 

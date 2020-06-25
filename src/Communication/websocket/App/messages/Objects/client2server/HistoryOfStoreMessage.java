@@ -38,4 +38,11 @@ public class HistoryOfStoreMessage extends Client2ServerMessage {
     public int hashCode() {
         return Objects.hash(getName());
     }
+
+    @Override
+    public String toString() {
+        return "HistoryOfStoreMessage{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

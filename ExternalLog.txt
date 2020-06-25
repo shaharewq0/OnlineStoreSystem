@@ -1,0 +1,217 @@
+[2020-06-23T13:34:52.687302]: transaction 70201 was payed successful!
+[2020-06-23T13:34:53.681630]: handshake: no external systems!
+[2020-06-23T13:34:54.673281]: transaction 30313 was payed successful!
+[2020-06-23T13:36:02.414323]: transaction 35735 was payed successful!
+[2020-06-23T13:36:03.964945]: transaction 30962 was payed successful!
+[2020-06-23T13:36:05.486327]: transaction 57833 was payed successful!
+[2020-06-23T13:36:17.071316]: transaction 86338 was payed successful!
+[2020-06-23T13:36:18.625214]: transaction 70972 was payed successful!
+[2020-06-23T13:36:20.098662]: transaction 23722 was payed successful!
+[2020-06-23T13:36:33.763298]: transaction 50838 was payed successful!
+[2020-06-23T13:36:35.336978]: transaction 42159 was payed successful!
+[2020-06-23T13:36:36.895987]: transaction 57566 was payed successful!
+[2020-06-23T13:36:57.912666]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:36:57.915107]: handshake: no external systems!
+[2020-06-23T13:37:07.932603]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:37:07.933067]: handshake: no external systems!
+[2020-06-23T13:37:17.953963]: ERROR : Failed to access external systems! rollback.....
+[2020-06-23T13:37:17.954455]: handshake: no external systems!
+[2020-06-24T06:13:00.028271]: transaction 18766 was payed successful!
+[2020-06-24T06:13:01.546746]: transaction 45872 was payed successful!
+[2020-06-24T06:13:02.957851]: transaction 62659 was payed successful!
+[2020-06-24T06:20:34.375992]: transaction 91569 was payed successful!
+[2020-06-24T06:20:35.804727]: transaction 47998 was payed successful!
+[2020-06-24T06:20:37.294592]: transaction 27785 was payed successful!
+[2020-06-24T06:20:38.739589]: transaction 25415 was payed successful!
+[2020-06-24T06:20:40.210006]: transaction 38858 was payed successful!
+[2020-06-24T06:20:41.724493]: transaction 84843 was payed successful!
+[2020-06-24T06:20:43.203015]: transaction 79769 was payed successful!
+[2020-06-24T06:20:44.689315]: transaction 92619 was payed successful!
+[2020-06-24T06:20:46.220008]: transaction 20525 was payed successful!
+[2020-06-24T06:20:47.678711]: transaction 94581 was payed successful!
+[2020-06-24T06:20:49.188500]: transaction 22321 was payed successful!
+[2020-06-24T06:20:50.671022]: transaction 36264 was payed successful!
+[2020-06-24T06:20:52.208163]: transaction 69529 was payed successful!
+[2020-06-24T06:20:53.618706]: transaction 34669 was payed successful!
+[2020-06-24T06:20:55.053518]: transaction 18813 was payed successful!
+[2020-06-24T06:20:56.490167]: transaction 21649 was payed successful!
+[2020-06-24T06:20:57.969793]: transaction 93178 was payed successful!
+[2020-06-24T06:20:59.360143]: transaction 30117 was payed successful!
+[2020-06-24T06:21:00.721494]: transaction 97057 was payed successful!
+[2020-06-24T06:21:02.126381]: transaction 98620 was payed successful!
+[2020-06-24T06:21:03.542380]: transaction 88629 was payed successful!
+[2020-06-24T06:21:05.116648]: transaction 46851 was payed successful!
+[2020-06-24T06:21:06.561902]: transaction 23298 was payed successful!
+[2020-06-24T06:21:07.970482]: transaction 53436 was payed successful!
+[2020-06-24T06:21:09.398140]: transaction 60241 was payed successful!
+[2020-06-24T06:21:10.814142]: transaction 29199 was payed successful!
+[2020-06-24T06:21:12.239361]: transaction 43512 was payed successful!
+[2020-06-24T06:21:13.671896]: transaction 19974 was payed successful!
+[2020-06-24T06:21:43.689152]: transaction 26454 was payed successful!
+[2020-06-24T06:21:45.256549]: transaction 30652 was payed successful!
+[2020-06-24T06:21:46.658198]: transaction 67154 was payed successful!
+[2020-06-24T06:21:48.149053]: transaction 34164 was payed successful!
+[2020-06-24T06:21:49.626291]: transaction 85885 was payed successful!
+[2020-06-24T06:21:51.060536]: transaction 85200 was payed successful!
+[2020-06-24T06:21:52.511454]: transaction 95747 was payed successful!
+[2020-06-24T06:21:54.104943]: transaction 86714 was payed successful!
+[2020-06-24T06:21:55.519800]: transaction 27978 was payed successful!
+[2020-06-24T06:21:56.943851]: transaction 43979 was payed successful!
+[2020-06-24T06:21:58.394102]: transaction 37512 was payed successful!
+[2020-06-24T06:21:59.913791]: transaction 66099 was payed successful!
+[2020-06-24T06:22:01.356510]: transaction 11149 was payed successful!
+[2020-06-24T06:22:02.899859]: transaction 39449 was payed successful!
+[2020-06-24T06:22:04.327915]: transaction 95792 was payed successful!
+[2020-06-24T06:22:05.725572]: transaction 65982 was payed successful!
+[2020-06-24T06:22:07.254613]: transaction 74870 was payed successful!
+[2020-06-24T06:22:08.704889]: transaction 58654 was payed successful!
+[2020-06-24T06:22:10.291647]: transaction 45329 was payed successful!
+[2020-06-24T06:22:11.725592]: transaction 86656 was payed successful!
+[2020-06-24T06:22:14.374735]: transaction 99140 was payed successful!
+[2020-06-24T06:22:15.767632]: transaction 70016 was payed successful!
+[2020-06-24T06:22:17.134126]: transaction 93206 was payed successful!
+[2020-06-24T06:22:18.540390]: transaction 55745 was payed successful!
+[2020-06-24T06:22:20.065735]: transaction 56597 was payed successful!
+[2020-06-24T06:22:21.539554]: transaction 40984 was payed successful!
+[2020-06-24T06:22:23.035682]: transaction 41521 was payed successful!
+[2020-06-24T06:22:24.429770]: transaction 60916 was payed successful!
+[2020-06-24T06:22:25.822725]: transaction 73181 was payed successful!
+[2020-06-24T06:22:27.282956]: transaction 31026 was payed successful!
+[2020-06-24T06:23:19.072030]: handshake: no external systems!
+[2020-06-24T06:23:19.072451]: handshake: no external systems!
+[2020-06-24T06:23:19.072665]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:19.072883]: handshake: no external systems!
+[2020-06-24T06:23:19.072030]: handshake: no external systems!
+[2020-06-24T06:23:19.072670]: handshake: no external systems!
+[2020-06-24T06:23:19.078293]: handshake: no external systems!
+[2020-06-24T06:23:19.072396]: handshake: no external systems!
+[2020-06-24T06:23:19.538931]: handshake: no external systems!
+[2020-06-24T06:23:19.539135]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:19.540037]: handshake: no external systems!
+[2020-06-24T06:23:19.577672]: handshake: no external systems!
+[2020-06-24T06:23:19.857020]: handshake: no external systems!
+[2020-06-24T06:23:19.857437]: handshake: no external systems!
+[2020-06-24T06:23:19.870381]: handshake: no external systems!
+[2020-06-24T06:23:20.168218]: handshake: no external systems!
+[2020-06-24T06:23:20.168441]: handshake: no external systems!
+[2020-06-24T06:23:20.495686]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:20.496062]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:20.497285]: handshake: no external systems!
+[2020-06-24T06:23:20.497294]: handshake: no external systems!
+[2020-06-24T06:23:20.497431]: handshake: no external systems!
+[2020-06-24T06:23:20.497521]: handshake: no external systems!
+[2020-06-24T06:23:20.497510]: handshake: no external systems!
+[2020-06-24T06:23:20.843291]: handshake: no external systems!
+[2020-06-24T06:23:20.843347]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:20.843560]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:20.843791]: handshake: no external systems!
+[2020-06-24T06:23:20.844392]: handshake: no external systems!
+[2020-06-24T06:23:21.022242]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:21.022591]: handshake: no external systems!
+[2020-06-24T06:23:21.291501]: handshake: no external systems!
+[2020-06-24T06:23:21.291506]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:21.292025]: handshake: no external systems!
+[2020-06-24T06:23:21.645942]: handshake: no external systems!
+[2020-06-24T06:23:21.646175]: ERROR : Failed to access external systems! rollback.....
+[2020-06-24T06:23:21.647027]: handshake: no external systems!
+[2020-06-24T06:23:22.775426]: transaction 12817 was payed successful!
+[2020-06-24T06:30:28.422490]: transaction 73804 was payed successful!
+[2020-06-24T06:30:28.422490]: transaction 43339 was payed successful!
+[2020-06-24T06:30:28.430753]: transaction 78327 was payed successful!
+[2020-06-24T06:30:28.434649]: transaction 57439 was payed successful!
+[2020-06-24T06:30:28.450796]: transaction 30060 was payed successful!
+[2020-06-24T06:30:28.461523]: transaction 74480 was payed successful!
+[2020-06-24T06:30:28.477546]: transaction 11681 was payed successful!
+[2020-06-24T06:30:28.903385]: transaction 24178 was payed successful!
+[2020-06-24T06:30:29.874516]: transaction 46721 was payed successful!
+[2020-06-24T06:30:29.878530]: transaction 94734 was payed successful!
+[2020-06-24T06:30:29.902163]: transaction 24907 was payed successful!
+[2020-06-24T06:30:29.911780]: transaction 15913 was payed successful!
+[2020-06-24T06:30:29.918721]: transaction 56905 was payed successful!
+[2020-06-24T06:30:29.942199]: transaction 18060 was payed successful!
+[2020-06-24T06:30:30.776301]: transaction 66696 was payed successful!
+[2020-06-24T06:30:30.969223]: transaction 67433 was payed successful!
+[2020-06-24T06:30:31.264917]: transaction 78329 was payed successful!
+[2020-06-24T06:30:31.295025]: transaction 79253 was payed successful!
+[2020-06-24T06:30:31.301420]: transaction 61898 was payed successful!
+[2020-06-24T06:30:31.332332]: transaction 13492 was payed successful!
+[2020-06-24T06:30:31.354982]: transaction 91222 was payed successful!
+[2020-06-24T06:30:31.418547]: transaction 29554 was payed successful!
+[2020-06-24T06:30:32.165161]: transaction 23076 was payed successful!
+[2020-06-24T06:30:32.941567]: transaction 55021 was payed successful!
+[2020-06-24T06:30:33.674485]: transaction 76800 was payed successful!
+[2020-06-24T06:30:40.560441]: transaction 34894 was payed successful!
+[2020-06-24T06:30:40.560556]: transaction 36156 was payed successful!
+[2020-06-24T06:30:40.560447]: transaction 14313 was payed successful!
+[2020-06-24T06:30:40.568600]: transaction 81251 was payed successful!
+[2020-06-24T06:30:40.572931]: transaction 66666 was payed successful!
+[2020-06-24T06:30:40.579883]: transaction 83573 was payed successful!
+[2020-06-24T06:30:40.598492]: transaction 42292 was payed successful!
+[2020-06-24T06:30:40.621344]: transaction 94371 was payed successful!
+[2020-06-24T06:30:41.969298]: transaction 24974 was payed successful!
+[2020-06-24T06:30:42.007844]: transaction 66387 was payed successful!
+[2020-06-24T06:30:42.042630]: transaction 32333 was payed successful!
+[2020-06-24T06:30:42.046994]: transaction 95129 was payed successful!
+[2020-06-24T06:30:42.048254]: transaction 64664 was payed successful!
+[2020-06-24T06:30:42.057128]: transaction 29313 was payed successful!
+[2020-06-24T06:30:42.066175]: transaction 41562 was payed successful!
+[2020-06-24T06:30:42.082812]: transaction 16770 was payed successful!
+[2020-06-24T06:30:43.431408]: transaction 53020 was payed successful!
+[2020-06-24T06:30:43.480684]: transaction 50545 was payed successful!
+[2020-06-24T06:30:43.487485]: transaction 12557 was payed successful!
+[2020-06-24T06:30:43.646310]: transaction 27956 was payed successful!
+[2020-06-24T06:30:44.930543]: transaction 63962 was payed successful!
+[2020-06-24T06:30:45.036139]: transaction 41992 was payed successful!
+[2020-06-24T06:36:00.928974]: transaction 40961 was payed successful!
+[2020-06-24T06:36:00.928803]: transaction 74668 was payed successful!
+[2020-06-24T06:36:00.958808]: transaction 96306 was payed successful!
+[2020-06-24T06:36:00.964615]: transaction 27803 was payed successful!
+[2020-06-24T06:36:01.001574]: transaction 39076 was payed successful!
+[2020-06-24T06:36:01.453353]: transaction 50902 was payed successful!
+[2020-06-24T06:36:01.486260]: transaction 52293 was payed successful!
+[2020-06-24T06:36:01.937378]: transaction 80740 was payed successful!
+[2020-06-24T06:36:02.068575]: transaction 76575 was payed successful!
+[2020-06-24T06:36:02.344335]: transaction 82872 was payed successful!
+[2020-06-24T06:36:02.347845]: transaction 26051 was payed successful!
+[2020-06-24T06:36:02.359424]: transaction 42567 was payed successful!
+[2020-06-24T06:36:02.365511]: transaction 81481 was payed successful!
+[2020-06-24T06:36:02.856569]: transaction 22834 was payed successful!
+[2020-06-24T06:36:02.916516]: transaction 13503 was payed successful!
+[2020-06-24T06:36:03.306182]: transaction 24955 was payed successful!
+[2020-06-24T06:36:03.451584]: transaction 13580 was payed successful!
+[2020-06-24T06:36:03.478929]: transaction 20805 was payed successful!
+[2020-06-24T06:36:03.758644]: transaction 11062 was payed successful!
+[2020-06-24T06:36:03.778744]: transaction 21995 was payed successful!
+[2020-06-24T11:31:51.778735]: transaction 75100 was payed successful!
+[2020-06-24T11:36:28.201892]: transaction 22195 was payed successful!
+[2020-06-24T11:48:46.490024]: transaction 75179 was payed successful!
+[2020-06-24T11:52:42.246093]: transaction 51910 was payed successful!
+[2020-06-24T11:55:13.390585]: transaction 84803 was payed successful!
+[2020-06-24T11:59:40.285696]: transaction 18257 was payed successful!
+[2020-06-24T12:01:54.117905]: transaction 35972 was payed successful!
+[2020-06-24T12:03:57.495278]: transaction 54609 was payed successful!
+[2020-06-24T12:09:34.428703]: transaction 62731 was payed successful!
+[2020-06-24T12:49:24.960253]: transaction 58730 was payed successful!
+[2020-06-24T13:15:16.039448]: transaction 24814 was payed successful!
+[2020-06-24T13:18:17.991706]: transaction 92162 was payed successful!
+[2020-06-24T13:22:30.976375]: transaction 65177 was payed successful!
+[2020-06-24T13:26:54.399139]: transaction 69429 was payed successful!
+[2020-06-25T01:38:01.452015]: transaction 14534 was payed successful!
+[2020-06-25T01:38:01.452015]: transaction 51357 was payed successful!
+[2020-06-25T01:38:01.452105]: transaction 12327 was payed successful!
+[2020-06-25T01:38:01.492048]: transaction 34040 was payed successful!
+[2020-06-25T01:38:01.919808]: transaction 37817 was payed successful!
+[2020-06-25T01:38:01.944616]: transaction 18912 was payed successful!
+[2020-06-25T01:38:02.007656]: transaction 95464 was payed successful!
+[2020-06-25T01:38:02.444685]: transaction 59180 was payed successful!
+[2020-06-25T01:38:02.872933]: transaction 23745 was payed successful!
+[2020-06-25T01:38:02.887075]: transaction 81505 was payed successful!
+[2020-06-25T01:38:02.927755]: transaction 78448 was payed successful!
+[2020-06-25T01:38:02.944093]: transaction 58433 was payed successful!
+[2020-06-25T01:38:03.355523]: transaction 22316 was payed successful!
+[2020-06-25T01:38:03.399496]: transaction 68838 was payed successful!
+[2020-06-25T01:38:03.941974]: transaction 66633 was payed successful!
+[2020-06-25T01:38:03.945112]: transaction 97977 was payed successful!
+[2020-06-25T01:38:05.366704]: transaction 87421 was payed successful!
+[2020-06-25T01:38:05.475999]: transaction 19992 was payed successful!
+[2020-06-25T01:59:29.091090]: transaction 52062 was payed successful!

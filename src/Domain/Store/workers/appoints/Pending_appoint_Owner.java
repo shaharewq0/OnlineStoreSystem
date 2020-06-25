@@ -10,7 +10,7 @@ import Domain.store_System.Roles.Registered;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pending_appoint_Owner {
+public class    Pending_appoint_Owner {
 
 
     public StoreOwner_Imp grantor;
@@ -29,6 +29,7 @@ public class Pending_appoint_Owner {
         confirmstion_table.put(store.getCreator(), false);
         store.getCreator().needconfirmstion(this);
     }
+
 
     public Boolean Accept(StoreOwner_Imp role) {
         if (!confirmstion_table.containsKey(role))

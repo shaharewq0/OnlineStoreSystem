@@ -1,6 +1,7 @@
 package Communication.websocket.App.api_impl;
 
 import Communication.websocket.App.messages.Macros.Opcodes;
+import Communication.websocket.App.messages.Macros.Permitions;
 import Communication.websocket.App.messages.Objects.client2server.*;
 import Communication.websocket.App.messages.Objects.server2client.*;
 import Communication.websocket.App.messages.api.Client2ServerMessage;
@@ -21,6 +22,7 @@ import Service_Layer.manager_accese.manager_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
 import Service_Layer.sys_manager_accese.sys_mangaer_accese;
+import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
 
@@ -37,11 +39,17 @@ class SubInstructions {
 
 public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
+    private BaseServer<Message>  server;
+
     private int gustID;
 
     private String username;
     private String paasword;
-    private BaseServer<Message>  server;
+
+    private Thread systemStateViewr = null;
+
+
+
 
     public MallProtocol(BaseServer<Message> server) {
         this.server = server;
@@ -180,9 +188,10 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     public Message accept(ViewCartMessage msg) {
         List<ProductDetails> products = guest_accese.usecase2_7A_WatchProdactsInCart(gustID);
+        double price = guest_accese.getCartPrice(gustID);
 
         if(products != null) {
-            return new PrductsInCartResponse(msg.getId(), products);
+            return new PrductsInCartResponse(msg.getId(), products, price);
         }
 
         return new NackMessage(msg.getId());
@@ -263,9 +272,10 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(PurchaseMessage msg) {
-        CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner());
+        CreditCard card = new CreditCard(msg.getCreditcardNumber(), msg.geteDate(), msg.getCss(), msg.getOwner(), msg.getOwnerID());
+        userAddress adress = new userAddress(msg.getCountry(), msg.getCity(), msg.getShipAdress(), msg.getZip(), msg.getShipReciver());
 
-        if(guest_accese.usecase2_8_Purchase_products(gustID, card, msg.getShipAdress())){
+        if(guest_accese.usecase2_8_Purchase_products(gustID, card, adress)){
             return new AckMessage(msg.getId());
         }
 
@@ -275,8 +285,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     public Message accept(CreateProductMessage msg) {
 
         ProductDetails details = new ProductDetails(msg.getName(), msg.getCategoories(), msg.getKeywords(), msg.getStoreName(), msg.getAmmount(),msg.getPrice());
-        Product prod = new Product(details);
-        //TODO natai add this need checking
+
         if(owner_accese.usecase4_1_1_AddingProdacsToStore(username, paasword, msg.getStoreName(), details)){
             return new AckMessage(msg.getId());
         }
@@ -320,9 +329,9 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     public Message accept(Add2ProductMessage msg) {
         ProductDetails details = guest_accese.searchProductByName(msg.getProduct(), msg.getStore());
         details.setAmount(details.getAmount() + msg.getAmmount());
-        Product product = new Product(details);
+        //Product product = new Product(details);
 
-        if(owner_accese.usecase4_1_3_EditProduct(username, paasword, msg.getStore(), msg.getProduct(), product)){
+        if(owner_accese.usecase4_1_3_EditProduct(username, paasword, msg.getStore(), msg.getProduct(), details)){
             return new AckMessage(msg.getId());
         }
 
@@ -371,7 +380,7 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         switch (highestRole){
             case "regular"          : return new memberTypeResponse(Opcodes.UserType.regular        , msg.getId());
             case "manager"          : return new memberTypeResponse(Opcodes.UserType.storeManager   , msg.getId());
-            case "owner"            : return new memberTypeResponse(Opcodes.UserType.storeOwner, msg.getId());
+            case "owner"            : return new memberTypeResponse(Opcodes.UserType.storeOwner     , msg.getId());
             case "systemManager"    : return new memberTypeResponse(Opcodes.UserType.systemManager  , msg.getId());
             default                 : return new NackMessage(msg.getId());
         }
@@ -398,11 +407,142 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
         return new StringListResponse(msg.getId(), appinteeslst);
     }
 
-    public Message accept(createDiscount msg) {
+    public Message accept(CreateDiscountMessage msg) {
        if( owner_accese.usecase4_2_AddDiscount(username, paasword, msg.getStore(), msg.getDiscount())){
            return new AckMessage(msg.getId());
        }
 
         return new NackMessage(msg.getId());
+    }
+
+    public Message accept(GetDiscountMessage msg) {
+        String answer = owner_accese.usecase4_2_GetDiscount(username, paasword, msg.getStoreName());
+
+        if(answer == null || answer.equals("")){
+            return new NackMessage(msg.getId());
+        }
+
+        return new StringResponse((byte)-1, msg.getId(), answer);
+    }
+
+    public Message accept(RemoveDiscountMessage msg) {
+        if(owner_accese.usecase4_2_RemoveDiscount(username, paasword, msg.getStoreName(), msg.getDiscountID())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(GetAcquisitionsMessage msg) {
+        String answer = owner_accese.usecase4_2_GetAcquisition(username, paasword, msg.getStoreName());
+
+        if(answer == null || answer.equals("")){
+            return new NackMessage(msg.getId());
+        }
+
+        return new StringResponse((byte)-1, msg.getId(), answer);
+    }
+
+    public Message accept(RemoveAcquisitionMessage msg) {
+        if(owner_accese.usecase4_2_RemoveAcquisition(username, paasword, msg.getStoreName(), msg.getAcquisitionID())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(AddAcquisitionMessage msg) {
+        if( owner_accese.usecase4_2_AddAcquisition(username, paasword, msg.getStoreName(), msg.getAcquisition())){
+            return new AckMessage(msg.getId());
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(FilterMessage msg) {
+        List<ProductDetails> prods = null;
+
+        switch (msg.getType()){
+            case byPrice: {
+                prods = guest_accese.usecase2_5D_1_FilterbyPrice(msg.getMin(), msg.getMax(), msg.getProducts());
+                break;
+            }
+            case byRating: {
+                prods = guest_accese.usecase2_5D_2_FilterbyRating((int)msg.getMin(), (int)msg.getMax(), msg.getProducts());
+                break;
+            }
+            case byStoreRating: {
+                prods = guest_accese.usecase2_5D_4_FilterbyStoreRating((int)msg.getMin(), (int)msg.getMax(), msg.getProducts());
+                break;
+            }
+        }
+
+        if(prods == null){
+            return new NackMessage(msg.getId());
+        }
+
+        return new ProductDetailsListResponse(msg.getId(), prods);
+    }
+
+    public Message accept(getManagerPermitions msg) {
+
+        List<String> perms = owner_accese.usecase4_6_getMangagerPermesions(username, paasword, msg.getStore(), username);
+        LinkedList<Byte> opcodedPerms = new LinkedList<>();
+        Permitions permitions = new Permitions();
+
+        if (perms != null) {
+            permitions.permesions.forEach((op, text) ->{
+                if(perms.contains(text)){
+                    opcodedPerms.offer(op);
+                }
+            });
+
+            return new ByteArrayResponse((byte)-1, msg.getId(), opcodedPerms);
+        }
+
+        return new NackMessage(msg.getId());
+    }
+
+    public Message accept(ViewSystemStateMessage msg) {
+
+        try {
+            if(systemStateViewr != null){
+                systemStateViewr.interrupt();
+                systemStateViewr = null;
+            }
+        }catch (Exception e){}
+
+
+        systemStateViewr = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()){
+                String state = sys_mangaer_accese.usecase4_SystemStateString(username, paasword);
+
+                if(state != null) {
+                    server.send(this, new StringResponse((byte)1, state));
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+
+        systemStateViewr.start();
+
+        return new AckMessage(msg.getId());
+    }
+
+    public Message accept(EndViewSystemStateMessage msg) {
+        try {
+            if(systemStateViewr != null){
+                systemStateViewr.interrupt();
+                systemStateViewr = null;
+                return new AckMessage(msg.getId());
+            }
+            return new NackMessage(msg.getId());
+        } catch (Exception e){
+            return new NackMessage(msg.getId());
+        }
     }
 }

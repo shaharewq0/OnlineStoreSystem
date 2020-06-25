@@ -10,6 +10,7 @@ import Domain.store_System.System;
 import Service_Layer.guest_accese.guest_accese;
 import Service_Layer.member_accese.member_accese;
 import Service_Layer.owner_accese.owner_accese;
+import Service_Layer.userAddress;
 import extornal.payment.CreditCard;
 import tests.AcceptanceTests.auxiliary.*;
 
@@ -121,7 +122,7 @@ public class SystemAdapter {
 
 	// 2.8
 	public boolean purchase(int guestID, String card, String edate, String css, String cardOwner, String shipAdress) {
-		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner), shipAdress);
+		return guest_accese.usecase2_8_Purchase_products(guestID, new CreditCard(card, edate, css, cardOwner, "1234"), new userAddress("United States", "Washington, D.C.", "1600 Pennsylvania Avenue NW", "20500", "Donald Trump"));
 	}
 
 	// 3.1
@@ -153,7 +154,7 @@ public class SystemAdapter {
 	// 4.1.3
 	public boolean EditProduct(String username, String password, String storeName, String productName,
 							   ProductDetails newProductDet) {
-		return owner_accese.usecase4_1_3_EditProduct(username, password, storeName, productName, new Product(newProductDet));
+		return owner_accese.usecase4_1_3_EditProduct(username, password, storeName, productName, newProductDet);
 	}
 
 	// 4.3

@@ -25,7 +25,7 @@ public class MallServer implements Closeable {
 
 
     public MallServer() {
-        server = new BaseServer<>(MallProtocol::new);
+        server =  BaseServer.createServer(MallProtocol::new);
     }
 
     @OnOpen

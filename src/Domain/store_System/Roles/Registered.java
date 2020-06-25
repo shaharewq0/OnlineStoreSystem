@@ -10,6 +10,7 @@ import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
 import Domain.store_System.ClintObserver;
 import Domain.store_System.MSGObservable;
+import Domain.store_System.System;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,10 +41,23 @@ public class Registered implements MSGObservable {
     }
 
     public void LogLogin(User user, ClintObserver CO) {
+        System.MemberLogin.getAndIncrement();
+        boolean imManger = false;
+        boolean imOwner = false;
+        for (Store_role SR: store_roles.values()) {
+            if(SR instanceof StoreOwner_Imp)
+                imOwner = true;
+            if(SR instanceof  StoreManager_Imp)
+                imManger = true;
+        }
+        if(imOwner)
+            System.OwnerLogin.getAndIncrement();
+        else if (imManger)
+            System.ManagerLogin.getAndIncrement();
+
+
         clints.put(user,CO);
         if(!MSG_box.isEmpty()) {
-            TempMSG = MSG_box;
-            MSG_box = new LinkedList<>();
             CO.Notifi_me(this);
         }
     }
@@ -115,6 +129,7 @@ public class Registered implements MSGObservable {
             }
         }
 
+        add_msg("you have been appointed as owner of the store " + role.getStore().getName());
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;
@@ -134,6 +149,7 @@ public class Registered implements MSGObservable {
             }
         }
 
+        add_msg("you have been appointed as manager of the store " + role.getStore().getName());
         store_roles.remove(role.getStore().getName());
         store_roles.put(role.getStore().getName(), role);
         return true;
@@ -145,8 +161,8 @@ public class Registered implements MSGObservable {
     }
 
     public void notifyUser(){
-        TempMSG = MSG_box;
-        MSG_box = new LinkedList<>();
+        TempMSG = new LinkedList<>(MSG_box);
+        //MSG_box = new LinkedList<>();
         for (ClintObserver CO: clints.values()) {
             CO.Notifi_me(this);
         }
@@ -168,6 +184,7 @@ public class Registered implements MSGObservable {
 //    }
 
     public List<String> getMessges() {
+        MSG_box = new LinkedList<>();
         return TempMSG;
     }
 }

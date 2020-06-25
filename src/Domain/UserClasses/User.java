@@ -93,6 +93,10 @@ public class User implements IUser {
         return cart.allProductsInCart();
     }
 
+    public double getCartPrice() {
+        return cart.CalcPrice();
+    }
+
     public boolean logout() {
         if (profile == null || logInstanse == null)
             return false;
@@ -175,7 +179,7 @@ public class User implements IUser {
         return role.addItem(p);
     }
 
-    public boolean editProduct(String storeName, String prodactname, Product newdetail) {
+    public boolean editProduct(String storeName, String prodactname, ProductDetails newdetail) {
         if (profile == null)
             return false;
         Store_role role = profile.store_roles.get(storeName);
@@ -209,6 +213,22 @@ public class User implements IUser {
         if (appointee == null)
             return false;
         return profile.store_roles.get(storeName).appointOwner(appointee);
+    }
+
+    public boolean acceptOwner(String storeName, String hisusername) {
+        if (profile == null)
+            return false;
+
+        return profile.store_roles.get(storeName).confirmOwner(hisusername);
+    }
+
+    public Collection<String>  getWaitingAccept(String storeName)
+    {
+        if (profile == null)
+            return new LinkedList<>();
+
+        return profile.store_roles.get(storeName).getWaitingAccep();
+
     }
 
     @Override
@@ -274,6 +294,20 @@ public class User implements IUser {
         return store_roles.get(store).addDiscount(discount);
     }
 
+    public String getDiscount(String store) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(store) == null)
+            return "";
+        return store_roles.get(store).getDiscounts();
+    }
+
+    public String getAcquisition(String store) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        if (store_roles.get(store) == null)
+            return null;
+        return store_roles.get(store).getAcquisition();
+    }
+
     public boolean removeDiscount(int discountID, String store) {
         Map<String, Store_role> store_roles = profile.store_roles;
         if (store_roles.get(store) == null)
@@ -327,6 +361,12 @@ public class User implements IUser {
         return store_roles.get(storename).editManagerPermesions(managername, permesions);
     }
 
+    public List<String> getMangagerPermesions(String storename, String managername) {
+        Map<String, Store_role> store_roles = profile.store_roles;
+        EventLogger.GetInstance().Add_Log(this.toString() + "- get managerPermesions");
+        return store_roles.get(storename).getManagerPermesions();
+    }
+
 
     // Static -
     // ------------------------------------------------------------------------------------------------------------------
@@ -378,6 +418,7 @@ public class User implements IUser {
         return output;
     }
 
+
     static public List<ProductDetails> filterByRating(int minRating, int maxRating) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
         for (StoreImp store : System.getInstance().getAllStores()) {
@@ -389,6 +430,7 @@ public class User implements IUser {
         return output;
         // return System.getInstance().filterByRating( min, max);
     }
+
 
     static public List<ProductDetails> filterByCategory(String category) {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
@@ -413,6 +455,54 @@ public class User implements IUser {
         return output;
         // return System.getInstance().filterByStoreRating( min, max);
     }
+
+
+
+
+
+    static public List<ProductDetails> filterByStoreRating(int minRating, int maxRating, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            StoreImp store = System.getInstance().getStoreDetails(product.getStoreName());
+            if (store.getRating() >= minRating && store.getRating() <= maxRating){
+                output.add(product);
+            }
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByCategory(String category, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product :prods) {
+            if (product.getCategory().contains(category))
+                output.add(product);
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByRating(int minRating, int maxRating, List<ProductDetails> prods) {
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            if (product.getRating() <= maxRating && product.getRating() >= minRating)
+                output.add(product);
+        }
+        return output;
+    }
+
+    static public List<ProductDetails> filterByPrice(double minPrice, double maxPrice, List<ProductDetails> prods) {
+
+        List<ProductDetails> output = new LinkedList<ProductDetails>();
+        for (ProductDetails product : prods) {
+            if (product.getPrice() <= maxPrice && product.getPrice() >= minPrice)
+                output.add(product);
+        }
+
+        return output;
+    }
+
+
+
+
 
     @Override
     public String getName() {
@@ -445,6 +535,5 @@ public class User implements IUser {
     public boolean CheckAcquisitions() {
         return cart.CheckAcquisitions();
     }
-
 
 }

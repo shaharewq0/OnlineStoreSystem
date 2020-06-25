@@ -77,7 +77,7 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
-    public boolean editItem(String OLD_item, Product NEW_item) {
+    public boolean editItem(String OLD_item, ProductDetails NEW_item) {
         if (!permission.contains("editItem"))
             return false;
         return MyJob.store.editProduct(OLD_item, NEW_item);
@@ -232,6 +232,11 @@ public class StoreManager_Imp implements Store_role {
     }
 
     @Override
+    public List<String> getManagerPermesions() {
+        return permission;
+    }
+
+    @Override
     public boolean getNewPermesions(List<String> permesions) {
         EventLogger.GetInstance().Add_Log(this.toString() + "- my Permesions have changed");
         this.permission = (new LinkedList<String>());
@@ -246,6 +251,13 @@ public class StoreManager_Imp implements Store_role {
         if (!permission.contains("addDiscount"))
             return false;
         return getStore().addDiscount(discount);
+    }
+
+    @Override
+    public String getDiscounts() {
+        if (!permission.contains("getDiscounts"))
+            return "";
+        return getStore().getDiscounts();
     }
 
     @Override
@@ -270,6 +282,14 @@ public class StoreManager_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+
+    @Override
+    public String getAcquisition() {
+        if (!permission.contains("getacquisition"))
+            return null;
+        return getStore().getAcquisitions();
+    }
+
     @Override
     public boolean canPromoteToOwner() {
         return CheckTegrati_ImMangaer() && true;
@@ -283,6 +303,16 @@ public class StoreManager_Imp implements Store_role {
     @Override
     public String getType(){
         return "manager";
+    }
+
+    @Override
+    public boolean confirmOwner(String newOnwerName) {
+        return false;
+    }
+
+    @Override
+    public Collection<String> getWaitingAccep() {
+        return null;
     }
 
 }

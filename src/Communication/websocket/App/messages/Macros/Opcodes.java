@@ -24,10 +24,9 @@ public class Opcodes {
     public static final byte SearchProductByName        = 0x16;
     public static final byte SearchProductBycategory    = 0x17;
     public static final byte SearchProductByKeyword     = 0x18;
-    public static final byte FilterByPrice              = 0;
-    public static final byte FilterByRating             = 0;
-    public static final byte FilterByCategory           = 0;
-    public static final byte FilterByStoreRating        = 0;
+    public static final byte FilterByPrice              = 0x04;
+    public static final byte FilterByRating             = 0x05;
+    public static final byte FilterByStoreRating        = 0x06;
     public static final byte Save2Basket                = 0x26;
     public static final byte ProductsInCarts            = 0x27;
     public static final byte RemoveFromCart             = 0x2a;
@@ -50,17 +49,25 @@ public class Opcodes {
     //owner
     public static final byte AddProduct2Store           = 0x41;
     public static final byte RemoveItem                 = 0x42;
-    public static final byte EditProduct                = 0;
+    //public static final byte EditProduct                = 0;
     public static final byte Add2Product                = 0x44;
     public static final byte Appoint                    = 0x43;
     public static final byte editMangagerPermesions     = 0x46;
+    public static final byte getEditMangagerPermesions  = 0x7a;
     public static final byte FireManager                = 0x47;
     public static final byte AcceptPendingAppintment    = 0x4c;
     public static final byte PendingAppountments        = 0x4d;
+    public static final byte getAcquisitions            = 0x40;
+    public static final byte removeAcquisition          = 0x45;
+    public static final byte addAcquisitions            = 0x48;
+
 
     //System manager
     public static final byte HistoryOfUser  = 0x64;
     public static final byte HistoryOfStore =  0x6b;
+    public static final byte viewsSytsemState =  0x6c;
+    public static final byte endViewsSytsemState =  0x6d;
+
 
 
 
@@ -71,16 +78,4 @@ public class Opcodes {
         public static final byte storeManager   = 0x73;
         public static final byte regular        = 0x74;
     }
-
-    // opcode for discouts Messages
-    public class Discount{
-        public static final byte and                = 0x10;
-        public static final byte or                 = 0x11;
-        public static final byte xor                = 0x12;
-        public static final byte visible            = 0x13;
-        public static final byte conditionalAmmount = 0x14;
-        public static final byte conditionalPrice   = 0x15;
-    }
-
-
 }

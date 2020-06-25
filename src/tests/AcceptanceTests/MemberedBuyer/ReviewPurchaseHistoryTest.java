@@ -4,6 +4,7 @@ import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
+import Service_Layer.userAddress;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
         guestID = BaseGuestTest.guestID;
 
         system.login(guestID, USERNAME, PASSWORD);   // do login with guest id
-        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, "london"));         // valid card, should work
+        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, new userAddress("United States", "Washington, D.C.", "1600 Pennsylvania Avenue NW", "20500", "Donald Trump")));         // valid card, should work
     }
 
     @Test
@@ -51,8 +52,7 @@ public class ReviewPurchaseHistoryTest extends BaseAccTest {
 
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);
-        System.out.println(TruePurchases);
-        System.out.println(purchases);
+
 
         assertEqualsLists(TruePurchases, purchases);
     }

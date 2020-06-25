@@ -10,14 +10,12 @@ import Domain.Store.StoreImp;
 import Domain.Store.StorePurchase;
 import Domain.Store.workers.appoints.Appoint_Owner;
 import Domain.Store.workers.appoints.Pending_appoint_Owner;
+import Domain.info.MangaerPermesions;
 import Domain.info.ProductDetails;
 import Domain.info.Question;
 import Domain.store_System.Roles.Registered;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StoreOwner_Imp implements Store_role {
     protected Registered user;
@@ -27,10 +25,10 @@ public class StoreOwner_Imp implements Store_role {
     protected String workername = "";
     // the Owner who appointed current owner, null for original store owner
     protected Map<String, Store_role> OwnerAppointeis;// Owners who got appointed by current owner, for future use
-    protected Map<String, Pending_appoint_Owner> OwnerPendingAppointeis = new HashMap<>();
+    protected Map<String, Pending_appoint_Owner> OwnerPendingAppointeis = new HashMap<>();//users that i want to make manager
     protected Map<String, Store_role> ManagerAppointeis;// managers who got appointed by current owner
 
-    protected Map<String,Pending_appoint_Owner> newOwners = new HashMap<>();
+    protected Map<String, Pending_appoint_Owner> newOwners = new HashMap<>();//users that are waiting my accept to become an owner
     // -------------------------------------------------------------------------Contractors
 
     public StoreOwner_Imp() {
@@ -68,7 +66,7 @@ public class StoreOwner_Imp implements Store_role {
     }
 
     @Override
-    public boolean editItem(String OLD_item, Product NEW_item) {
+    public boolean editItem(String OLD_item, ProductDetails NEW_item) {
         EventLogger.GetInstance().Add_Log(this.toString() + "-Owner edit item");
         return myJob.store.editProduct(OLD_item, NEW_item);
     }
@@ -101,14 +99,14 @@ public class StoreOwner_Imp implements Store_role {
 
     @Override
     public boolean appointOwner(Registered user) {
-        //StoreOwner_Imp newRole = new StoreOwner_Imp(this, user);
-        Pending_appoint_Owner appointment = new Pending_appoint_Owner(this,user,getStore());
-        OwnerPendingAppointeis.put(user.getId(),appointment);
-       return appointment.Accept(this);
+        //when creating a new pendint appoint - it sends itself into store and all other owners that needs to confirm
+        Pending_appoint_Owner appointment = new Pending_appoint_Owner(this, user, getStore());
+        OwnerPendingAppointeis.put(user.getId(), appointment);
+        return appointment.Accept(this);
         //TODO move to the pending appoint
 //        if (user.appointAsOwner(newRole)) {
 //            myJob.store.appointOwner(newRole);
- //           OwnerAppointeis.put(user.getId(), newRole);
+        //           OwnerAppointeis.put(user.getId(), newRole);
 //            EventLogger.GetInstance().Add_Log(this.toString() + "Owner appoint new Owner");
 //            return true;
 //        }
@@ -116,10 +114,9 @@ public class StoreOwner_Imp implements Store_role {
 //        return false;
     }
 
-    public void finalise_appoint(Pending_appoint_Owner pending)
-    {
+    public void finalise_appoint(Pending_appoint_Owner pending) {
         StoreOwner_Imp newRole = new StoreOwner_Imp(this, pending.grantee);
-        if(OwnerPendingAppointeis.remove(pending.grantee.getId()) == null)
+        if (OwnerPendingAppointeis.remove(pending.grantee.getId()) == null)
             ErrorLogger.GetInstance().Add_Log(this.toString() + ": Owner appointed without pending ");
         OwnerAppointeis.put(user.getId(), newRole);
     }
@@ -198,6 +195,11 @@ public class StoreOwner_Imp implements Store_role {
     }
 
     @Override
+    public List<String> getManagerPermesions() {
+        return Arrays.asList(MangaerPermesions.permesions);
+    }
+
+    @Override
     public boolean canPromoteToOwner() {
         return false;
     }
@@ -211,6 +213,11 @@ public class StoreOwner_Imp implements Store_role {
     @Override
     public boolean addDiscount(Discount discount) {
         return getStore().addDiscount(discount);
+    }
+
+    @Override
+    public String getDiscounts() {
+        return getStore().getDiscounts();
     }
 
     @Override
@@ -234,25 +241,40 @@ public class StoreOwner_Imp implements Store_role {
         return getStore().removeacquisition(acquisitionID);
     }
 
+    @Override
+    public String getAcquisition() {
+        return getStore().getAcquisitions();
+    }
+
     public boolean CheckTegrati_ImMangaer() {
         return user != null;
     }
 
+    //this tells me that im waiting for you to confirm my appointment
+    //(idealy this needs to move into store)
     public void needconfirmstion(Pending_appoint_Owner pending_appoint_owner) {
         //TODO
-        newOwners.put(pending_appoint_owner.grantee.getId(),pending_appoint_owner);
+        newOwners.put(pending_appoint_owner.grantee.getId(), pending_appoint_owner);
         user.add_msg("a new Owner is being appointed for store:" + getStore().getName()
                 + "- required your confirmation - " + pending_appoint_owner.grantee.getId());
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return "owner";
     }
 
     //TODO
-//    public boolean confirmOwner(String newOnwerName)
-//    {
-//       return newOwners.get(newOnwerName).Accept(this);
-//    }
+    public boolean confirmOwner(String newOnwerName) {
+        if (!newOwners.containsKey(newOnwerName))
+            return false;
+        boolean output = newOwners.get(newOnwerName).Accept(this);
+        newOwners.remove(newOnwerName);
+        return output;
+    }
+
+    public Collection<String> getWaitingAccep()
+    {
+        return newOwners.keySet();
+    }
 }

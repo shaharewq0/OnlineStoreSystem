@@ -1,6 +1,7 @@
 package Communication.websocket.api;
 
 
+import Communication.websocket.Logger.ServerErrorLog;
 import Communication.websocket.Logger.ServerLogger;
 import Domain.Logs.Log;
 
@@ -24,14 +25,30 @@ public class BaseServer<T> implements Closeable {
     /** suply a protocol fp each client */
     private Function<BaseServer<T>, MessagingProtocol<T>> protocolSupplier;
 
-    // logger
+
+    /** logger */
     private Log logger;
 
+    /** singleton */
+    private static BaseServer<?> instance = null;
 
-    public BaseServer(Function<BaseServer<T>, MessagingProtocol<T>> protocolSupplier) {
+    @SuppressWarnings("all")
+    public static<E> BaseServer<E> createServer(Function<BaseServer<E>, MessagingProtocol<E>> protocolSupplier) {
+
+        if(instance == null) {
+            instance = new BaseServer<>(protocolSupplier);
+        }
+
+        return (BaseServer<E>)instance;
+    }
+
+
+    private BaseServer(Function<BaseServer<T>, MessagingProtocol<T>> protocolSupplier) {
         protocols = new ConcurrentHashMap<>();
         this.protocolSupplier = protocolSupplier;
-        //this.logger = ServerLogger.GetInstance();
+        this.logger = ServerLogger.GetInstance();
+
+       print(timeString() + " server is now online!");
     }
 
 
@@ -65,12 +82,14 @@ public class BaseServer<T> implements Closeable {
     }
 
     public void onError(Session session, Throwable e){
-        print(String.format("ERROR in session (id: %s) : %s", session.getId(), e.getMessage()));
+        String err = String.format( timeString() + "ERROR in session (id: %s) : %s", session.getId(), e.getMessage());
+        print(err);
+        ServerErrorLog.GetInstance().Add_Log(err);
         endSession(session);
     }
 
     public void onClose(Session session){
-        print(String.format("closeted session. id: %s", session.getId()));
+        print(String.format( timeString() + "closeted session. id: %s", session.getId()));
         endSession(session);
 
     }
@@ -102,7 +121,7 @@ public class BaseServer<T> implements Closeable {
 
     private void print(String msg){
         System.out.println(msg);
-       // logger.Add_Log(msg);
+        logger.Add_Log(msg);
     }
 
     private void endSession(Session session){

@@ -4,6 +4,7 @@ import Domain.UserClasses.UserPurchase;
 import Domain.Store.StorePurchase;
 import Domain.info.ProductDetails;
 import Service_Layer.guest_accese.guest_accese;
+import Service_Layer.userAddress;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         guestID = BaseGuestTest.guestID;
 
         system.login(guestID, USERNAME, PASSWORD);   // do login with guest id
-        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, "london"));         // valid card, should work
+        Assert.assertTrue(guest_accese.usecase2_8_Purchase_products(guestID, CreditCards.card1, new userAddress("england", "london", "Beckenham Place", "123456789", "Queen Elizabeth ")));         // valid card, should work
     }
 
     @Test

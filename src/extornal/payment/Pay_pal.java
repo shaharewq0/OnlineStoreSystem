@@ -13,20 +13,25 @@ public class Pay_pal implements PaymentMethed {
 
 	public Pay_pal(){
 		validCards = new LinkedList<>();
-		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil"));
+		validCards.add(new CreditCard("1234-4321-1234-4321", "06/23", "123", "yosi pil", "1234"));
 	}
 
 
 	@Override
-	public boolean pay(CreditCard card_num, double amount) {
+	public int pay(CreditCard card_num, double amount) {
 		//card_num.getMoney(amount);
-		System.out.println("thank you for using " + name);
+		//System.out.println("thank you for using " + name);
 		if( validCards.contains(card_num)){
-			System.out.println("we will charge " + String.valueOf(card_num) + String.valueOf(amount) + "dollars");
-			return  true;
+			//System.out.println("we will charge " + String.valueOf(card_num) + String.valueOf(amount) + "dollars");
+			return  1;
 		}
 
-		System.out.println("the card " + String.valueOf(card_num) + " is no a valid card!");
+		//System.out.println("the card " + String.valueOf(card_num) + " is no a valid card!");
+		return -1;
+	}
+
+	@Override
+	public boolean cancel_pay(int transactionID) {
 		return false;
 	}
 

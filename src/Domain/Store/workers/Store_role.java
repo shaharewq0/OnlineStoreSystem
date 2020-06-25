@@ -31,13 +31,15 @@ public interface Store_role {
 
     boolean fireManager(String manager);
 
-    boolean editItem(String OLD_item, Product NEW_item);
+    boolean editItem(String OLD_item, ProductDetails NEW_item);
 
     boolean removeItem(String prodactname);
 
     List<StorePurchase> getPurchaseHistory();
 
     boolean editManagerPermesions(String managername, List<String> permesions);
+
+    List<String> getManagerPermesions();
 
     Collection<Question> viewQuestions();
 
@@ -55,6 +57,8 @@ public interface Store_role {
 
     boolean addDiscount(Discount discount);
 
+    String getDiscounts();
+
     boolean removeDiscount(int discountID);
 
     String getName();
@@ -63,5 +67,10 @@ public interface Store_role {
 
     boolean removeacquisition(int acquisitionID);
 
+    String getAcquisition();
+
     String getType();
+
+     boolean confirmOwner(String newOnwerName);
+     Collection<String> getWaitingAccep();
 }
