@@ -280,7 +280,7 @@ public class StoreOwner_Imp implements Store_role {
 
     @Override
     public String getDiscounts() {
-        return getStore().getDiscounts();
+        return getStore().getDiscountsString();
     }
 
     @Override
@@ -306,7 +306,7 @@ public class StoreOwner_Imp implements Store_role {
 
     @Override
     public String getAcquisition() {
-        return getStore().getAcquisitions();
+        return getStore().getAcquisitionsString();
     }
 
     public boolean CheckTegrati_ImMangaer() {

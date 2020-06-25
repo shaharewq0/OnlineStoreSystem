@@ -10,7 +10,7 @@ public class Permitions {
     public Permitions(){
         permesions = new HashMap<>();
 
-        permesions.put((byte)0x38, "getDiscounts");
+        permesions.put((byte)0x38, "getDiscountsString");
         permesions.put((byte)0x39, "removeDiscount");
         permesions.put((byte)0x3a, "addDiscount");
 

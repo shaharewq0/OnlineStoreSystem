@@ -33,7 +33,7 @@ public interface IStore {
 
 	public MyPair<Product_boundle,String> TakeItem(String name, int amout);
 
-	public String getDiscounts();
+	public String getDiscountsString();
 
 	boolean removeProduct(String pName);
 

@@ -315,9 +315,9 @@ public class StoreManager_Imp implements Store_role {
 
     @Override
     public String getDiscounts() {
-        if (!permission.contains("getDiscounts"))
+        if (!permission.contains("getDiscountsString"))
             return "";
-        return getStore().getDiscounts();
+        return getStore().getDiscountsString();
     }
 
     @Override
@@ -347,7 +347,7 @@ public class StoreManager_Imp implements Store_role {
     public String getAcquisition() {
         if (!permission.contains("getacquisition"))
             return null;
-        return getStore().getAcquisitions();
+        return getStore().getAcquisitionsString();
     }
 
     @Override

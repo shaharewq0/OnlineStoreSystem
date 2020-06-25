@@ -238,7 +238,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
 
         for (UserPurchase pur: purches) {
             sb.append(offerStorePurchesList_string(pur.eachPurchase)).append("\n");
-            sb.append("Total Price : ").append(pur.TotalePrice).append("\n\n");
+            sb.append("Total Price : ").append(pur.TotalPrice).append("\n\n");
         }
 
         return sb.toString();

@@ -12,10 +12,10 @@ public final class PassProtocol_Imp implements PasswordProtocol{
     public static PassProtocol_Imp Instance=null;
     public static List<Password> table;
     public static MessageDigest messageDigest;
-    public static Password_DA da;
+    //public static Password_DA da;
 
     private PassProtocol_Imp(){
-        da= new Password_DA();
+        //da= new Password_DA();
         table= new LinkedList<>();
         try {
             messageDigest = MessageDigest.getInstance("SHA-256");
@@ -34,7 +34,7 @@ public final class PassProtocol_Imp implements PasswordProtocol{
         String hash=new String(messageDigest.digest());
         Password pass = new Password(userID,hash);
         table.add(pass);
-        da.add(pass);
+        //da.add(pass);
         return true;
     }
 
@@ -57,7 +57,7 @@ public final class PassProtocol_Imp implements PasswordProtocol{
         for(Password pass: table){
             if(pass.getUserID().equals(userID) && pass.getPasswordHash().equals(hash)) {
                 table.remove(pass);
-                da.delete(pass);
+                //da.delete(pass);
                 return true;
             }
         }

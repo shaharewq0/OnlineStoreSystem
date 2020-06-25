@@ -58,7 +58,7 @@ public class UserPurchase {
 	public String toString() {
 		return "UserPurchase{" +
 				"eachPurchase=" + eachPurchase +
-				", TotalePrice=" + TotalePrice +
+				", TotalePrice=" + TotalPrice +
 				'}';
 	}
 }

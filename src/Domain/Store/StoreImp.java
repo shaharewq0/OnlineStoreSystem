@@ -387,12 +387,12 @@ public class StoreImp implements IStore {
         return true;
     }
 
-    public String getDiscounts() {
+    public String getDiscountsString() {
         return discounts.toString();
 
     }
 
-    public String getAcquisitions() {
+    public String getAcquisitionsString() {
         return acquisitions.toString();
     }
 

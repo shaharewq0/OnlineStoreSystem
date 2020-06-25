@@ -34,7 +34,7 @@
 
             <property name="rating" type="int"/>
 
-            <many-to-one name="discounts" class="Domain.Policies.Discounts.DiscountPolicy" cascade="all" lazy="false"/>
+            <many-to-one name="getDiscountsString" class="Domain.Policies.Discounts.DiscountPolicy" cascade="all" lazy="false"/>
 
             <many-to-one name="acquisitions" class="Domain.Policies.Acquisitions.AcquisitionPolicy" cascade="all" lazy="false"/>
 
