@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.Store_Inventory_DA;
 import Domain.Store.Product;
 import Domain.Store.Product_boundle;
 import Domain.Store.Store_Inventory;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class Store_Inventory_DATest {
 

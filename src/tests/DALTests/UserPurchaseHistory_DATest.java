@@ -1,5 +1,6 @@
-package DAL;
+package tests.DALTests;
 
+import DAL.UserPurchaseHistory_DA;
 import Domain.Store.StorePurchase;
 import Domain.UserClasses.UserPurchase;
 import Domain.UserClasses.User_Purchase_History;
@@ -10,7 +11,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class UserPurchaseHistory_DATest {
     UserPurchaseHistory_DA da;

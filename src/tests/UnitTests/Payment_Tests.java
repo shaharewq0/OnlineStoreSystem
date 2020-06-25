@@ -1,15 +1,10 @@
 package tests.UnitTests;
 
-import static org.junit.Assert.*;
-
+import extornal.payment.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import extornal.payment.Isracard;
-import extornal.payment.MyPaymentSystem;
-import extornal.payment.MyPaymentSystem_Driver;
-import extornal.payment.Pay_pal;
-import extornal.payment.CreditCard;
+import static org.junit.Assert.*;
 
 public class Payment_Tests {
 
@@ -31,9 +26,9 @@ public class Payment_Tests {
 		}
 		assertTrue(mss.pay(bank1, 5555)==1);
 
-		assertFalse(mss.pay(null, 5555)!=1);
+		assertFalse(mss.pay(null, 5555) == 1);
 
-		assertFalse(mss.pay(bank1, -1)!=1);
+		assertFalse(mss.pay(bank1, -1) == 1);
 		
 	}
 	
