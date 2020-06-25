@@ -181,6 +181,12 @@ public class owner_accese {
             return false;
         return me.fireManager(storeName, username);
     }
+    public static boolean usecase4_7_FireOwner(String myusername, String myPassword, String storeName, String username) {
+        User me = System.getInstance().getMember(myusername, myPassword);
+        if (me == null)
+            return false;
+        return me.fireOwner(storeName, username);
+    }
 
     public static List<Question> usecase4_9_ViewMembersQuestions(String myusername, String myPassword, String storeName) {
         User me = System.getInstance().getMember(myusername, myPassword);
