@@ -1,5 +1,6 @@
 package Service_Layer;
 
+import Communication.websocket.Logger.ServerErrorLog;
 import Domain.Store.Product;
 import Domain.info.ProductDetails;
 import tests.AcceptanceTests.auxiliary.StoreDetails;
@@ -51,8 +52,10 @@ public class InitSystemFromFile {
             case "ChangeManagerPermissions":
                 //TODO
                 break;
-            default:
+            default: {
                 System.out.println("ignored: " + Arrays.toString(command));
+                ServerErrorLog.GetInstance().Add_Log("ignored: " + Arrays.toString(command));
+            }
         }
 
     }
@@ -82,9 +85,11 @@ public class InitSystemFromFile {
             }
         } catch (IOException e) {
             System.err.println("file not found or in wrong format");
+            ServerErrorLog.GetInstance().Add_Log("file not found or in wrong format");
             // TODO: error logger
         } catch (Exception e) {
             System.err.println("file in wrong format");
+            ServerErrorLog.GetInstance().Add_Log("file not found or in wrong format");
         }
     }
 }

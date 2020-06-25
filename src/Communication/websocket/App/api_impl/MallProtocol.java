@@ -62,7 +62,12 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
 
     @Override
     public Message process(Message msg) {
-        return ((Client2ServerMessage)msg).visit(this);
+        try {
+            return ((Client2ServerMessage)msg).visit(this);
+        } catch (Exception e){
+            return new NackMessage(((Client2ServerMessage) msg).getId());
+        }
+
     }
 
     @Override
@@ -105,12 +110,15 @@ public class MallProtocol implements MessagingProtocol<Message>, ClintObserver {
     }
 
     public Message accept(LoginMessage msg){
-        if(guest_accese.usecase2_3_login(gustID, msg.getUsername(), msg.getPassword(), this)){
-            username = msg.getUsername();
-            paasword = msg.getPassword();
+        try {
+            if(guest_accese.usecase2_3_login(gustID, msg.getUsername(), msg.getPassword(), this)){
+                username = msg.getUsername();
+                paasword = msg.getPassword();
 
-            return new AckMessage(msg.getId());
-        }
+                return new AckMessage(msg.getId());
+            }
+        } catch (Exception e){}
+
 
         return new NackMessage(msg.getId());
     }

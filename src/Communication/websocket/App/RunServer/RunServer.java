@@ -36,7 +36,7 @@ public class RunServer {
     }
 
     private static void initSystem(){
-        InitSystemFromFile.init("initFile.txt");
+        InitSystemFromFile.init("initFilejrifgjrifgjrigjhrigr.txt");
     }
 
 }
