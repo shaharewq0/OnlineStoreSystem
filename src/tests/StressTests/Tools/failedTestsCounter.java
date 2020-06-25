@@ -1,8 +1,8 @@
-package tests.StressTests;
+package tests.StressTests.Tools;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-class failedTestsCounter{
+public class failedTestsCounter{
     private static final AtomicInteger counter = new AtomicInteger(0);
 
     public static int getCounter() {

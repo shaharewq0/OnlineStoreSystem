@@ -1,4 +1,4 @@
-package tests.StressTests;
+package tests.StressTests.Tools;
 
 import java.nio.charset.Charset;
 import java.util.Random;
