@@ -11,13 +11,30 @@ import Domain.store_System.System;
 import java.util.*;
 
 public class shoppingCart implements IshoppingCart {
+    private int id;
     Map<String, shoppingBasket> baskets;
 
     public shoppingCart() {
         baskets = new HashMap<>();
     }
 
-    public Collection<shoppingBasket> getBaskets() {
+    public int getId() {
+        return id;
+    }
+
+    public Map<String, shoppingBasket> getBaskets() {
+        return baskets;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBaskets(Map<String, shoppingBasket> baskets) {
+        this.baskets = baskets;
+    }
+
+    public Collection<shoppingBasket> getBasketsValues() {
         return baskets.values();
     }
 

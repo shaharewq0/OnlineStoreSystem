@@ -12,6 +12,10 @@ public class AcqMaxAmount extends AcqAmountCondition {
         super(productName, amount);
     }
 
+    public AcqMaxAmount(){}
+
+
+
     @Override
     public boolean canPurchase(List<Product_boundle> products) {
         if (productName.equals("ALL"))

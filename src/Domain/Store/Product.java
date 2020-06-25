@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Product extends Object implements IProduct {
+    private int id;
     private String name;
     private List<String> category;
     private List<String> keyWords;
@@ -37,6 +38,11 @@ public class Product extends Object implements IProduct {
        // Amount.add(p.getAmount());
     }
 
+    public Product(){}
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -58,10 +64,29 @@ public class Product extends Object implements IProduct {
         return rating;
     }
 
-//    public String getStore() {
-//        return storename;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setKeyWords(List<String> keyWords) {
+        this.keyWords = keyWords;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public void edit(Product p) {
         this.price = p.price;
@@ -71,24 +96,6 @@ public class Product extends Object implements IProduct {
         this.rating = p.rating;
     }
 
-
-
-//    public int getAmount() {
-//        return Amount.size();
-//        //return amount;
-//    }
-
-//    public int removeAmount(int amount) {
-//        if (Amount.size() < amount) {
-//            int temp = Amount.size();
-//            Amount.remove(temp);
-//            return temp;
-//        } else {
-//            Amount.remove(amount);
-//            // this.amount = this.amount - amount;
-//            return amount;
-//        }
-//    }
 
     @Override
     public String toString() {

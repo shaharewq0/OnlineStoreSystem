@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.UserClasses.IshoppingCart" abstract="true" table = "SHOPPING_CART_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="increment"/>
+        </id>
+
+        <discriminator column="discriminator"/>
+
+        <subclass name="Domain.UserClasses.shoppingCart" discriminator-value="Cart">
+
+            <map name="baskets" cascade="all" lazy="false">
+                <key column="ShoppingCart_foreignkey"></key>
+                <index column="Store_name" type="string"></index>
+                <one-to-many class="Domain.UserClasses.shoppingCart"></one-to-many>
+            </map>
+
+        </subclass>
+    </class>
+</hibernate-mapping>

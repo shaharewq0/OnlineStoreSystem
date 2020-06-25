@@ -18,6 +18,8 @@ import Domain.store_System.Roles.Registered;
 import java.util.*;
 
 public class StoreOwner_Imp implements Store_role {
+
+    private int id;
     protected Registered user;
     public Appoint_Owner myJob = new Appoint_Owner();
     //	protected StoreImp store;
@@ -33,6 +35,67 @@ public class StoreOwner_Imp implements Store_role {
 
     public StoreOwner_Imp() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Registered getUser() {
+        return user;
+    }
+
+    public Appoint_Owner getMyJob() {
+        return myJob;
+    }
+
+    public String getWorkername() {
+        return workername;
+    }
+
+    public Map<String, Store_role> getOwnerAppointeis() {
+        return OwnerAppointeis;
+    }
+
+    public Map<String, Pending_appoint_Owner> getOwnerPendingAppointeis() {
+        return OwnerPendingAppointeis;
+    }
+
+    public Map<String, Store_role> getManagerAppointeis() {
+        return ManagerAppointeis;
+    }
+
+    public Map<String, Pending_appoint_Owner> getNewOwners() {
+        return newOwners;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUser(Registered user) {
+        this.user = user;
+    }
+
+    public void setManagerAppointeis(Map<String, Store_role> managerAppointeis) {
+        ManagerAppointeis = managerAppointeis;
+    }
+
+    public void setMyJob(Appoint_Owner myJob) {
+        this.myJob = myJob;
+    }
+
+    public void setNewOwners(Map<String, Pending_appoint_Owner> newOwners) {
+        this.newOwners = newOwners;
+    }
+
+    public void setOwnerAppointeis(Map<String, Store_role> ownerAppointeis) {
+        OwnerAppointeis = ownerAppointeis;
+    }
+
+    public void setOwnerPendingAppointeis(Map<String, Pending_appoint_Owner> ownerPendingAppointeis) {
+        OwnerPendingAppointeis = ownerPendingAppointeis;
+    }
+
 
     public StoreOwner_Imp(Store_role creator, Registered myname) {
         user = myname;

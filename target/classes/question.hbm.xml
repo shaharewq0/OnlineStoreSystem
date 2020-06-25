@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.info.Question" table = "QUESTION_TABLE" lazy="false">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="increment"/>
+        </id>
+
+        <property name = "question" column = "question" type = "string"/>
+
+        <list name="Answers" table="ANSWERS_TABLE" lazy="false">
+            <key column="Qid"></key>
+            <index column="id"> </index>
+            <element column="answer" type="string"></element>
+        </list>
+
+    </class>
+</hibernate-mapping>

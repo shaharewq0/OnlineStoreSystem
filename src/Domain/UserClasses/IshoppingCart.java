@@ -9,7 +9,7 @@ import Domain.Store.Product;
 import Domain.info.ProductDetails;
 
 public interface IshoppingCart {
-     Collection<shoppingBasket> getBaskets();
+     Collection<shoppingBasket> getBasketsValues();
      double  CalcPrice();
    // public boolean addBasket(shoppingBasket b);
      List<ProductDetails> allProductsInCart();

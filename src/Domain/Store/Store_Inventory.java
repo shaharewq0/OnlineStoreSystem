@@ -10,8 +10,27 @@ import extornal.supply.Packet_Of_Prodacts;
 import extornal.supply.inventory;
 
 public class Store_Inventory implements inventory {
-
+    private int id;
     public Map<String, Product_boundle> items = new HashMap<String, Product_boundle>();
+
+
+    public Store_Inventory(){}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setItems(Map<String, Product_boundle> items) {
+        this.items = items;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Map<String, Product_boundle> getItems() {
+        return items;
+    }
 
     @Override
     public boolean recive_item(Packet_Of_Prodacts pack) {

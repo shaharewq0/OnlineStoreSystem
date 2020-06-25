@@ -17,7 +17,6 @@ import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class MessageEncoder implements  Encoder.Text<Message> {
 
@@ -288,7 +287,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
     private void OfferStorePurchase(LinkedList<Byte> lst, StorePurchase toOffer, byte deleliter2, byte deleliter3, byte deleliter4){
         offerString(lst, toOffer.get_Store_Name());
         offerByte(lst, deleliter2);
-        offerProducts(lst, toOffer.getItems(), deleliter3, deleliter4);
+        offerProducts(lst, toOffer.getItemsCopy(), deleliter3, deleliter4);
         offerByte(lst, deleliter2);
         offerDouble(lst, toOffer.getPrice());
     }
@@ -340,7 +339,7 @@ public class MessageEncoder implements  Encoder.Text<Message> {
             if(!first)
                 offerListDelimiter(lst);
 
-            offerList(lst, cur.getAnsewers(), Delimiters.LIST_DELIMITER_L2);
+            offerList(lst, cur.getAnswers(), Delimiters.LIST_DELIMITER_L2);
 
             first = false;
         }

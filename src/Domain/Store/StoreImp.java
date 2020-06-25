@@ -19,6 +19,7 @@ import extornal.supply.Packet_Of_Prodacts;
 import java.util.*;
 
 public class StoreImp implements IStore {
+    private int id;
     private String name;
     private Creator creator;
     private Store_Inventory inventory = new Store_Inventory();
@@ -58,12 +59,86 @@ public class StoreImp implements IStore {
 
     }
 
+    public StoreImp(){}
+
     public void myCreator(Creator c) {
         creator = c;
     }
 
     // ----------------------------------------------------------------------------------------my
     // info
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public AcquisitionPolicy getAcquisitions() {
+        return acquisitions;
+    }
+
+    public DiscountPolicy getDiscounts() {
+        return discounts;
+    }
+
+    public Store_Inventory getInventory() {
+        return inventory;
+    }
+
+    public Store_Purchase_History getPurchaseHistory() {
+        return purchaseHistory;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAcquisitions(AcquisitionPolicy acquisitions) {
+        this.acquisitions = acquisitions;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCreator(Creator creator) {
+        this.creator = creator;
+    }
+
+    public void setDiscounts(DiscountPolicy discounts) {
+        this.discounts = discounts;
+    }
+
+    public void setInventory(Store_Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setManagers(Map<String, Appoint_manager> managers) {
+        Managers = managers;
+    }
+
+    public void setOwners(Map<String, Appoint_Owner> owners) {
+        Owners = owners;
+    }
+
+    public void setPurchaseHistory(Store_Purchase_History purchaseHistory) {
+        this.purchaseHistory = purchaseHistory;
+    }
+
+    public void setQuestions(Map<Integer, Question> questions) {
+        this.questions = questions;
+    }
+
+
     public Creator getCreator() {
         return creator;
     }
@@ -348,7 +423,7 @@ public class StoreImp implements IStore {
     }
 
     public boolean respondToQuestion(String ansewer, int qustionID) {
-        questions.get(qustionID).addAnsewers(ansewer);
+        questions.get(qustionID).addAnswers(ansewer);
         return true;
 
     }

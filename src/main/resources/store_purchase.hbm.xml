@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.Store.StorePurchase" table = "STORE_PURCHASE_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <property name="price" column="price" type="double"/>
+
+        <list name="items" table="SPurchase_PDetails" cascade="all" lazy="false">
+            <key column="StorePurchase_foreignkey"/>
+            <list-index column="type"></list-index>
+            <one-to-many class="Domain.info.ProductDetails"/>
+        </list>
+
+
+        <property name="store" type="string" column="store_name"/>
+    </class>
+</hibernate-mapping>

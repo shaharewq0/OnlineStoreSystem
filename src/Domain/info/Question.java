@@ -5,13 +5,26 @@ import java.util.List;
 
 public class Question {
 
-	private String question = "";
-	private int id = -1;
-	private List<String> Ansewers = new LinkedList<String>();
+	private String question;
+	private int id;
+	private List<String> Answers = new LinkedList<String>();
 
-	public Question(int id, String q) {
-		this.id = (id);
+	public Question(){}
+
+	public Question(String q) {
 		question = (q);
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public void setAnswers(List<String> answers) {
+		Answers = answers;
 	}
 
 	public String getQuestion() {
@@ -22,12 +35,12 @@ public class Question {
 		return id;
 	}
 
-	public List<String> getAnsewers() {
-		return Ansewers;
+	public List<String> getAnswers() {
+		return Answers;
 	}
 
-	public void addAnsewers(String ansewer) {
-		Ansewers.add(ansewer);
+	public void addAnswers(String answer) {
+		Answers.add(answer);
 	}
 
 }

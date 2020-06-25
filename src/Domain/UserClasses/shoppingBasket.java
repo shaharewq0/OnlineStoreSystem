@@ -10,12 +10,38 @@ public class shoppingBasket implements IshoppingBasket {
 
     //      productName - amount
     // Product = the product we are talking about|| Integer how much of it is in the basket
+    private int id;
     private List<Product_boundle> Item_holder;
     private StoreImp store;
 
     public shoppingBasket(StoreImp store) {
         this.store = store;
         Item_holder = new LinkedList<>();
+    }
+    public shoppingBasket(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public StoreImp getStore() {
+        return store;
+    }
+
+    public List<Product_boundle> getItem_holder() {
+        return Item_holder;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStore(StoreImp store) {
+        this.store = store;
+    }
+
+    public void setItem_holder(List<Product_boundle> item_holder) {
+        Item_holder = item_holder;
     }
 
     public boolean addProduct(String name, int amount) {
@@ -59,9 +85,7 @@ public class shoppingBasket implements IshoppingBasket {
 
     }
 
-    public StoreImp getStore() {
-        return store;
-    }
+
 
     public List<ProductDetails> getProducts() {
         List<ProductDetails> output = new LinkedList<ProductDetails>();
@@ -90,6 +114,7 @@ public class shoppingBasket implements IshoppingBasket {
         StorePurchase SP = new StorePurchase(getProducts(), store.getName(), CalcPrice());
         store.addPurchase(SP);
         return SP;
+
     }
 
     public boolean CheckItemAvailable() {

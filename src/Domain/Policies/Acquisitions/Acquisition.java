@@ -9,7 +9,6 @@ import java.util.Map;
 public interface Acquisition {
     // at all acquisitions, productName can be 'ALL' to represent store condition
 
-
     /**
      * returns true if this Acquisition can be done
      * otherwise, return false.
@@ -25,4 +24,8 @@ public interface Acquisition {
      * add to each discount the appropriate product according to product name (include sub discounts)
      */
     void replaceProducts(List<Product> products);
+
+    public int getId();
+
+    public void setId(int id);
 }

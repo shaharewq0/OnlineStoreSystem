@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<hibernate-configuration>
+    <session-factory>
+
+        <property name = "hibernate.dialect">
+            org.hibernate.dialect.MySQL5Dialect
+        </property>
+
+        <property name = "hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+
+        <property name = "hibernate.connection.url">
+            jdbc:mysql://localhost/onlineShop
+        </property>
+
+        <property name = "hibernate.connection.username">
+            root
+        </property>
+
+        <property name = "hibernate.connection.password">
+            120199
+        </property>
+
+        <property name="hibernate.hbm2ddl.auto">
+            create
+        </property>
+
+        <!-- List of XML mapping files -->
+        <mapping resource="password.hbm.xml"/>
+        <mapping resource="question.hbm.xml"/>
+        <mapping resource="product.hbm.xml"/>
+        <mapping resource="product_bundle.hbm.xml"/>
+        <mapping resource="Store_Inventory.hbm.xml"/>
+        <mapping resource="Product_Details.hbm.xml"/>
+        <mapping resource="store_purchase.hbm.xml"/>
+        <mapping resource="AcquisitionPolicy.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

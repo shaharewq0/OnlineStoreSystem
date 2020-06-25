@@ -3,14 +3,13 @@ package Domain.info;
 
 import Domain.Store.Product;
 import Domain.Store.Product_boundle;
+import Domain.Store.StorePurchase;
 
 import java.util.*;
 
 public class ProductDetails {
-    public String getName() {
-        return name;
-    }
 
+    private int id;
     private List<String> keyWords;
     private String name;
     private List<String> category;
@@ -18,6 +17,9 @@ public class ProductDetails {
     private int amount;
     private int rating;
     private double price;
+
+
+    public ProductDetails(){}
 
     public ProductDetails(String name, List<String> category, String storeName, int amount, double price) {
         this.name = name;
@@ -63,6 +65,43 @@ public class ProductDetails {
         this.rating = pro.getRating();
     }
 
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setKeyWords(List<String> keyWords) {
+        this.keyWords = keyWords;
+    }
+
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public double getPrice() {
         return price;

@@ -1,16 +1,22 @@
 package extornal.Security;
 
+import DAL.Password_DA;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public final class PassProtocol_Imp implements PasswordProtocol{
     public static PassProtocol_Imp Instance=null;
-    public static HashMap<String,String> table;
+    public static List<Password> table;
     public static MessageDigest messageDigest;
+    public static Password_DA da;
 
     private PassProtocol_Imp(){
-        table= new HashMap<>();
+        da= new Password_DA();
+        table= new LinkedList<>();
         try {
             messageDigest = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
@@ -19,29 +25,43 @@ public final class PassProtocol_Imp implements PasswordProtocol{
     }
 
     @Override
-    public boolean addRegistry(String id, String password) {
-        if(table.containsKey(id))
-            return false;
+    public boolean addRegistry(String userID, String password) {
+        for(Password pass: table){
+            if(pass.getUserID().equals(userID))
+                return false;
+        }
         messageDigest.update(password.getBytes());
-        table.put(id,new String(messageDigest.digest()));
+        String hash=new String(messageDigest.digest());
+        Password pass = new Password(userID,hash);
+        table.add(pass);
+        da.add(pass);
         return true;
     }
 
     @Override
-    public boolean login(String id, String password) {
+    public boolean login(String userID, String password) {
         messageDigest.update(password.getBytes());
-        String pass=new String(messageDigest.digest());
-        if(!table.containsKey(id))
-            return false;
-        return table.get(id).equals(pass);
+        String hash=new String(messageDigest.digest());
+        for(Password pass: table){
+            if(pass.getUserID().equals(userID))
+                return pass.getPasswordHash().equals(hash);
+        }
+        return false;
     }
 
     @Override
-    public boolean deleteRegistry(String id, String password) {
-        if(login(id,password)) {
-            table.remove(id);
-            return true;
+    public boolean deleteRegistry(String userID, String password) {
+        messageDigest.update(password.getBytes());
+        String hash=new String(messageDigest.digest());
+
+        for(Password pass: table){
+            if(pass.getUserID().equals(userID) && pass.getPasswordHash().equals(hash)) {
+                table.remove(pass);
+                da.delete(pass);
+                return true;
+            }
         }
+
         return false;
     }
 

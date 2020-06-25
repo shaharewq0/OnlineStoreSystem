@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.store_System.Roles.System_Role" abstract="true" table = "SYSTEM_ROLE_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <discriminator column="discriminator"></discriminator>
+
+        <subclass name="Domain.store_System.Roles.Guest" discriminator-value="SystemGuest">
+        </subclass>
+
+        <subclass name="Domain.store_System.Roles.Member" discriminator-value="SystemMember">
+            <many-to-one name="user" class="Domain.UserClasses.IUser" cascade="all">
+            </many-to-one>
+        </subclass>
+
+        <subclass name="Domain.store_System.Roles.System_Manager" discriminator-value="SystemManager">
+            <property name="name" type="string"/>
+        </subclass>
+    </class>
+</hibernate-mapping>

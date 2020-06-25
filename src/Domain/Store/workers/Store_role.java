@@ -71,6 +71,10 @@ public interface Store_role {
 
     String getType();
 
+    int getId();
+
+    void setId(int id);
+
      boolean confirmOwner(String newOnwerName);
      Collection<String> getWaitingAccep();
 }

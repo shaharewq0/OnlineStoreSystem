@@ -8,11 +8,11 @@ import Domain.info.ProductDetails;
 import extornal.payment.PaymentMethed;
 
 public class StorePurchase {
-
+	private int id;
 	private double price;
-	private List<ProductDetails> items;
-
+	public List<ProductDetails> items;
 	private String store;
+
 
 	public StorePurchase(List<ProductDetails> items, String store,double price) {
 		this.items = items;
@@ -20,13 +20,41 @@ public class StorePurchase {
 		this.price = price;
 	}
 
+	public StorePurchase(){}
 
+	public int getId() {
+		return id;
+	}
+
+	public String getStore() {
+		return store;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setItems(List<ProductDetails> items) {
+		this.items = items;
+	}
+
+	public void setStore(String store) {
+		this.store = store;
+	}
 
 	public double getPrice() {
 		return price;
 	}
 
 	public List<ProductDetails> getItems() {
+		return items;
+	}
+
+	public List<ProductDetails> getItemsCopy() {
 		List<ProductDetails> items = new LinkedList<ProductDetails>();
 		for (ProductDetails pd : this.items) {
 			items.add(ProductDetails.Copy(pd));
@@ -50,14 +78,14 @@ public class StorePurchase {
 
 		StorePurchase that = (StorePurchase) o;
 		return Double.compare(that.getPrice(), getPrice()) == 0 &&
-				getItems().containsAll(that.getItems()) &&
-				that.getItems().containsAll(getItems()) &&
+				getItemsCopy().containsAll(that.getItemsCopy()) &&
+				that.getItemsCopy().containsAll(getItemsCopy()) &&
 				Objects.equals(store, that.store);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getPrice(), getItems(), store);
+		return Objects.hash(getPrice(), getItemsCopy(), store);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.function.BinaryOperator;
 
 abstract class CompositeAcq implements Acquisition {
+    private int id;
     private List<Acquisition> acquisitions;
     private BinaryOperator<Boolean> canPurchaseOperator;
     private Boolean canPurchaseIdentity;
@@ -19,6 +20,43 @@ abstract class CompositeAcq implements Acquisition {
         this.acquisitions = acquisitions;
         this.canPurchaseOperator = canPurchaseOperator;
         this.canPurchaseIdentity = canPurchaseIdentity;
+    }
+
+    public CompositeAcq(){
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Acquisition> getAcquisitions() {
+        return acquisitions;
+    }
+
+    public BinaryOperator<Boolean> getCanPurchaseOperator() {
+        return canPurchaseOperator;
+    }
+
+    public Boolean getCanPurchaseIdentity() {
+        return canPurchaseIdentity;
+    }
+
+    public void setAcquisitions(List<Acquisition> acquisitions) {
+        this.acquisitions = acquisitions;
+    }
+
+    public void setCanPurchaseIdentity(Boolean canPurchaseIdentity) {
+        this.canPurchaseIdentity = canPurchaseIdentity;
+    }
+
+    public void setCanPurchaseOperator(BinaryOperator<Boolean> canPurchaseOperator) {
+        this.canPurchaseOperator = canPurchaseOperator;
     }
 
     @Override

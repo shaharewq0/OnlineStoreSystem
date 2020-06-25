@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "Domain.UserClasses.User_Purchase_History" table = "USER_PURCHASE_HISTORY_TABLE">
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+
+        <list name="history" cascade="all" lazy="false">
+            <key column="UserPurchaseHistory_foreignkey"></key>
+            <list-index column="UPH_type"/>
+            <one-to-many class="Domain.UserClasses.UserPurchase"></one-to-many>
+        </list>
+    </class>
+</hibernate-mapping>

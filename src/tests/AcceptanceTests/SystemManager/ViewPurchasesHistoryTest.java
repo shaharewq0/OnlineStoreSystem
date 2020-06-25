@@ -13,7 +13,6 @@ import tests.AcceptanceTests.GuestBuyer.BaseGuestTest;
 import tests.AcceptanceTests.GuestBuyer.LoginTest;
 import tests.AcceptanceTests.GuestBuyer.PurchaseTest;
 import tests.AcceptanceTests.auxiliary.CreditCards;
-import tests.AcceptanceTests.auxiliary.PurchaseDetails;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -49,7 +48,7 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         prodects.add(new ProductDetails(PRODUCT1.getName(),PRODUCT1.getCategory(), STORE.getName(), 1, PRODUCT1.getPrice(),PRODUCT1.getRating()));
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
         p.eachPurchase.add(new StorePurchase(prodects, STORE.getName(), price));
-        p.TotalePrice = price;
+        p.TotalPrice = price;
         List<UserPurchase> TruePurchases = Collections.singletonList(p);
 
         List<UserPurchase> purchases = system.getPurchaseHistory(USERNAME, PASSWORD);
@@ -68,10 +67,10 @@ public class ViewPurchasesHistoryTest extends BaseAccTest {
         double price = 1*PRODUCT1.getPrice() + 5*PRODUCT2.getPrice();
 
         List<StorePurchase> TruePurchases = Collections.singletonList(new StorePurchase(prodects, STORE.getName(), price));
-
         List<StorePurchase> purchases = system.getStoreSellingHistory(USERNAME, PASSWORD, STORE.getName());
 
         assertEqualsLists(TruePurchases, purchases);
+
     }
 
 }

@@ -17,6 +17,7 @@ import Domain.store_System.Roles.Registered;
 import java.util.*;
 
 public class StoreManager_Imp implements Store_role {
+    private int id;
     private Registered user;
     protected Appoint_manager MyJob = new Appoint_manager();
     protected String worker_name = "";
@@ -46,6 +47,65 @@ public class StoreManager_Imp implements Store_role {
         Manager_Appointees = new HashMap<String, Store_role>();
         this.permission.addAll(permisions);
         EventLogger.GetInstance().Add_Log(this.toString() + "- Created Manager");
+    }
+    public StoreManager_Imp(){}
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public Registered getUser() {
+        return user;
+    }
+
+    public Appoint_manager getMyJob() {
+        return MyJob;
+    }
+
+    public String getWorker_name() {
+        return worker_name;
+    }
+
+    public Map<String, Store_role> getOwner_Appointees() {
+        return Owner_Appointees;
+    }
+
+    public Map<String, Store_role> getManager_Appointees() {
+        return Manager_Appointees;
+    }
+
+    public List<String> getPermission() {
+        return permission;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMyJob(Appoint_manager myJob) {
+        MyJob = myJob;
+    }
+
+    public void setUser(Registered user) {
+        this.user = user;
+    }
+
+    public void setManager_Appointees(Map<String, Store_role> manager_Appointees) {
+        Manager_Appointees = manager_Appointees;
+    }
+
+    public void setOwner_Appointees(Map<String, Store_role> owner_Appointees) {
+        Owner_Appointees = owner_Appointees;
+    }
+
+    public void setPermission(List<String> permission) {
+        this.permission = permission;
+    }
+
+    public void setWorker_name(String worker_name) {
+        this.worker_name = worker_name;
     }
 
     @Override

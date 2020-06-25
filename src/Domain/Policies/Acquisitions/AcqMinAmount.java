@@ -12,6 +12,8 @@ public class AcqMinAmount extends AcqAmountCondition {
         super(productName, amount);
     }
 
+    public AcqMinAmount(){}
+
     @Override
     public boolean canPurchase(List<Product_boundle> products) {
         if (productName.equals("ALL"))
